@@ -1,1 +1,37 @@
-@import "tailwindcss";
+/* index.css */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&family=Raleway:wght@600;700&display=swap');
+
+/* Global styles */
+:root {
+  --primary: #0C3B34;   /* Dark Green */
+  --accent: #D8C287;    /* Gold/Beige */
+  --light: #F8F8F8;     /* Light Gray */
+  --darkText: #333333;  /* Dark Gray */
+}
+
+body {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  background-color: var(--light);
+  color: var(--darkText);
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Raleway', sans-serif;
+}
+
+.bg-primary {
+  background-color: var(--primary);
+}
+
+.bg-accent {
+  background-color: var(--accent);
+}
+
+.text-primary {
+  color: var(--primary);
+}
+
+.text-accent {
+  color: var(--accent);
+}
