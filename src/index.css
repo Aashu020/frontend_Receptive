@@ -3,10 +3,15 @@
 
 /* Global styles */
 :root {
-  --primary: #0C3B34;   /* Dark Green */
-  --accent: #D8C287;    /* Gold/Beige */
-  --light: #F8F8F8;     /* Light Gray */
-  --darkText: #333333;  /* Dark Gray */
+  --primary: #0C3B34;
+  /* Dark Green */
+  --accent: #D8C287;
+  /* Gold/Beige */
+  --light: #F8F8F8;
+  /* Light Gray */
+  --darkText: #333333;
+  /* Dark Gray */
+  /* --bgAbout: #043927  Darker Green for About Section */
 }
 
 body {
@@ -16,7 +21,10 @@ body {
   color: var(--darkText);
 }
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-family: 'Raleway', sans-serif;
 }
 
@@ -34,4 +42,13 @@ h1, h2, h3, h4 {
 
 .text-accent {
   color: var(--accent);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }

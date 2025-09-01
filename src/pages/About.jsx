@@ -1,16 +1,23 @@
 import React from 'react'
+import HeroSection from '../components/aboutComponents/HeroSection'
+import ReceptiveAbout from '../components/aboutComponents/RecepriveAbout'
+import Founder from '../components/aboutComponents/Founder'
+import Immigration from '../components/aboutComponents/Immigration'
+import Properties from '../components/aboutComponents/Properties'
+import Investment from '../components/aboutComponents/Investment'
+import VisionMissionPhilosophy from '../components/aboutComponents/VisionMissionPhilosophy'
 
 const About = () => {
   return (
-   <>
-     <div style={{ padding: "20px" }}>
-      <h1>Welcome to the Immigration Portal</h1>
-      <p>
-        Our services help you with visa applications, travel guidance, and
-        settlement support to make your journey smoother.
-      </p>
-    </div>
-   </>
+    <>
+      <HeroSection />
+      <ReceptiveAbout />
+      <Founder/>
+      <Immigration />
+      <Properties />
+      <Investment/>
+      <VisionMissionPhilosophy/>
+    </>
   )
 }
 
