@@ -5,10 +5,8 @@ import { motion } from 'framer-motion'
 const Properties = () => {
     return (
         <div>
-            <div className="max-w-7xl mx-auto px-6 py-16">
+            <div className="max-w-6xl mx-auto px-6 py-16 overflow-hidden">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
-
-
 
                     {/* Text Section - Animate from left */}
                     <motion.div

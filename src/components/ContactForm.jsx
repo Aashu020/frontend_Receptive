@@ -222,7 +222,7 @@ const ContactForm = () => {
 
   // Rest of the JSX remains unchanged
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0C3B34] via-[#0C3B34]/80 to-[#0C3B34] text-white">
+    <div className="min-h-screen w-full bg-gradient-to-br from-[#0C3B34] via-[#0C3B34]/80 to-[#0C3B34] text-white">
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-[#D8C287] to-white bg-clip-text text-transparent">
@@ -235,7 +235,7 @@ const ContactForm = () => {
 
         <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
           {/* Contact Form */}
-          <div className="bg-[#0C3B34]/80 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-[#D8C287]">
+          <div className="bg-[#0C3B34]/80 w-[95%] backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-[#D8C287]">
             <h2 className="text-2xl font-bold mb-6 text-center text-white">Send us a Message</h2>
 
             <div className="space-y-4">
@@ -455,9 +455,9 @@ const ContactForm = () => {
           </div>
 
           {/* Map and Contact Info */}
-          <div className="space-y-8">
+          <div className="space-y-4">
             {/* Tabs */}
-            <div className="bg-[#0C3B34] flex justify-around text-white font-semibold p-4 rounded-2xl shadow-2xl border border-[#D8C287]">
+            <div className="bg-[#0C3B34] flex justify-around text-white font-semibold p-4 rounded-2xl shadow-2xl border border-[#D8C287] w-[95%]">
               {Object.keys(locations).map((location) => (
                 <div
                   key={location}
@@ -474,7 +474,7 @@ const ContactForm = () => {
             </div>
 
             {/* Google Map Iframe and Address */}
-            <div className="bg-[#0C3B34]/80 backdrop-blur-sm p-4 rounded-2xl shadow-2xl border border-[#D8C287]">
+            <div className="bg-[#0C3B34]/80 w-[95%] backdrop-blur-sm p-4 rounded-2xl shadow-2xl border border-[#D8C287]">
               <iframe
                 src={locations[selectedLocation].mapUrl}
                 width="100%"
