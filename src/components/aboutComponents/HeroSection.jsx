@@ -1,211 +1,149 @@
-import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Using placeholder images since we don't have access to your assets
 const heroItems = [
   { 
+    id: 1,
     title: "Immigration", 
-    img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80", 
-    desc: "Seamless global relocation services tailored for you.",
-    gradient: "from-blue-600 to-purple-600"
+    img: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1200&q=80", 
+    desc: "Receptive Immigration a division of the Receptive Group of Companies, is a trusted name in the investment industry. With a focus on creating wealth and financial security for our clients, Receptive Investments offers expert guidance and personalized services to help individuals and businesses navigate the investment landscape. ",
+    buttonText: "Explore Immigration",
+    buttonLink: "/immigration"
   },
   { 
+    id: 2,
     title: "Properties", 
-    img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80", 
-    desc: "Find premium properties that match your dreams.",
-    gradient: "from-emerald-600 to-teal-600"
+    img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=1200&q=80", 
+    desc: "Receptive Properties is a new vertical of the Receptive Group of Companies, specializing in real estate services. Our dedicated team of professionals offers expert guidance and personalized services to assist individuals and businesses in buying, selling, and managing properties across India and UAE.",
+    buttonText: "Browse Properties",
+    buttonLink: "/properties"
   },
   { 
+    id: 3,
     title: "Investment", 
-    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80", 
-    desc: "Smart investment opportunities for a secure future.",
-    gradient: "from-orange-600 to-red-600"
+    img: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80", 
+    desc: "Receptive Investments a division of the Receptive Group of Companies, is a trusted name in the investment industry. With a focus on creating wealth and financial security for our clients, Receptive Investments offers expert guidance and personalized services to help individuals and businesses navigate the investment landscape.",
+    buttonText: "Investment Options",
+    buttonLink: "/investment"
   },
 ];
 
 export default function HeroSection() {
-  const sliderRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
-  // Scroll calculation for mobile
+  // Auto-advance the slider
   useEffect(() => {
-    if (!sliderRef.current) return;
+    if (!isAutoPlaying) return;
+    
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) => 
+        prevIndex === heroItems.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 5000);
+    
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
 
-    const slider = sliderRef.current;
-    const containerWidth = slider.offsetWidth;
-    const cardWidth = containerWidth * 0.8; // 80% of container
-    const gap = 16; // Tailwind gap-4
-    const totalContentWidth = heroItems.length * (cardWidth + gap) - gap; // Total width of all cards
-    const maxScroll = totalContentWidth - containerWidth; // Maximum scrollable distance
-
-    // Calculate scroll position
-    let scrollLeft = currentIndex * (cardWidth + gap);
-
-    // For the last slide, align it to the right to ensure full visibility
-    if (currentIndex === heroItems.length - 1) {
-      scrollLeft = maxScroll;
-    }
-
-    slider.scrollTo({
-      left: scrollLeft,
-      behavior: "smooth",
-    });
-  }, [currentIndex]);
-
-  // Handle left and right navigation
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + heroItems.length) % heroItems.length);
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % heroItems.length);
+  const goToSlide = (index) => {
+    setCurrentIndex(index);
+    setIsAutoPlaying(false);
+    // Resume auto-play after user interaction
+    setTimeout(() => setIsAutoPlaying(true), 10000);
   };
 
   return (
-    <section className=" relative lg:top-12 py-30 overflow-hidden ">
-      {/* Animated Background */}
-      <div className="absolute inset-0 ">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-0 left-0 w-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse"></div>
+    <section className="relative h-screen overflow-hidden">
+      {/* Background Image Slider */}
+      <div className="absolute inset-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            className="absolute inset-0"
+          >
+            <img 
+              src={heroItems[currentIndex].img} 
+              alt={heroItems[currentIndex].title}
+              className="w-full h-full object-cover"
+            />
+            {/* Gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/70 to-transparent"></div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Content */}
+      <div className="relative h-full flex items-center">
+        <div className="container mx-auto px-6 md:px-12">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentIndex}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-2xl text-white"
+            >
+              <h1 className="text-4xl md:text-6xl font-bold mb-4">
+                {heroItems[currentIndex].title}
+              </h1>
+              <p className="text-xl md:text-2xl mb-8">
+                {heroItems[currentIndex].desc}
+              </p>
+              <a
+                href={heroItems[currentIndex].buttonLink}
+                className="inline-block px-8 py-3 bg-[#D8C287] text-[#0a2d27]' : 'hover:bg-[#0a2d27] hover:text-white' font-semibold rounded-lg  transition-colors duration-300"
+              >
+                {heroItems[currentIndex].buttonText}
+              </a>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
-      <div className="relative mx-auto px-2 md:px-20 text-center text-[#043927]">
-        <motion.div
-          initial={{ opacity: 0, y: -30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-12"
-        >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6 pb-2">
-            Explore Immigration, Properties & Investments
-          </h1>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto rounded-full"></div>
-        </motion.div>
-
-        {/* Desktop Grid */}
-        <div className="hidden md:grid grid-cols-3 gap-8 ">
-          {heroItems.map((item, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: idx * 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ 
-                scale: 1.05,
-                rotateY: 5,
-                z: 50
-              }}
-              onHoverStart={() => setIsHovering(true)}
-              onHoverEnd={() => setIsHovering(false)}
-              className="group relative bg-white/10 rounded-3xl overflow-hidden shadow-2xl cursor-pointer backdrop-blur-xl border border-white/20 hover:border-white/40 transition-all duration-500"
-              style={{ transformStyle: 'preserve-3d' }}
-            >
-              <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-transform duration-1000 z-20"></div>
-              
-              <div className="relative overflow-hidden">
-                <img 
-                  src={item.img} 
-                  alt={item.title} 
-                  className="w-full h-60 object-cover group-hover:scale-110 transition-transform duration-700" 
-                />
-              </div>
-              
-              <div className="p-8 relative z-10">
-                <h2 className="text-2xl font-bold mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#cf9a09] group-hover:to-yellow-900 group-hover:bg-clip-text transition-all duration-300">
-                  {item.title}
-                </h2>
-                <p className="text-gray-800 text-sm leading-relaxed group-hover:text-gray-950 transition-colors duration-300">
-                  {item.desc}
-                </p>
-                
-              </div>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Mobile Slider */}
-        <div className="md:hidden relative">
-          <div
-            ref={sliderRef}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide pb-4 px-4 overflow-y-hidden"
-            // style={{ paddingRight: '20%' }} // Ensure last slide is fully visible
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-            onTouchStart={() => setIsHovering(true)}
-            onTouchEnd={() => setIsHovering(false)}
+      {/* Square Navigation Cards - Bottom Right */}
+      <div className="absolute bottom-8 right-8 z-10 flex gap-4">
+        {heroItems.map((item, index) => (
+          <motion.div
+            key={item.id}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className={`bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer transition-all duration-300 ${
+              currentIndex === index ? "ring-2 ring-[#043927]" : "opacity-80 hover:opacity-100"
+            }`}
+            onClick={() => goToSlide(index)}
+            style={{ width: "100px", height: "100px" }}
           >
-            {heroItems.map((item, idx) => (
-              <motion.div
-                key={idx}
-                className="flex-none w-[80vw] snap-center bg-white/10 rounded-3xl overflow-hidden shadow-2xl cursor-pointer backdrop-blur-xl border border-white/20 group"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                viewport={{ once: true }}
-              >
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-t ${item.gradient} opacity-0 group-active:opacity-20 transition-opacity duration-300 z-10`}></div>
-                
-                <div className="relative overflow-hidden">
-                  <img 
-                    src={item.img} 
-                    alt={item.title} 
-                    className="w-full h-60 object-cover" 
-                  />
-                </div>
-                
-                <div className="p-6 text-left">
-                  <h2 className="text-2xl font-bold mb-3">{item.title}</h2>
-                  <p className="text-gray-300 text-sm leading-relaxed">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Navigation Buttons for Mobile */}
-          <div className="md:hidden flex justify-between px-4 mt-4">
-            <button
-              onClick={handlePrev}
-              disabled={currentIndex === 0}
-              className={`p-2 rounded-full bg-white/20 hover:bg-white/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 ${
-                currentIndex === 0 ? 'cursor-not-allowed' : 'cursor-pointer'
-              }`}
-            >
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </button>
-            <button
-              onClick={handleNext}
-              disabled={currentIndex === heroItems.length - 1}
-              className={`p-2 rounded-full bg-white/20 hover:bg-white/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 ${
-                currentIndex === heroItems.length - 1 ? 'cursor-not-allowed' : 'cursor-pointer'
-              }`}
-            >
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Mobile Indicators */}
-          <div className="flex justify-center gap-2 mt-6">
-            {heroItems.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentIndex(idx)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  idx === currentIndex 
-                    ? 'bg-white scale-125' 
-                    : 'bg-white/40 hover:bg-white/60'
-                }`}
+            <div className="h-2/3 overflow-hidden">
+              <img 
+                src={item.img} 
+                alt={item.title}
+                className="w-full h-full object-cover"
               />
-            ))}
-          </div>
-        </div>
+            </div>
+            <div className="h-1/3 flex items-center justify-center p-2">
+              <p className="text-xs font-medium text-gray-800 text-center">{item.title}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Indicators */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+        {heroItems.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === currentIndex ? 'bg-white' : 'bg-white/40 hover:bg-white/60'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
     </section>
   );
