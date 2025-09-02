@@ -6,6 +6,7 @@ import Immigration from '../components/aboutComponents/Immigration'
 import Properties from '../components/aboutComponents/Properties'
 import Investment from '../components/aboutComponents/Investment'
 import VisionMissionPhilosophy from '../components/aboutComponents/VisionMissionPhilosophy'
+import ContactForm from '../components/ContactForm'
 
 const About = () => {
   return (
@@ -17,6 +18,7 @@ const About = () => {
       <Properties />
       <Investment/>
       <VisionMissionPhilosophy/>
+      <ContactForm/>
     </>
   )
 }
