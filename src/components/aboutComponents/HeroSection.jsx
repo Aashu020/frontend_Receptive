@@ -63,15 +63,15 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative w-full py-20 overflow-hidden">
+    <section className=" relative lg:top-12 py-30 overflow-hidden ">
       {/* Animated Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#043927] via-[#065936] to-[#043927]">
+      <div className="absolute inset-0 ">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-0 left-0 w-full bg-gradient-to-r from-transparent via-white/5 to-transparent animate-pulse"></div>
         </div>
       </div>
 
-      <div className="relative mx-auto px-2 md:px-20 text-center text-white">
+      <div className="relative mx-auto px-2 md:px-20 text-center text-[#043927]">
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -85,7 +85,7 @@ export default function HeroSection() {
         </motion.div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid grid-cols-3 gap-8">
+        <div className="hidden md:grid grid-cols-3 gap-8 ">
           {heroItems.map((item, idx) => (
             <motion.div
               key={idx}
@@ -114,10 +114,10 @@ export default function HeroSection() {
               </div>
               
               <div className="p-8 relative z-10">
-                <h2 className="text-2xl font-bold mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#D8C287] group-hover:to-white group-hover:bg-clip-text transition-all duration-300">
+                <h2 className="text-2xl font-bold mb-3 group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-[#cf9a09] group-hover:to-yellow-900 group-hover:bg-clip-text transition-all duration-300">
                   {item.title}
                 </h2>
-                <p className="text-gray-300 text-sm leading-relaxed group-hover:text-white transition-colors duration-300">
+                <p className="text-gray-800 text-sm leading-relaxed group-hover:text-gray-950 transition-colors duration-300">
                   {item.desc}
                 </p>
                 

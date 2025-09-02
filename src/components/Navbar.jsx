@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import logo from '../assets/images/logo.jpg';
 import { 
   FiChevronDown, 
   FiMenu, 
@@ -29,20 +30,15 @@ function UpperHeader() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling down - hide header
         setIsVisible(false);
       } else {
-        // Scrolling up - show header
         setIsVisible(true);
       }
-      
       setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
@@ -62,11 +58,9 @@ function UpperHeader() {
         transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
         transition: 'transform 0.3s ease-in-out',
       }}
-      className="upperHeader hidden sm:hidden md:flex lg:flex xl:flex fixed w-full z-50 justify-between items-center py-3 md:py-3 lg:py-4 px-4 md:px-4 lg:px-5 top-0 "
+      className="hidden sm:hidden md:flex lg:flex xl:flex fixed w-full z-50 justify-between items-center py-3 md:py-3 lg:py-4 px-4 md:px-4 lg:px-5 top-0"
     >
-      {/* Contact information - responsive layout */}
-      <div className="upper-contact  flex flex-col md:flex-row gap-1 md:gap-2 lg:gap-3 xl:gap-8 text-xs lg:text-sm">
-        {/* First contact group */}
+      <div className="flex flex-col md:flex-row gap-1 md:gap-2 lg:gap-3 xl:gap-8 text-xs lg:text-sm">
         <div className="flex items-center gap-1 md:gap-2">
           <button 
             onClick={() => handlePhoneClick('+919876543210')}
@@ -88,21 +82,19 @@ function UpperHeader() {
             </span>
           </button>
         </div>
-
-        {/* Second contact group */}
-        <div className="flex items-center gap-1 md:gap-2 ">
+        <div className="flex items-center gap-1 md:gap-2">
           <button 
             onClick={() => handlePhoneClick('+919885602560')}
             className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
             aria-label="Call +91 98856 02560"
           >
             <FaPhone className="text-xs lg:text-sm" />
-            <span className="ml-1 text-xs lg:text-sm hidden  hover:text-white cursor-pointer lg:inline">+91 98856 02560</span>
+            <span className="ml-1 text-xs lg:text-sm hidden hover:text-white cursor-pointer lg:inline">+91 98856 02560</span>
           </button>
           <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
           <button 
             onClick={() => handleEmailClick('info@receptivesolutions.com')}
-            className="flex items-center gap-1 hover:opacity-80   hover:text-white cursor-pointer transition-opacity"
+            className="flex items-center gap-1 hover:opacity-80 hover:text-white cursor-pointer transition-opacity"
             aria-label="Email info@receptivesolutions.com"
           >
             <FaEnvelope className="text-xs lg:text-sm" />
@@ -112,10 +104,7 @@ function UpperHeader() {
           </button>
         </div>
       </div>
-
-      {/* Right side - Terms and Social icons */}
       <div className="flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-6">
-        {/* Terms */}
         <a 
           href="/terms" 
           className="hidden lg:flex items-center hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
@@ -123,8 +112,6 @@ function UpperHeader() {
           <FaRegFileAlt className="mr-1 text-xs lg:text-sm" />
           <span className="text-xs lg:text-sm hover:text-white cursor-pointer">Terms</span>
         </a>
-
-        {/* Social media icons */}
         <div className="flex items-center gap-1 md:gap-2 lg:gap-3">
           <a 
             href="https://instagram.com" 
@@ -173,8 +160,7 @@ const Navbar = () => {
   const [selectedCountry, setSelectedCountry] = useState(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [dropdownView, setDropdownView] = useState('countries'); // 'countries' or 'cities'
-  const [isNavbarAtTop, setIsNavbarAtTop] = useState(true);
+  const [isUpperHeaderVisible, setIsUpperHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const navRef = useRef(null);
 
@@ -188,42 +174,49 @@ const Navbar = () => {
     Singapore: ['Central', 'East', 'West', 'North', 'Northeast', 'Northwest']
   };
 
-  // Handle scroll effect for navbar positioning
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
-      // Check if scrolled past a certain point
       setIsScrolled(currentScrollY > 10);
-      
-      // Handle navbar positioning
-      if (window.innerWidth >= 768) { // Desktop behavior
+
+      // Only adjust UpperHeader visibility for desktop (md and above)
+      if (window.innerWidth >= 768) {
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          // Scrolling down - move navbar to top
-          setIsNavbarAtTop(false);
+          setIsUpperHeaderVisible(false);
         } else {
-          // Scrolling up - move navbar down to make room for upper header
-          setIsNavbarAtTop(true);
+          setIsUpperHeaderVisible(true);
         }
       } else {
-        // Mobile behavior - always at top
-        setIsNavbarAtTop(false);
+        // On mobile, header is always hidden, so no gap
+        setIsUpperHeaderVisible(false);
       }
-      
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleResize = () => {
+      // Update header visibility on resize
+      if (window.innerWidth < 768) {
+        setIsUpperHeaderVisible(false);
+      } else {
+        setIsUpperHeaderVisible(window.scrollY <= 100 || window.scrollY < lastScrollY);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, [lastScrollY]);
 
-  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navRef.current && !navRef.current.contains(event.target)) {
         setIsCountriesOpen(false);
         setSelectedCountry(null);
-        setDropdownView('countries');
+        setIsMobileMenuOpen(false);
       }
     };
 
@@ -233,18 +226,11 @@ const Navbar = () => {
 
   const handleCountryClick = (country) => {
     setSelectedCountry(country);
-    setDropdownView('cities');
-  };
-
-  const handleBackToCountries = () => {
-    setDropdownView('countries');
-    setSelectedCountry(null);
   };
 
   const closeAllDropdowns = () => {
     setIsCountriesOpen(false);
     setSelectedCountry(null);
-    setDropdownView('countries');
     setIsMobileMenuOpen(false);
   };
 
@@ -263,40 +249,27 @@ const Navbar = () => {
 
   return (
     <header ref={navRef} className="relative">
-      {/* Upper Header */}
       <UpperHeader />
-
-      {/* Main Navbar - Dynamic positioning based on scroll and screen size */}
       <nav 
         className={`bg-white/95 backdrop-blur-md border-b border-gray-200 fixed w-full z-[100] transition-all duration-300 ${
           isScrolled ? 'shadow-xl bg-white/98' : 'shadow-lg'
         }`}
         style={{
-          top: isNavbarAtTop ? '2.75rem' : '0', // 11 (2.75rem) when at top, 0 when scrolled down
+          top: window.innerWidth >= 768 && isUpperHeaderVisible ? '2.75rem' : '0',
         }}
       >
-        <div className="container mx-auto px-4 lg:px-6 ">
+        <div className="container mx-auto px-4 lg:px-6">
           <div className="flex justify-between items-center h-16 lg:h-20">
-            
-            {/* Logo */}
             <div className="flex items-center group cursor-pointer" onClick={closeAllDropdowns}>
               <div className="relative">
-                <div 
-                  className="text-2xl lg:text-3xl font-bold tracking-tight transition-all duration-300 group-hover:scale-105"
-                  style={{ 
-                    background: 'linear-gradient(135deg, #0C3B34 0%, #1a5f54 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text'
-                  }}
-                >
-                  YourLogo
-                </div>
+                <img 
+                  src={logo} 
+                  alt="Receptive Logo" 
+                  className="h-11 lg:h-13 transition-all duration-300 group-hover:scale-105"
+                />
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div>
               </div>
             </div>
-
-            {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 cursor-pointer">
               {navItems.map((item, index) => (
                 <div key={index} className="relative group">
@@ -304,7 +277,6 @@ const Navbar = () => {
                     <button
                       onClick={() => {
                         setIsCountriesOpen(!isCountriesOpen);
-                        setDropdownView('countries');
                         setSelectedCountry(null);
                       }}
                       className={`flex items-center space-x-2 px-4 xl:px-6 py-2.5 xl:py-3 rounded-full transition-all duration-300 font-medium text-sm xl:text-base relative overflow-hidden group ${
@@ -336,8 +308,6 @@ const Navbar = () => {
                 </div>
               ))}
             </div>
-
-            {/* Mobile Menu Button */}
             <div className="lg:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -348,15 +318,11 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-
-        {/* Desktop Dropdown */}
         {isCountriesOpen && (
           <div className="absolute left-0 right-0 bg-gradient-to-br from-gray-50 to-white shadow-2xl border-t border-gray-100 hidden lg:block animate-slideDown">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0C3B34] via-[#D8C287] to-[#0C3B34]"></div>
             <div className="container mx-auto px-6 py-6 xl:py-8">
-              
-              {/* Countries View */}
-              {dropdownView === 'countries' && (
+              {!selectedCountry ? (
                 <>
                   <div className="flex items-center mb-6">
                     <FiGlobe className="w-6 h-6 text-[#0C3B34] mr-3" />
@@ -370,9 +336,7 @@ const Navbar = () => {
                         key={country}
                         onClick={() => handleCountryClick(country)}
                         className="text-left p-4 xl:p-5 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl relative overflow-hidden group bg-white text-gray-700 hover:bg-gradient-to-br hover:from-white hover:to-gray-50 shadow-md border border-gray-200 hover:border-[#D8C287]"
-                        style={{ 
-                          animationDelay: `${index * 50}ms`
-                        }}
+                        style={{ animationDelay: `${index * 50}ms` }}
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
                         <div className="flex items-center justify-between relative z-10">
@@ -387,15 +351,12 @@ const Navbar = () => {
                     ))}
                   </div>
                 </>
-              )}
-
-              {/* Cities View */}
-              {dropdownView === 'cities' && selectedCountry && (
+              ) : (
                 <>
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center">
                       <button
-                        onClick={handleBackToCountries}
+                        onClick={() => setSelectedCountry(null)}
                         className="flex items-center space-x-2 text-[#0C3B34] hover:text-[#1a5f54] transition-colors duration-300 mr-4 p-2 rounded-lg hover:bg-gray-100"
                       >
                         <FiArrowLeft className="w-5 h-5" />
@@ -416,9 +377,7 @@ const Navbar = () => {
                         href={`/countries/${selectedCountry.toLowerCase()}/${location.toLowerCase()}`}
                         onClick={closeAllDropdowns}
                         className="group block p-4 xl:p-6 rounded-2xl transition-all duration-300 hover:scale-105 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-2xl border border-[#D8C287]/30 hover:border-[#D8C287]"
-                        style={{ 
-                          animationDelay: `${index * 50}ms`
-                        }}
+                        style={{ animationDelay: `${index * 50}ms` }}
                       >
                         <div className="font-bold text-lg xl:text-xl mb-2 group-hover:text-[#D8C287] transition-colors duration-300">
                           {location}
@@ -436,8 +395,6 @@ const Navbar = () => {
             </div>
           </div>
         )}
-
-        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute left-0 right-0 bg-white shadow-2xl border-t border-gray-100 z-40 animate-slideDown">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0C3B34] via-[#D8C287] to-[#0C3B34]"></div>
@@ -449,7 +406,6 @@ const Navbar = () => {
                       <button
                         onClick={() => {
                           setIsCountriesOpen(!isCountriesOpen);
-                          setDropdownView('countries');
                           setSelectedCountry(null);
                         }}
                         className="w-full flex items-center justify-between py-4 px-3 text-gray-700 hover:text-[#0C3B34] transition-colors duration-300 rounded-lg hover:bg-gray-50"
@@ -464,13 +420,9 @@ const Navbar = () => {
                           }`} 
                         />
                       </button>
-                      
-                      {/* Mobile Countries/Cities View */}
                       {isCountriesOpen && (
                         <div className="ml-4 mb-4 bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-100">
-                          
-                          {/* Countries View */}
-                          {dropdownView === 'countries' && (
+                          {!selectedCountry ? (
                             <div className="space-y-2">
                               <h4 className="font-semibold text-[#0C3B34] mb-3 flex items-center">
                                 <FiGlobe className="w-4 h-4 mr-2" />
@@ -490,14 +442,11 @@ const Navbar = () => {
                                 </button>
                               ))}
                             </div>
-                          )}
-
-                          {/* Cities View */}
-                          {dropdownView === 'cities' && selectedCountry && (
+                          ) : (
                             <div>
                               <div className="flex items-center mb-3">
                                 <button
-                                  onClick={handleBackToCountries}
+                                  onClick={() => setSelectedCountry(null)}
                                   className="flex items-center space-x-2 text-[#0C3B34] hover:text-[#1a5f54] transition-colors duration-300 mr-3 p-2 rounded-lg hover:bg-gray-100"
                                 >
                                   <FiArrowLeft className="w-4 h-4" />
@@ -529,7 +478,7 @@ const Navbar = () => {
                   ) : (
                     <a
                       href={item.path}
-                      className="flex items-center space-x-3 py-4 px-3 text-gray-700 hover:text-[#0C3B34] transition-all duration-300 rounded-lg hover:bg-gray-50"
+                      className="flex items-center space-x-3 py-4 px-3 text-gray-700 hover:text-[#0C3B34] transition-colors duration-300 rounded-lg hover:bg-gray-50"
                       onClick={closeAllDropdowns}
                     >
                       <item.icon className="w-5 h-5" />
@@ -541,41 +490,13 @@ const Navbar = () => {
             </div>
           </div>
         )}
-      </nav>
-
-      {/* Overlay for mobile menu */}
-      {isMobileMenuOpen && (
-        <div 
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm lg:hidden z-30 animate-fadeIn"
-          onClick={closeAllDropdowns}
-        />
-      )}
-
-      <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-        
-        @keyframes slideDown {
-          from { 
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to { 
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
-        }
-        
-        .animate-slideDown {
-          animation: slideDown 0.3s ease-out;
-        }
-      `}</style>
+        {isMobileMenuOpen && (
+          <div 
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm lg:hidden z-30 animate-fadeIn"
+            onClick={closeAllDropdowns}
+          />
+        )}
+        </nav>
     </header>
   );
 };

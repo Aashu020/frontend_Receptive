@@ -18,7 +18,7 @@ const About = () => {
       <Properties />
       <Investment/>
       <VisionMissionPhilosophy/>
-      <ContactForm/>
+      <ContactForm/> 
     </>
   )
 }
