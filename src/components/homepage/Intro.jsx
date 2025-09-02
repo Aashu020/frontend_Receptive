@@ -152,10 +152,10 @@ function Intro() {
               </div>
 
               <div className="flex flex-wrap gap-4 pt-6">
-                <button className="px-8 py-4 bg-gradient-to-r from-[#0C3B34] to-[#0C3B34]/90 text-white rounded-xl font-medium hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <button className="px-8 py-4 bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white rounded-xl font-medium hover:shadow-xl hover:scale-105 transition-all duration-300">
                   Get Consultation
                 </button>
-                <button className="px-8 py-4 bg-white/80 backdrop-blur-sm text-[#0C3B34] border border-[#0C3B34]/20 rounded-xl font-medium hover:bg-[#0C3B34] hover:text-white transition-all duration-300">
+                <button className="px-8 py-4 bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white rounded-xl font-medium hover:bg-[#0C3B34] hover:text-white transition-all duration-300">
                   Learn More
                 </button>
               </div>

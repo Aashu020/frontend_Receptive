@@ -67,7 +67,7 @@ function Experience() {
 
   return (
     <div className="relative py-16 px-6 md:px-12 lg:px-24 bg-[#F8F8F8] overflow-hidden">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-[#0C3B34] relative z-20">
+      <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text relative z-20">
         HOW RECEPTIVE GROUP OF COMPANIES CAN HELP?
       </h2>
       

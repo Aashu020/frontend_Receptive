@@ -51,7 +51,7 @@ function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4" style={{ color: '#0C3B34' }}>
+          <h2 className="text-4xl font-bold mb-4 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text" >
             Our Services
           </h2>
           <p className="text-lg text-gray-600">
@@ -68,8 +68,8 @@ function Services() {
                 onClick={() => setActiveService(index)}
                 className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base ${
                   activeService === index
-                    ? 'bg-white shadow-md'
-                    : 'text-white hover:bg-white/10'
+                    ? 'bg-[#D8C287] text-[#0a2d27]  shadow-md'
+                    : 'hover:bg-[#0a2d27] hover:text-white'
                 }`}
                 style={{
                   color: activeService === index ? '#0C3B34' : 'white'

@@ -127,7 +127,7 @@ const ContactForm = () => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        theme: "dark",
+        theme: "colored",
       });
       return;
     }
@@ -151,14 +151,14 @@ const ContactForm = () => {
       // Log response for debugging
       console.log("EmailJS response:", response);
 
-      toast.success("Message sent successfully!", {
+      toast.success("Message sent successfully! We'll get back to you soon.", {
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 4000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        theme: "dark",
+        theme: "colored",
       });
 
       // Reset form
@@ -181,7 +181,7 @@ const ContactForm = () => {
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
-        theme: "dark",
+        theme: "colored",
       });
     } finally {
       setIsLoading(false);
@@ -213,318 +213,326 @@ const ContactForm = () => {
   };
 
   const getInputClassName = (fieldName) => {
-    const baseClass = "w-full p-3 rounded-lg backdrop-blur-sm border transition-all duration-200";
-    const normalClass = "bg-gray-700/80 border-gray-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent";
-    const errorClass = "bg-red-900/20 border-red-500 focus:outline-none focus:ring-2 focus:ring-red-400 focus:border-transparent";
+    const baseClass = "w-full px-4 py-3 rounded-xl border-2 transition-all duration-300 bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50";
+    const normalClass = "border-gray-200 focus:border-transparent focus:ring-[#D8C287] hover:border-gray-300";
+    const errorClass = "border-red-400 focus:border-red-400 focus:ring-red-400 bg-red-50";
 
     return `${baseClass} ${errors[fieldName] && touched[fieldName] ? errorClass : normalClass}`;
   };
 
-  // Rest of the JSX remains unchanged
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#0C3B34] via-[#0C3B34]/80 to-[#0C3B34] text-white">
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-[#D8C287] to-white bg-clip-text text-transparent">
-            Get In Touch
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      {/* Header Section */}
+      <div className="bg-gradient-to-r from-[#0C3B34] to-[#0C3B34]/90 text-white py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h1 className="text-5xl font-bold mb-4">
+            Let's Start Your 
+            <span className="block text-[#D8C287] mt-2">Visa Journey</span>
           </h1>
-          <p className="text-[#D8C287] text-lg">
-            Ready to start your visa journey? Contact us today!
+          <p className="text-xl text-gray-200 max-w-2xl mx-auto">
+            Expert guidance for all your visa needs. Get in touch with our experienced consultants today.
           </p>
         </div>
+      </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
+      <div className="container mx-auto px-4 py-16 -mt-8">
+        <div className="grid lg:grid-cols-5 gap-12 max-w-7xl mx-auto">
           {/* Contact Form */}
-          <div className="bg-[#0C3B34]/80 backdrop-blur-sm p-8 rounded-2xl shadow-2xl border border-[#D8C287]">
-            <h2 className="text-2xl font-bold mb-6 text-center text-white">Send us a Message</h2>
-
-            <div className="space-y-4">
-              {/* Name Field */}
-              <div>
-                <input
-                  type="text"
-                  name="name"
-                  placeholder="Your Name *"
-                  value={formData.name}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={getInputClassName("name")}
-                  disabled={isLoading}
-                />
-                {errors.name && touched.name && (
-                  <p className="text-red-400 text-sm mt-1 flex items-center">
-                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    {errors.name}
-                  </p>
-                )}
+          <div className="lg:col-span-3">
+            <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12 border border-gray-100">
+              <div className="mb-8">
+                <h2 className="text-3xl font-bold mb-3" style={{ color: '#0C3B34' }}>
+                  Send us a Message
+                </h2>
+                <p className="text-gray-600">
+                  Fill out the form below and we'll get back to you within 24 hours.
+                </p>
               </div>
 
-              {/* Email Field */}
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Your Email *"
-                  value={formData.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={getInputClassName("email")}
-                  disabled={isLoading}
-                />
-                {errors.email && touched.email && (
-                  <p className="text-red-400 text-sm mt-1 flex items-center">
-                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    {errors.email}
-                  </p>
-                )}
-              </div>
-
-              {/* Country Field */}
-              <div>
-                <select
-                  name="country"
-                  value={formData.country}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={getInputClassName("country")}
-                  disabled={isLoading}
-                >
-                  <option value="">Select Country *</option>
-                  <option value="India">India</option>
-                  <option value="USA">USA</option>
-                  <option value="Canada">Canada</option>
-                  <option value="Australia">Australia</option>
-                  <option value="UK">United Kingdom</option>
-                  <option value="Germany">Germany</option>
-                  <option value="France">France</option>
-                  <option value="Other">Other</option>
-                </select>
-                {errors.country && touched.country && (
-                  <p className="text-red-400 text-sm mt-1 flex items-center">
-                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    {errors.country}
-                  </p>
-                )}
-              </div>
-
-              {/* Mobile Field */}
-              <div>
-                <input
-                  type="tel"
-                  name="mobile"
-                  placeholder="Mobile Number *"
-                  value={formData.mobile}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={getInputClassName("mobile")}
-                  disabled={isLoading}
-                />
-                {errors.mobile && touched.mobile && (
-                  <p className="text-red-400 text-sm mt-1 flex items-center">
-                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    {errors.mobile}
-                  </p>
-                )}
-              </div>
-
-              {/* Visa Type Field */}
-              <div>
-                <select
-                  name="visa"
-                  value={formData.visa}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={getInputClassName("visa")}
-                  disabled={isLoading}
-                >
-                  <option value="">Select Visa Type *</option>
-                  <option value="Student Visa">Student Visa</option>
-                  <option value="Work Visa">Work Visa</option>
-                  <option value="Tourist Visa">Tourist Visa</option>
-                  <option value="Business Visa">Business Visa</option>
-                  <option value="Immigration">Immigration</option>
-                  <option value="Family Visa">Family Visa</option>
-                  <option value="Other">Other</option>
-                </select>
-                {errors.visa && touched.visa && (
-                  <p className="text-red-400 text-sm mt-1 flex items-center">
-                    <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path
-                        fillRule="evenodd"
-                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    {errors.visa}
-                  </p>
-                )}
-              </div>
-
-              {/* Message Field */}
-              <div>
-                <textarea
-                  name="message"
-                  placeholder="Your Message * (min 10 characters)"
-                  rows="4"
-                  value={formData.message}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={`${getInputClassName("message")} resize-none`}
-                  disabled={isLoading}
-                />
-                <div className="flex justify-between items-start mt-1">
-                  <div className="flex-1">
-                    {errors.message && touched.message && (
-                      <p className="text-red-400 text-sm flex items-center">
-                        <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                          <path
-                            fillRule="evenodd"
-                            d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                            clipRule="evenodd"
-                          />
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name & Email Row */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: '#0C3B34' }}>
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Enter your full name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={getInputClassName("name")}
+                      disabled={isLoading}
+                    />
+                    {errors.name && touched.name && (
+                      <p className="text-red-500 text-sm mt-2 flex items-center">
+                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                         </svg>
-                        {errors.message}
+                        {errors.name}
                       </p>
                     )}
                   </div>
-                  <p className="text-xs text-[#D8C287] ml-2">
-                    {formData.message.length}/1000
-                  </p>
-                </div>
-              </div>
 
-              <button
-                type="button"
-                onClick={handleSubmit}
-                disabled={isLoading || Object.keys(errors).some((key) => errors[key])}
-                className="w-full mt-6 bg-gradient-to-r from-[#D8C287] to-white hover:from-[#D8C287]/80 hover:to-white/80 disabled:from-gray-500 disabled:to-gray-600 text-[#0C3B34] font-bold py-3 rounded-lg transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed shadow-lg"
-              >
-                {isLoading ? (
-                  <div className="flex items-center justify-center">
-                    <svg
-                      className="animate-spin -ml-1 mr-3 h-5 w-5 text-[#0C3B34]"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                    Sending...
+                  <div>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: '#0C3B34' }}>
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Enter your email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={getInputClassName("email")}
+                      disabled={isLoading}
+                    />
+                    {errors.email && touched.email && (
+                      <p className="text-red-500 text-sm mt-2 flex items-center">
+                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
-                ) : (
-                  "Send Message"
-                )}
-              </button>
+                </div>
+
+                {/* Country & Mobile Row */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: '#0C3B34' }}>
+                      Country *
+                    </label>
+                    <select
+                      name="country"
+                      value={formData.country}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={getInputClassName("country")}
+                      disabled={isLoading}
+                    >
+                      <option value="">Select your country</option>
+                      <option value="India">India</option>
+                      <option value="USA">United States</option>
+                      <option value="Canada">Canada</option>
+                      <option value="Australia">Australia</option>
+                      <option value="UK">United Kingdom</option>
+                      <option value="Germany">Germany</option>
+                      <option value="France">France</option>
+                      <option value="Other">Other</option>
+                    </select>
+                    {errors.country && touched.country && (
+                      <p className="text-red-500 text-sm mt-2 flex items-center">
+                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        {errors.country}
+                      </p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-semibold mb-2" style={{ color: '#0C3B34' }}>
+                      Mobile Number *
+                    </label>
+                    <input
+                      type="tel"
+                      name="mobile"
+                      placeholder="+91 9876543210"
+                      value={formData.mobile}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className={getInputClassName("mobile")}
+                      disabled={isLoading}
+                    />
+                    {errors.mobile && touched.mobile && (
+                      <p className="text-red-500 text-sm mt-2 flex items-center">
+                        <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                        </svg>
+                        {errors.mobile}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Visa Type */}
+                <div>
+                  <label className="block text-sm font-semibold mb-2" style={{ color: '#0C3B34' }}>
+                    Visa Type *
+                  </label>
+                  <select
+                    name="visa"
+                    value={formData.visa}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={getInputClassName("visa")}
+                    disabled={isLoading}
+                  >
+                    <option value="">What type of visa do you need?</option>
+                    <option value="Student Visa">Student Visa</option>
+                    <option value="Work Visa">Work Visa</option>
+                    <option value="Tourist Visa">Tourist/Visitor Visa</option>
+                    <option value="Business Visa">Business Visa</option>
+                    <option value="Immigration">Permanent Residence</option>
+                    <option value="Family Visa">Family Visa</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  {errors.visa && touched.visa && (
+                    <p className="text-red-500 text-sm mt-2 flex items-center">
+                      <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                      </svg>
+                      {errors.visa}
+                    </p>
+                  )}
+                </div>
+
+                {/* Message */}
+                <div>
+                  <label className="block text-sm font-semibold mb-2" style={{ color: '#0C3B34' }}>
+                    Your Message *
+                  </label>
+                  <textarea
+                    name="message"
+                    placeholder="Tell us about your visa requirements, timeline, and any specific questions you have..."
+                    rows="5"
+                    value={formData.message}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={`${getInputClassName("message")} resize-none`}
+                    disabled={isLoading}
+                  />
+                  <div className="flex justify-between items-start mt-2">
+                    <div className="flex-1">
+                      {errors.message && touched.message && (
+                        <p className="text-red-500 text-sm flex items-center">
+                          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                          </svg>
+                          {errors.message}
+                        </p>
+                      )}
+                    </div>
+                    <span className="text-xs text-gray-400 ml-4">
+                      {formData.message.length}/1000
+                    </span>
+                  </div>
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isLoading || Object.keys(errors).some((key) => errors[key])}
+                  className="w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed shadow-lg hover:shadow-xl bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white"
+                 
+                >
+                  {isLoading ? (
+                    <div className="flex items-center justify-center">
+                      <svg className="animate-spin -ml-1 mr-3 h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Sending Message...
+                    </div>
+                  ) : (
+                    <span className="flex items-center justify-center">
+                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                      </svg>
+                      Send Message
+                    </span>
+                  )}
+                </button>
+              </form>
             </div>
           </div>
 
-          {/* Map and Contact Info */}
-          <div className="space-y-8">
-            {/* Tabs */}
-            <div className="bg-[#0C3B34] flex justify-around text-white font-semibold p-4 rounded-2xl shadow-2xl border border-[#D8C287]">
-              {Object.keys(locations).map((location) => (
-                <div
-                  key={location}
-                  className={`cursor-pointer px-4 py-2 rounded-md transition-colors ${
-                    selectedLocation === location
-                      ? "bg-[#D8C287] text-[#0C3B34]"
-                      : "hover:text-white/80"
-                  }`}
-                  onClick={() => handleTabClick(location)}
-                >
-                  {location}
+          {/* Location Info & Map */}
+          <div className="lg:col-span-2">
+            <div className="sticky top-8">
+              {/* Location Tabs */}
+              <div className="bg-white rounded-2xl shadow-lg p-2 mb-6 border border-gray-100">
+                <div className="grid grid-cols-3 gap-2">
+                  {Object.keys(locations).map((location) => (
+                    <button
+                      key={location}
+                      className={`px-4 py-3 rounded-xl font-semibold transition-all duration-300 text-sm ${
+                        selectedLocation === location
+                          ? 'text-green shadow-lg transform scale-105'
+                          : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
+                      }`}
+                      style={{
+                        backgroundColor: selectedLocation === location ? '#D8C287' : 'transparent'
+                      }}
+                      onClick={() => handleTabClick(location)}
+                    >
+                      {location}
+                    </button>
+                  ))}
                 </div>
-              ))}
-            </div>
-
-            {/* Google Map Iframe and Address */}
-            <div className="bg-[#0C3B34]/80 backdrop-blur-sm p-4 rounded-2xl shadow-2xl border border-[#D8C287]">
-              <iframe
-                src={locations[selectedLocation].mapUrl}
-                width="100%"
-                height="570"
-                style={{ border: 0, borderRadius: "12px", position: "relative", zIndex: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title={`${selectedLocation} Location`}
-                onError={() => {
-                  toast.error("Failed to load map. Please try again later.", {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    theme: "dark",
-                  });
-                }}
-              ></iframe>
-              <div className="mt-4 text-center">
-                <p className="text-[#D8C287] text-sm mb-2">{locations[selectedLocation].address}</p>
-                <a
-                  href={locations[selectedLocation].link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2 text-[#D8C287] hover:text-white transition-colors"
-                >
-                  <svg
-                    className="w-5 h-5"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                  <span>Open in Google Maps</span>
-                </a>
               </div>
+
+              {/* Map Container */}
+              <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-gray-100">
+                <iframe
+                  src={locations[selectedLocation].mapUrl}
+                  width="100%"
+                  height="400"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={`${selectedLocation} Location`}
+                  className="w-full"
+                ></iframe>
+                
+                <div className="p-6">
+                  <h3 className="text-lg font-bold mb-3" style={{ color: '#0C3B34' }}>
+                    📍 {selectedLocation} Office
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                    {locations[selectedLocation].address}
+                  </p>
+                  <a
+                    href={locations[selectedLocation].link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center text-sm font-semibold hover:underline transition-colors"
+                    style={{ color: '#D8C287' }}
+                  >
+                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                    View on Google Maps
+                  </a>
+                </div>
+              </div>
+
+              {/* Contact Info Cards */}
+              
             </div>
           </div>
         </div>
       </div>
-      <ToastContainer style={{ zIndex: 10000 }} />
+      
+      <ToastContainer 
+        position="top-right"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        style={{ zIndex: 10000 }}
+      />
     </div>
   );
 };
