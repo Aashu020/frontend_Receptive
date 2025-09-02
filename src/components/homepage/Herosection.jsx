@@ -90,78 +90,55 @@ function Herosection() {
           {/* Content Container */}
           <div className={`relative h-full flex items-center justify-${slide.alignment === 'left' ? 'start' : 'end'} px-4 md:px-16 lg:px-24`}>
             {/* Text Content with Transparent Background */}
-            <div className={`max-w-md md:max-w-xl bg-white/10 backdrop-blur-lg rounded-xl p-6 md:p-8 shadow-xl ${slide.alignment === 'left' ? 'ml-0' : 'mr-0'}`}>
+            <div className={`max-w-md md:max-w-xl bg-white/10 top-11 backdrop-blur-lg rounded-xl p-6 md:p-8 shadow-xl ${slide.alignment === 'left' ? 'ml-6 md:ml-10' : 'mr-6 md:mr-10'} relative`}>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-md">
                 {slide.title}
               </h1>
               <p className="text-lg md:text-xl text-white mb-6 drop-shadow-md">
                 {slide.description}
               </p>
-              <button className="bg-[#0C3B34] text-white px-6 py-3 rounded-lg font-medium hover:bg-[#0a2d27] transition">
+              <button className="bg-[#D8C287] text-[#0a2d27] px-6 py-3 rounded-lg font-medium hover:bg-[#0a2d27] hover:text-white transition cursor-pointer mb-8">
                 Explore {slide.title}
               </button>
+              
+              {/* Navigation Arrows positioned below card content */}
+              <div className="flex justify-between items-center mt-4">
+                <button 
+                  onClick={goToPrev}
+                  className="bg-[#0C3B34] bg-opacity-80 text-[#D8C287] p-3 rounded-full hover:bg-opacity-100 transition cursor-pointer"
+                  aria-label="Previous slide"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                
+                {/* Slide Indicators in the middle */}
+                <div className="flex space-x-2">
+                  {slides.map((_, indicatorIndex) => (
+                    <button
+                      key={indicatorIndex}
+                      onClick={() => goToSlide(indicatorIndex)}
+                      className={`w-2.5 h-2.5 rounded-full transition-all cursor-pointer ${indicatorIndex === currentSlide ? 'bg-[#D8C287] scale-125' : 'bg-white bg-opacity-70 hover:bg-opacity-100'}`}
+                      aria-label={`Go to slide ${indicatorIndex + 1}`}
+                    />
+                  ))}
+                </div>
+                
+                <button 
+                  onClick={goToNext}
+                  className="bg-[#0C3B34] bg-opacity-80 text-[#D8C287] p-3 rounded-full hover:bg-opacity-100 transition cursor-pointer"
+                  aria-label="Next slide"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       ))}
-      
-      {/* Navigation Arrows - Hidden on mobile, visible on medium screens and up */}
-      <button 
-        onClick={goToPrev}
-        className="hidden md:block absolute left-4 top-1/2 transform -translate-y-1/2 bg-[#0C3B34] bg-opacity-80 text-[#D8C287] p-3 rounded-full hover:bg-opacity-100 transition z-30"
-        aria-label="Previous slide"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      
-      <button 
-        onClick={goToNext}
-        className="hidden md:block absolute right-4 top-1/2 transform -translate-y-1/2 bg-[#0C3B34] bg-opacity-80 text-[#D8C287] p-3 rounded-full hover:bg-opacity-100 transition z-30"
-        aria-label="Next slide"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-      
-      {/* Mobile Navigation Arrows - Positioned at bottom */}
-      <div className="md:hidden absolute bottom-20 left-0 right-0 flex justify-between px-6 z-30">
-        <button 
-          onClick={goToPrev}
-          className="bg-[#0C3B34] bg-opacity-80 text-[#D8C287] p-3 rounded-full hover:bg-opacity-100 transition"
-          aria-label="Previous slide"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-          </svg>
-        </button>
-        <button 
-          onClick={goToNext}
-          className="bg-[#0C3B34] bg-opacity-80 text-[#D8C287] p-3 rounded-full hover:bg-opacity-100 transition"
-          aria-label="Next slide"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-      </div>
-      
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-30">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-all ${index === currentSlide ? 'bg-[#D8C287] scale-125' : 'bg-white bg-opacity-70 hover:bg-opacity-100'}`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div>
-      
-      {/* Country Labels */}
-      
     </section>
   );
 }
