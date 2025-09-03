@@ -76,3 +76,12 @@ h4 {
   }
 }
 
+@keyframes mask-move {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(129px); } /* componentSize - maskSize (179-50) */
+}
+
+@keyframes mask-inner-move {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-129px); }
+}

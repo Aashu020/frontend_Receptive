@@ -1,8 +1,10 @@
 import React from 'react'
 import HeroSection from '../../components/countriesComponents/Herosection'
-import img from "../../assets/images/UAE.png"
 import CountrySection from '../../components/countriesComponents/CountrySection'
+import UaeQuest1 from '../../components/countriesComponents/UaeQuest1'
+import img from "../../assets/images/UAE.png"
 import uaeimg from "../../assets/images/uae2.png"
+import UaeVisaRequirements from '../../components/countriesComponents/UaeVisaRequirements '
 const UAE = () => {
   return (
     <div>
@@ -23,6 +25,8 @@ const UAE = () => {
       desc="Planning a move to the United Arab Emirates (UAE)? If so, you're probably curious about how to secure a UAE residence visa and Emirates ID. While the process may seem intimidating if you're not acquainted with it, there's no need to fret. This comprehensive, step-by-step guide will simplify the process, enabling you to swiftly and effortlessly acquire everything you need to commence your exciting new chapter in the UAE."
       img={uaeimg}
     />
+    <UaeQuest1/>
+    <UaeVisaRequirements/>
     </div>
   )
 }
