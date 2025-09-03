@@ -13,6 +13,7 @@ import Canada from './pages/Countries.jsx/Canada';
 import Europe from './pages/Countries.jsx/Europe';
 import Australia from './pages/Countries.jsx/Australia';
 import Singapore from './pages/Countries.jsx/Singapore';
+import Reviews from './pages/Reviews'
 
 function App() {
 
@@ -31,6 +32,7 @@ function App() {
         <Route path="/country/australia" element={<Australia/>}/>
         <Route path="/country/singapore" element={<Singapore/>}/>
         <Route path="/succes_story"   element={<SuccessStory/>}/>
+        <Route path="/reviews" element={<Reviews></Reviews>}/>
       </Routes>
       <Footer/>
 

@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
-import logo from '../assets/images/logo.jpg';
-import { 
-  FiChevronDown, 
-  FiMenu, 
+import logo from "../assets/images/logo.jpg";
+import {
+  FiChevronDown,
+  FiMenu,
   FiX,
   FiHome,
   FiUsers,
-  FiMapPin,
+  FiStar,
   FiGlobe,
   FiTrendingUp,
   FiMail,
   FiArrowLeft,
-  FiChevronRight
+  FiChevronRight,
 } from "react-icons/fi";
 import {
   FaPhone,
@@ -38,16 +38,19 @@ function UpperHeader() {
       setLastScrollY(currentScrollY);
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
   const handlePhoneClick = (phoneNumber) => {
-    window.open(`tel:${phoneNumber}`, '_self');
+    window.open(`tel:${phoneNumber}`, "_self");
   };
 
   const handleEmailClick = (email) => {
-    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}`, '_blank');
+    window.open(
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`,
+      "_blank"
+    );
   };
 
   return (
@@ -55,24 +58,26 @@ function UpperHeader() {
       style={{
         background: "var(--primary)",
         color: "var(--accent)",
-        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
-        transition: 'transform 0.3s ease-in-out',
+        transform: isVisible ? "translateY(0)" : "translateY(-100%)",
+        transition: "transform 0.3s ease-in-out",
       }}
-      className="hidden sm:hidden md:flex lg:flex xl:flex fixed w-full z-50 justify-between items-center py-3 md:py-3 lg:py-4 px-4 md:px-4 lg:px-5 top-0"
+      className="hidden sm:hidden md:flex lg:flex xl:flex fixed w-full z-100 justify-between items-center py-3 md:py-3 lg:py-4 px-4 md:px-4 lg:px-5 top-0"
     >
       <div className="flex flex-col md:flex-row gap-1 md:gap-2 lg:gap-3 xl:gap-8 text-xs lg:text-sm">
         <div className="flex items-center gap-1 md:gap-2">
-          <button 
-            onClick={() => handlePhoneClick('+919876543210')}
+          <button
+            onClick={() => handlePhoneClick("+919876543210")}
             className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
             aria-label="Call +91 98765 43210"
           >
             <FaPhone className="text-xs lg:text-sm" />
-            <span className="ml-1 text-xs lg:text-sm hidden lg:inline hover:text-white cursor-pointer">+91 98765 43210</span>
+            <span className="ml-1 text-xs lg:text-sm hidden lg:inline hover:text-white cursor-pointer">
+              +91 98765 43210
+            </span>
           </button>
           <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
-          <button 
-            onClick={() => handleEmailClick('info@receptivegroup.com')}
+          <button
+            onClick={() => handleEmailClick("info@receptivegroup.com")}
             className="flex items-center gap-1 hover:opacity-80 hover:text-white cursor-pointer transition-opacity"
             aria-label="Email info@receptivegroup.com"
           >
@@ -83,17 +88,19 @@ function UpperHeader() {
           </button>
         </div>
         <div className="flex items-center gap-1 md:gap-2">
-          <button 
-            onClick={() => handlePhoneClick('+919885602560')}
+          <button
+            onClick={() => handlePhoneClick("+919885602560")}
             className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
             aria-label="Call +91 98856 02560"
           >
             <FaPhone className="text-xs lg:text-sm" />
-            <span className="ml-1 text-xs lg:text-sm hidden hover:text-white cursor-pointer lg:inline">+91 98856 02560</span>
+            <span className="ml-1 text-xs lg:text-sm hidden hover:text-white cursor-pointer lg:inline">
+              +91 98856 02560
+            </span>
           </button>
           <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
-          <button 
-            onClick={() => handleEmailClick('info@receptivesolutions.com')}
+          <button
+            onClick={() => handleEmailClick("info@receptivesolutions.com")}
             className="flex items-center gap-1 hover:opacity-80 hover:text-white cursor-pointer transition-opacity"
             aria-label="Email info@receptivesolutions.com"
           >
@@ -105,44 +112,46 @@ function UpperHeader() {
         </div>
       </div>
       <div className="flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-6">
-        <a 
-          href="/terms" 
+        <a
+          href="/terms"
           className="hidden lg:flex items-center hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
         >
           <FaRegFileAlt className="mr-1 text-xs lg:text-sm" />
-          <span className="text-xs lg:text-sm hover:text-white cursor-pointer">Terms</span>
+          <span className="text-xs lg:text-sm hover:text-white cursor-pointer">
+            Terms
+          </span>
         </a>
         <div className="flex items-center gap-1 md:gap-2 lg:gap-3">
-          <a 
-            href="https://instagram.com" 
-            target="_blank" 
+          <a
+            href="https://instagram.com"
+            target="_blank"
             rel="noopener noreferrer"
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
             aria-label="Instagram"
           >
             <FaInstagram className="text-sm lg:text-base" />
           </a>
-          <a 
-            href="https://facebook.com" 
-            target="_blank" 
+          <a
+            href="https://facebook.com"
+            target="_blank"
             rel="noopener noreferrer"
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
             aria-label="Facebook"
           >
             <FaFacebookF className="text-sm lg:text-base" />
           </a>
-          <a 
-            href="https://linkedin.com" 
-            target="_blank" 
+          <a
+            href="https://linkedin.com"
+            target="_blank"
             rel="noopener noreferrer"
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
             aria-label="LinkedIn"
           >
             <FaLinkedinIn className="text-sm lg:text-base" />
           </a>
-          <a 
-            href="https://youtube.com" 
-            target="_blank" 
+          <a
+            href="https://youtube.com"
+            target="_blank"
             rel="noopener noreferrer"
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
             aria-label="YouTube"
@@ -165,13 +174,39 @@ const Navbar = () => {
   const navRef = useRef(null);
 
   const countries = {
-    UAE: ['Dubai', 'Abu Dhabi', 'Sharjah', 'Ajman', 'Fujairah', 'Ras Al Khaimah'],
-    Canada: ['Toronto', 'Vancouver', 'Montreal', 'Calgary', 'Ottawa', 'Edmonton'],
-    UK: ['London', 'Manchester', 'Birmingham', 'Edinburgh', 'Liverpool', 'Glasgow'],
-    US: ['New York', 'Los Angeles', 'Chicago', 'Houston', 'Phoenix', 'Philadelphia'],
-    Europe: ['Germany', 'France', 'Netherlands', 'Italy', 'Spain', 'Belgium'],
-    Australia: ['Sydney', 'Melbourne', 'Brisbane', 'Perth', 'Adelaide', 'Darwin'],
-    Singapore: ['Central', 'East', 'West', 'North', 'Northeast', 'Northwest']
+    UAE: [
+      "Golden Visa",
+      " Company Investor ",
+      "Property Investor ",
+      " UAE Employment ",
+      " UAE Student",
+    ],
+    Canada: [
+      " Tourist",
+      " Skilled Immigration ",
+      "Start-Up",
+      "Express Entry",
+      "AIP",
+      " SINP",
+      "Alberta Tech Pathway ",
+      "BC PNP",
+    ],
+    UK: [
+      " Study ",
+      "Visitor ",
+      "Skilled Worker ",
+      "Self-sponsorship ",
+      " The Innovator ",
+    ],
+    US: [" Study Visa", "Tourist "],
+    Europe: [],
+    Australia: [
+      "Visitor ",
+      "Subclass 400",
+      " Subclass 482",
+      "Subclass 186",
+    ],
+    Singapore: [" E-pass ", " S-pass "],
   };
 
   useEffect(() => {
@@ -198,16 +233,18 @@ const Navbar = () => {
       if (window.innerWidth < 768) {
         setIsUpperHeaderVisible(false);
       } else {
-        setIsUpperHeaderVisible(window.scrollY <= 100 || window.scrollY < lastScrollY);
+        setIsUpperHeaderVisible(
+          window.scrollY <= 100 || window.scrollY < lastScrollY
+        );
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleResize);
     handleResize(); // Initial check
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleResize);
     };
   }, [lastScrollY]);
 
@@ -220,8 +257,8 @@ const Navbar = () => {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleCountryClick = (country) => {
@@ -235,36 +272,41 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { name: 'Home', icon: FiHome, path: '/' },
-    { name: 'About Us', icon: FiUsers, path: '/about' },
-    { name: 'Branches', icon: FiMapPin, path: '/branches' },
-    { 
-      name: 'Countries', 
-      icon: FiGlobe, 
-      hasDropdown: true
+    { name: "Home", icon: FiHome, path: "/" },
+    { name: "About Us", icon: FiUsers, path: "/about" },
+    
+    {
+      name: "Countries",
+      icon: FiGlobe,
+      hasDropdown: true,
     },
-    { name: 'Success Stories', icon: FiTrendingUp, path: '/succes_story' },
-    { name: 'Contact', icon: FiMail, path: '/contact' }
+    { name: "Success Stories", icon: FiTrendingUp, path: "/succes_story" },
+    { name: "Reviews", icon: FiStar, path: "/reviews" },
+    { name: "Contact", icon: FiMail, path: "/contact" },
   ];
 
   return (
     <header ref={navRef} className="relative">
       <UpperHeader />
-      <nav 
+      <nav
         className={`bg-white/95 backdrop-blur-md border-b border-gray-200 fixed w-full z-[100] transition-all duration-300 ${
-          isScrolled ? 'shadow-xl bg-white/98' : 'shadow-lg'
+          isScrolled ? "shadow-xl bg-white/98" : "shadow-lg"
         }`}
         style={{
-          top: window.innerWidth >= 768 && isUpperHeaderVisible ? '2.75rem' : '0',
+          top:
+            window.innerWidth >= 768 && isUpperHeaderVisible ? "2.75rem" : "0",
         }}
       >
         <div className="container mx-auto px-4 lg:px-6">
           <div className="flex justify-between items-center h-16 lg:h-20">
-            <div className="flex items-center group cursor-pointer" onClick={closeAllDropdowns}>
+            <div
+              className="flex items-center group cursor-pointer"
+              onClick={closeAllDropdowns}
+            >
               <div className="relative">
-                <img 
-                  src={logo} 
-                  alt="Receptive Logo" 
+                <img
+                  src={logo}
+                  alt="Receptive Logo"
                   className="h-11 lg:h-13 transition-all duration-300 group-hover:scale-105"
                 />
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div>
@@ -280,18 +322,20 @@ const Navbar = () => {
                         setSelectedCountry(null);
                       }}
                       className={`flex items-center space-x-2 px-4 xl:px-6 py-2.5 xl:py-3 rounded-full transition-all duration-300 font-medium text-sm xl:text-base relative overflow-hidden group ${
-                        isCountriesOpen 
-                          ? 'bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white shadow-lg scale-105' 
-                          : 'text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54]'
+                        isCountriesOpen
+                          ? "bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white shadow-lg scale-105"
+                          : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54]"
                       }`}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D8C287] to-[#e6d098] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                       <item.icon className="w-4 h-4 xl:w-5 xl:h-5 relative z-10" />
                       <span className="relative z-10">{item.name}</span>
-                      <FiChevronDown 
+                      <FiChevronDown
                         className={`w-3 h-3 xl:w-4 xl:h-4 transition-all duration-300 relative z-10 ${
-                          isCountriesOpen ? 'rotate-180' : 'group-hover:rotate-12'
-                        }`} 
+                          isCountriesOpen
+                            ? "rotate-180"
+                            : "group-hover:rotate-12"
+                        }`}
                       />
                     </button>
                   ) : (
@@ -313,7 +357,11 @@ const Navbar = () => {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="p-2.5 rounded-xl bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
               >
-                {isMobileMenuOpen ? <FiX className="w-5 h-5" /> : <FiMenu className="w-5 h-5" />}
+                {isMobileMenuOpen ? (
+                  <FiX className="w-5 h-5" />
+                ) : (
+                  <FiMenu className="w-5 h-5" />
+                )}
               </button>
             </div>
           </div>
@@ -340,11 +388,13 @@ const Navbar = () => {
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
                         <div className="flex items-center justify-between relative z-10">
-                          <span className="font-semibold text-base xl:text-lg">{country}</span>
+                          <span className="font-semibold text-base xl:text-lg">
+                            {country}
+                          </span>
                           <FiChevronRight className="w-4 h-4 xl:w-5 xl:h-5 transition-transform duration-300 group-hover:translate-x-1" />
                         </div>
                         <div className="mt-2 text-xs text-gray-500 relative z-10">
-                          {countries[country].length} locations
+                          {countries[country].length} visa
                         </div>
                         <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-br from-[#D8C287] to-[#e6d098] rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
                       </button>
@@ -365,7 +415,7 @@ const Navbar = () => {
                       <div className="flex items-center">
                         <FiMapPin className="w-6 h-6 text-[#0C3B34] mr-3" />
                         <h3 className="text-xl xl:text-2xl font-bold text-[#0C3B34]">
-                          {selectedCountry} - Available Locations
+                          {selectedCountry} - Available Visa
                         </h3>
                       </div>
                     </div>
@@ -379,13 +429,19 @@ const Navbar = () => {
                         className="group block p-4 xl:p-6 rounded-2xl transition-all duration-300 hover:scale-105 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-2xl border border-[#D8C287]/30 hover:border-[#D8C287]"
                         style={{ animationDelay: `${index * 50}ms` }}
                       >
-                        <div className="font-bold text-lg xl:text-xl mb-2 group-hover:text-[#D8C287] transition-colors duration-300">
+                        <div className="font-bold text-xs xl:text-sm mb-2 group-hover:text-[#D8C287] transition-colors duration-300">
                           {location}
+                          <span className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">
+                            →
+                          </span>
                         </div>
-                        <div className="text-white/75 text-sm flex items-center group-hover:text-white transition-all duration-300">
-                          View Details 
-                          <span className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</span>
-                        </div>
+
+                        {/* <div className="text-white/75 text-sm flex items-center group-hover:text-white transition-all duration-300">
+                          View Details
+                          <span className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">
+                            →
+                          </span>
+                        </div> */}
                         <div className="absolute top-3 right-3 w-2 h-2 bg-[#D8C287] rounded-full opacity-50 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300"></div>
                       </a>
                     ))}
@@ -400,7 +456,10 @@ const Navbar = () => {
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0C3B34] via-[#D8C287] to-[#0C3B34]"></div>
             <div className="px-4 py-4 max-h-[80vh] overflow-y-auto">
               {navItems.map((item, index) => (
-                <div key={index} className="border-b border-gray-100 last:border-b-0">
+                <div
+                  key={index}
+                  className="border-b border-gray-100 last:border-b-0"
+                >
                   {item.hasDropdown ? (
                     <div>
                       <button
@@ -414,10 +473,10 @@ const Navbar = () => {
                           <item.icon className="w-5 h-5" />
                           <span className="font-medium">{item.name}</span>
                         </div>
-                        <FiChevronDown 
+                        <FiChevronDown
                           className={`w-5 h-5 transition-transform duration-300 ${
-                            isCountriesOpen ? 'rotate-180' : ''
-                          }`} 
+                            isCountriesOpen ? "rotate-180" : ""
+                          }`}
                         />
                       </button>
                       {isCountriesOpen && (
@@ -435,8 +494,12 @@ const Navbar = () => {
                                   className="w-full text-left p-3 rounded-xl flex items-center justify-between transition-all duration-300 bg-white text-gray-700 hover:bg-gray-50 shadow-sm border border-gray-200 hover:border-[#D8C287]"
                                 >
                                   <div>
-                                    <span className="font-semibold">{country}</span>
-                                    <div className="text-xs text-gray-500">{countries[country].length} locations</div>
+                                    <span className="font-semibold">
+                                      {country}
+                                    </span>
+                                    <div className="text-xs text-gray-500">
+                                      {countries[country].length} locations
+                                    </div>
                                   </div>
                                   <FiChevronRight className="w-4 h-4" />
                                 </button>
@@ -450,7 +513,9 @@ const Navbar = () => {
                                   className="flex items-center space-x-2 text-[#0C3B34] hover:text-[#1a5f54] transition-colors duration-300 mr-3 p-2 rounded-lg hover:bg-gray-100"
                                 >
                                   <FiArrowLeft className="w-4 h-4" />
-                                  <span className="text-sm font-medium">Back</span>
+                                  <span className="text-sm font-medium">
+                                    Back
+                                  </span>
                                 </button>
                                 <h4 className="font-semibold text-[#0C3B34] flex items-center">
                                   <FiMapPin className="w-4 h-4 mr-2" />
@@ -458,17 +523,23 @@ const Navbar = () => {
                                 </h4>
                               </div>
                               <div className="grid grid-cols-2 gap-3">
-                                {countries[selectedCountry].map((location, locIndex) => (
-                                  <a
-                                    key={locIndex}
-                                    href={`/countries/${selectedCountry.toLowerCase()}/${location.toLowerCase()}`}
-                                    className="block p-3 rounded-lg text-sm bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-lg transition-all duration-300 hover:scale-105"
-                                    onClick={closeAllDropdowns}
-                                  >
-                                    <div className="font-medium">{location}</div>
-                                    <div className="text-xs text-white/75 mt-1">View Details →</div>
-                                  </a>
-                                ))}
+                                {countries[selectedCountry].map(
+                                  (location, locIndex) => (
+                                    <a
+                                      key={locIndex}
+                                      href={`/countries/${selectedCountry.toLowerCase()}/${location.toLowerCase()}`}
+                                      className="block p-3 rounded-lg text-sm bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-lg transition-all duration-300 hover:scale-105"
+                                      onClick={closeAllDropdowns}
+                                    >
+                                      <div className="font-medium">
+                                        {location}
+                                      </div>
+                                      <div className="text-xs text-white/75 mt-1">
+                                        View Details →
+                                      </div>
+                                    </a>
+                                  )
+                                )}
                               </div>
                             </div>
                           )}
@@ -491,12 +562,12 @@ const Navbar = () => {
           </div>
         )}
         {isMobileMenuOpen && (
-          <div 
+          <div
             className="fixed inset-0 bg-black/50 backdrop-blur-sm lg:hidden z-30 animate-fadeIn"
             onClick={closeAllDropdowns}
           />
         )}
-        </nav>
+      </nav>
     </header>
   );
 };
