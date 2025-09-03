@@ -17,7 +17,7 @@ const cards = [
 
 export default function VisionMissionPhilosophy() {
   return (
-    <section className="relative w-full py-24 px-4 md:px-12 bg-[#0C3B34] overflow-hidden min-h-[700px]">
+    <section className="relative w-full py-24 px-4 sm:px-6 md:px-12 lg:px-16 bg-[#0C3B34] overflow-hidden min-h-[700px]">
       {/* Background */}
       <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80')] bg-cover bg-center bg-no-repeat">
         <div className="absolute inset-0 bg-gradient-to-br from-[#8B5A2B]/20 via-[#D2B48C]/20 to-[#8B5A2B]/20"></div>
@@ -28,13 +28,13 @@ export default function VisionMissionPhilosophy() {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-4xl md:text-5xl font-bold mb-16 text-[#D8C287] text-center md:text-left"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold mb-16 text-[#D8C287] text-center md:text-left"
         >
-          About Us
+          About us
         </motion.h2>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-4">
           {cards.map((card, index) => (
             <motion.div
               key={index}
@@ -44,12 +44,12 @@ export default function VisionMissionPhilosophy() {
               whileHover={{
                 scale: 1.03,
                 boxShadow: "0 8px 16px rgba(216, 194, 135, 0.4)",
-                backgroundColor:"transparent"
+                backgroundColor: "transparent"
               }}
-              className="relative border border-[#D8C287]/90 rounded-2xl p-6 md:p-8 shadow-md hover:border-[#D8C287]/40 transition-all duration-400 bg-[transparent]"
+              className="relative border border-[#D8C287]/90 rounded-2xl p-4 sm:p-6 md:p-8 shadow-md hover:border-[#D8C287]/40 transition-all duration-400 bg-transparent backdrop-blur-lg"
             >
-              <h3 className="text-2xl md:text-3xl font-semibold mb-6 ">{card.title}</h3>
-              <p className="text-sm md:text-base leading-relaxed text-gray-900">{card.text}</p>
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold mb-6 text-white">{card.title}</h3>
+              <p className="text-sm sm:text-base leading-relaxed text-white">{card.text}</p>
             </motion.div>
           ))}
         </div>

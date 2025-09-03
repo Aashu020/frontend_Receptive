@@ -243,7 +243,7 @@ const Navbar = () => {
       icon: FiGlobe, 
       hasDropdown: true
     },
-    { name: 'Success Stories', icon: FiTrendingUp, path: '/success' },
+    { name: 'Success Stories', icon: FiTrendingUp, path: '/succes_story' },
     { name: 'Contact', icon: FiMail, path: '/contact' }
   ];
 
