@@ -222,18 +222,6 @@ const ContactForm = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      {/* Header Section */}
-      <div className="bg-gradient-to-r from-[#0C3B34] to-[#0C3B34]/90 text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-5xl font-bold mb-4">
-            Let's Start Your 
-            <span className="block text-[#D8C287] mt-2">Visa Journey</span>
-          </h1>
-          <p className="text-xl text-gray-200 max-w-2xl mx-auto">
-            Expert guidance for all your visa needs. Get in touch with our experienced consultants today.
-          </p>
-        </div>
-      </div>
 
       <div className="container mx-auto px-4 py-16 -mt-8">
         <div className="grid lg:grid-cols-5 gap-12 max-w-7xl mx-auto">
