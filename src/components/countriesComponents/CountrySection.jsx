@@ -1,32 +1,56 @@
+
 import React from "react";
 
-const CountrySection = ({ countryName,mainTitle, title, desc, img }) => {
+const CountrySection = ({ countryName, mainTitle, title, desc, img }) => {
   return (
-    <div className="w-full py-8 bg-white">
-      
-      {/* Left Content */}
-        <h1 className="text-3xl font-extrabold text-center md:text-center uppercase text-teal-900 pb-8">
-          {countryName}
-        </h1>
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 px-8 md:px-16  text-gray-800">
-        <div className="md:w-1/2 space-y-4">
-        <h2 className="text-2xl font-bold text-center md:text-left text-green-900">{mainTitle}</h2>
-        <h3 className="text-lg text-center md:text-left text-green-800">
-          {title}
-        </h3>
-        <p className="text-sm text-justify md:text-left leading-relaxed">{desc}</p>
-      </div>
+    <section className="w-full py-12 px-4 bg-white">
+      <div className="max-w-6xl mx-auto">
+        {/* Country Name Header */}
+        <div className="text-center mb-12">
+          <h1 className="text-3xl md:text-4xl font-extrabold uppercase text-teal-900 tracking-wide">
+            {countryName}
+          </h1>
+        </div>
+        
+        {/* Top Section - Main Title, Title & Image */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          
+          {/* Left Column - Main Title & Title */}
+          <div className="space-y-6">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-green-900 mb-3 leading-tight">
+                {mainTitle}
+              </h2>
+              <h3 className="text-lg md:text-xl text-green-800 font-medium">
+                {title}
+              </h3>
+            </div>
+          </div>
 
-      {/* Right Image */}
-      <div >
-        <img
-          src={img}
-          alt={countryName}
-          className="rounded-xl shadow-lg w-full max-w-md object-cover"
-        />
+          {/* Right Column - Image */}
+          <div className="flex justify-center lg:justify-end">
+            <div className="w-full max-w-md">
+              <img
+                src={img}
+                alt={countryName}
+                className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-xl"
+              />
+            </div>
+          </div>
+
+        </div>
+
+        {/* Bottom Section - Full Width Description */}
+        <div className="w-full">
+          <div className="prose prose-base max-w-none">
+            <p className="text-gray-700 text-base leading-relaxed text-justify">
+              {desc}
+            </p>
+          </div>
+        </div>
+
       </div>
-      </div>
-    </div>
+    </section>
   );
 };
 

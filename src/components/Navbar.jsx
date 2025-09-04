@@ -7,6 +7,7 @@ import {
   FiHome,
   FiUsers,
   FiStar,
+  FiMapPin,
   FiGlobe,
   FiTrendingUp,
   FiMail,

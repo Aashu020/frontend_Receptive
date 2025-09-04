@@ -1,6 +1,7 @@
 import React from 'react'
 import HeroSection from '../../components/countriesComponents/Herosection';
 import img from "../../assets/images/canada.jpeg"
+import canadaFlag from "../../assets/flags/canadaflag.jpg"
 import CountrySection from '../../components/countriesComponents/CountrySection';
 import canimg from "../../assets/images/can.jpg"
 const Canada = () => {
@@ -10,6 +11,8 @@ const Canada = () => {
                 title="Canada"
                 subtitle="Canada is a country in North America. It is known for its vast landscapes, multicultural cities, and friendly people. Canada offers a high quality of life, excellent education and healthcare systems, and a strong economy. Popular destinations include Toronto, Vancouver, Montreal, and the stunning natural beauty of places like Banff and Jasper National Parks."
                 bgImage={img}
+               
+        flag={canadaFlag}   // <-- pass the flag here
             />
 
             <CountrySection

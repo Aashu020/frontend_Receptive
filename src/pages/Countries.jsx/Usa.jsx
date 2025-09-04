@@ -1,5 +1,6 @@
 import React from 'react'
 import img from "../../assets/images/usa.jpg"
+import UsaFlag from "../../assets/flags/UsaFlag.png"
 import HeroSection from '../../components/countriesComponents/Herosection'
 import CountrySection from '../../components/countriesComponents/CountrySection'
 const Usa = () => {
@@ -9,6 +10,7 @@ const Usa = () => {
                 title="Usa"
                 subtitle="Usa is a country in North America known for its diverse culture, iconic landmarks, and economic influence. Key attractions include the Statue of Liberty, Grand Canyon, and Hollywood. The USA is renowned for its technological innovation, entertainment industry, and varied landscapes ranging from bustling cities to natural wonders."
                 bgImage={img}
+                flag={UsaFlag}
             />
             <CountrySection
                 countryName="UNITED STATES of AMERICA"
