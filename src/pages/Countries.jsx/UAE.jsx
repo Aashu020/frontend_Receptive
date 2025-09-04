@@ -1,11 +1,11 @@
 import React from 'react'
 import HeroSection from '../../components/countriesComponents/Herosection'
 import CountrySection from '../../components/countriesComponents/CountrySection'
-import UaeQuest1 from '../../components/countriesComponents/UaeQuest1'
+import UaeQuest1 from '../../components/countriesComponents/uaeComponents/UaeQuest1'
 import img from "../../assets/countryHero/UaeHero.jpg"
 import uaeimg from "../../assets/images/uae2.png"
 import uaeFlag from "../../assets/flags/UaeFlag.jpg"  // <-- add your flag image
-import UaeVisaRequirements from '../../components/countriesComponents/UaeVisaRequirements '
+import UaeVisaRequirements from '../../components/countriesComponents/uaeComponents/UaeVisaRequirements '
 
 const UAE = () => {
   return (

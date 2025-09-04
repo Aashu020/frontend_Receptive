@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { ShieldCheck, Gem, Building2, Home, Briefcase, GraduationCap, Star, Globe, TrendingUp, Users, HeartPulse, Banknote, Lock, FerrisWheel } from 'lucide-react';
-import img from "../../assets/images/uaevisa.jpg"
+import img from "../../../assets/images/uaevisa.jpg"
 const Section = ({ icon, title, children }) => {
     const IconComponent = icon;
     return (
