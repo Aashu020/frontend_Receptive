@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import termsPDF from "../assets/ReceptiveTerms&Conditions.pdf"; 
 import logo from "../assets/images/logo.jpg";
 import {
   FiChevronDown,
@@ -114,14 +115,15 @@ function UpperHeader() {
       </div>
       <div className="flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-6">
         <a
-          href="/terms"
-          className="hidden lg:flex items-center hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
-        >
-          <FaRegFileAlt className="mr-1 text-xs lg:text-sm" />
-          <span className="text-xs lg:text-sm hover:text-white cursor-pointer">
-            Terms
-          </span>
-        </a>
+  href={termsPDF}
+  download="Terms-and-Conditions.pdf"
+  className="hidden lg:flex items-center hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
+>
+  <FaRegFileAlt className="mr-1 text-xs lg:text-sm" />
+  <span className="text-xs lg:text-sm hover:text-white cursor-pointer">
+    Terms
+  </span>
+</a>
         <div className="flex items-center gap-1 md:gap-2 lg:gap-3">
           <a
             href="https://instagram.com"
