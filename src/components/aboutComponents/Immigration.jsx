@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const Immigration = () => {
   return (
-    <div className="w-full overflow-hidden bg-white py-10 md:py-14">
+    <div className="w-full overflow-hidden bg-white py-10 md:py-14" id='immigration'>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:gap-10 gap-8 items-center">
           

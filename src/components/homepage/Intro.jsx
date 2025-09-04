@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Users, Globe, MapPin, Clock, Award, TrendingUp, Star, Target } from 'lucide-react';
 import experience from "../../assets/HomepageImages/experience.avif"
+import { useNavigate } from 'react-router-dom';
 
 function Intro() {
   const [yearsExp, setYearsExp] = useState(0);
   const [socialFollowers, setSocialFollowers] = useState(0);
   const [nationalities, setNationalities] = useState(0);
   const [countries, setCountries] = useState(0);
+  const navigate = useNavigate()
   
   const [ref1, inView1] = useInView({ triggerOnce: true, threshold: 0.3 });
   const [ref2, inView2] = useInView({ triggerOnce: true, threshold: 0.3 });
@@ -25,6 +27,14 @@ function Intro() {
       animateCounter(20, setCountries, 1800);
     }
   }, [inView2]);
+
+  const handleNavigatecontact=()=>{
+    navigate("/contact")
+  }
+  const handleNavigateabout=()=>{
+    navigate("/contact")
+  }
+
 
   const animateCounter = (target, setter, duration) => {
     let start = 0;
@@ -153,10 +163,10 @@ function Intro() {
               </div>
 
               <div className="flex flex-wrap gap-4 pt-6">
-                <button className="px-8 py-4 bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white rounded-xl font-medium hover:shadow-xl hover:scale-105 transition-all duration-300">
+                <button className="px-8 py-4 bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white rounded-xl font-medium hover:shadow-xl hover:scale-105 transition-all duration-300" onClick={handleNavigatecontact}>
                   Get Consultation
                 </button>
-                <button className="px-8 py-4 bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white rounded-xl font-medium hover:bg-[#0C3B34] hover:text-white transition-all duration-300">
+                <button className="px-8 py-4 bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white rounded-xl font-medium hover:bg-[#0C3B34] hover:text-white transition-all duration-300" onClick={handleNavigateabout}>
                   Learn More
                 </button>
               </div>
