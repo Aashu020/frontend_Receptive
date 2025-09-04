@@ -1,6 +1,7 @@
 import React from 'react'
 import HeroSection from '../../components/countriesComponents/Herosection';
 import img from '../../assets/images/singapore.jpg'
+import singapore from '../../assets/flags/sinagpore.jpg'
 import CountrySection from '../../components/countriesComponents/CountrySection';
 import singimg from '../../assets/images/sing.jpg'
 const Singapore = () => {
@@ -10,6 +11,7 @@ const Singapore = () => {
                 title="Singapore"
                 subtitle="Singapore is a global financial hub known for its modern skyline, diverse culture, and strict laws. Key attractions include Marina Bay Sands, Gardens by the Bay, and Sentosa Island. The city-state is renowned for its cleanliness, safety, and efficient public transport system."
                 bgImage={img}
+                flag={singapore}
             />
 
             <CountrySection

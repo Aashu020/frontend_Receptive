@@ -1,6 +1,7 @@
 import React from 'react'
 import HeroSection from '../../components/countriesComponents/Herosection'
 import img from "../../assets/images/europe.jpg"
+import europe from "../../assets/flags/europe.jpg"
 import CountrySection from '../../components/countriesComponents/CountrySection'
 import eurimg from "../../assets/images/eur.jpg"
 const Europe = () => {
@@ -10,6 +11,7 @@ const Europe = () => {
                 title="Europe"
                 subtitle="EUrope is a continent rich in history, culture, and diversity. It is home to numerous countries, each with its own unique traditions, languages, and landmarks. From the romantic streets of Paris to the historic ruins of Rome, Europe offers a wide range of experiences for travelers. Key attractions include the Eiffel Tower, Colosseum, and the scenic landscapes of the Swiss Alps. Europe is also known for its art, music, and culinary delights."
                 bgImage={img}
+                flag={europe}
             />
 
             <CountrySection

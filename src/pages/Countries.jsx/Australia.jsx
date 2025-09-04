@@ -1,6 +1,7 @@
 import React from 'react'
 import HeroSection from '../../components/countriesComponents/Herosection'
 import img from '../../assets/images/australia.jpg'
+import AusFlag from "../../assets/flags/ausnew.jpg"
 import CountrySection from '../../components/countriesComponents/CountrySection'
 import ausimg from '../../assets/images/aus.jpg'
 const Australia = () => {
@@ -10,6 +11,7 @@ const Australia = () => {
                 title="Australia"
                 subtitle="Australia is a country and continent surrounded by the Indian and Pacific oceans. Its major cities – Sydney, Brisbane, Melbourne, Perth, Adelaide – are coastal. Its vast interior, known as the Outback, features arid desert landscapes. The country is known for its Sydney Opera House, the Great Barrier Reef, the vast Outback, and unique animal species including kangaroos and duck-billed platypuses."
                 bgImage={img}
+                flag={AusFlag}
             />
 
             <CountrySection

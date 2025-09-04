@@ -1,5 +1,6 @@
 import React from 'react'
 import img from "../../assets/images/uk.jpg"
+import Ukflag from "../../assets/flags/ukFlag.jpg"
 import HeroSection from '../../components/countriesComponents/Herosection'
 import CountrySection from '../../components/countriesComponents/CountrySection'
 const UK = () => {
@@ -9,6 +10,7 @@ const UK = () => {
                 title="UK"
                 subtitle="Uk is a country in Europe known for its rich history, diverse culture, and iconic landmarks. Key attractions include the Tower of London, Buckingham Palace, and the British Museum. The UK is also famous for its picturesque countryside, vibrant cities like London and Edinburgh, and contributions to literature, music, and theater."
                 bgImage={img}
+                flag={Ukflag}
             />
             <CountrySection
                 countryName="UNITED KINGDOM"
