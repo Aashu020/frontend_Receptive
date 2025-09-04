@@ -17,7 +17,7 @@ const HeroSection = ({ title, subtitle, bgImage, flag }) => {
           className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl xl:text-[170px] font-extrabold uppercase tracking-tight text-transparent w-full leading-none"
           style={{
             backgroundImage: `url(${flag})`,
-            backgroundSize: "cover",
+            backgroundSize: "100% 100%",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
             WebkitBackgroundClip: "text",

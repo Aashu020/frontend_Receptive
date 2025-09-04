@@ -9,7 +9,7 @@ const heroItems = [
     img: visitor, 
     desc: "Receptive Immigration a division of the Receptive Group of Companies, is a trusted name in the investment industry. With a focus on creating wealth and financial security for our clients.",
     buttonText: "Explore Immigration",
-    buttonLink: "/immigration"
+    buttonLink: "#immigration"
   },
   { 
     id: 2,
@@ -17,7 +17,7 @@ const heroItems = [
     img: properties, 
     desc: "Receptive Properties is a new vertical of the Receptive Group of Companies, specializing in real estate services. Our dedicated team offers expert guidance.",
     buttonText: "Browse Properties",
-    buttonLink: "/properties"
+    buttonLink: "#Properties"
   },
   { 
     id: 3,
@@ -25,7 +25,7 @@ const heroItems = [
     img: investment, 
     desc: "Receptive Investments a division of the Receptive Group of Companies, is a trusted name in the investment industry. With a focus on creating wealth and financial security.",
     buttonText: "Investment Options",
-    buttonLink: "/investment"
+    buttonLink: "#Investment"
   },
 ];
 
@@ -126,29 +126,6 @@ export default function HeroSection() {
           </div>
         ))}
       </div>
-
-      {/* Indicators - Responsive */}
-      {/* <div className="absolute bottom-2 sm:bottom-3 md:bottom-4 left-1/2 transform -translate-x-1/2 flex gap-1.5 sm:gap-2">
-        {heroItems.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'bg-white scale-125' : 'bg-white/40 hover:bg-white/60'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
-      </div> */}
-
-      {/* Mobile swipe indicator (optional)
-      <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 sm:hidden">
-        <div className="flex items-center gap-2 text-white/60 text-xs">
-          <span>←</span>
-          <span>Swipe</span>
-          <span>→</span>
-        </div>
-      </div> */}
     </section>
   );
 }
