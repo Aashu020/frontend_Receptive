@@ -9,6 +9,11 @@ import ObtainWorkPermitCanada from '../../components/countriesComponents/canadaC
 import helpimage from "../../assets/images/help.jpg"
 import canimg from "../../assets/images/can.jpg"
 import img from "../../assets/images/canada.jpeg"
+import CanadaStartUpVisaInfo from '../../components/countriesComponents/canadaComponents/CanadaStartUpVisaInfo';
+import CanadaAtlanticImmigrationProgram from '../../components/countriesComponents/canadaComponents/CanadaAtlanticImmigrationProgram';
+import BCPNPComponent from '../../components/countriesComponents/canadaComponents/BCPNPComponent';
+import AlbertaProgram from '../../components/countriesComponents/canadaComponents/AlbertaProgram';
+import ContactForm from '../../components/ContactForm';
 const Canada = () => {
 
     const docsData = [
@@ -96,33 +101,6 @@ const Canada = () => {
                 "Following the submission of your application and attendance at the interview (if required), please allow for the visa processing to be finalized. Processing times may differ based on factors like application volume and specific circumstances. You can monitor the status of your application online via the IRCC website.",
         },
     ];
-    const programsData = [
-        {
-            title: "Federal Skilled Worker Program (FSWP)",
-            points: [
-                "Have at least one year of continuous full-time or equivalent part-time work experience in a skilled occupation within the last 10 years.",
-                "Meet the minimum language requirements in English or French.",
-                "Have a valid Educational Credential Assessment (ECA) if educated outside of Canada.",
-                "Score a minimum number of points based on factors such as age, education, work experience, language proficiency, and adaptability.",
-            ],
-        },
-        {
-            title: "Federal Skilled Trades Program (FSTP)",
-            points: [
-                "Have at least two years of full-time work experience in a skilled trade within the last five years.",
-                "Meet the minimum language requirements in English or French.",
-                "Have a valid job offer in a skilled trade (or a certificate of qualification in that skilled trade issued by a Canadian authority).",
-            ],
-        },
-        {
-            title: "Canadian Experience Class (CEC)",
-            points: [
-                "Have at least one year of skilled work experience in Canada within the last three years.",
-                "Meet the minimum language requirements in English or French.",
-                "Plan to live outside the province of Quebec.",
-            ],
-        },
-    ];
 
     return (
         <>
@@ -166,6 +144,11 @@ const Canada = () => {
             />
             <WorkPermitCanada/>
             <ObtainWorkPermitCanada/>
+            <CanadaStartUpVisaInfo/>
+            <CanadaAtlanticImmigrationProgram/>
+            <BCPNPComponent/>
+            <AlbertaProgram/>
+            <ContactForm/>
         </>
     )
 }

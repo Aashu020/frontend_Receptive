@@ -3,6 +3,9 @@ import img from "../../assets/images/uk.jpg"
 import Ukflag from "../../assets/flags/ukFlag.jpg"
 import HeroSection from '../../components/countriesComponents/Herosection'
 import CountrySection from '../../components/countriesComponents/CountrySection'
+import UkVisaTypes from '../../components/countriesComponents/ukComponents/UkVisaTypes'
+import UkVistior from '../../components/countriesComponents/ukComponents/UkVistior'
+import WorkerVisa from '../../components/countriesComponents/ukComponents/WorkerVisa'
 const UK = () => {
     return (
         <>
@@ -22,6 +25,9 @@ const UK = () => {
                     `}
                 img="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=1170&q=80"
             />
+            <UkVisaTypes/>
+            <UkVistior/>
+            <WorkerVisa/>
         </>
     )
 }

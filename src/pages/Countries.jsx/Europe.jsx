@@ -4,6 +4,8 @@ import img from "../../assets/images/europe.jpg"
 import europe from "../../assets/flags/europe.jpg"
 import CountrySection from '../../components/countriesComponents/CountrySection'
 import eurimg from "../../assets/images/eur.jpg"
+import EUJobsComponent from '../../components/countriesComponents/europeComponents/EUJobsComponent'
+import ContactForm from '../../components/ContactForm'
 const Europe = () => {
     return (
         <>
@@ -33,6 +35,8 @@ const Europe = () => {
                 }
                 img={eurimg}
             />
+            <EUJobsComponent/>
+            <ContactForm/>
         </>
     )
 }
