@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { Users, Globe, MapPin, Clock, Award, TrendingUp, Star, Target } from 'lucide-react';
+import experience from "../../assets/HomepageImages/experience.avif"
 
 function Intro() {
   const [yearsExp, setYearsExp] = useState(0);
@@ -93,7 +94,7 @@ function Intro() {
               <div className="absolute -inset-4 bg-gradient-to-r from-[#D8C287]/20 to-[#0C3B34]/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
               <div className="relative overflow-hidden rounded-2xl shadow-2xl">
                 <img 
-                  src="https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                  src={experience}
                   alt="RECEPTIVE GROUP OF COMPANIES" 
                   className="w-full h-auto transform group-hover:scale-105 transition-transform duration-700"
                 />

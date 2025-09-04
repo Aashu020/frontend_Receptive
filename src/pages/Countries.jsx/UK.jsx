@@ -7,7 +7,7 @@ const UK = () => {
     return (
         <>
             <HeroSection
-                title="UK"
+                title="England"
                 subtitle="Uk is a country in Europe known for its rich history, diverse culture, and iconic landmarks. Key attractions include the Tower of London, Buckingham Palace, and the British Museum. The UK is also famous for its picturesque countryside, vibrant cities like London and Edinburgh, and contributions to literature, music, and theater."
                 bgImage={img}
                 flag={Ukflag}

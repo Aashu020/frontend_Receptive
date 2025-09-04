@@ -4,6 +4,7 @@ import img from '../../assets/images/singapore.jpg'
 import singapore from '../../assets/flags/sinagpore.jpg'
 import CountrySection from '../../components/countriesComponents/CountrySection';
 import singimg from '../../assets/images/sing.jpg'
+import SingaporeEPass from '../../components/countriesComponents/Singapore/Epass';
 const Singapore = () => {
     return (
         <>
@@ -29,6 +30,9 @@ const Singapore = () => {
                 }
                 img={singimg}
             />
+
+
+            <SingaporeEPass/>
         </>
     )
 }

@@ -7,9 +7,10 @@
   /* Dark Green */
   --accent: #D8C287;
   /* Gold/Beige */
-  --light: #F8F8F8;
+  --light: #ffffff;
   /* Light Gray */
   --darkText: #333333;
+  --bgColour:white;
   /* Dark Gray */
   /* --bgAbout: #043927  Darker Green for About Section */
 }

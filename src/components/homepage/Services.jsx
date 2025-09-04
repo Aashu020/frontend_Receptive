@@ -1,4 +1,9 @@
 import React, { useState } from 'react'
+import visitor from "../../assets/HomepageImages/visitorvisa.avif"
+import permannet from "../../assets/HomepageImages/permannentvisa.avif"
+import secondvisa from "../../assets/HomepageImages/secondcitizenship.avif"
+import studentvisa from "../../assets/HomepageImages/studentvisa.png"
+import workvisa from "../../assets/HomepageImages/workvisa.png"
 
 function Services() {
   const [activeService, setActiveService] = useState(0)
@@ -8,7 +13,7 @@ function Services() {
       id: 1,
       title: "Visitor Visa",
       shortTitle: "Visitor Visa",
-      image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image: visitor,
       description: "Travel with the desire of family fun or business, for religious purposes or for leisure, the overseas tourism industry has a lot to offer. Hundreds of places to visit, lots of knowledge acquaintances, a penny to earn and a tour for faith, all depends upon the visitor visa.",
       subServices: ["Visitor Visa"]
     },
@@ -16,7 +21,7 @@ function Services() {
       id: 2,
       title: "Student Visa",
       shortTitle: "Student Visa",
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9d1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image: studentvisa ,
       description: "Today it is extremely necessary for people to go out of their own world and explore a modern environment that is served by places of the foreign world. Understanding diverse cultures, improving language skills, personal development and various experiences of life is all you get through studies abroad.",
       subServices: ["Canada Student Visa", "UK Student Visa", "Australia Student Visa", "New Zealand"]
     },
@@ -24,7 +29,7 @@ function Services() {
       id: 3,
       title: "Work Visa",
       shortTitle: "Work Visa",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image: workvisa,
       description: "There are certain options for Work Visa where you can take your family along. But that depends on the company and the Visa norms. All you need is a high level of Education, strong Profile and company selection in most matters. If you possess the required qualities, no doubt you'll easily fly to some offshore country.",
       subServices: ["Work Permit Canada", "Tier2 Work Permit Canada", "Tier5 Work Permit Canada"]
     },
@@ -32,7 +37,7 @@ function Services() {
       id: 4,
       title: "Permanent Residence Visa",
       shortTitle: "Permanent Residence",
-      image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image: permannet,
       description: "Immigrant visas are issued to foreign nationals who intend to live permanently in the United States. Nonimmigrant visas are for foreign nationals wishing to enter the United States on a temporary basis.",
       subServices: ["Australia Immigration Visa", "Canada Immigration Visa", "Denmark Immigration Visa"]
     },
@@ -40,7 +45,7 @@ function Services() {
       id: 5,
       title: "Second Citizenship through Investment",
       shortTitle: "Second Citizenship",
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80",
+      image: secondvisa,
       description: "Immigrant visas are issued to foreign nationals who intend to live permanently in the United States. Nonimmigrant visas are for foreign nationals wishing to enter the United States on a temporary basis.",
       subServices: ["Australia Immigration Visa", "Canada Immigration Visa", "Denmark Immigration Visa"]
     }

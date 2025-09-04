@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 
 const Founder = () => {
     return (
-        <div className="bg-[#F8F8F8] py-16">
+        <div className="bg-white py-16">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
                     {/* Image Section - Animate from right */}

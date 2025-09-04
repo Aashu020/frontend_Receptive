@@ -1,4 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import uae from "../../assets/HomepageImages/uae.avif"
+import us from "../../assets/HomepageImages/usa.avif"
+import uk from "../../assets/HomepageImages/uk.avif"
+import canda from "../../assets/HomepageImages/canada.avif"
+import singpore from "../../assets/HomepageImages/sinagpore.avif"
+import australia from "../../assets/HomepageImages/aus.avif"
+import europe from "../../assets/HomepageImages/europe.avif"
+
+
+
 
 function Herosection() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -8,43 +18,43 @@ function Herosection() {
     {
       title: "United Kingdom",
       description: "Explore the historic landmarks and vibrant culture of the UK, from London's bustling streets to Scotland's majestic highlands.",
-      image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      image: uk,
       alignment: "left"
     },
     {
       title: "United Arab Emirates",
       description: "Experience the blend of traditional heritage and modern innovation in the UAE's stunning desert landscapes and futuristic cities.",
-      image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      image: uae,
       alignment: "right"
     },
     {
       title: "United States",
       description: "Discover the diverse landscapes and cultures across America, from New York's skyscrapers to California's sunny beaches.",
-      image: "https://images.unsplash.com/photo-1485738422979-f5c462d49f74?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1799&q=80",
+      image: us,
       alignment: "left"
     },
     {
       title: "Australia",
       description: "Journey through Australia's unique wildlife, stunning coastlines, and vibrant cities down under.",
-      image: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      image: australia,
       alignment: "right"
     },
     {
       title: "Europe",
       description: "Immerse yourself in Europe's rich history, diverse cultures, and breathtaking architecture across the continent.",
-      image: "https://images.unsplash.com/photo-1467269204594-9661b134dd2b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      image: europe,
       alignment: "left"
     },
     {
       title: "Singapore",
       description: "Experience the perfect fusion of culture, cuisine, and innovation in Singapore's stunning urban landscape.",
-      image: "https://images.unsplash.com/photo-1525625293386-3f8f99389edd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1772&q=80",
+      image: singpore,
       alignment: "right"
     },
     {
       title: "Canada",
       description: "Explore Canada's vast wilderness, friendly cities, and diverse cultural experiences from coast to coast.",
-      image: "https://images.unsplash.com/photo-1519832979-6fa011b87667?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80",
+      image: canda,
       alignment: "left"
     }
   ];
