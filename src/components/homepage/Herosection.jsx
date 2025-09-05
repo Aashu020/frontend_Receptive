@@ -6,12 +6,11 @@ import canda from "../../assets/HomepageImages/canada.avif"
 import singpore from "../../assets/HomepageImages/sinagpore.avif"
 import australia from "../../assets/HomepageImages/aus.avif"
 import europe from "../../assets/HomepageImages/europe.avif"
-
-
-
+import { useNavigate } from 'react-router-dom';
 
 function Herosection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
   
   // Slide data for 7 countries
   const slides = [
@@ -19,43 +18,50 @@ function Herosection() {
       title: "United Kingdom",
       description: "Explore the historic landmarks and vibrant culture of the UK, from London's bustling streets to Scotland's majestic highlands.",
       image: uk,
-      alignment: "left"
+      alignment: "left",
+      route: "/country/uk", // Changed from url to route for navigation
     },
     {
       title: "United Arab Emirates",
       description: "Experience the blend of traditional heritage and modern innovation in the UAE's stunning desert landscapes and futuristic cities.",
       image: uae,
-      alignment: "right"
+      alignment: "right",
+      route: "/country/uae",
     },
     {
       title: "United States",
       description: "Discover the diverse landscapes and cultures across America, from New York's skyscrapers to California's sunny beaches.",
       image: us,
-      alignment: "left"
+      alignment: "left",
+      route: "/country/us",
     },
     {
       title: "Australia",
       description: "Journey through Australia's unique wildlife, stunning coastlines, and vibrant cities down under.",
       image: australia,
-      alignment: "right"
+      alignment: "right",
+      route: "/country/australia",
     },
     {
       title: "Europe",
       description: "Immerse yourself in Europe's rich history, diverse cultures, and breathtaking architecture across the continent.",
       image: europe,
-      alignment: "left"
+      alignment: "left",
+      route: "/country/europe",
     },
     {
       title: "Singapore",
       description: "Experience the perfect fusion of culture, cuisine, and innovation in Singapore's stunning urban landscape.",
       image: singpore,
-      alignment: "right"
+      alignment: "right",
+      route: "/country/singapore",
     },
     {
       title: "Canada",
       description: "Explore Canada's vast wilderness, friendly cities, and diverse cultural experiences from coast to coast.",
       image: canda,
-      alignment: "left"
+      alignment: "left",
+      route: "/country/canada",
     }
   ];
 
@@ -78,6 +84,10 @@ function Herosection() {
 
   const goToPrev = () => {
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  const handleExploreClick = (route) => {
+    navigate(route);
   };
 
   return (
@@ -107,7 +117,10 @@ function Herosection() {
               <p className="text-lg md:text-xl text-white mb-6 drop-shadow-md">
                 {slide.description}
               </p>
-              <button className="bg-[#D8C287] text-[#0a2d27] px-6 py-3 rounded-lg font-medium hover:bg-[#0a2d27] hover:text-white transition cursor-pointer mb-8">
+              <button 
+                className="bg-[#D8C287] text-[#0a2d27] px-6 py-3 rounded-lg font-medium hover:bg-[#0a2d27] hover:text-white transition cursor-pointer mb-8"
+                onClick={() => handleExploreClick(slide.route)}
+              >
                 Explore {slide.title}
               </button>
               
