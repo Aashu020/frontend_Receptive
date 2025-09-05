@@ -1,5 +1,5 @@
 import React from 'react'
-import subclass from '../../../assets/flags/subclass482.webp'
+import subclass from '../../../assets/flags/Subclass400.jpg'
 
 const Subclass = () => {
   return (
