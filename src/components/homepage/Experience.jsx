@@ -75,7 +75,7 @@ function Experience() {
         {cards.map((card, index) => (
           <div 
             key={index}
-            className="relative h-100 h-96 cursor-pointer group" // Increased height to h-96
+            className="relative h-100 md:h-96 cursor-pointer group" // Increased height to h-96
             onMouseEnter={() => setHoveredCard(index)}
             onMouseLeave={() => setHoveredCard(null)}
             
