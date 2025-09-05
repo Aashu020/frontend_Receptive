@@ -1,13 +1,34 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // If using React Router
 import Receptive from "../assets/images/IMMIGRATION_logo.jpg"
 import Investemnt from "../assets/images/INVESTMENTS.jpg"
 import Properties from "../assets/images/PROPERTIES.jpg"
+import {
+  FaPhone,
+  FaEnvelope,
+  FaInstagram,
+  FaFacebookF,
+  FaLinkedinIn,
+  FaYoutube,
+  FaRegFileAlt,
+} from "react-icons/fa";
 
 function Footer() {
+  const navigate = useNavigate(); // For React Router navigation
+  
   const portfolioLogos = {
     'Receptive Group': Receptive,
     'Receptive Investment': Investemnt,
     'Receptive Properties': Properties
+  };
+
+  // Service mapping for navigation
+  const serviceMapping = {
+    'Vistor Visa': 0,
+    'Student Visa': 1,
+    'Work Visa': 2,
+    'Permanennt Residence': 3,
+    'Second Citizenship': 4
   };
 
   // WhatsApp click handler
@@ -18,10 +39,26 @@ function Footer() {
     window.open(whatsappUrl, '_blank');
   };
 
+  // Service click handler
+  const handleServiceClick = (serviceName) => {
+    const serviceIndex = serviceMapping[serviceName];
+    
+    // Option 1: Navigate to services page with state (React Router)
+    navigate('/services', { 
+      state: { activeService: serviceIndex }
+    });
+    
+    // Option 2: Navigate to services page with query parameter
+    // navigate(`/services?service=${serviceIndex}`);
+    
+    // Option 3: Navigate to services page with hash
+    // navigate(`/services#service-${serviceIndex}`);
+  };
+
   return (
     <>
       {/* WhatsApp Button */}
-      <div className="fixed bottom-6 right-6 z-50">
+      <div className="fixed bottom-40 right-6 z-50">
         <button
           onClick={handleWhatsAppClick}
           className="bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 flex items-center justify-center group"
@@ -38,10 +75,10 @@ function Footer() {
           </svg>
           
           {/* Tooltip */}
-          <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-sm px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+          {/* <div className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white text-sm px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
             Chat with us on WhatsApp
             <div className="absolute left-full top-1/2 transform -translate-y-1/2 border-4 border-transparent border-l-gray-800"></div>
-          </div>
+          </div> */}
         </button>
       </div>
 
@@ -82,14 +119,19 @@ function Footer() {
           {/* Main Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
             
-            {/* Services */}
+            {/* Services - Updated with clickable links */}
             <div>
               <h3 className="text-lg font-semibold text-[#D8C287] mb-4">Our Services</h3>
               <ul className="space-y-2">
-                {['Tourism & Hospitality', 'Business Solutions', 'Consulting Services', 'Event Management', 'Travel Arrangements'].map((service, index) => (
+                {['Vistor Visa', 'Student Visa', 'Work Visa', 'Permanennt Residence', 'Second Citizenship'].map((service, index) => (
                   <li key={index} className="text-gray-200 text-sm flex items-center">
                     <span className="w-1.5 h-1.5 bg-[#D8C287] rounded-full mr-3"></span>
-                    {service}
+                    <button
+                      onClick={() => handleServiceClick(service)}
+                      className="hover:text-[#D8C287] transition-colors duration-200 text-left cursor-pointer"
+                    >
+                      {service}
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -150,7 +192,47 @@ function Footer() {
                 </p>
               </div>
 
-              <div className="flex space-x-6">
+
+              <div className="flex items-center gap-1 md:gap-2 lg:gap-3">
+                        <a
+                          href="https://instagram.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
+                          aria-label="Instagram"
+                        >
+                          <FaInstagram className="text-sm lg:text-base" />
+                        </a>
+                        <a
+                          href="https://facebook.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
+                          aria-label="Facebook"
+                        >
+                          <FaFacebookF className="text-sm lg:text-base" />
+                        </a>
+                        <a
+                          href="https://linkedin.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
+                          aria-label="LinkedIn"
+                        >
+                          <FaLinkedinIn className="text-sm lg:text-base" />
+                        </a>
+                        <a
+                          href="https://youtube.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
+                          aria-label="YouTube"
+                        >
+                          <FaYoutube className="text-sm lg:text-base" />
+                        </a>
+                      </div>
+
+              {/* <div className="flex space-x-6">
                 {['Contact'].map((link, index) => (
                   <a
                     key={index}
@@ -160,7 +242,7 @@ function Footer() {
                     {link}
                   </a>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

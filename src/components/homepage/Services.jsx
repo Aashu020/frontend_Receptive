@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useLocation, useSearchParams } from 'react-router-dom'
 import visitor from "../../assets/HomepageImages/visitorvisa.avif"
 import permannet from "../../assets/HomepageImages/permannentvisa.avif"
 import secondvisa from "../../assets/HomepageImages/secondcitizenship.avif"
@@ -6,11 +7,74 @@ import studentvisa from "../../assets/HomepageImages/studentvisa.png"
 import workvisa from "../../assets/HomepageImages/workvisa.png"
 
 function Services() {
-  const [activeService, setActiveService] = useState(0)
+  const location = useLocation()
+  const [searchParams] = useSearchParams()
+  
+  // Initialize activeService based on navigation data
+  const [activeService, setActiveService] = useState(() => {
+    // Check for state from navigation
+    if (location.state?.activeService !== undefined) {
+      return location.state.activeService
+    }
+    
+    // Check for query parameter
+    const serviceParam = searchParams.get('service')
+    if (serviceParam !== null && !isNaN(serviceParam)) {
+      return parseInt(serviceParam)
+    }
+    
+    // Check for hash
+    if (location.hash) {
+      const hashMatch = location.hash.match(/service-(\d+)/)
+      if (hashMatch) {
+        return parseInt(hashMatch[1])
+      }
+    }
+    
+    // Default to first service
+    return 0
+  })
+
+  // Update activeService when navigation data changes
+  useEffect(() => {
+    let newActiveService = 0;
+    
+    // Check for state from navigation
+    if (location.state?.activeService !== undefined) {
+      newActiveService = location.state.activeService;
+    }
+    // Check for query parameter
+    else if (searchParams.get('service') !== null && !isNaN(searchParams.get('service'))) {
+      newActiveService = parseInt(searchParams.get('service'));
+    }
+    // Check for hash
+    else if (location.hash) {
+      const hashMatch = location.hash.match(/service-(\d+)/);
+      if (hashMatch) {
+        newActiveService = parseInt(hashMatch[1]);
+      }
+    }
+    
+    // Update active service
+    setActiveService(newActiveService);
+    
+    // Scroll to services section when navigating from footer with more margin
+    if (location.state?.activeService !== undefined || 
+        searchParams.get('service') !== null || 
+        location.hash.includes('service-')) {
+      // Small delay to ensure component is rendered
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0, // Added more margin from top (100px instead of 0)
+          behavior: 'smooth'
+        })
+      }, 100)
+    }
+  }, [location.state, searchParams, location.hash])
 
   const services = [
     {
-      id: 1,
+      id: "s1",
       title: "Visitor Visa",
       shortTitle: "Visitor Visa",
       image: visitor,
@@ -18,15 +82,15 @@ function Services() {
       subServices: ["Visitor Visa"]
     },
     {
-      id: 2,
+      id: "s2",
       title: "Student Visa",
       shortTitle: "Student Visa",
-      image: studentvisa ,
+      image: studentvisa,
       description: "Today it is extremely necessary for people to go out of their own world and explore a modern environment that is served by places of the foreign world. Understanding diverse cultures, improving language skills, personal development and various experiences of life is all you get through studies abroad.",
       subServices: ["Canada Student Visa", "UK Student Visa", "Australia Student Visa", "New Zealand"]
     },
     {
-      id: 3,
+      id: "s3",
       title: "Work Visa",
       shortTitle: "Work Visa",
       image: workvisa,
@@ -34,7 +98,7 @@ function Services() {
       subServices: ["Work Permit Canada", "Tier2 Work Permit Canada", "Tier5 Work Permit Canada"]
     },
     {
-      id: 4,
+      id: "s4",
       title: "Permanent Residence Visa",
       shortTitle: "Permanent Residence",
       image: permannet,
@@ -42,7 +106,7 @@ function Services() {
       subServices: ["Australia Immigration Visa", "Canada Immigration Visa", "Denmark Immigration Visa"]
     },
     {
-      id: 5,
+      id: "s5",
       title: "Second Citizenship through Investment",
       shortTitle: "Second Citizenship",
       image: secondvisa,
@@ -52,11 +116,11 @@ function Services() {
   ]
 
   return (
-    <div className="bg-gray-50 py-16">
+    <div className="bg-gray-50 py-16 mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text" >
+          <h2 className="text-4xl font-bold mb-4 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text">
             Our Services
           </h2>
           <p className="text-lg text-gray-600">
@@ -73,7 +137,7 @@ function Services() {
                 onClick={() => setActiveService(index)}
                 className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base ${
                   activeService === index
-                    ? 'bg-[#D8C287] text-[#0a2d27]  shadow-md'
+                    ? 'bg-[#D8C287] text-[#0a2d27] shadow-md'
                     : 'hover:bg-[#0a2d27] hover:text-white'
                 }`}
                 style={{
@@ -139,8 +203,6 @@ function Services() {
                   </div>
                 ))}
               </div>
-
-              
             </div>
           </div>
         </div>

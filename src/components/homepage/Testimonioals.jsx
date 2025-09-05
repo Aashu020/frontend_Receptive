@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import shebaz from "../../assets/ReviewsImage/gall_img12.jpeg"
+import Ahmed from "../../assets/ReviewsImage/gall_img13.jpeg"
+import Amriat from "../../assets/ReviewsImage/amrita_rajput.webp"
+import sahid from "../../assets/ReviewsImage/shahid_patel.webp"
 
 function Testimonials() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
@@ -6,33 +10,33 @@ function Testimonials() {
   const testimonials = [
     {
       id: 1,
-      name: "Sarah Johnson",
-      country: "Canada",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b5bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
-      comment: "The team made my Canadian student visa process incredibly smooth. Their expertise and guidance helped me secure admission to my dream university.",
-      visa: "Student Visa"
+      name: "Shebaz patel",
+      country: "UK",
+      image: shebaz,
+      comment: "The team made my work visa process incredibly smooth. Their expertise and guidance helped me a lot .",
+      visa: "Work Visa"
     },
     {
       id: 2,
       name: "Ahmed Al-Rashid",
       country: "UAE",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+      image: Ahmed,
       comment: "Professional service from start to finish. They handled all the documentation for my work visa efficiently and kept me updated throughout the process.",
       visa: "Work Visa"
     },
     {
       id: 3,
-      name: "Maria Rodriguez",
-      country: "Spain",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
-      comment: "Thanks to their excellent service, my family and I obtained our permanent residence visa without any hassle. Their attention to detail made all the difference.",
-      visa: "Permanent Residence"
+      name: "Amrita Rajput",
+      country: "UK",
+      image: Amriat,
+      comment: "Thanks to their excellent service,  I obtained our work visa  without any hassle. Their attention to detail made all the difference.",
+      visa: "Work Visa"
     },
     {
       id: 4,
-      name: "David Chen",
-      country: "Singapore",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&q=80",
+      name: "Sahid patel",
+      country: "UK",
+      image: sahid,
       comment: "I was impressed by their knowledge of immigration laws and their ability to handle complex cases. My visitor visa was approved in record time!",
       visa: "Visitor Visa"
     }
