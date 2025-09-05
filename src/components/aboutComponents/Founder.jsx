@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 
 const Founder = () => {
     return (
-        <div className="bg-white py-16">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="bg-white py-5 md:py-16 md:px-[3rem] ">
+            <div className=" mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
                     {/* Image Section - Animate from right */}
                     <motion.div 
@@ -65,20 +65,20 @@ const Founder = () => {
                             }}
                             viewport={{ once: true }}
                         >
-                            <p>
+                            <p className='text-sm md:text-lg'>
                                 Meet Mr. Vikal Gilani, the visionary Group CEO behind Receptive 
                                 Group of Companies. With a passion for excellence and a commitment to success, 
                                 Mr. Gilani founded Receptive Solutions in 2011 in Mumbai, India.
                             </p>
                             
-                            <p>
+                            <p className='text-sm md:text-lg'>
                                 Through his hard work and dedication, he has established a reputable name in the 
                                 immigration industry, boasting an impressive 98% success rate in helping 
                                 candidates find the right jobs across India and assisting individuals in moving 
                                 to countries on Permanent Residence status.
                             </p>
                             
-                            <p>
+                            <p className='text-sm md:text-lg'>
                                 Mr. Gilani's unwavering dedication to his clients' success and his expertise in 
                                 the field have earned him accolades and recognition in the industry. Trust in 
                                 Mr. Vikal Gilani and the Receptive Group of Companies to guide you towards a 
