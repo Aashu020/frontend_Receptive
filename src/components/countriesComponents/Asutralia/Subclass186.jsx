@@ -1,5 +1,5 @@
 import React from 'react';
-import subclass from '../../../assets/flags/Subclass186.webp'
+import subclass from '../../../assets/flags/Subclass186.jpg'
 
 function Subclass186() {
   return (
