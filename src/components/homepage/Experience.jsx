@@ -66,8 +66,8 @@ function Experience() {
   ];
 
   return (
-    <div className="relative py-16 px-6 md:px-12 lg:px-24 bg-[#F8F8F8] overflow-hidden">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text relative z-20">
+    <div className="relative pt-16 md:py10 px-6 md:px-12 lg:px-24 bg-[#F8F8F8] overflow-hidden">
+      <h2 className="text-xl md:text-4xl font-bold text-center mb-3 md:mb-16 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text relative z-20">
         HOW RECEPTIVE GROUP OF COMPANIES CAN HELP?
       </h2>
       
@@ -75,35 +75,35 @@ function Experience() {
         {cards.map((card, index) => (
           <div 
             key={index}
-            className="relative h-96 cursor-pointer group" // Increased height to h-96
+            className="relative h-100 md:h-96 cursor-pointer group" // Increased height to h-96
             onMouseEnter={() => setHoveredCard(index)}
             onMouseLeave={() => setHoveredCard(null)}
-            onClick={() => toggleExpand(index)}
+            
           >
             {/* Card with background image on hover */}
             <div 
-              className={`absolute inset-0 rounded-2xl p-6 shadow-lg transition-all duration-500 ease-in-out overflow-hidden flex flex-col items-center justify-center h-full
-                ${hoveredCard === index ? 'bg-cover bg-center' : 'bg-white'}`}
+              className={`absolute inset-0 rounded-2xl py-10 p-4 md:p-6 shadow-lg transition-all duration-500 ease-in-out overflow-hidden flex flex-col items-center justify-center h-full
+                ${hoveredCard === index ? 'bg-cover bg-center' : 'bg-white'} ${expandedCard === index ? 'py-10' : 'py-4'}`}
               style={{ 
                 backgroundImage: hoveredCard === index ? `linear-gradient(rgba(121, 128, 127, 0.85), rgba(98, 99, 99, 0.9)), url(${card.image})` : 'none'
               }}
             >
               {/* Content */}
               <div className="flex justify-center mb-4">
-                <div className={`p-4 rounded-full transition-all duration-300 ${hoveredCard === index ? 'bg-[#D8C287]/20 text-[#D8C287]' : 'bg-[#D8C287]/20 text-[#0C3B34]'}`}>
+                <div className={`p-2 md:p-4 rounded-full transition-all duration-300 ${hoveredCard === index ? 'bg-[#D8C287]/20 text-[#D8C287]' : 'bg-[#D8C287]/20 text-[#0C3B34]'}`}>
                   {card.icon}
                 </div>
               </div>
               
-              <h3 className={`text-xl font-bold text-center mb-4 transition-colors duration-300 ${hoveredCard === index ? 'text-[#D8C287]' : 'text-[#0C3B34]'}`}>
+              <h3 className={`text-lg md:text-xl font-bold text-center mb-4 transition-colors duration-300 ${hoveredCard === index ? 'text-[#D8C287]' : 'text-[#0C3B34]'}`}>
                 {card.title}
               </h3>
               
-              <p className={`text-center transition-colors duration-300 ${hoveredCard === index ? 'text-white' : 'text-[#333333]'}`}>
+              <p className={`text-justify text-sm md:text-md transition-colors duration-300 ${hoveredCard === index ? 'text-white' : 'text-[#333333]'}`}>
                 {expandedCard === index ? card.fullContent : card.content}
               </p>
               
-              <div className="mt-auto pt-4 text-center">
+              <div className=" md:mt-auto mt-3 md:pt-4 text-center" onClick={() => toggleExpand(index)}>
                 <span className={`inline-block px-6 py-2 rounded-lg font-medium transition-colors duration-300 ${hoveredCard === index ? 'bg-[#D8C287] text-[#0C3B34]' : 'bg-[#0C3B34] text-white'}`}>
                   {expandedCard === index ? 'Read Less' : 'Read More'}
                 </span>

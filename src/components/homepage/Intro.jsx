@@ -96,7 +96,7 @@ function Intro() {
 
       {/* Upper Section */}
       <div ref={ref1} className="relative">
-        <div className="container mx-auto px-6 md:px-12 lg:px-24 py-20">
+        <div className="container mx-auto px-6 md:px-12 lg:px-24 py-10 md:py-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             
             {/* Image Section */}
@@ -112,10 +112,10 @@ function Intro() {
               </div>
               
               {/* Floating Stats Badge */}
-              <div className="absolute -bottom-6 -right-6 bg-white/95 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/20">
+              <div className="absolute -bottom-6 -right-3 md:-right-6 bg-white/95 backdrop-blur-xl rounded-2xl p-2 md:p-6 shadow-xl border border-white/20">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-[#0C3B34] mb-1">{yearsExp}+</div>
-                  <div className="text-sm text-gray-600 font-medium">Years Experience</div>
+                  <div className="text-xl md:text-3xl font-bold text-[#0C3B34] mb-1">{yearsExp}+</div>
+                  <div className="text-xs md:text-sm text-gray-600 font-medium">Years Experience</div>
                 </div>
               </div>
             </div>
@@ -128,7 +128,7 @@ function Intro() {
                   <span className="text-sm font-medium text-[#0C3B34]">Premier HR & Immigration Consultancy</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-bold text-[#0C3B34] leading-tight">
+                <h2 className="text-2xl md:text-5xl font-bold text-[#0C3B34] leading-tight">
                   Trusted Excellence in 
                   <span className="block text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text">
                     Global Immigration
@@ -137,15 +137,15 @@ function Intro() {
               </div>
 
               <div className="prose prose-lg text-gray-700 space-y-4">
-                <p className="text-xl leading-relaxed">
+                <p className="md:text-xl text-md leading-relaxed">
                   RECEPTIVE GROUP OF COMPANIES stands as a Premier HR and Immigration consultancy, 
                   delivering exceptional services with over <span className="font-semibold text-[#0C3B34]">{yearsExp}+ years</span> of specialized industry experience.
                 </p>
                 
-                <div className="grid md:grid-cols-2 gap-6 mt-8">
+                <div className="grid md:grid-cols-2 gap-6 mt-8 md:text-xl text-sm">
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 rounded-full bg-[#D8C287] mt-3 flex-shrink-0"></div>
-                    <p className="text-gray-600">Expert visa consultations and personalized guidance</p>
+                    <p className="text-gray-600 ">Expert visa consultations and personalized guidance</p>
                   </div>
                   <div className="flex items-start space-x-3">
                     <div className="w-2 h-2 rounded-full bg-[#D8C287] mt-3 flex-shrink-0"></div>
@@ -162,11 +162,11 @@ function Intro() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-4 pt-6">
-                <button className="px-8 py-4 bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white rounded-xl font-medium hover:shadow-xl hover:scale-105 transition-all duration-300" onClick={handleNavigatecontact}>
+              <div className="flex flex-wrap gap-4 pt-1 md:pt-6">
+                <button className="px-2 md:px-8 py-2 md:py-4 bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white rounded-xl font-medium hover:shadow-xl hover:scale-105 transition-all duration-300" onClick={handleNavigatecontact}>
                   Get Consultation
                 </button>
-                <button className="px-8 py-4 bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white rounded-xl font-medium hover:bg-[#0C3B34] hover:text-white transition-all duration-300" onClick={handleNavigateabout}>
+                <button className="px-4 md:px-8 py-2 md:py-4 bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white rounded-xl font-medium hover:bg-[#0C3B34] hover:text-white transition-all duration-300" onClick={handleNavigateabout}>
                   Learn More
                 </button>
               </div>
@@ -176,25 +176,25 @@ function Intro() {
       </div>
 
       {/* Stats Section */}
-      <div ref={ref2} className="relative py-20">
+      <div ref={ref2} className="relative pb-10 md:py-20">
         <div className="container mx-auto px-6 md:px-12 lg:px-24">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-[#0C3B34]/10 border border-[#0C3B34]/20 mb-6">
               <TrendingUp className="w-4 h-4 text-[#0C3B34] mr-2" />
               <span className="text-sm font-medium text-[#0C3B34]">Our Impact</span>
             </div>
-            <h3 className="text-4xl md:text-5xl font-bold text-[#0C3B34] mb-4">
+            <h3 className="text-2xl md:text-5xl font-bold text-[#0C3B34] mb-4">
               Success Measured in
               <span className="block text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text">
                 Real Results
               </span>
             </h3>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
               Our reputation is built on a foundation of proven results and satisfied clients across the globe
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
             {stats.map((stat, index) => {
               const IconComponent = stat.icon;
               return (
@@ -203,25 +203,20 @@ function Intro() {
                   className="group relative"
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg"></div>
-                  <div className="relative p-8 text-center transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
-                    {/* Icon with gradient background */}
-                    <div className={`inline-flex p-4 rounded-2xl ${stat.bgColor} mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                      <IconComponent className={`w-8 h-8 ${stat.iconColor}`} />
+                  <div className="relative md:p-8 py-4 text-center transform transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl">
+                    <div className={`inline-flex md:p-4 p-2 rounded-2xl ${stat.bgColor} mb-2 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                      <IconComponent className={`md:w-8 md:h-8 w-6 h-6 ${stat.iconColor}`} />
                     </div>
                     
-                    {/* Value */}
-                    <div className="text-4xl md:text-5xl font-bold mb-3">
+                    <div className="text-2xl md:text-5xl font-bold md:mb-3">
                       <span className={`bg-gradient-to-r ${stat.valueColor} bg-clip-text text-transparent`}>
                         {stat.value}
                       </span>
                     </div>
                     
-                    {/* Label */}
-                    <p className="text-gray-600 font-medium text-lg">
+                    <p className="text-gray-600 font-medium text-sm md:text-lg px-1">
                       {stat.label}
                     </p>
-
-                    {/* Hover effect overlay */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl bg-gradient-to-br from-white/50 to-transparent"></div>
                   </div>
                 </div>
