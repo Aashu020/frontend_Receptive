@@ -9,7 +9,7 @@ import Subclass400 from '../../components/countriesComponents/Asutralia/Subclass
 // import Subclass482 from '../../components/countriesComponents/Asutralia/Subclass482'
 import Subclass186 from '../../components/countriesComponents/Asutralia/Subclass186'
 import AotherinfoAus from '../../components/countriesComponents/Asutralia/AotherinfoAus'
-import Subclass482 from '../../components/countriesComponents/Asutralia/subclass482'
+import Subclass from '../../components/countriesComponents/Asutralia/Subclass'
 const Australia = () => {
     return (
         <>
@@ -46,7 +46,7 @@ const Australia = () => {
 
             <VisitervisaAus/>
             <Subclass400/>
-            <Subclass482/>
+            <Subclass/>
             <Subclass186/>
             <AotherinfoAus/>
         </>
