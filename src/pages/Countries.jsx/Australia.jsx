@@ -6,7 +6,7 @@ import CountrySection from '../../components/countriesComponents/CountrySection'
 import ausimg from '../../assets/images/aus.jpg'
 import VisitervisaAus from '../../components/countriesComponents/Asutralia/VisitervisaAus'
 import Subclass400 from '../../components/countriesComponents/Asutralia/Subclass400'
-import Subclass482 from '../../components/countriesComponents/Asutralia/subclass482'
+import Subclass482 from '../../components/countriesComponents/Australia/Subclass482'
 import Subclass186 from '../../components/countriesComponents/Asutralia/Subclass186'
 import AotherinfoAus from '../../components/countriesComponents/Asutralia/AotherinfoAus'
 const Australia = () => {
