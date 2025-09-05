@@ -1,5 +1,5 @@
 import React from 'react';
-import subclass from '../../../assets/flags/SingaporeEPass.webp'
+import subclass from '../../../assets/flags/SingaporeEpass.jpg'
 
 function SingaporeEPass() {
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import subclass from '../../../assets/flags/Subclass400.webp'
+import subclass from '../../../assets/flags/Subclass400.jpg'
 function Subclass400() {
   return (
     <div id='australia-subclass-400' className="w-full rounded-xl overflow-hidden bg-white mt-10  px-6 md:px-12 lg:px-24 text-left">
