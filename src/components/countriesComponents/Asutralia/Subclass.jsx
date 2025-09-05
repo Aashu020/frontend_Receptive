@@ -1,7 +1,7 @@
-import React from 'react';
-import subclass from '../../../assets/flags/Subclass482.webp'
+import React from 'react'
+import subclass from '../../../assets/flags/subclass482.webp'
 
-function Subclass482() {
+const Subclass = () => {
   return (
     <div id='australia-subclass-482' className="w-full rounded-xl overflow-hidden mt-10 px-6 md:px-12 lg:px-24 text-left">
       {/* Heading Section */}
@@ -89,5 +89,4 @@ function Subclass482() {
     </div>
   );
 }
-
-export default Subclass482;
+export default Subclass
