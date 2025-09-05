@@ -6,12 +6,11 @@ import canda from "../../assets/HomepageImages/canada.avif"
 import singpore from "../../assets/HomepageImages/sinagpore.avif"
 import australia from "../../assets/HomepageImages/aus.avif"
 import europe from "../../assets/HomepageImages/europe.avif"
-
-
-
+import { useNavigate } from 'react-router-dom';
 
 function Herosection() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
   
   // Slide data for 7 countries
   const slides = [
@@ -19,7 +18,8 @@ function Herosection() {
       title: "United Kingdom",
       description: "Explore the historic landmarks and vibrant culture of the UK, from London's bustling streets to Scotland's majestic highlands.",
       image: uk,
-      alignment: "left"
+      alignment: "left",
+      route: "/country/uk", // Changed from url to route for navigation
     },
     {
       title: "United Arab Emirates",
@@ -31,7 +31,8 @@ function Herosection() {
       title: "United States",
       description: "Discover the diverse landscapes and cultures across America, from New York's skyscrapers to California's sunny beaches.",
       image: us,
-      alignment: "left"
+      alignment: "left",
+      route: "/country/us",
     },
     {
       title: "Australia",
@@ -43,7 +44,8 @@ function Herosection() {
       title: "Europe",
       description: "Immerse yourself in Europe's rich history, diverse cultures, and breathtaking architecture across the continent.",
       image: europe,
-      alignment: "left"
+      alignment: "left",
+      route: "/country/europe",
     },
     {
       title: "Singapore",
@@ -55,7 +57,8 @@ function Herosection() {
       title: "Canada",
       description: "Explore Canada's vast wilderness, friendly cities, and diverse cultural experiences from coast to coast.",
       image: canda,
-      alignment: "left"
+      alignment: "left",
+      route: "/country/canada",
     }
   ];
 
@@ -78,6 +81,10 @@ function Herosection() {
 
   const goToPrev = () => {
     setCurrentSlide((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+  };
+
+  const handleExploreClick = (route) => {
+    navigate(route);
   };
 
   return (
