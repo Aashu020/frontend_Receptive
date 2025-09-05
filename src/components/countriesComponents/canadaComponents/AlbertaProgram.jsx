@@ -2,7 +2,7 @@ import React from 'react'
 import img1 from "../../../assets/images/attp.jpg"
 const AlbertaProgram = () => {
     return (
-        <div>
+        <div id='canada-alberta-tech-pathway'> 
             <div className="px-[15px] md:px-[3rem] lg:px-[10rem] bg-white py-4">
                 <div className="flex flex-col md:flex-row items-top mb-6">
                     <div className="md:w-1/2">

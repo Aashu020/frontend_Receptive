@@ -2,7 +2,7 @@ import React from 'react'
 import img2 from "../../../assets/images/ukvistorimg.jpg"
 const UkVistior = () => {
     return (
-        <div className="p-2 bg-white px-[15px] md:px-[3rem] lg:px-[10rem]">
+        <div className="p-2 bg-white px-[15px] md:px-[3rem] lg:px-[10rem]" id='uk-visitor'>
             <div className="flex flex-col md:flex-row items-top mb-4 mt-5">
                 <div className="md:w-1/2">
                     <h3 className="text-lg md:text-xl font-semibold text-gray-700">2. UK Visitor Visa</h3>

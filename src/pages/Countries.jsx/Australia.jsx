@@ -46,7 +46,7 @@ const Australia = () => {
             <VisitervisaAus/>
             <Subclass400/>
             <Subclass482/>
-            <Subclass186></Subclass186>
+            <Subclass186/>
             <AotherinfoAus/>
         </>
     )

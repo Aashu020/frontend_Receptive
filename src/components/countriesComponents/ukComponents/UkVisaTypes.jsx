@@ -4,7 +4,7 @@ import img1 from "../../../assets/images/ukgirls.jpg"
 
 const UkVisaTypes = () => {
     return (
-        <div className="p-2 bg-white px-[15px] md:px-[3rem] lg:px-[10rem]">
+        <div className="p-2 bg-white px-[15px] md:px-[3rem] lg:px-[10rem]" id='uk-study'>
             <div className="mb-6">
                 <h2 className="text-xl md:text:2xl font-bold text-gray-700 mb-2">Visa types:</h2>
             </div>

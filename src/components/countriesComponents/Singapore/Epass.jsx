@@ -3,7 +3,7 @@ import subclass from '../../../assets/flags/SingaporeEPass.webp'
 
 function SingaporeEPass() {
   return (
-    <div className="w-full rounded-xl overflow-hidden mt-10 mb-10 px-6 md:px-12 lg:px-24 text-left">
+    <div id='singapore-e-pass' className="w-full rounded-xl overflow-hidden mt-10 mb-10 px-6 md:px-12 lg:px-24 text-left">
       {/* Heading Section */}
       <div className="flex flex-col items-start mb-6">
         <h2 className="text-3xl font-bold mb-4 text-left" style={{ color: '#0C3B34' }}>
@@ -56,7 +56,7 @@ function SingaporeEPass() {
           </ul>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6" id='singapore-s-pass'>
           {/* Eligibility Criteria */}
           <div className="bg-gray-50 p-4 rounded-lg">
             <h3 className="text-xl font-semibold mb-3 text-left" style={{ color: '#0C3B34' }}>

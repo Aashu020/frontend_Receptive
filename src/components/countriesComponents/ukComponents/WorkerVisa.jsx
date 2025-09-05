@@ -2,7 +2,7 @@ import React from 'react'
 import img2 from "../../../assets/images/work_visa.jpg"
 const WorkerVisa = () => {
     return (
-        <div className="p-2 bg-white px-[15px] md:px-[3rem] lg:px-[10rem]">
+        <div className="p-2 bg-white px-[15px] md:px-[3rem] lg:px-[10rem]" id='uk-skilled-worker'>
             <div className="flex flex-col md:flex-row items-top mb-4 mt-5">
                 <div className="md:w-1/2">
                     <h3 className="text-lg md:text-xl font-semibold text-gray-700">3. UK Skilled Worker Visas:</h3>
@@ -44,7 +44,7 @@ const WorkerVisa = () => {
                 </ul>
             </div>
 
-            <div className="flex flex-col md:flex-row items-top mb-4 mt-5">
+            <div className="flex flex-col md:flex-row items-top mb-4 mt-5" id='uk-self-sponsorship'>
                 <div className="md:w-full">
                     <h3 className="text-lg md:text-xl font-semibold text-gray-700">4. Self-Sponsorship Visa:</h3>
                     <p className="text-gray-600 mt-2 text-[15px] text-justify">
@@ -56,7 +56,7 @@ const WorkerVisa = () => {
                 </div>
             </div>
 
-            <div className="flex flex-col md:flex-row items-top mb-4 mt-5">
+            <div className="flex flex-col md:flex-row items-top mb-4 mt-5" id='uk-the-innovator'>
                 <div className="md:w-1full">
                     <h3 className="text-lg md:text-xl font-semibold text-gray-700">5. The Innovator Visa:</h3>
                     <p className="text-gray-600 mt-2 text-[15px] text-justify">

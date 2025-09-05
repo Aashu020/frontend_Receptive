@@ -129,6 +129,7 @@ const Canada = () => {
             />
 
             <CanadianVisitorDocs
+                id="canada-tourist"
                 title="Essential Documents for Canadian Visitor / Tourist Visa:"
                 points={docsData}
                 image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
@@ -138,7 +139,7 @@ const Canada = () => {
                 title="How will Receptive Immigration help you?"
                 points={docsData2}
                 image={helpimage}
-            />
+                />
 
             <SkilledImmigration
             />

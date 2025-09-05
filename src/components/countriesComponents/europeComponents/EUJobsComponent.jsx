@@ -2,7 +2,7 @@ import React from 'react';
 
 const EUJobsComponent = () => {
   return (
-    <div className="px-[15px] md:px-[3rem] lg:px-[10rem] bg-white py-4">
+    <div className="px-[15px] md:px-[3rem] lg:px-[10rem] bg-white py-4" id='europe-eligible'>
       <div className="mb-6">
         <h2 className="text-xl font-bold text-[#0C3B34] mb-2">WHO IS ELIGIBLE FOR JOBS IN EU?</h2>
         <p className="text-[#0C3B34] text-justify">
@@ -49,7 +49,7 @@ const EUJobsComponent = () => {
         </ul>
       </div>
       <div>
-        <h2 className="text-lg md:text-xl font-bold text-[#0C3B34] mb-2">WHY CHOOSE RECEPTIVE IMMIGRATION?</h2>
+        <h2 className="text-lg md:text-xl font-bold text-[#0C3B34] mb-2" id='europe-immigration'>WHY CHOOSE RECEPTIVE IMMIGRATION?</h2>
         <p className="text-[#0C3B34]">
           Choosing Receptive Immigration, a part of RGC, a reputed immigration company for securing an EU visa, offers several advantages:
         </p>

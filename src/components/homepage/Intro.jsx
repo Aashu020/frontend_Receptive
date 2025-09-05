@@ -32,7 +32,7 @@ function Intro() {
     navigate("/contact")
   }
   const handleNavigateabout=()=>{
-    navigate("/contact")
+    navigate("/about")
   }
 
 

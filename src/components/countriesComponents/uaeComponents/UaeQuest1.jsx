@@ -29,7 +29,7 @@ const Section = ({ icon, title, children }) => {
 const Section1 = ({ icon, title, children }) => {
     const IconComponent = icon;
     return (
-        <div className="flex flex-col  gap-4 sm:gap-6 md:gap-8 mt-6 sm:mt-8 md:mt-12">
+        <div className="flex flex-col  gap-4 sm:gap-6 md:gap-8 mt-6 sm:mt-8 md:mt-12" id="company-investor-visa">
             {/* Left side: Icon + Title in a row */}
             <div className="flex items-center  gap-3 sm:gap-4 md:gap-6 flex-shrink-0 pl-2 md:pl-0">
                 <div className="bg-[#0C3B34] p-2 sm:p-3 md:p-4 rounded-full">
@@ -65,7 +65,7 @@ const BenefitCard = ({ number, title, text }) => {
         }
         return 100; // fallback for SSR
     };
-    
+
     const truncationLength = getTruncationLength();
     const shouldTruncate = text && text.length > truncationLength;
     const displayText = expanded || !shouldTruncate ? text : text.substring(0, truncationLength) + '...';
@@ -74,8 +74,8 @@ const BenefitCard = ({ number, title, text }) => {
         setExpanded(prev => !prev);
     };
 
-    return(
-        <div 
+    return (
+        <div
             className="bg-white border border-gray-200 rounded-lg md:p-6 p-2 shadow-sm hover:shadow-lg transition-shadow duration-300"
             data-card-id={cardId}
         >
@@ -87,7 +87,7 @@ const BenefitCard = ({ number, title, text }) => {
             </div>
             <p className="mt-4 text-gray-600 md:text-[13px]">{displayText}</p>
             {shouldTruncate && (
-                <button 
+                <button
                     onClick={handleToggle}
                     className="mt-2 text-[#0C3B34] hover:text-[#D8C287] text-sm font-medium transition-colors duration-200"
                     type="button"
@@ -155,7 +155,7 @@ const UaeQuest1 = () => {
                         <h2 className="text-xl sm:text-2xl md:text-lg font-bold text-[#0C3B34] mb-3 xl:text-2xl">
                             Understanding the Different Types of Residency Visas in UAE
                         </h2>
-                        <p className="opacity-90 text-sm sm:text-base md:text-[15px] xl:text-lg">
+                        <p  className="opacity-90 text-sm sm:text-base md:text-[15px] xl:text-lg">
                             The UAE offers a variety of residency visas, each with its own characteristics and validity period.
                             Unlike short-term options like tourist visas, residency visas typically have a validity period
                             between two to three years, with the potential for renewal extending up to ten years. <br /> <br />
@@ -167,57 +167,63 @@ const UaeQuest1 = () => {
 
                     {/* Golden Visa */}
                     <Section icon={Gem} title="1. UAE Golden Visa">
-                        <p>
-                            The UAE Golden Visa is a groundbreaking long-term residency program that offers exceptional
-                            benefits to foreign talents, investors, and their families. This program goes beyond standard
-                            visa perks, providing unique advantages such as property ownership rights, exemption from needing
-                            a local sponsor, and access to world-class healthcare and education. Additionally, it offers
-                            significant tax benefits. This strategic initiative is designed to attract skilled professionals,
-                            thereby contributing to the UAE’s dynamic growth and enhancing its global standing.
-                        </p>
-                        <h3 className="text-xl sm:text-2xl font-bold text-center text-[#0C3B34] mt-6 sm:mt-8 mb-4 sm:mb-6 xl:text-3xl">
-                            The Top 13 Benefits of the UAE Golden Visa
-                        </h3>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 xl:text-2xl">
-                            {goldenVisaBenefits.map((benefit,index) => (
-                                <BenefitCard
-                                    key={`${benefit.number}-${benefit.title}`} // More stable key
-                                    number={index+1}
-                                    title={benefit.title}
-                                    text={benefit.text}
-                                />
-                            ))}
+                        <div id="golden-visa">
+                            <p>
+                                The UAE Golden Visa is a groundbreaking long-term residency program that offers exceptional
+                                benefits to foreign talents, investors, and their families. This program goes beyond standard
+                                visa perks, providing unique advantages such as property ownership rights, exemption from needing
+                                a local sponsor, and access to world-class healthcare and education. Additionally, it offers
+                                significant tax benefits. This strategic initiative is designed to attract skilled professionals,
+                                thereby contributing to the UAE’s dynamic growth and enhancing its global standing.
+                            </p>
+                            <h3 className="text-xl sm:text-2xl font-bold text-center text-[#0C3B34] mt-6 sm:mt-8 mb-4 sm:mb-6 xl:text-3xl">
+                                The Top 13 Benefits of the UAE Golden Visa
+                            </h3>
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 xl:text-2xl">
+                                {goldenVisaBenefits.map((benefit, index) => (
+                                    <BenefitCard
+                                        key={`${benefit.number}-${benefit.title}`} // More stable key
+                                        number={index + 1}
+                                        title={benefit.title}
+                                        text={benefit.text}
+                                    />
+                                ))}
+                            </div>
                         </div>
                     </Section>
 
                     {/* Other Visa Sections */}
-                    <Section1 icon={Building2} title="Company Investor Visa">
-                        <p>The UAE offers an Investor Visa for individuals looking to establish or invest in a company in the country. Here are some key details about the UAE Company Investor Visa:</p>
-                        <ul className="list-disc pl-4 sm:pl-6 mt-3 sm:mt-4 space-y-1 sm:space-y-2 text-sm sm:text-base md:text-[14px] xl:text-[16px]">
-                            <li><strong>Eligibility:</strong> To qualify for the UAE Company Investor Visa, individuals must invest in a company in the UAE or establish their own business in the country.</li>
-                            <li><strong>Investment Requirements:</strong> The specific investment requirements may vary depending on the emirate and type of business. Generally, investors are expected to make a significant financial investment in the company.</li>
-                            <li><strong>Company Setup:</strong> Investors can choose to set up various types of companies in the UAE, such as Limited Liability Company (LLC), Free Zone Company, or Offshore Company, each with its own set of regulations and benefits.</li>
-                            <li><strong>Visa Duration:</strong> The Investor Visa typically offers a residency permit for a specific duration, which can be renewed based on the investor's continued involvement in the company.</li>
-                            <li><strong>Benefits:</strong> The Investor Visa provides individuals with the opportunity to live and work in the UAE, access to the local business environment, and potentially benefit from various incentives offered to investors.</li>
-                            <li><strong>Process:</strong> The process of obtaining the UAE Company Investor Visa involves submitting the necessary documents, fulfilling the investment requirements, and obtaining approval from the relevant authorities.</li>
-                            <li><strong>Consultation:</strong> It is advisable for investors to seek guidance from legal or business advisors familiar with UAE company setup and immigration laws to ensure a smooth and successful application process. <br /> Please note that specific details and requirements for the UAE Company Investor Visa may vary based on the emirate and type of business activity. It is recommended to consult official government sources or legal experts for the most up-to-date and accurate information.</li>
-                        </ul>
+                    <Section1 icon={Building2} title="Company Investor Visa" >
+                        <div>
+                            <p>The UAE offers an Investor Visa for individuals looking to establish or invest in a company in the country. Here are some key details about the UAE Company Investor Visa:</p>
+                            <ul className="list-disc pl-4 sm:pl-6 mt-3 sm:mt-4 space-y-1 sm:space-y-2 text-sm sm:text-base md:text-[14px] xl:text-[16px]">
+                                <li><strong>Eligibility:</strong> To qualify for the UAE Company Investor Visa, individuals must invest in a company in the UAE or establish their own business in the country.</li>
+                                <li><strong>Investment Requirements:</strong> The specific investment requirements may vary depending on the emirate and type of business. Generally, investors are expected to make a significant financial investment in the company.</li>
+                                <li><strong>Company Setup:</strong> Investors can choose to set up various types of companies in the UAE, such as Limited Liability Company (LLC), Free Zone Company, or Offshore Company, each with its own set of regulations and benefits.</li>
+                                <li><strong>Visa Duration:</strong> The Investor Visa typically offers a residency permit for a specific duration, which can be renewed based on the investor's continued involvement in the company.</li>
+                                <li><strong>Benefits:</strong> The Investor Visa provides individuals with the opportunity to live and work in the UAE, access to the local business environment, and potentially benefit from various incentives offered to investors.</li>
+                                <li><strong>Process:</strong> The process of obtaining the UAE Company Investor Visa involves submitting the necessary documents, fulfilling the investment requirements, and obtaining approval from the relevant authorities.</li>
+                                <li><strong>Consultation:</strong> It is advisable for investors to seek guidance from legal or business advisors familiar with UAE company setup and immigration laws to ensure a smooth and successful application process. <br /> Please note that specific details and requirements for the UAE Company Investor Visa may vary based on the emirate and type of business activity. It is recommended to consult official government sources or legal experts for the most up-to-date and accurate information.</li>
+                            </ul>
+                        </div>
                     </Section1>
 
                     <Section1 icon={Home} title="UAE Property Investor Visa">
-                        <p>The UAE offers a Property Investor Visa for individuals looking to invest in real estate in the country. Here are some key details about the UAE Property Investor Visa:</p>
-                        <ul className="list-disc pl-4 sm:pl-6 mt-3 sm:mt-4 space-y-1 sm:space-y-2 text-sm sm:text-base md:text-[14px] xl:text-[16px]">
-                            <li><strong>Eligibility:</strong> To qualify for the UAE Property Investor Visa, individuals must make a significant investment in real estate in the UAE.</li>
-                            <li><strong>Investment Requirements:</strong> The specific investment threshold for the Property Investor Visa may vary depending on the emirate and type of property. Generally, investors are expected to invest a substantial amount in residential or commercial real estate.</li>
-                            <li><strong>Property Ownership:</strong> Investors must provide proof of property ownership or investment in eligible real estate projects to qualify for the visa.</li>
-                            <li><strong>Visa Duration:</strong> The Property Investor Visa typically offers a residency permit for a specific duration, which can be renewed based on the investor's continued property ownership or investment.</li>
-                            <li><strong>Benefits:</strong> The Property Investor Visa provides individuals with the opportunity to reside in the UAE, potentially generate rental income from the property, and benefit from the country's real estate market trends.</li>
-                            <li><strong>Process:</strong> The process of obtaining the UAE Property Investor Visa involves submitting the necessary documents, demonstrating property ownership or investment, and obtaining approval from the relevant authorities.</li>
-                            <li><strong>Consultation:</strong> It is advisable for property investors to seek guidance from legal or real estate advisors familiar with UAE property investment regulations and visa requirements to ensure a smooth application process. <br /> Please note that specific details and requirements for the UAE Property Investor Visa may vary based on the emirate and type of real estate investment. It is recommended to consult official government sources or legal experts for the most up-to-date and accurate information.</li>
-                        </ul>
+                        <div id="property-investor-visa">
+                            <p>The UAE offers a Property Investor Visa for individuals looking to invest in real estate in the country. Here are some key details about the UAE Property Investor Visa:</p>
+                            <ul className="list-disc pl-4 sm:pl-6 mt-3 sm:mt-4 space-y-1 sm:space-y-2 text-sm sm:text-base md:text-[14px] xl:text-[16px]">
+                                <li><strong>Eligibility:</strong> To qualify for the UAE Property Investor Visa, individuals must make a significant investment in real estate in the UAE.</li>
+                                <li><strong>Investment Requirements:</strong> The specific investment threshold for the Property Investor Visa may vary depending on the emirate and type of property. Generally, investors are expected to invest a substantial amount in residential or commercial real estate.</li>
+                                <li><strong>Property Ownership:</strong> Investors must provide proof of property ownership or investment in eligible real estate projects to qualify for the visa.</li>
+                                <li><strong>Visa Duration:</strong> The Property Investor Visa typically offers a residency permit for a specific duration, which can be renewed based on the investor's continued property ownership or investment.</li>
+                                <li><strong>Benefits:</strong> The Property Investor Visa provides individuals with the opportunity to reside in the UAE, potentially generate rental income from the property, and benefit from the country's real estate market trends.</li>
+                                <li><strong>Process:</strong> The process of obtaining the UAE Property Investor Visa involves submitting the necessary documents, demonstrating property ownership or investment, and obtaining approval from the relevant authorities.</li>
+                                <li id="employment-visa"><strong>Consultation:</strong> It is advisable for property investors to seek guidance from legal or real estate advisors familiar with UAE property investment regulations and visa requirements to ensure a smooth application process. <br /> Please note that specific details and requirements for the UAE Property Investor Visa may vary based on the emirate and type of real estate investment. It is recommended to consult official government sources or legal experts for the most up-to-date and accurate information.</li>
+                            </ul>
+                        </div>
                     </Section1>
 
-                    <Section1 icon={Briefcase} title="UAE Employment Visa">
+                    <Section1 icon={Briefcase} title="UAE Employment Visa" >
                         <p>The UAE Employment Visa, also known as the UAE Work Visa, is a permit issued to foreign nationals who have secured a job offer in the UAE and wish to work and reside in the country. Here are the complete details about the UAE Employment Visa:</p>
                         <ul className="list-disc pl-4 sm:pl-6 mt-3 sm:mt-4 space-y-1 sm:space-y-2 text-sm sm:text-base md:text-[14px] xl:text-[16px]">
                             <li><strong>Eligibility:</strong> To qualify for the UAE Employment Visa, individuals must have a valid job offer from a company registered in the UAE. The job offer should meet the criteria set by the Ministry of Human Resources and Emiratisation (MOHRE).</li>
@@ -238,11 +244,11 @@ const UaeQuest1 = () => {
                             <li><strong>Visa Process:</strong> The employer in the UAE is usually responsible for initiating the visa process on behalf of the employee. The employer submits the necessary documents to the relevant authorities, such as the MOHRE and the General Directorate of Residency and Foreigners Affairs (GDRFA), for visa approval.</li>
                             <li><strong>Visa Duration:</strong> The UAE Employment Visa is typically issued for a specific period, usually two or three years, depending on the employment contract. The visa can be renewed upon completion of the initial term.</li>
                             <li><strong>Work Permit: </strong>Upon arrival in the UAE, the employee must complete the necessary procedures to obtain a residency permit (labor card) and Emirates ID, which are essential for legal employment in the country.</li>
-                            <li><strong>Family Sponsorship:</strong> Employees holding a UAE Employment Visa may be eligible to sponsor their family members for residency in the UAE, subject to meeting the sponsorship requirements. <br /> It is essential for individuals seeking a UAE Employment Visa to comply with the regulations and procedures set by the UAE authorities to ensure a smooth and successful visa application process. It is recommended to seek guidance from the employer or legal professionals familiar with UAE immigration laws for accurate and up-to-date information.</li> <br />
+                            <li id="student-visa"><strong>Family Sponsorship:</strong> Employees holding a UAE Employment Visa may be eligible to sponsor their family members for residency in the UAE, subject to meeting the sponsorship requirements. <br /> It is essential for individuals seeking a UAE Employment Visa to comply with the regulations and procedures set by the UAE authorities to ensure a smooth and successful visa application process. It is recommended to seek guidance from the employer or legal professionals familiar with UAE immigration laws for accurate and up-to-date information.</li> <br />
                         </ul>
                     </Section1>
 
-                    <Section1 icon={GraduationCap} title="UAE Student Visa">
+                    <Section1 icon={GraduationCap} title="UAE Student Visa" >
                         <p>The UAE Student Visa, also known as the UAE Student Residence Visa, is a permit issued to foreign students who wish to pursue their education at a recognized educational institution in the UAE. Here are the complete details about the UAE Student Visa:</p>
                         <ul className="list-disc pl-4 sm:pl-6 mt-3 sm:mt-4 space-y-1 sm:space-y-2 text-sm sm:text-base md:text-[14px] xl:text-[16px]">
                             <li><strong>Eligibility:</strong> To qualify for the UAE Student Visa, individuals must have been accepted into a recognized educational institution in the UAE and have proof of enrollment or admission.</li>

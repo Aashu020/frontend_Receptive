@@ -5,7 +5,7 @@ import img2 from "../../../assets/images/uaevisa.jpg"
 const UsaVisatypes = () => {
   return (
     <div className="p-2 bg-white px-[15px] md:px-[3rem] lg:px-[10rem]">
-      <div className="mb-6">
+      <div className="mb-6" id='us-study-visa'>
         <h2 className="text-xl md:text:2xl font-bold text-gray-700 mb-2">Visa types:</h2>
       </div>
       <div className="mb-6">
@@ -33,7 +33,7 @@ const UsaVisatypes = () => {
         </div>
       </div>
       <div>
-        <div className="flex flex-col md:flex-row items-center">
+        <div className="flex flex-col md:flex-row items-center pb-8" id='us-tourist'>
           <div className="md:w-1/2">
             <h3 className="text-xl font-semibold text-gray-700">2. Tourist Visa:</h3>
             <p className="text-gray-600 mt-2 text-[15px] text-justify">

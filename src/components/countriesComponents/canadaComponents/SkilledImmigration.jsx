@@ -4,7 +4,7 @@ import SkilledImmigrationImg from "../../../assets/images/SkilledImmigration.jpg
 
 export default function SkilledImmigration() {
   return (
-    <section className="w-full bg-white py-10 px-[15px] md:px-[3rem] lg:px-[10rem]">
+    <section id="canada-skilled-immigration" className="w-full bg-white py-10 px-[15px] md:px-[3rem] lg:px-[10rem]">
       <div className="container flex flex-col md:flex-row items-start gap-8">
         {/* Left Content */}
         <div className="md:w-[70%]">

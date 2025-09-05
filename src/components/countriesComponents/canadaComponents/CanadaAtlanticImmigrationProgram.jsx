@@ -4,7 +4,7 @@ import img2 from "../../../assets/images/SNIP.jpg"
 
 export default function CanadaAtlanticImmigrationProgram() {
   return (
-    <div className="px-[15px] md:px-[3rem] lg:px-[10rem] bg-white min-h-screen pt-2" style={{ fontSize: '16px' }}>
+    <div id='canada-aip' className="px-[15px] md:px-[3rem] lg:px-[10rem] bg-white min-h-screen pt-2" style={{ fontSize: '16px' }}>
       {/* Atlantic Immigration Program Section */}
       <div className="mb-8">
         <div className="flex items-start flex-col md:flex-row gap-6">
@@ -101,8 +101,8 @@ export default function CanadaAtlanticImmigrationProgram() {
       </div>
 
       {/* SINP Program Section */}
-      <div className=" mb-8">
-        <div className="flex items-start flex-col md:flex-row gap-6">
+      <div className=" mb-8" id='canada-sinp'>
+        <div className="flex items-start flex-col md:flex-row gap-6" >
           <div className="md:w-[60%]">
             <h2 className="text-xl md:text-2xl font-bold text-[#0C3B34] mb-4">
               SINP Program:

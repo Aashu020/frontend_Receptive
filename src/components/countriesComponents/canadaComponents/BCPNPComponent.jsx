@@ -3,7 +3,7 @@ import img1 from "../../../assets/images/BCPNP.jpg"
 
 const BCPNPComponent = () => {
   return (
-    <div className="px-[15px] md:px-[3rem] lg:px-[10rem] bg-white pt-2">
+    <div className="px-[15px] md:px-[3rem] lg:px-[10rem] bg-white pt-2" id='canada-bc-pnp'>
       <div className="flex flex-col md:flex-row items-center mb-6">
         <div className="md:w-1/2">
           <h2 className="text-2xl font-bold text-[#0C3B34] mb-2">BC PNP Program:</h2>

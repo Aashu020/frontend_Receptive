@@ -2,7 +2,7 @@ import React from 'react'
 
 function VisitervisaAus() {
   return (
-    <div className="px-6 md:px-12 lg:px-24 text-left bg-white">
+    <div className="px-6 md:px-12 lg:px-24 text-left bg-white" id='australia-visitor'>
       
       
       <h2 className="text-2xl font-bold mb-4" style={{ color: '#0C3B34' }}>

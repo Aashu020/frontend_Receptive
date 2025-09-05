@@ -3,7 +3,7 @@ import subclass from '../../../assets/flags/Subclass482.webp'
 
 function Subclass482() {
   return (
-    <div className="w-full rounded-xl overflow-hidden mt-10 px-6 md:px-12 lg:px-24 text-left">
+    <div id='australia-subclass-482' className="w-full rounded-xl overflow-hidden mt-10 px-6 md:px-12 lg:px-24 text-left">
       {/* Heading Section */}
       <div className="flex flex-col items-start mb-6">
         <h2 className="text-3xl font-bold mb-4 text-left" style={{ color: '#0C3B34' }}>

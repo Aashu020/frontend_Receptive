@@ -1,9 +1,9 @@
 // CanadianVisitorDocs.jsx
 import React from "react";
 
-const CanadianVisitorDocs = ({ title, points, image }) => {
+const CanadianVisitorDocs = ({ title, points, image, id }) => {
   return (
-    <section className="w-full py-12 md:px-[3rem] px-[15px] lg:px-[10rem]">
+    <section className="w-full py-12 md:px-[3rem] px-[15px] lg:px-[10rem]" id={`${id}`}>
           <h2 className="text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-[#0C3B34] mb-6 lg:mb-15 [word-spacing:4px]">
             {title}
           </h2>

@@ -7,7 +7,7 @@ export default function CanadaStartUpVisaInfo() {
       {/* Header Section */}
       <div className=" mb-8">
         <div className="flex flex-col md:flex-row items-start gap-6">
-          <div className="md:w-[60%]">
+          <div className="md:w-[60%]" id='canada-start-up'>
             <h1 className="text-xl md:text-2xl font-bold text-[#0C3B34] mb-4">
               Canada Start-Up visa (SUV)
             </h1>

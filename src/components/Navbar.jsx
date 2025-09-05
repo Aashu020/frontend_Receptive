@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import termsPDF from "../assets/ReceptiveTerms&Conditions.pdf"; 
+import termsPDF from "../assets/ReceptiveTerms&Conditions.pdf";
 import logo from "../assets/images/logo.jpg";
 import {
   FiChevronDown,
@@ -24,6 +24,8 @@ import {
   FaYoutube,
   FaRegFileAlt,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
 
 function UpperHeader() {
   const [isVisible, setIsVisible] = useState(true);
@@ -74,7 +76,7 @@ function UpperHeader() {
           >
             <FaPhone className="text-xs lg:text-sm" />
             <span className="ml-1 text-xs lg:text-sm hidden lg:inline hover:text-white cursor-pointer">
-              +91 98765 43210
+              +91 77380 56424
             </span>
           </button>
           <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
@@ -85,7 +87,7 @@ function UpperHeader() {
           >
             <FaEnvelope className="text-xs lg:text-sm" />
             <span className="ml-1 hover:underline hover:text-white cursor-pointer text-xs lg:text-sm truncate max-w-[100px] md:max-w-[140px] lg:max-w-[180px] xl:max-w-none">
-              info@receptivegroup.com
+              info@receptivesolutions.co.in
             </span>
           </button>
         </div>
@@ -97,7 +99,7 @@ function UpperHeader() {
           >
             <FaPhone className="text-xs lg:text-sm" />
             <span className="ml-1 text-xs lg:text-sm hidden hover:text-white cursor-pointer lg:inline">
-              +91 98856 02560
+              +971 562744455
             </span>
           </button>
           <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
@@ -108,25 +110,25 @@ function UpperHeader() {
           >
             <FaEnvelope className="text-xs lg:text-sm" />
             <span className="ml-1 hover:underline hover:text-white cursor-pointer text-xs lg:text-sm truncate max-w-[100px] md:max-w-[140px] lg:max-w-[180px] xl:max-w-none">
-              info@receptivesolutions.com
+              info@receptivegroup.com
             </span>
           </button>
         </div>
       </div>
       <div className="flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-6">
         <a
-  href={termsPDF}
-  download="Terms-and-Conditions.pdf"
-  className="hidden lg:flex items-center hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
->
-  <FaRegFileAlt className="mr-1 text-xs lg:text-sm" />
-  <span className="text-xs lg:text-sm hover:text-white cursor-pointer">
-    Terms
-  </span>
-</a>
+          href={termsPDF}
+          download="Terms-and-Conditions.pdf"
+          className="hidden lg:flex items-center hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
+        >
+          <FaRegFileAlt className="mr-1 text-xs lg:text-sm" />
+          <span className="text-xs lg:text-sm hover:text-white cursor-pointer">
+            Terms
+          </span>
+        </a>
         <div className="flex items-center gap-1 md:gap-2 lg:gap-3">
           <a
-            href="https://instagram.com"
+            href="https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1"
             target="_blank"
             rel="noopener noreferrer"
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
@@ -135,7 +137,7 @@ function UpperHeader() {
             <FaInstagram className="text-sm lg:text-base" />
           </a>
           <a
-            href="https://facebook.com"
+            href="https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
             target="_blank"
             rel="noopener noreferrer"
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
@@ -144,16 +146,16 @@ function UpperHeader() {
             <FaFacebookF className="text-sm lg:text-base" />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all"
             target="_blank"
             rel="noopener noreferrer"
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
             aria-label="LinkedIn"
-          >
+            >
             <FaLinkedinIn className="text-sm lg:text-base" />
           </a>
           <a
-            href="https://youtube.com"
+            href="https://www.youtube.com/@receptivegroup"
             target="_blank"
             rel="noopener noreferrer"
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
@@ -175,41 +177,58 @@ const Navbar = () => {
   const [isUpperHeaderVisible, setIsUpperHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const navRef = useRef(null);
+  const navigate = useNavigate();
 
   const countries = {
     UAE: [
-      "Golden Visa",
-      " Company Investor ",
-      "Property Investor ",
-      " UAE Employment ",
-      " UAE Student",
+      { title: "UAE", link: "/country/uae" },
+      { title: "Golden Visa", link: "/country/uae#golden-visa" },
+      { title: "Company Investor", link: "/country/uae#company-investor-visa" },
+      { title: "Property Investor", link: "/country/uae#property-investor-visa" },
+      { title: "UAE Employment", link: "/country/uae#employment-visa" },
+      { title: "UAE Student", link: "/country/uae#student-visa" },
     ],
     Canada: [
-      " Tourist",
-      " Skilled Immigration ",
-      "Start-Up",
-      "Express Entry",
-      "AIP",
-      " SINP",
-      "Alberta Tech Pathway ",
-      "BC PNP",
+      { title: "Canada", link: "/country/canada" },
+      { title: "Tourist", link: "/country/canada#canada-tourist" },
+      { title: "Skilled Immigration", link: "/country/canada#canada-skilled-immigration" },
+      { title: "Start-Up", link: "/country/canada#canada-start-up" },
+      // { title: "Express Entry", link: "/country/canada#canada-express-entry" },
+      { title: "AIP", link: "/country/canada#canada-aip" },
+      { title: "SINP", link: "/country/canada#canada-sinp" },
+      { title: "Alberta Tech Pathway", link: "/country/canada#canada-alberta-tech-pathway" },
+      { title: "BC PNP", link: "/country/canada#canada-bc-pnp" },
     ],
     UK: [
-      " Study ",
-      "Visitor ",
-      "Skilled Worker ",
-      "Self-sponsorship ",
-      " The Innovator ",
+      { title: "UK", link: "/country/uk" },
+      { title: "Study", link: "/country/uk#uk-study" },
+      { title: "Visitor", link: "/country/uk#uk-visitor" },
+      { title: "Skilled Worker", link: "/country/uk#uk-skilled-worker" },
+      { title: "Self-sponsorship", link: "/country/uk#uk-self-sponsorship" },
+      { title: "The Innovator", link: "/country/uk#uk-the-innovator" },
     ],
-    US: [" Study Visa", "Tourist "],
-    Europe: [],
+    US: [
+      { title: "USA", link: "/country/usa" },
+      { title: "Study Visa", link: "/country/usa#us-study-visa" },
+      { title: "Tourist", link: "/country/usa#us-tourist" },
+    ],
+    Europe: [
+      { title: "Europe", link: "/country/europe" },
+      { title: "Eligible", link: "/country/europe#europe-eligible" },
+      { title: "Immigration", link: "/country/europe#europe-immigration" },
+    ],
     Australia: [
-      "Visitor ",
-      "Subclass 400",
-      " Subclass 482",
-      "Subclass 186",
+      { title: "Australia", link: "/country/australia" },
+      { title: "Visitor", link: "/country/australia#australia-visitor" },
+      { title: "Subclass 400", link: "/country/australia#australia-subclass-400" },
+      { title: "Subclass 482", link: "/country/australia#australia-subclass-482" },
+      { title: "Subclass 186", link: "/country/australia#australia-subclass-186" },
     ],
-    Singapore: [" E-pass ", " S-pass "],
+    Singapore: [
+      { title: "Singapore", link: "/country/singapore" },
+      { title: "E-pass", link: "/country/singapore#singapore-e-pass" },
+      { title: "Eligible", link: "/country/singapore#singapore-s-pass" },
+    ],
   };
 
   useEffect(() => {
@@ -274,10 +293,50 @@ const Navbar = () => {
     setIsMobileMenuOpen(false);
   };
 
+  const handleNavigation = (path) => {
+    closeAllDropdowns();
+    navigate(path);
+  };
+
+  const handleVisaClick = (visa) => {
+    closeAllDropdowns();
+    
+    // Check if it's a route with hash (like /country/uae#golden-visa)
+    if (visa.link.includes('#')) {
+      const [route, hash] = visa.link.split('#');
+      
+      // Navigate to the route first
+      navigate(route);
+      
+      // Wait for navigation and DOM update, then scroll to section with offset
+      setTimeout(() => {
+        const section = document.getElementById(hash);
+        if (section) {
+          // Calculate navbar height + upper header height + some padding
+          const navbarHeight = window.innerWidth >= 768 && isUpperHeaderVisible ? 
+            44 + 80 + 20 : // UpperHeader (44px) + Navbar (80px) + padding (20px)
+            64 + 20; // Just Navbar (64px) + padding (20px)
+          
+          const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
+          const offsetPosition = elementPosition - navbarHeight;
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+          });
+        } else {
+          console.log(`Section with ID "${hash}" not found`);
+        }
+      }, 300);
+    } else {
+      // Handle regular route navigation
+      navigate(visa.link);
+    }
+  };
+
   const navItems = [
     { name: "Home", icon: FiHome, path: "/" },
     { name: "About Us", icon: FiUsers, path: "/about" },
-    
     {
       name: "Countries",
       icon: FiGlobe,
@@ -304,7 +363,7 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16 lg:h-20">
             <div
               className="flex items-center group cursor-pointer"
-              onClick={closeAllDropdowns}
+              onClick={() => handleNavigation('/')}
             >
               <div className="relative">
                 <img
@@ -342,15 +401,14 @@ const Navbar = () => {
                       />
                     </button>
                   ) : (
-                    <a
-                      href={item.path}
-                      onClick={closeAllDropdowns}
+                    <button
+                      onClick={() => handleNavigation(item.path)}
                       className="flex items-center space-x-2 px-4 xl:px-6 py-2.5 xl:py-3 rounded-full transition-all duration-300 font-medium text-sm xl:text-base text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54] hover:shadow-lg hover:scale-105 relative overflow-hidden group"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D8C287] to-[#e6d098] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                       <item.icon className="w-4 h-4 xl:w-5 xl:h-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
                       <span className="relative z-10">{item.name}</span>
-                    </a>
+                    </button>
                   )}
                 </div>
               ))}
@@ -424,29 +482,15 @@ const Navbar = () => {
                     </div>
                   </div>
                   <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-4 xl:gap-6">
-                    {countries[selectedCountry].map((location, index) => (
-                      <a
-                        key={index}
-                        href={`/countries/${selectedCountry.toLowerCase()}/${location.toLowerCase()}`}
-                        onClick={closeAllDropdowns}
-                        className="group block p-4 xl:p-6 rounded-2xl transition-all duration-300 hover:scale-105 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-2xl border border-[#D8C287]/30 hover:border-[#D8C287]"
-                        style={{ animationDelay: `${index * 50}ms` }}
+                    {countries[selectedCountry].map((visa, locIndex) => (
+                      <button
+                        key={locIndex}
+                        onClick={() => handleVisaClick(visa)}
+                        className="block p-3 rounded-lg text-sm bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-lg transition-all duration-300 hover:scale-105"
                       >
-                        <div className="font-bold text-xs xl:text-sm mb-2 group-hover:text-[#D8C287] transition-colors duration-300">
-                          {location}
-                          <span className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">
-                            →
-                          </span>
-                        </div>
-
-                        {/* <div className="text-white/75 text-sm flex items-center group-hover:text-white transition-all duration-300">
-                          View Details
-                          <span className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">
-                            →
-                          </span>
-                        </div> */}
-                        <div className="absolute top-3 right-3 w-2 h-2 bg-[#D8C287] rounded-full opacity-50 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300"></div>
-                      </a>
+                        <div className="font-medium">{visa.title}</div>
+                        <div className="text-xs text-white/75 mt-1">View Details →</div>
+                      </button>
                     ))}
                   </div>
                 </>
@@ -526,23 +570,22 @@ const Navbar = () => {
                                 </h4>
                               </div>
                               <div className="grid grid-cols-2 gap-3">
-                                {countries[selectedCountry].map(
-                                  (location, locIndex) => (
-                                    <a
-                                      key={locIndex}
-                                      href={`/countries/${selectedCountry.toLowerCase()}/${location.toLowerCase()}`}
-                                      className="block p-3 rounded-lg text-sm bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-lg transition-all duration-300 hover:scale-105"
-                                      onClick={closeAllDropdowns}
-                                    >
-                                      <div className="font-medium">
-                                        {location}
-                                      </div>
-                                      <div className="text-xs text-white/75 mt-1">
-                                        View Details →
-                                      </div>
-                                    </a>
-                                  )
-                                )}
+                                {countries[selectedCountry].map((visa, index) => (
+                                  <button
+                                    key={index}
+                                    onClick={() => handleVisaClick(visa)}
+                                    className="group block p-4 xl:p-6 rounded-2xl transition-all duration-300 hover:scale-105 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-2xl border border-[#D8C287]/30 hover:border-[#D8C287]"
+                                    style={{ animationDelay: `${index * 50}ms` }}
+                                  >
+                                    <div className="font-bold text-xs xl:text-sm mb-2 group-hover:text-[#D8C287] transition-colors duration-300">
+                                      {visa.title}
+                                      <span className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">
+                                        →
+                                      </span>
+                                    </div>
+                                    <div className="absolute top-3 right-3 w-2 h-2 bg-[#D8C287] rounded-full opacity-50 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300"></div>
+                                  </button>
+                                ))}
                               </div>
                             </div>
                           )}
@@ -550,14 +593,13 @@ const Navbar = () => {
                       )}
                     </div>
                   ) : (
-                    <a
-                      href={item.path}
-                      className="flex items-center space-x-3 py-4 px-3 text-gray-700 hover:text-[#0C3B34] transition-colors duration-300 rounded-lg hover:bg-gray-50"
-                      onClick={closeAllDropdowns}
+                    <button
+                      onClick={() => handleNavigation(item.path)}
+                      className="w-full flex items-center space-x-3 py-4 px-3 text-gray-700 hover:text-[#0C3B34] transition-colors duration-300 rounded-lg hover:bg-gray-50 text-left"
                     >
                       <item.icon className="w-5 h-5" />
                       <span className="font-medium">{item.name}</span>
-                    </a>
+                    </button>
                   )}
                 </div>
               ))}
