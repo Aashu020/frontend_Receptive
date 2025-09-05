@@ -58,7 +58,7 @@ function Footer() {
   return (
     <>
       {/* WhatsApp Button */}
-      <div className="fixed bottom-22 right-6 z-50">
+      <div className="fixed bottom-8 right-3 md:bottom-22 md:right-6 z-50">
         <button
           onClick={handleWhatsAppClick}
           className="bg-[#25D366] hover:bg-[#128C7E] text-white p-4 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 flex items-center justify-center group"
@@ -66,7 +66,7 @@ function Footer() {
         >
           {/* WhatsApp SVG Icon */}
           <svg
-            className="w-6 h-6"
+            className="md:w-6 md:h-6 h-4 w-4"
             fill="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"

@@ -35,6 +35,9 @@ function Services() {
     return 0
   })
 
+  // State for mobile expanded cards
+  const [expandedCards, setExpandedCards] = useState(new Set())
+
   // Update activeService when navigation data changes
   useEffect(() => {
     let newActiveService = 0;
@@ -71,6 +74,17 @@ function Services() {
       }, 100)
     }
   }, [location.state, searchParams, location.hash])
+
+  // Toggle expanded state for mobile cards
+  const toggleCardExpansion = (serviceId) => {
+    const newExpandedCards = new Set(expandedCards)
+    if (newExpandedCards.has(serviceId)) {
+      newExpandedCards.delete(serviceId)
+    } else {
+      newExpandedCards.add(serviceId)
+    }
+    setExpandedCards(newExpandedCards)
+  }
 
   const services = [
     {
@@ -116,21 +130,21 @@ function Services() {
   ]
 
   return (
-    <div className="bg-gray-50 py-16 mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="bg-gray-50 py-16 mt:5 md:mt-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 xl:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text">
+          <h2 className=" text-xl md:text-4xl font-bold mb-4 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text">
             Our Services
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className=" text-md md:text-lg text-gray-600">
             Comprehensive visa and immigration services tailored to your needs
           </p>
         </div>
 
-        {/* Services Navigation Bar */}
-        <div className="mb-12">
-          <div className="flex flex-wrap justify-center gap-2 p-2 rounded-xl shadow-lg" style={{ backgroundColor: '#0C3B34' }}>
+        {/* Services Navigation Bar - Desktop Only */}
+        <div className="mb-12 hidden lg:block">
+          <div className="flex flex-wrap justify-around md:justify-center md:gap-2 p-2 rounded-xl shadow-lg" style={{ backgroundColor: '#0C3B34' }}>
             {services.map((service, index) => (
               <button
                 key={service.id}
@@ -151,8 +165,8 @@ function Services() {
           </div>
         </div>
 
-        {/* Active Service Display */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        {/* Active Service Display - Desktop Only */}
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden hidden lg:block">
           <div className="lg:flex">
             {/* Image Section */}
             <div className="lg:w-1/2">
@@ -207,40 +221,73 @@ function Services() {
           </div>
         </div>
 
-        {/* Service Cards Grid - Mobile Alternative */}
-        <div className="lg:hidden mt-12 grid gap-6">
-          {services.filter((_, index) => index !== activeService).map((service, index) => (
-            <div key={service.id} className="bg-white rounded-xl shadow-md overflow-hidden">
-              <img
-                src={service.image}
-                alt={service.title}
-                className="w-full h-48 object-cover"
-              />
-              <div className="p-6">
-                <div className="flex items-center gap-3 mb-3">
-                  <span 
-                    className="text-2xl font-bold"
-                    style={{ color: '#D8C287' }}
+        {/* Service Cards Grid - Mobile Only */}
+        <div className="lg:hidden mt-0 grid gap-6 grid-cols-1 sm:grid-cols-2 items-start">
+
+          {services.map((service, index) => {
+            const isExpanded = expandedCards.has(service.id)
+            return (
+              <div key={service.id} className="bg-white rounded-xl shadow-md overflow-hidden">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span 
+                      className="text-2xl font-bold"
+                      style={{ color: '#D8C287' }}
+                    >
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h3 className="text-xl font-bold" style={{ color: '#0C3B34' }}>
+                      {service.title}
+                    </h3>
+                  </div>
+                  
+                  {/* Description - truncated or full based on expansion */}
+                  <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                    {isExpanded ? service.description : `${service.description.substring(0, 120)}...`}
+                  </p>
+
+                  {/* Expanded content */}
+                  {isExpanded && (
+                    <div className="mb-4 pt-4 border-t border-gray-100">
+                      <p className="text-sm font-medium mb-3" style={{ color: '#D8C287' }}>
+                        12 Years Of Experience In This Industry
+                      </p>
+                      <div className="space-y-2">
+                        <h4 className="text-base font-semibold" style={{ color: '#0C3B34' }}>
+                          Available Services:
+                        </h4>
+                        {service.subServices.map((subService, subIndex) => (
+                          <div key={subIndex} className="flex items-center gap-3">
+                            <div 
+                              className="w-2 h-2 rounded-full flex-shrink-0"
+                              style={{ backgroundColor: '#D8C287' }}
+                            ></div>
+                            <span className="text-sm text-gray-700">
+                              {subService}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Toggle button */}
+                  <button
+                    onClick={() => toggleCardExpansion(service.id)}
+                    className="text-sm font-medium hover:underline transition-colors duration-200"
+                    style={{ color: '#0C3B34' }}
                   >
-                    {String(services.findIndex(s => s.id === service.id) + 1).padStart(2, '0')}
-                  </span>
-                  <h3 className="text-xl font-bold" style={{ color: '#0C3B34' }}>
-                    {service.title}
-                  </h3>
+                    {isExpanded ? 'View Less ↑' : 'View Details →'}
+                  </button>
                 </div>
-                <p className="text-sm text-gray-600 mb-4">
-                  {service.description.substring(0, 120)}...
-                </p>
-                <button
-                  onClick={() => setActiveService(services.findIndex(s => s.id === service.id))}
-                  className="text-sm font-medium hover:underline"
-                  style={{ color: '#0C3B34' }}
-                >
-                  View Details →
-                </button>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </div>
