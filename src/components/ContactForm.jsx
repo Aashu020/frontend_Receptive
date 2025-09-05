@@ -223,16 +223,16 @@ const ContactForm = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
 
-      <div className="container mx-auto px-4 py-16 -mt-8">
+      <div className="container mx-auto px-2 md:px-4 py-16 -mt-8">
         <div className="grid lg:grid-cols-5 gap-12 max-w-7xl mx-auto">
           {/* Contact Form */}
           <div className="lg:col-span-3">
-            <div className="bg-white rounded-3xl shadow-2xl p-8 lg:p-12 border border-gray-100">
+            <div className="bg-white rounded-3xl shadow-2xl p-4 md:p-8 lg:p-12 border border-gray-100">
               <div className="mb-8">
-                <h2 className="text-3xl font-bold mb-3" style={{ color: '#0C3B34' }}>
+                <h2 className="md:text-3xl text-xl font-bold mb-3" style={{ color: '#0C3B34' }}>
                   Send us a Message
                 </h2>
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-sm md:text-md">
                   Fill out the form below and we'll get back to you within 24 hours.
                 </p>
               </div>
@@ -251,7 +251,7 @@ const ContactForm = () => {
                       value={formData.name}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={getInputClassName("name")}
+                      className={`${getInputClassName("name")} text-sm md:text-md`}
                       disabled={isLoading}
                     />
                     {errors.name && touched.name && (
@@ -275,7 +275,7 @@ const ContactForm = () => {
                       value={formData.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={getInputClassName("email")}
+                      className={`${getInputClassName("email")} text-sm md:text-md`}
                       disabled={isLoading}
                     />
                     {errors.email && touched.email && (
@@ -300,7 +300,7 @@ const ContactForm = () => {
                       value={formData.country}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={getInputClassName("country")}
+                      className={`${getInputClassName("country")} text-sm md:text-md`}
                       disabled={isLoading}
                     >
                       <option value="">Select your country</option>
@@ -334,7 +334,7 @@ const ContactForm = () => {
                       value={formData.mobile}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={getInputClassName("mobile")}
+                      className={`${getInputClassName("mobile")} text-sm md:text-md`}
                       disabled={isLoading}
                     />
                     {errors.mobile && touched.mobile && (
@@ -358,10 +358,10 @@ const ContactForm = () => {
                     value={formData.visa}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={getInputClassName("visa")}
+                    className={`${getInputClassName("visa")} text-sm md:text-md`}
                     disabled={isLoading}
                   >
-                    <option value="">What type of visa do you need?</option>
+                    <option value="">What type of visa!</option>
                     <option value="Student Visa">Student Visa</option>
                     <option value="Work Visa">Work Visa</option>
                     <option value="Tourist Visa">Tourist/Visitor Visa</option>
@@ -392,7 +392,7 @@ const ContactForm = () => {
                     value={formData.message}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`${getInputClassName("message")} resize-none`}
+                    className={`${getInputClassName("message")} resize-none text-sm md:text-md`}
                     disabled={isLoading}
                   />
                   <div className="flex justify-between items-start mt-2">
@@ -428,7 +428,7 @@ const ContactForm = () => {
                       Sending Message...
                     </div>
                   ) : (
-                    <span className="flex items-center justify-center">
+                    <span className="flex items-center justify-center text-sm md:text-md">
                       <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                       </svg>
@@ -481,7 +481,7 @@ const ContactForm = () => {
                 
                 <div className="p-6">
                   <h3 className="text-lg font-bold mb-3" style={{ color: '#0C3B34' }}>
-                    📍 {selectedLocation} Office
+                    {selectedLocation} Office
                   </h3>
                   <p className="text-gray-600 text-sm leading-relaxed mb-4">
                     {locations[selectedLocation].address}

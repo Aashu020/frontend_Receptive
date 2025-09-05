@@ -56,7 +56,7 @@ function Testimonials() {
         
         {/* Header Section */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6" style={{ color: '#0C3B34' }}>
+          <h1 className="text-2xl md:text-5xl font-bold mb-6" style={{ color: '#0C3B34' }}>
             Making Success Stories
             <span className="block mt-2  text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text" >Since 2011</span>
           </h1>
@@ -64,20 +64,20 @@ function Testimonials() {
           {/* Simple Stats */}
           <div className="flex justify-center items-center gap-8 md:gap-16 mb-8">
             <div className="text-center">
-              <div className="text-3xl font-bold" style={{ color: '#0C3B34' }}>3000+</div>
+              <div className="md:text-3xl text-2xl font-bold" style={{ color: '#0C3B34' }}>3000+</div>
               <div className="text-sm text-gray-600">Clients</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold" style={{ color: '#0C3B34' }}>12+</div>
+              <div className="md:text-3xl text-2xl font-bold" style={{ color: '#0C3B34' }}>12+</div>
               <div className="text-sm text-gray-600">Years</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold" style={{ color: '#0C3B34' }}>170+</div>
+              <div className="md:text-3xl text-2xl font-bold" style={{ color: '#0C3B34' }}>170+</div>
               <div className="text-sm text-gray-600">Nationalities</div>
             </div>
           </div>
 
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto">
+          <p className="text-md md:text-lg text-gray-700 text-justify">
             Our 12+ years of existence in the UAE are backed by our expert consultancy and our client-centric approach. We have assisted 170+ nationalities in reaching their travel objectives.
           </p>
         </div>

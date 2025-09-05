@@ -66,7 +66,7 @@ function Experience() {
   ];
 
   return (
-    <div className="relative pt-16 md:py10 px-6 md:px-12 lg:px-24 bg-[#F8F8F8] overflow-hidden">
+    <div className="relative py-5 md:py-10 px-6 md:px-12 lg:px-24 bg-[#F8F8F8] overflow-hidden">
       <h2 className="text-xl md:text-4xl font-bold text-center mb-3 md:mb-16 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text relative z-20">
         HOW RECEPTIVE GROUP OF COMPANIES CAN HELP?
       </h2>
@@ -75,7 +75,7 @@ function Experience() {
         {cards.map((card, index) => (
           <div 
             key={index}
-            className="relative h-100 md:h-96 cursor-pointer group" // Increased height to h-96
+            className="relative h-100 md:h-96 cursor-pointer group"
             onMouseEnter={() => setHoveredCard(index)}
             onMouseLeave={() => setHoveredCard(null)}
             
