@@ -143,13 +143,13 @@ function Services() {
         </div>
 
         {/* Services Navigation Bar - Desktop Only */}
-        <div className="mb-12 hidden lg:block">
-          <div className="flex flex-wrap justify-around md:justify-center md:gap-2 p-2 rounded-xl shadow-lg" style={{ backgroundColor: '#0C3B34' }}>
+        <div className="mb-12 hidden md:block">
+          <div className="flex justify-around md:justify-center md:gap-2 p-2 rounded-xl shadow-lg" style={{ backgroundColor: '#0C3B34' }}>
             {services.map((service, index) => (
               <button
                 key={service.id}
                 onClick={() => setActiveService(index)}
-                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base ${
+                className={`lg:px-6 lg:py-3 rounded-lg font-medium transition-all duration-300 text-[13px] p-2 ${
                   activeService === index
                     ? 'bg-[#D8C287] text-[#0a2d27] shadow-md'
                     : 'hover:bg-[#0a2d27] hover:text-white'
@@ -166,7 +166,7 @@ function Services() {
         </div>
 
         {/* Active Service Display - Desktop Only */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden hidden lg:block">
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden hidden md:block">
           <div className="lg:flex">
             {/* Image Section */}
             <div className="lg:w-1/2">
@@ -222,7 +222,7 @@ function Services() {
         </div>
 
         {/* Service Cards Grid - Mobile Only */}
-        <div className="lg:hidden mt-0 grid gap-6 grid-cols-1 sm:grid-cols-2 items-start">
+        <div className="md:hidden mt-0 grid gap-6 grid-cols-1 sm:grid-cols-2 items-start">
 
           {services.map((service, index) => {
             const isExpanded = expandedCards.has(service.id)
