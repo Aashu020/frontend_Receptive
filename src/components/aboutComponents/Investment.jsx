@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 const Investment = () => {
   return (
-    <div className="w-full overflow-hidden bg-white py-10 md:py-14" id="Investment">
+    <div className="w-full overflow-hidden md:px-[3rem] bg-white py-10 md:py-14" id="Investment">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:gap-10 gap-8 items-center">
           
@@ -27,7 +27,7 @@ const Investment = () => {
               <img
                 src={img}
                 alt="Receptive Investments"
-                className="w-full h-auto object-cover rounded-lg shadow-md"
+                className="w-full h-auto object-cover rounded-lg"
               />
             </div>
           </motion.div>
@@ -44,7 +44,7 @@ const Investment = () => {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.h1
-              className="text-3xl sm:text-4xl font-bold text-gray-800 text-center lg:text-left"
+              className="text-2xl md:text-4xl font-bold text-gray-800 text-left lg:text-left"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -58,7 +58,7 @@ const Investment = () => {
             </motion.h1>
 
             <motion.div
-              className="text-gray-700 leading-relaxed space-y-5"
+              className="text-gray-700 leading-relaxed space-y-5 text-justify"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -68,17 +68,17 @@ const Investment = () => {
               }}
               viewport={{ once: true }}
             >
-              <p className="text-base sm:text-lg">
+              <p className="text-sm md:text-lg">
                 Receptive Investments a division of the Receptive Group of Companies, is a trusted name in the investment industry. 
                 With a focus on creating wealth and financial security for our clients, Receptive Investments offers expert guidance 
                 and personalized services to help individuals and businesses navigate the investment landscape.
               </p>
-              <p className="text-base sm:text-lg">
+              <p className="text-sm md:text-lg">
                 Our experienced team of professionals provides tailored solutions to identify and capitalize on lucrative investment opportunities, 
                 ensuring that our clients achieve their financial goals. Trust in Receptive Investments to be your partner in building 
                 a successful and prosperous financial future.
               </p>
-              <p className="text-base sm:text-lg font-medium text-gray-900">
+              <p className="text-sm md:text-lg font-medium text-gray-900">
                 Contact us today to learn more about how we can help you maximize your investment potential.
               </p>
             </motion.div>

@@ -191,19 +191,19 @@ const ContactForm = () => {
   // Map URLs and addresses for each location
   const locations = {
     Mumbai: {
-      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.1290462781594!2d72.8363720752532!3d19.189565182038486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b6ef445974db%3A0x3e0169978b8d757a!2sGemstar%20Commercial%20Complex%2C%20Ramchandra%20Ln%2C%20Malad%2C%20Kanchpada%2C%20Malad%20West%2C%20Mumbai%2C%20Maharashtra%20400064!5e0!3m2!1sen!2sin!4v1756790414013!5m2!1sen!2sin",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d333.05862868452004!2d72.83886358051883!3d19.189600494898365!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b6ef445974db%3A0x3e0169978b8d757a!2sGemstar%20Commercial%20Complex%2C%20Ramchandra%20Ln%2C%20Malad%2C%20Kanchpada%2C%20Malad%20West%2C%20Mumbai%2C%20Maharashtra%20400064!5e0!3m2!1sen!2sin!4v1757394714660!5m2!1sen!2sin",
       address: "425 Gemstar Commercial Complex, Ramchandra Lane Extn, Kanchpada, Malad West, Mumbai, Maharashtra 400064",
-      link: "https://www.google.com/maps/search/?api=1&query=425+Gemstar+Commercial+Complex+Ramchandra+Lane+Extn+Kanchpada+Malad+West+Mumbai+400064",
+      link: "https://www.google.com/maps/place/Gemstar+Commercial+Complex,+Ramchandra+Ln,+Malad,+Kanchpada,+Malad+West,+Mumbai,+Maharashtra+400064/@19.189447,72.8385299,19.25z/data=!4m6!3m5!1s0x3be7b6ef445974db:0x3e0169978b8d757a!8m2!3d19.1895652!4d72.838947!16s%2Fg%2F1ptw1k1q9?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D",
     },
     UAE: {
-      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3609.675093604228!2d55.29714157510279!3d25.26546397767896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f434e8b7b6b1f%3A0xafe4e3b1b1e1e1e1!2sAl%20Salemiyah%20Tower%2C%20Deira%2C%20Dubai!5e0!3m2!1sen!2sae!4v1698765432109!5m2!1sen!2sae",
+      mapUrl:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.3684083319495!2d55.31748648190162!3d25.258189520099894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5cd10170bd0f%3A0x33c038729b931804!2sAl%20Salemiyah%20Tower%20(SBK)!5e0!3m2!1sen!2sin!4v1757394932710!5m2!1sen!2sin",
       address: "Suite No -201, Al Salemiyah Tower, Deira Riggat Al Buteen, Dubai, UAE",
-      link: "https://www.google.com/maps/search/?api=1&query=Suite+No+201+Al+Salemiyah+Tower+Deira+Riggat+Al+Buteen+Dubai+UAE",
+      link: "https://www.google.com/maps/place/Al+Salemiyah+Tower+(SBK)/@25.2581895,55.3174865,17z/data=!4m14!1m7!3m6!1s0x3e5f5cd10170bd0f:0x33c038729b931804!2sAl+Salemiyah+Tower+(SBK)!8m2!3d25.2581896!4d55.3223574!16s%2Fg%2F11g8stkpnm!3m5!1s0x3e5f5cd10170bd0f:0x33c038729b931804!8m2!3d25.2581896!4d55.3223574!16s%2Fg%2F11g8stkpnm?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D",
     },
     Ahmedabad: {
-      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.676689879697!2d72.50114197512764!3d23.03764831694664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e84e5b7bfffff%3A0x5e9b1b1b1b1b1b1b!2sDev%20Prime%2C%20Corporate%20Road%2C%20Makarba%2C%20Ahmedabad%2C%20Gujarat%20380051!5e0!3m2!1sen!2sin!4v1698765543210!5m2!1sen!2sin",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.6799377859234!2d72.49612188142827!3d22.99879412553449!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b647f912aa7%3A0xd188fe7d9db47c9f!2sDev%20Prime%20Office!5e0!3m2!1sen!2sin!4v1757395063486!5m2!1sen!2sin",
       address: "106, Dev Prime, Nr. Vodafone House, Corporate Road, Makarba, Ahmedabad, Gujarat 380051",
-      link: "https://www.google.com/maps/search/?api=1&query=106+Dev+Prime+Nr+Vodafone+House+Corporate+Road+Makarba+Ahmedabad+380051",
+      link: "https://www.google.com/maps/place/Dev+Prime+Office/@22.9987941,72.4961219,17z/data=!3m1!4b1!4m6!3m5!1s0x395e9b647f912aa7:0xd188fe7d9db47c9f!8m2!3d22.9987942!4d72.5009928!16s%2Fg%2F11ft1xjcrb?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D",
     },
   };
 
