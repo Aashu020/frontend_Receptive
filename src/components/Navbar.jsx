@@ -545,7 +545,7 @@ const Navbar = () => {
                                       {country}
                                     </span>
                                     <div className="text-xs text-gray-500">
-                                      {countries[country].length} locations
+                                      {countries[country].length} Progarms
                                     </div>
                                   </div>
                                   <FiChevronRight className="w-4 h-4" />
