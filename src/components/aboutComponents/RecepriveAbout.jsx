@@ -23,7 +23,7 @@ export default function ReceptiveAbout() {
 
         {/* Main Content */}
         <div className="md:text-center md:px-[3rem] lg:px-[10rem]">
-          <h1 className={`text-justify md:text-center  md:[word-spacing:10px] text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text mb-8 transform transition-all duration-700 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
+          <h1 className={`:text-center  md:[word-spacing:10px] text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text mb-8 transform transition-all duration-700 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
             Welcome to Receptive Group of Companies
           </h1>
           
