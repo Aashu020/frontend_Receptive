@@ -114,7 +114,9 @@ function Herosection() {
               <p className="text-md md:text-xl text-white mb-6 drop-shadow-md">
                 {slide.description}
               </p>
-              <button className="text-sm md:text:md bg-[#D8C287] text-[#0a2d27] px-6 py-3 rounded-lg font-medium hover:bg-[#0a2d27] hover:text-white transition cursor-pointer mb-3 md:mb-8">
+              <button 
+              onClick={() => handleExploreClick(slide.route)} 
+              className="text-sm md:text:md bg-[#D8C287] text-[#0a2d27] px-6 py-3 rounded-lg font-medium hover:bg-[#0a2d27] hover:text-white transition cursor-pointer mb-3 md:mb-8">
                 Explore {slide.title}
               </button>
               
