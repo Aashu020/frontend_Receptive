@@ -51,11 +51,11 @@ function Testimonials() {
   }
 
   return (
-    <div className="py-16 bg-gray-50">
+    <div className="md:py-16 py-2 bg-gray-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-4 md:mb-12">
           <h1 className="text-2xl md:text-5xl font-bold mb-6" style={{ color: '#0C3B34' }}>
             Making Success Stories
             <span className="block mt-2  text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text" >Since 2011</span>
@@ -103,7 +103,7 @@ function Testimonials() {
             </div>
 
             {/* Comment */}
-            <p className="text-gray-700 text-lg mb-6 italic max-w-2xl mx-auto">
+            <p className="text-gray-700 text-sm md:text-lg mb-6 italic max-w-2xl mx-auto">
               "{testimonials[currentTestimonial].comment}"
             </p>
 
