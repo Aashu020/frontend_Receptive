@@ -15,6 +15,10 @@ import Australia from './pages/Countries.jsx/Australia';
 import Singapore from './pages/Countries.jsx/Singapore';
 import Reviews from './pages/Reviews'
 import Services from './components/homepage/Services'
+import Dashboard from './AdminPanel/Dashboard'
+import { Users } from 'lucide-react'
+import AllUsers from './AdminPanel/AllUsers'
+import AllReviews from './AdminPanel/AllReviews'
 
 function App() {
 
@@ -35,6 +39,11 @@ function App() {
         <Route path="/succes_story"   element={<SuccessStory/>}/>
         <Route path="/reviews" element={<Reviews></Reviews>}/>
         <Route path="/services" element={<Services />} />  
+
+        {/* //Admin Routes */}
+        <Route path="/admin" element={<Dashboard />} />
+        <Route path="/admin/users" element={<AllUsers />} />
+        <Route path="/admin/reviews" element={<AllReviews />} />
       </Routes>
       <Footer/>
 
