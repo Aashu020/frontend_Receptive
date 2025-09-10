@@ -15,6 +15,8 @@ import Australia from './pages/Countries.jsx/Australia';
 import Singapore from './pages/Countries.jsx/Singapore';
 import Reviews from './pages/Reviews'
 import Services from './components/homepage/Services'
+import Register from './components/signup/Register'
+import Login from './components/signup/Login'
 
 function App() {
 
@@ -35,6 +37,8 @@ function App() {
         <Route path="/succes_story"   element={<SuccessStory/>}/>
         <Route path="/reviews" element={<Reviews></Reviews>}/>
         <Route path="/services" element={<Services />} />  
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/login"  element={<Login/>}/>
       </Routes>
       <Footer/>
 

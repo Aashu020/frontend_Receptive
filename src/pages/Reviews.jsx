@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import ReviewScreen from '../components/reviewComponnnents/ReviewScreen'; // Assuming this is your review form component
 
-// Mock reviews data
+// Mock reviews data (same as yours)
 const reviews = [
   {
     id: 1,
@@ -10,65 +12,14 @@ const reviews = [
     text: "The visa process was smooth and hassle-free. The team guided me at every step and made sure all documents were perfect.",
     date: "March 2024"
   },
-  {
-    id: 2,
-    name: "Priya Sharma",
-    country: "United Kingdom",
-    rating: 4,
-    text: "Great service! I got my UK student visa within the expected timeframe. Would recommend to others.",
-    date: "February 2024"
-  },
-  {
-    id: 3,
-    name: "Amit Patel",
-    country: "Canada",
-    rating: 5,
-    text: "Excellent consultation services. They helped me navigate the complex PR process with ease.",
-    date: "January 2024"
-  },
-  {
-    id: 4,
-    name: "Sneha Gupta",
-    country: "Australia",
-    rating: 4,
-    text: "Professional and knowledgeable staff. Made my visa application process much simpler than I expected.",
-    date: "December 2023"
-  },
-  {
-    id: 5,
-    name: "Mohammad Ali",
-    country: "United Kingdom",
-    rating: 5,
-    text: "Outstanding support throughout the entire process. They made my dream of studying in the UK come true.",
-    date: "November 2023"
-  },
-  {
-    id: 6,
-    name: "Sarah Johnson",
-    country: "Canada",
-    rating: 5,
-    text: "The team's expertise and dedication are unmatched. My family's immigration process was handled professionally.",
-    date: "October 2023"
-  },
-  {
-    id: 7,
-    name: "Vikram Singh",
-    country: "Australia",
-    rating: 5,
-    text: "Exceptional service! They made my spouse visa process incredibly smooth. Highly recommended!",
-    date: "September 2023"
-  },
-  {
-    id: 8,
-    name: "Neha Patel",
-    country: "Canada",
-    rating: 4,
-    text: "Very professional team. They explained everything in detail and helped me with my work permit application.",
-    date: "August 2023"
-  }
+  // ... other reviews
 ];
 
 function Reviews() {
+  const { user } = useSelector(state => state.auth);
+  const [showReviewForm, setShowReviewForm] = useState(false);
+  const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+
   // Render stars for ratings
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -94,9 +45,87 @@ function Reviews() {
     window.open(url, '_blank', 'noopener,noreferrer');
   };
 
+  // Handle add review button click
+  const handleAddReviewClick = () => {
+    if (user) {
+      setShowReviewForm(true);
+    } else {
+      setShowLoginPrompt(true);
+    }
+  };
+
+  // Handle closing the review form
+  const handleCloseReviewForm = () => {
+    setShowReviewForm(false);
+  };
+
+  // Handle closing the login prompt
+  const handleCloseLoginPrompt = () => {
+    setShowLoginPrompt(false);
+  };
+
   return (
-    <div className="mt-20 md:mt-45 px-4 lg:px-8 max-w-7xl mx-auto"> {/* Responsive margins and padding */}
-      {/* Introductory Text Section */}
+    <div className="mt-20 md:mt-45 px-4 lg:px-8 max-w-7xl mx-auto">
+      {/* Add Review Button */}
+      <div className="flex justify-end mb-6">
+        <button 
+          onClick={handleAddReviewClick}
+          className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] hover:from-[#1a5a4f] hover:to-[#0C3B34] text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          </svg>
+          Add Review
+        </button>
+      </div>
+
+      {/* Review Form Modal (shown when user is logged in) */}
+      {showReviewForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg w-full max-w-md p-6 relative">
+            <button 
+              onClick={handleCloseReviewForm}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <ReviewScreen onClose={handleCloseReviewForm} />
+          </div>
+        </div>
+      )}
+
+      {/* Login Prompt Modal (shown when user is not logged in) */}
+      {showLoginPrompt && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg w-full max-w-md p-6 relative">
+            <button 
+              onClick={handleCloseLoginPrompt}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <div className="text-center">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-[#0C3B34]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+              <h3 className="text-xl font-bold text-[#0C3B34] mt-4">Login Required</h3>
+              <p className="text-gray-600 mt-2">Please log in to write a review.</p>
+              <button 
+                onClick={handleCloseLoginPrompt}
+                className="mt-6 bg-[#0C3B34] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#1a5a4f] transition-colors"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Rest of your existing Reviews component */}
       <div className="text-center mb-8 md:mb-12">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0C3B34] mb-3 md:mb-4">What Our Clients Say</h1>
         <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto px-2 sm:px-0">

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../features/authSlice"; // Adjust path as needed
 import termsPDF from "../assets/ReceptiveTerms&Conditions.pdf";
 import logo from "../assets/images/logo.jpg";
 import {
   FiChevronDown,
   FiMenu,
   FiX,
-  FiHome,
   FiUsers,
   FiStar,
   FiMapPin,
@@ -14,6 +15,9 @@ import {
   FiMail,
   FiArrowLeft,
   FiChevronRight,
+  FiUserPlus,
+  FiLogOut,
+  FiUser,
 } from "react-icons/fi";
 import {
   FaPhone,
@@ -25,7 +29,6 @@ import {
   FaRegFileAlt,
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-
 
 function UpperHeader() {
   const [isVisible, setIsVisible] = useState(true);
@@ -151,7 +154,7 @@ function UpperHeader() {
             rel="noopener noreferrer"
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
             aria-label="LinkedIn"
-            >
+          >
             <FaLinkedinIn className="text-sm lg:text-base" />
           </a>
           <a
@@ -176,8 +179,13 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isUpperHeaderVisible, setIsUpperHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const navRef = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  // Redux state
+  const { user } = useSelector((state) => state.auth);
 
   const countries = {
     UAE: [
@@ -193,7 +201,6 @@ const Navbar = () => {
       { title: "Tourist", link: "/country/canada#canada-tourist" },
       { title: "Skilled Immigration", link: "/country/canada#canada-skilled-immigration" },
       { title: "Start-Up", link: "/country/canada#canada-start-up" },
-      // { title: "Express Entry", link: "/country/canada#canada-express-entry" },
       { title: "AIP", link: "/country/canada#canada-aip" },
       { title: "SINP", link: "/country/canada#canada-sinp" },
       { title: "Alberta Tech Pathway", link: "/country/canada#canada-alberta-tech-pathway" },
@@ -231,12 +238,27 @@ const Navbar = () => {
     ],
   };
 
+  // Function to get user initials
+  const getUserInitials = (user) => {
+    if (!user || !user.name) return "U";
+    const names = user.name.split(" ");
+    if (names.length >= 2) {
+      return (names[0][0] + names[1][0]).toUpperCase();
+    }
+    return names[0][0].toUpperCase();
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setIsUserMenuOpen(false);
+    navigate('/');
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 10);
 
-      // Only adjust UpperHeader visibility for desktop (md and above)
       if (window.innerWidth >= 768) {
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
           setIsUpperHeaderVisible(false);
@@ -244,14 +266,12 @@ const Navbar = () => {
           setIsUpperHeaderVisible(true);
         }
       } else {
-        // On mobile, header is always hidden, so no gap
         setIsUpperHeaderVisible(false);
       }
       setLastScrollY(currentScrollY);
     };
 
     const handleResize = () => {
-      // Update header visibility on resize
       if (window.innerWidth < 768) {
         setIsUpperHeaderVisible(false);
       } else {
@@ -263,7 +283,7 @@ const Navbar = () => {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
-    handleResize(); // Initial check
+    handleResize();
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
@@ -276,6 +296,7 @@ const Navbar = () => {
         setIsCountriesOpen(false);
         setSelectedCountry(null);
         setIsMobileMenuOpen(false);
+        setIsUserMenuOpen(false);
       }
     };
 
@@ -291,6 +312,7 @@ const Navbar = () => {
     setIsCountriesOpen(false);
     setSelectedCountry(null);
     setIsMobileMenuOpen(false);
+    setIsUserMenuOpen(false);
   };
 
   const handleNavigation = (path) => {
@@ -301,21 +323,17 @@ const Navbar = () => {
   const handleVisaClick = (visa) => {
     closeAllDropdowns();
     
-    // Check if it's a route with hash (like /country/uae#golden-visa)
     if (visa.link.includes('#')) {
       const [route, hash] = visa.link.split('#');
       
-      // Navigate to the route first
       navigate(route);
       
-      // Wait for navigation and DOM update, then scroll to section with offset
       setTimeout(() => {
         const section = document.getElementById(hash);
         if (section) {
-          // Calculate navbar height + upper header height + some padding
           const navbarHeight = window.innerWidth >= 768 && isUpperHeaderVisible ? 
-            44 + 80 + 20 : // UpperHeader (44px) + Navbar (80px) + padding (20px)
-            64 + 20; // Just Navbar (64px) + padding (20px)
+            44 + 80 + 20 : 
+            64 + 20;
           
           const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - navbarHeight;
@@ -329,13 +347,11 @@ const Navbar = () => {
         }
       }, 300);
     } else {
-      // Handle regular route navigation
       navigate(visa.link);
     }
   };
 
   const navItems = [
-    { name: "Home", icon: FiHome, path: "/" },
     { name: "About Us", icon: FiUsers, path: "/about" },
     {
       name: "Countries",
@@ -412,6 +428,51 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
+              
+              {/* Auth Section - Desktop */}
+              <div className="ml-2 xl:ml-4 relative">
+                {user ? (
+                  <div className="relative">
+                    <button
+                      onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                      className="flex items-center space-x-2 px-4 xl:p-3 py-2.5 cursor-pointer rounded-full bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white font-bold text-sm xl:text-base hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden group border-2 border-transparent hover:border-[#D8C287]/20"
+                    >
+                      <div className="w-10 h-8 xl:w-9 xl:h-9 cursor-pointer rounded-full bg-gradient-to-r from-[#D8C287] to-[#e6d098] flex items-center justify-center text-[#0C3B34] font-bold text-sm xl:text-base">
+                        {getUserInitials(user)}
+                      </div>
+                      
+                      
+                    </button>
+                    
+                    {/* User Dropdown Menu */}
+                    {isUserMenuOpen && (
+                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50 animate-slideDown">
+                        <div className="px-4 py-3 border-b border-gray-100">
+                          <p className="text-sm font-medium text-gray-900">{user.name}</p>
+                          <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                        </div>
+                      
+                        <button
+                          onClick={handleLogout}
+                          className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200"
+                        >
+                          <FiLogOut className="w-4 h-4" />
+                          <span>Logout</span>
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => handleNavigation('/register')}
+                    className="flex items-center space-x-2 px-6 xl:px-8 py-2.5 xl:py-3  rounded-full bg-gradient-to-r from-[#D8C287] to-[#e6d098] text-[#0C3B34] font-bold text-sm xl:text-base hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden group border-2 border-transparent hover:border-[#0C3B34]/20"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] cursor-pointer opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                    <FiUserPlus className="w-4 h-4 xl:w-5 xl:h-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
+                    <span className="relative z-10 group-hover:text-[#0C3B34] transition-colors duration-300 cursor-pointer">Sign Up</span>
+                  </button>
+                )}
+              </div>
             </div>
             <div className="lg:hidden">
               <button
@@ -427,6 +488,8 @@ const Navbar = () => {
             </div>
           </div>
         </div>
+        
+        {/* Desktop Countries Dropdown */}
         {isCountriesOpen && (
           <div className="absolute left-0 right-0 bg-gradient-to-br from-gray-50 to-white shadow-2xl border-t border-gray-100 hidden lg:block animate-slideDown">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0C3B34] via-[#D8C287] to-[#0C3B34]"></div>
@@ -498,6 +561,8 @@ const Navbar = () => {
             </div>
           </div>
         )}
+        
+        {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute left-0 right-0 bg-white shadow-2xl border-t border-gray-100 z-40 animate-slideDown">
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0C3B34] via-[#D8C287] to-[#0C3B34]"></div>
@@ -545,7 +610,7 @@ const Navbar = () => {
                                       {country}
                                     </span>
                                     <div className="text-xs text-gray-500">
-                                      {countries[country].length} Progarms
+                                      {countries[country].length} Programs
                                     </div>
                                   </div>
                                   <FiChevronRight className="w-4 h-4" />
@@ -603,9 +668,52 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
+              
+              {/* Mobile Auth Section */}
+              <div className="border-t border-gray-100 pt-4 mt-4">
+                {user ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center space-x-3 px-3 py-2 bg-gradient-to-r from-gray-50 to-white rounded-lg">
+                      <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] flex items-center justify-center text-white font-bold">
+                        {getUserInitials(user)}
+                      </div>
+                      <div>
+                        <p className="font-medium text-gray-900">{user.name}</p>
+                        <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => {
+                        handleNavigation('/profile');
+                      }}
+                      className="w-full flex items-center space-x-3 py-3 px-3 text-gray-700 hover:text-[#0C3B34] transition-colors duration-300 rounded-lg hover:bg-gray-50"
+                    >
+                      <FiUser className="w-5 h-5" />
+                      <span className="font-medium">Profile</span>
+                    </button>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full flex items-center space-x-3 py-3 px-3 text-red-600 hover:text-red-700 transition-colors duration-300 rounded-lg hover:bg-red-50"
+                    >
+                      <FiLogOut className="w-5 h-5" />
+                      <span className="font-medium">Logout</span>
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    onClick={() => handleNavigation('/register')}
+                    className="w-full flex items-center justify-center space-x-3 py-4 px-6 bg-gradient-to-r from-[#D8C287] to-[#e6d098] text-[#0C3B34] font-bold rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  >
+                    <FiUserPlus className="w-5 h-5" />
+                    <span>Sign Up</span>
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         )}
+        
+        {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div
             className="fixed inset-0 bg-black/50 backdrop-blur-sm lg:hidden z-30 animate-fadeIn"
