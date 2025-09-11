@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../../features/authSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -11,13 +11,27 @@ function Register() {
     phone: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, error, user } = useSelector((state) => state.auth);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    if (user && !loading) {
+      // Optional: Clear any previous error
+      // dispatch(clearErrors()); // If you add a clearErrors action
+
+      // Redirect to login (immediate or with delay for success message)
+      const timer = setTimeout(() => {
+        navigate("/login");
+      }, 1500); // 1.5s delay to show "Welcome" message
+
+      return () => clearTimeout(timer); // Cleanup
+    }
+  }, [user, loading, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
