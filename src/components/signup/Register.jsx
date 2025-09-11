@@ -21,13 +21,9 @@ function Register() {
 
   useEffect(() => {
     if (user && !loading) {
-      // Optional: Clear any previous error
-      // dispatch(clearErrors()); // If you add a clearErrors action
-
-      // Redirect to login (immediate or with delay for success message)
       const timer = setTimeout(() => {
         navigate("/login");
-      }, 1500); // 1.5s delay to show "Welcome" message
+      }, 1500); 
 
       return () => clearTimeout(timer); // Cleanup
     }
@@ -35,7 +31,10 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(registerUser(formData));
+    dispatch(registerUser(formData)).unwrap()
+      .then(() => {
+        navigate("/login"); // Redirect after successful registration
+      });
   };
 
   const togglePasswordVisibility = () => {
