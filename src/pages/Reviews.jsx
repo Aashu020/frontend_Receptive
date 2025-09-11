@@ -1,24 +1,97 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import ReviewScreen from '../components/reviewComponnnents/ReviewScreen'; // Assuming this is your review form component
-
-// Mock reviews data (same as yours)
-const reviews = [
-  {
-    id: 1,
-    name: "Rajesh Kumar",
-    country: "Canada",
-    rating: 5,
-    text: "The visa process was smooth and hassle-free. The team guided me at every step and made sure all documents were perfect.",
-    date: "March 2024"
-  },
-  // ... other reviews
-];
+import ReviewScreen from '../components/reviewComponnnents/ReviewScreen';
+import axios from 'axios';
+import { AiFillHeart } from "react-icons/ai";
 
 function Reviews() {
   const { user } = useSelector(state => state.auth);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
+  const [reviews, setReviews] = useState([]);
+  const userId = localStorage.getItem("user");
+  const userToken = localStorage.getItem("token");
+
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await axios.get("http://localhost:5000/api/reviews/", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(res.data, "data");
+
+        // Add debugging log to check userId and likes
+        console.log("userId in fetchReviews:", userId);
+
+        // Adapt data from backend to frontend fields
+        const formatted = res.data.reviews.map((r) => {
+          const likes = r.likes || [];
+          console.log(`Review ${r._id} likes:`, likes); // Debug likes array
+          return {
+            id: r._id,
+            name: r.demoName || r.displayName,
+            country: "Unknown",
+            rating: Number(r.ratings),
+            date: new Date(r.createdAt).toLocaleDateString(),
+            text: r.content,
+            likes: likes,
+            totalLikes: likes.length,
+            isLiked: userId ? likes.some(id => id.toString() === userId) : false // Fixed isLiked calculation
+          };
+        });
+
+        setReviews(formatted);
+      } catch (err) {
+        console.error("Error fetching reviews:", err);
+      }
+    };
+
+    fetchReviews();
+  }, [userId]);
+
+  const toggleLike = async (reviewId) => {
+    if (!userId || !userToken) {
+      setShowLoginPrompt(true);
+      return;
+    }
+
+    try {
+      const res = await fetch(
+        `http://localhost:5000/api/reviews/${reviewId}/like`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${userToken}`,
+          },
+        }
+      );
+      const data = await res.json();
+
+      if (data.success) {
+        console.log("userId in toggleLike:", userId, "likes:", data.review.likes); // Debug userId and likes
+        setReviews(prevReviews =>
+          prevReviews.map(review =>
+            review.id === reviewId
+              ? {
+                  ...review,
+                  likes: data.review.likes,
+                  totalLikes: data.review.likes.length,
+                  isLiked: data.review.likes.some(id => id.toString() === userId)
+                }
+              : review
+          )
+        );
+      } else {
+        console.error("API error:", data.message);
+      }
+    } catch (err) {
+      console.error("Error liking review:", err);
+    }
+  };
 
   // Render stars for ratings
   const renderStars = (rating) => {
@@ -27,17 +100,6 @@ function Reviews() {
         ★
       </span>
     ));
-  };
-
-  // Get country flag emoji
-  const getCountryFlag = (country) => {
-    const flags = {
-      "Canada": "🇨🇦",
-      "United Kingdom": "🇬🇧",
-      "Australia": "🇦🇺",
-      "United States": "🇺🇸"
-    };
-    return flags[country] || "🌍";
   };
 
   // Function to handle external link redirection
@@ -68,7 +130,7 @@ function Reviews() {
     <div className="mt-20 md:mt-45 px-4 lg:px-8 max-w-7xl mx-auto">
       {/* Add Review Button */}
       <div className="flex justify-end mb-6">
-        <button 
+        <button
           onClick={handleAddReviewClick}
           className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] hover:from-[#1a5a4f] hover:to-[#0C3B34] text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center"
         >
@@ -83,7 +145,7 @@ function Reviews() {
       {showReviewForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg w-full max-w-md p-6 relative">
-            <button 
+            <button
               onClick={handleCloseReviewForm}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
             >
@@ -100,7 +162,7 @@ function Reviews() {
       {showLoginPrompt && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg w-full max-w-md p-6 relative">
-            <button 
+            <button
               onClick={handleCloseLoginPrompt}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
             >
@@ -113,8 +175,8 @@ function Reviews() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
               </svg>
               <h3 className="text-xl font-bold text-[#0C3B34] mt-4">Login Required</h3>
-              <p className="text-gray-600 mt-2">Please log in to write a review.</p>
-              <button 
+              <p className="text-gray-600 mt-2">Please log in to like reviews.</p>
+              <button
                 onClick={handleCloseLoginPrompt}
                 className="mt-6 bg-[#0C3B34] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#1a5a4f] transition-colors"
               >
@@ -129,15 +191,15 @@ function Reviews() {
       <div className="text-center mb-8 md:mb-12">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0C3B34] mb-3 md:mb-4">What Our Clients Say</h1>
         <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto px-2 sm:px-0">
-          For over a decade, we've helped thousands of clients achieve their immigration dreams. 
+          For over a decade, we've helped thousands of clients achieve their immigration dreams.
           Here's what some of them have to say about their experience with our services.
         </p>
       </div>
-      
+
       <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-[#0C3B34] border-b-2 border-[#D8C287] pb-2">
         Client Reviews
       </h2>
-      
+
       {/* Statistics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
         <div className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] p-3 md:p-4 rounded-lg text-white text-center">
@@ -160,18 +222,24 @@ function Reviews() {
       {/* Reviews Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
         {reviews.map((review) => (
-          <div key={review.id} className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+          <div
+            key={review.id}
+            className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+          >
             {/* Header */}
             <div className="flex justify-between items-start mb-3 md:mb-4">
               <div className="flex items-center space-x-2 md:space-x-3">
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg">
-                  {review.name.split(' ').map(n => n[0]).join('')}
+                  {review.name.split(" ").map((n) => n[0]).join("")}
                 </div>
                 <div>
-                  <h3 className="font-bold text-base md:text-lg text-[#0C3B34]">{review.name}</h3>
+                  <h3 className="font-bold text-base md:text-lg text-[#0C3B34]">
+                    {review.name}
+                  </h3>
                   <div className="flex items-center space-x-1 md:space-x-2">
-                    <span className="text-base md:text-lg">{getCountryFlag(review.country)}</span>
-                    <span className="text-xs md:text-sm text-gray-600">{review.country}</span>
+                    <span className="text-base md:text-lg">
+                      <div className="text-xs text-gray-500">{review.date}</div>
+                    </span>
                   </div>
                 </div>
               </div>
@@ -179,19 +247,33 @@ function Reviews() {
                 <div className="flex mb-1 text-sm md:text-base">
                   {renderStars(review.rating)}
                 </div>
-                <div className="text-xs text-gray-500">{review.date}</div>
+                <div className="text-xs text-gray-500">{review.rating}</div>
               </div>
             </div>
 
             {/* Review Text */}
             <div className="relative">
-              <div className="text-3xl md:text-4xl text-[#D8C287] absolute -top-2 -left-1 opacity-50">"</div>
-              <p className="text-sm md:text-base text-gray-700 italic pl-4 md:pl-6 leading-relaxed">{review.text}</p>
-              <div className="text-3xl md:text-4xl text-[#D8C287] absolute -bottom-6 right-2 opacity-50">"</div>
+              <div className="text-3xl md:text-4xl text-[#D8C287] absolute -top-2 -left-1 opacity-50">
+                "
+              </div>
+              <p className="text-sm md:text-base text-gray-700 italic pl-4 md:pl-6 leading-relaxed">
+                {review.text}
+              </p>
+              <div className="text-3xl md:text-4xl text-[#D8C287] absolute -bottom-6 right-2 opacity-50">
+                "
+              </div>
             </div>
 
-            {/* Bottom Border */}
-            <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-[#D8C287] opacity-30"></div>
+            {/* Bottom Border - Like Button */}
+            <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-[#D8C287] flex items-center gap-2">
+              <button
+                onClick={() => toggleLike(review.id)}
+                className="p-1 rounded-full hover:scale-110 transition-transform"
+              >
+                  <AiFillHeart className="text-red-500" size={22} />
+              </button>
+              <p className="text-sm md:text-base text-[#2c2c2c]">{review.totalLikes}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -203,7 +285,7 @@ function Reviews() {
           Our clients have shared their experiences on various platforms. Click below to read more reviews about our services.
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 mt-4 md:mt-6">
-          <button 
+          <button
             onClick={() => handleExternalRedirect('https://www.justdial.com/Mumbai/Receptive-Solutions-Malad-West/022PXX22-XX22-210525154644-Y9W8_BZDET')}
             className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] hover:from-[#1a5a4f] hover:to-[#0C3B34] text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm md:text-base"
           >
@@ -212,7 +294,7 @@ function Reviews() {
             </svg>
             Read Reviews on JustDial
           </button>
-          <button 
+          <button
             onClick={() => handleExternalRedirect('https://www.mouthshut.com/product-reviews/receptive-solutaions-reviews-926102567')}
             className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#D8C287] to-[#c4a567] hover:from-[#c4a567] hover:to-[#D8C287] text-[#0C3B34] font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm md:text-base"
           >

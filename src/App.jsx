@@ -39,7 +39,7 @@ function App() {
         <Route path="/country/australia" element={<Australia/>}/>
         <Route path="/country/singapore" element={<Singapore/>}/>
         <Route path="/succes_story"   element={<SuccessStory/>}/>
-        <Route path="/reviews" element={<Reviews></Reviews>}/>
+        <Route path="/reviews" element={<Reviews/>}/>
         <Route path="/services" element={<Services />} />  
 
         {/* //Admin Routes */}
