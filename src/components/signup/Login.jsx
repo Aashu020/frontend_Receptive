@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../features/authSlice";
 import { useNavigate, Link } from "react-router-dom";
@@ -8,7 +8,14 @@ function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, error, user, token } = useSelector((state) => state.auth);
+  const { loading, error, user } = useSelector((state) => state.auth);
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user, navigate]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -16,9 +23,11 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(loginUser(formData)).unwrap().then(() => {
-      navigate("/"); // redirect after login
-    });
+    dispatch(loginUser(formData))
+      .unwrap()
+      .then(() => {
+        navigate("/"); // Redirect after login
+      });
   };
 
   const togglePasswordVisibility = () => {
@@ -43,7 +52,7 @@ function Login() {
           </p>
         </div>
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm -space-y-px">
+          <div className="rounded-md shadow-sm space-y-4">
             <div>
               <input
                 type="email"
@@ -90,27 +99,17 @@ function Login() {
               disabled={loading}
               className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-[#0C3B34] hover:bg-[#0a2e28] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#D8C287] transition-colors disabled:opacity-70"
             >
-              {loading ? (
-                <span>Logging in...</span>
-              ) : (
-                <span>Sign in</span>
-              )}
+              {loading ? <span>Logging in...</span> : <span>Sign in</span>}
             </button>
           </div>
-          
+
           {error && (
             <div className="rounded-md bg-red-50 p-4">
               <div className="text-sm text-red-700">{error}</div>
             </div>
           )}
-          
-          {user && (
-            <div className="rounded-md bg-green-50 p-4">
-              <div className="text-sm text-green-700">Welcome back, {user.name}!</div>
-            </div>
-          )}
         </form>
-        
+
         <div className="text-center">
           <p className="mt-4 text-sm text-gray-600">Don't have an account yet?</p>
           <Link

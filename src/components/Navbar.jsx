@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logout } from "../features/authSlice"; // Adjust path as needed
+import { logout, loadUser } from "../features/authSlice"; // Adjust path as needed
 import termsPDF from "../assets/ReceptiveTerms&Conditions.pdf";
 import logo from "../assets/images/logo.jpg";
 import {
@@ -180,78 +180,79 @@ const Navbar = () => {
   const [isUpperHeaderVisible, setIsUpperHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [shouldLoadUser, setShouldLoadUser] = useState(false); // New: Track initial load
   const navRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // Redux state
-  const { user } = useSelector((state) => state.auth);
+  const { user, loading: authLoading } = useSelector((state) => state.auth);
 
-  const countries = {
-    UAE: [
-      { title: "UAE", link: "/country/uae" },
-      { title: "Golden Visa", link: "/country/uae#golden-visa" },
-      { title: "Company Investor", link: "/country/uae#company-investor-visa" },
-      { title: "Property Investor", link: "/country/uae#property-investor-visa" },
-      { title: "UAE Employment", link: "/country/uae#employment-visa" },
-      { title: "UAE Student", link: "/country/uae#student-visa" },
-    ],
-    Canada: [
-      { title: "Canada", link: "/country/canada" },
-      { title: "Tourist", link: "/country/canada#canada-tourist" },
-      { title: "Skilled Immigration", link: "/country/canada#canada-skilled-immigration" },
-      { title: "Start-Up", link: "/country/canada#canada-start-up" },
-      { title: "AIP", link: "/country/canada#canada-aip" },
-      { title: "SINP", link: "/country/canada#canada-sinp" },
-      { title: "Alberta Tech Pathway", link: "/country/canada#canada-alberta-tech-pathway" },
-      { title: "BC PNP", link: "/country/canada#canada-bc-pnp" },
-    ],
-    UK: [
-      { title: "UK", link: "/country/uk" },
-      { title: "Study", link: "/country/uk#uk-study" },
-      { title: "Visitor", link: "/country/uk#uk-visitor" },
-      { title: "Skilled Worker", link: "/country/uk#uk-skilled-worker" },
-      { title: "Self-sponsorship", link: "/country/uk#uk-self-sponsorship" },
-      { title: "The Innovator", link: "/country/uk#uk-the-innovator" },
-    ],
-    US: [
-      { title: "USA", link: "/country/usa" },
-      { title: "Study Visa", link: "/country/usa#us-study-visa" },
-      { title: "Tourist", link: "/country/usa#us-tourist" },
-    ],
-    Europe: [
-      { title: "Europe", link: "/country/europe" },
-      { title: "Eligible", link: "/country/europe#europe-eligible" },
-      { title: "Immigration", link: "/country/europe#europe-immigration" },
-    ],
-    Australia: [
-      { title: "Australia", link: "/country/australia" },
-      { title: "Visitor", link: "/country/australia#australia-visitor" },
-      { title: "Subclass 400", link: "/country/australia#australia-subclass-400" },
-      { title: "Subclass 482", link: "/country/australia#australia-subclass-482" },
-      { title: "Subclass 186", link: "/country/australia#australia-subclass-186" },
-    ],
-    Singapore: [
-      { title: "Singapore", link: "/country/singapore" },
-      { title: "E-pass", link: "/country/singapore#singapore-e-pass" },
-      { title: "Eligible", link: "/country/singapore#singapore-s-pass" },
-    ],
-  };
+  // Load user data on mount
+  useEffect(() => {
+    if (localStorage.getItem("token") && localStorage.getItem("user")) {
+      setShouldLoadUser(true); // Set to true before dispatch
+      dispatch(loadUser()).finally(() => {
+        setShouldLoadUser(false); // Reset after fetch completes (success or error)
+      });
+    }
+  }, [dispatch]);
 
-  // Function to get user initials
-  const getUserInitials = (user) => {
-    if (!user || !user.name) return "U";
-    const names = user.name.split(" ");
+  // Function to get user initials - updated to handle both flat and nested structures
+  const getUserInitials = (userdata) => {
+    console.log("first", userdata); // Keep for debugging; remove later if not needed
+    let name = null;
+
+    // Handle nested structure (from loadUser)
+    if (userdata?.user?.name) {
+      name = userdata.user.name;
+    }
+    // Handle flat structure (from login)
+    else if (userdata?.name) {
+      name = userdata.name;
+    }
+
+    if (!name) return "U";
+
+    const names = name.trim().split(" ").filter(Boolean);
     if (names.length >= 2) {
       return (names[0][0] + names[1][0]).toUpperCase();
     }
-    return names[0][0].toUpperCase();
+    return names[0][0]?.toUpperCase() || "U";
+  };
+
+  // Helper to get user details - handles both flat and nested structures
+  const getUserDetails = (userdata) => {
+    let name = null;
+    let email = null;
+
+    // Handle nested structure (from loadUser)
+    if (userdata?.user?.name) {
+      name = userdata.user.name;
+      email = userdata.user.email;
+    }
+    // Handle flat structure (from login)
+    else {
+      name = userdata?.name;
+      email = userdata?.email;
+    }
+
+    return {
+      name: name || "User",
+      email: email || "No email"
+    };
   };
 
   const handleLogout = () => {
     dispatch(logout());
     setIsUserMenuOpen(false);
-    navigate('/');
+    navigate("/");
+  };
+
+  // Placeholder for handleNavigation - assuming it's defined
+  const handleNavigation = (path) => {
+    closeAllDropdowns();
+    navigate(path);
   };
 
   useEffect(() => {
@@ -315,26 +316,22 @@ const Navbar = () => {
     setIsUserMenuOpen(false);
   };
 
-  const handleNavigation = (path) => {
-    closeAllDropdowns();
-    navigate(path);
-  };
-
+  // Placeholder for handleVisaClick - assuming defined
   const handleVisaClick = (visa) => {
     closeAllDropdowns();
-    
-    if (visa.link.includes('#')) {
-      const [route, hash] = visa.link.split('#');
-      
+
+    if (visa.link.includes("#")) {
+      const [route, hash] = visa.link.split("#");
+
       navigate(route);
-      
+
       setTimeout(() => {
         const section = document.getElementById(hash);
         if (section) {
-          const navbarHeight = window.innerWidth >= 768 && isUpperHeaderVisible ? 
-            44 + 80 + 20 : 
+          const navbarHeight = window.innerWidth >= 768 && isUpperHeaderVisible ?
+            44 + 80 + 20 :
             64 + 20;
-          
+
           const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - navbarHeight;
 
@@ -363,6 +360,114 @@ const Navbar = () => {
     { name: "Contact", icon: FiMail, path: "/contact" },
   ];
 
+  const countries = {
+    UAE: [
+      { title: "UAE", link: "/country/uae" },
+      { title: "Golden Visa", link: "/country/uae#golden-visa" },
+      { title: "Company Investor", link: "/country/uae#company-investor-visa" },
+      { title: "Property Investor", link: "/country/uae#property-investor-visa" },
+      { title: "UAE Employment", link: "/country/uae#employment-visa" },
+      { title: "UAE Student", link: "/country/uae#student-visa" },
+    ],
+    Canada: [
+      { title: "Canada", link: "/country/canada" },
+      { title: "Tourist", link: "/country/canada#canada-tourist" },
+      { title: "Skilled Immigration", link: "/country/canada#canada-skilled-immigration" },
+      { title: "Start-Up", link: "/country/canada#canada-start-up" },
+      { title: "AIP", link: "/country/canada#canada-aip" },
+      { title: "SINP", link: "/country/canada#canada-sinp" },
+      { title: "Alberta Tech Pathway", link: "/country/canada#canada-alberta-tech-pathway" },
+      { title: "BC PNP", link: "/country/canada#canada-bc-pnp" },
+    ],
+    UK: [
+      { title: "UK", link: "/country/uk" },
+      { title: "Study", link: "/country/uk#uk-study" },
+      { title: "Visitor", link: "/country/uk#uk-visitor" },
+      { title: "Skilled Worker", link: "/country/uk#uk-skilled-worker" },
+      { title: "Self-sponsorship", link: "/country/uk#uk-self-sponsorship" },
+      { title: "The Innovator", link: "/country/uk#uk-the-innovator" },
+    ],
+    US: [
+      { title: "USA", link: "/country/usa" },
+      { title: "Study Visa", link: "/country/usa#us-study-visa" },
+      { title: "Tourist", link: "/country/usa#us-tourist" },
+    ],
+    Europe: [
+      { title: "Europe", link: "/country/europe" },
+      { title: "Eligible", link: "/country/europe#europe-eligible" },
+      { title: "Immigration", link: "/country/europe#europe-immigration" },
+    ],
+    Australia: [
+      { title: "Australia", link: "/country/australia" },
+      { title: "Visitor", link: "/country/australia#australia-visitor" },
+      { title: "Subclass 400", link: "/country/australia#australia-subclass-400" },
+      { title: "Subclass 482", link: "/country/australia#australia-subclass-482" },
+      { title: "Subclass 186", link: "/country/australia#australia-subclass-186" },
+    ],
+    Singapore: [
+      { title: "Singapore", link: "/country/singapore" },
+      { title: "E-pass", link: "/country/singapore#singapore-e-pass" },
+      { title: "Eligible", link: "/country/singapore#singapore-s-pass" },
+    ],
+  };
+
+  // Update the auth section rendering - fixed to prioritize loading until data is fetched
+  const renderAuthSection = () => {
+    // Show loading if we expect data to load (initial token check) OR auth is loading
+    if (shouldLoadUser || authLoading) {
+      return (
+        <div className="flex items-center space-x-2 px-4 xl:p-3 py-2.5 rounded-full bg-gray-200 text-gray-500 font-bold text-sm xl:text-base animate-pulse">
+          <div className="w-8 h-8 rounded-full bg-gray-300"></div>
+          <span>Loading...</span>
+        </div>
+      );
+    }
+
+    if (user) {
+      return (
+        <div className="relative">
+          <button
+            onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+            className="flex cursor-pointer rounded-full bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white font-bold text-sm xl:text-base hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden group border-2 border-transparent hover:border-[#D8C287]/20"
+          >
+            <div className="w-8 h-8 p-2 rounded-full bg-gradient-to-r from-[#D8C287] to-[#e6d098] flex items-center justify-center text-[#0C3B34] font-bold text-sm xl:text-base">
+              {getUserInitials(user)}
+            </div>
+          </button>
+          {isUserMenuOpen && (
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50 animate-slideDown">
+              <div className="px-4 py-3 border-b border-gray-100">
+                <p className="text-sm font-medium text-gray-900">
+                  {getUserDetails(user).name}
+                </p>
+                <p className="text-xs text-gray-500 truncate">
+                  {getUserDetails(user).email}
+                </p>
+              </div>
+              <button
+                onClick={handleLogout}
+                className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200"
+              >
+                <FiLogOut className="w-4 h-4" />
+                <span>Logout</span>
+              </button>
+            </div>
+          )}
+        </div>
+      );
+    }
+    return (
+      <button
+        onClick={() => handleNavigation("/login")}
+        className="flex items-center space-x-2 px-3 xl:px-5 py-2 xl:py-2 rounded-lg bg-gradient-to-r from-[#D8C287] to-[#e6d098] text-[#0C3B34] font-bold text-xs xl:text-sm hover:shadow-xl hover:scale-100 transition-all duration-300 relative overflow-hidden group border-1 border-transparent hover:border-[#0C3B34]/20"
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+        <FiUserPlus className="w-4 h-4 xl:w-5 xl:h-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
+        <span className="relative z-10 group-hover:text-[#0C3B34] transition-colors duration-300">Sign In</span>
+      </button>
+    );
+  };
+
   return (
     <header ref={navRef} className="relative">
       <UpperHeader />
@@ -379,7 +484,7 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16 lg:h-20">
             <div
               className="flex items-center group cursor-pointer"
-              onClick={() => handleNavigation('/')}
+              onClick={() => handleNavigation("/")}
             >
               <div className="relative">
                 <img
@@ -428,51 +533,8 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
-              
-              {/* Auth Section - Desktop */}
-              <div className="ml-2 xl:ml-4 relative">
-                {user ? (
-                  <div className="relative">
-                    <button
-                      onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
-                      className="flex items-center space-x-2 px-4 xl:p-3 py-2.5 cursor-pointer rounded-full bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white font-bold text-sm xl:text-base hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden group border-2 border-transparent hover:border-[#D8C287]/20"
-                    >
-                      <div className="w-10 h-8 xl:w-9 xl:h-9 cursor-pointer rounded-full bg-gradient-to-r from-[#D8C287] to-[#e6d098] flex items-center justify-center text-[#0C3B34] font-bold text-sm xl:text-base">
-                        {getUserInitials(user)}
-                      </div>
-                      
-                      
-                    </button>
-                    
-                    {/* User Dropdown Menu */}
-                    {isUserMenuOpen && (
-                      <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50 animate-slideDown">
-                        <div className="px-4 py-3 border-b border-gray-100">
-                          <p className="text-sm font-medium text-gray-900">{user.name}</p>
-                          <p className="text-xs text-gray-500 truncate">{user.email}</p>
-                        </div>
-                      
-                        <button
-                          onClick={handleLogout}
-                          className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200"
-                        >
-                          <FiLogOut className="w-4 h-4" />
-                          <span>Logout</span>
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <button
-                    onClick={() => handleNavigation('/register')}
-                    className="flex items-center space-x-2 px-6 xl:px-8 py-2.5 xl:py-3  rounded-full bg-gradient-to-r from-[#D8C287] to-[#e6d098] text-[#0C3B34] font-bold text-sm xl:text-base hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden group border-2 border-transparent hover:border-[#0C3B34]/20"
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] cursor-pointer opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                    <FiUserPlus className="w-4 h-4 xl:w-5 xl:h-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
-                    <span className="relative z-10 group-hover:text-[#0C3B34] transition-colors duration-300 cursor-pointer">Sign Up</span>
-                  </button>
-                )}
-              </div>
+              {/* Render the auth section using the function for desktop */}
+              {renderAuthSection()}
             </div>
             <div className="lg:hidden">
               <button
@@ -488,7 +550,7 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Desktop Countries Dropdown */}
         {isCountriesOpen && (
           <div className="absolute left-0 right-0 bg-gradient-to-br from-gray-50 to-white shadow-2xl border-t border-gray-100 hidden lg:block animate-slideDown">
@@ -561,7 +623,7 @@ const Navbar = () => {
             </div>
           </div>
         )}
-        
+
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="lg:hidden absolute left-0 right-0 bg-white shadow-2xl border-t border-gray-100 z-40 animate-slideDown">
@@ -668,29 +730,28 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
-              
-              {/* Mobile Auth Section */}
+
+              {/* Mobile Auth Section - synced with renderAuthSection logic for consistency */}
               <div className="border-t border-gray-100 pt-4 mt-4">
-                {user ? (
+                {shouldLoadUser || authLoading ? (
+                  <div className="flex items-center space-x-3 px-3 py-2 bg-gray-200 rounded-lg animate-pulse">
+                    <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+                    <div>
+                      <div className="h-4 w-24 bg-gray-300 rounded"></div>
+                      <div className="h-3 w-32 bg-gray-300 rounded mt-2"></div>
+                    </div>
+                  </div>
+                ) : user ? (
                   <div className="space-y-3">
                     <div className="flex items-center space-x-3 px-3 py-2 bg-gradient-to-r from-gray-50 to-white rounded-lg">
                       <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] flex items-center justify-center text-white font-bold">
                         {getUserInitials(user)}
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">{user.name}</p>
-                        <p className="text-xs text-gray-500 truncate">{user.email}</p>
+                        <p className="font-medium text-gray-900">{getUserDetails(user).name}</p>
+                        <p className="text-xs text-gray-500 truncate">{getUserDetails(user).email}</p>
                       </div>
                     </div>
-                    <button
-                      onClick={() => {
-                        handleNavigation('/profile');
-                      }}
-                      className="w-full flex items-center space-x-3 py-3 px-3 text-gray-700 hover:text-[#0C3B34] transition-colors duration-300 rounded-lg hover:bg-gray-50"
-                    >
-                      <FiUser className="w-5 h-5" />
-                      <span className="font-medium">Profile</span>
-                    </button>
                     <button
                       onClick={handleLogout}
                       className="w-full flex items-center space-x-3 py-3 px-3 text-red-600 hover:text-red-700 transition-colors duration-300 rounded-lg hover:bg-red-50"
@@ -701,18 +762,18 @@ const Navbar = () => {
                   </div>
                 ) : (
                   <button
-                    onClick={() => handleNavigation('/register')}
+                    onClick={() => handleNavigation("/login")}
                     className="w-full flex items-center justify-center space-x-3 py-4 px-6 bg-gradient-to-r from-[#D8C287] to-[#e6d098] text-[#0C3B34] font-bold rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105"
                   >
                     <FiUserPlus className="w-5 h-5" />
-                    <span>Sign Up</span>
+                    <span>Sign In</span>
                   </button>
                 )}
               </div>
             </div>
           </div>
         )}
-        
+
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
           <div

@@ -3,7 +3,6 @@ import axios from "axios";
 
 // Example: Replace with your backend URL
 const API_URL = "http://localhost:5000/api/auth";
-
 // --- Register User ---
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
@@ -23,14 +22,35 @@ export const loginUser = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const res = await axios.post(`${API_URL}/login`, credentials);
-      // if res.data.token) {
-      // console.log("first",res.data)
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user._id));
-      // }
-      return res.data; // should return { user, token }
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", (res.data.user._id));
+      localStorage.setItem("userdata", JSON.stringify(res.data.user));
+      return res.data;
     } catch (err) {
       return rejectWithValue(err.response.data.message || "Login failed");
+    }
+  }
+);
+
+// --- Load User ---
+// console.log("firstname",userId,token);
+export const loadUser = createAsyncThunk(
+  "auth/loadUser",
+  async (_, { rejectWithValue }) => {
+    const token = localStorage.getItem("token") || null;
+    const userId = localStorage.getItem("user")|| null;
+    
+    if (!token || !userId) {
+      return rejectWithValue("No token or user ID found");
+    }
+
+    try {
+      const res = await axios.get(`${API_URL}/me/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      return { user: res.data, token }; // Return user and token
+    } catch (err) {
+      return rejectWithValue(err.response?.data?.message || "Failed to load user");
     }
   }
 );
@@ -38,8 +58,9 @@ export const loginUser = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: null,
-    token: null,
+    user: localStorage.getItem("user") || null,
+    userdata: JSON.parse(localStorage.getItem("userdata"))|| null,
+    token: localStorage.getItem("token") || null,
     loading: false,
     error: null,
   },
@@ -47,10 +68,29 @@ const authSlice = createSlice({
     logout: (state) => {
       state.user = null;
       state.token = null;
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      localStorage.removeItem("userdata");
     },
   },
   extraReducers: (builder) => {
     builder
+      // Load User
+      .addCase(loadUser.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(loadUser.fulfilled, (state, action) => {
+        state.loading = false;
+        state.user = action.payload.user;
+        state.token = action.payload.token;
+      })
+      .addCase(loadUser.rejected, (state, action) => {
+        state.loading = false;
+        state.user = null;
+        state.token = null;
+        state.error = action.payload;
+      })
       // Register
       .addCase(registerUser.pending, (state) => {
         state.loading = true;
@@ -79,6 +119,7 @@ const authSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       });
+
   },
 });
 

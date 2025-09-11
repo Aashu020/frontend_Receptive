@@ -77,11 +77,11 @@ function Reviews() {
           prevReviews.map(review =>
             review.id === reviewId
               ? {
-                  ...review,
-                  likes: data.review.likes,
-                  totalLikes: data.review.likes.length,
-                  isLiked: data.review.likes.some(id => id.toString() === userId)
-                }
+                ...review,
+                likes: data.review.likes,
+                totalLikes: data.review.likes.length,
+                isLiked: data.review.likes.some(id => id.toString() === userId)
+              }
               : review
           )
         );
@@ -143,7 +143,7 @@ function Reviews() {
 
       {/* Review Form Modal (shown when user is logged in) */}
       {showReviewForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 backdrop-blur bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg w-full max-w-md p-6 relative">
             <button
               onClick={handleCloseReviewForm}
@@ -160,7 +160,7 @@ function Reviews() {
 
       {/* Login Prompt Modal (shown when user is not logged in) */}
       {showLoginPrompt && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 backdrop-blur bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg w-full max-w-md p-6 relative">
             <button
               onClick={handleCloseLoginPrompt}
@@ -203,10 +203,16 @@ function Reviews() {
       {/* Statistics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
         <div className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] p-3 md:p-4 rounded-lg text-white text-center">
-          <div className="text-xl md:text-2xl font-bold">4.2</div>
+          <div className="text-xl md:text-2xl font-bold">
+            {reviews.length > 0
+              ? (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1)
+              : "0.0"}
+          </div>
           <div className="text-xs md:text-sm opacity-90">Average Rating</div>
           <div className="flex justify-center mt-1 text-sm md:text-base">
-            {renderStars(5)}
+            {renderStars(Math.round(reviews.length > 0
+              ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
+              : 0))}
           </div>
         </div>
         <div className="bg-gradient-to-r from-[#D8C287] to-[#c4a567] p-3 md:p-4 rounded-lg text-[#0C3B34] text-center">
@@ -270,7 +276,7 @@ function Reviews() {
                 onClick={() => toggleLike(review.id)}
                 className="p-1 rounded-full hover:scale-110 transition-transform"
               >
-                  <AiFillHeart className="text-red-500" size={22} />
+                <AiFillHeart className="text-red-500" size={22} />
               </button>
               <p className="text-sm md:text-base text-[#2c2c2c]">{review.totalLikes}</p>
             </div>
