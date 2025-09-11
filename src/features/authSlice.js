@@ -99,7 +99,10 @@ const authSlice = createSlice({
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload; // e.g., {_id, name, email,...}
+        state.user = action.payload; // Temporarily set for success message
+        // Immediately clear user to avoid auto-redirect in /login
+        state.user = null;
+        state.userdata = null; // Clear userdata too for consistency
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.loading = false;

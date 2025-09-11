@@ -19,21 +19,25 @@ function Register() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    if (user && !loading) {
-      const timer = setTimeout(() => {
-        navigate("/login"); // Redirect to /login after successful registration
-      }, 1500);
-      return () => clearTimeout(timer); // Cleanup
-    }
-  }, [user, loading, navigate]);
+  // Remove useEffect for redirect - handle only in handleSubmit
+  // useEffect(() => {
+  //   if (user && !loading) {
+  //     const timer = setTimeout(() => {
+  //       navigate("/login"); // Redirect to /login after successful registration
+  //     }, 1500);
+  //     return () => clearTimeout(timer); // Cleanup
+  //   }
+  // }, [user, loading, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(registerUser(formData))
       .unwrap()
       .then(() => {
-        navigate("/login"); // Redirect to /login after successful registration
+        // Show brief success message, then redirect
+        setTimeout(() => {
+          navigate("/login");
+        }, 1500);
       })
       .catch(() => {
         // Error is handled by the authSlice and displayed in the UI
@@ -166,7 +170,8 @@ function Register() {
             </div>
           )}
 
-          {user && (
+          {/* Success message will be shown briefly before redirect */}
+          {user && !loading && (
             <div className="rounded-md bg-green-50 p-4">
               <div className="text-sm text-green-700">
                 Welcome {user.name}! Redirecting to login...

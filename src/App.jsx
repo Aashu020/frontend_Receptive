@@ -41,13 +41,13 @@ function App() {
         <Route path="/succes_story"   element={<SuccessStory/>}/>
         <Route path="/reviews" element={<Reviews/>}/>
         <Route path="/services" element={<Services />} />  
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/login"  element={<Login/>}/>
 
         {/* //Admin Routes */}
         <Route path="/admin" element={<Dashboard />} />
         <Route path="/admin/users" element={<AllUsers />} />
         <Route path="/admin/reviews" element={<AllReviews />} />
-        <Route path="/register" element={<Register/>}/>
-        <Route path="/login"  element={<Login/>}/>
       </Routes>
       <Footer/>
 
