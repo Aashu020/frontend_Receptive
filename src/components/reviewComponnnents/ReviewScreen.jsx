@@ -28,7 +28,8 @@ function ReviewScreen({ onClose }) {
         }
       });
 
-      alert('Review submitted successfully!');
+      // alert('Review submitted successfully!');
+      window.location.reload();
       onClose();
     } catch (error) {
       console.error('Error submitting review:', error.response?.data || error.message);
