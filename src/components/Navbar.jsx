@@ -200,7 +200,7 @@ const Navbar = () => {
 
   // Function to get user initials - updated to handle both flat and nested structures
   const getUserInitials = (userdata) => {
-    console.log("first", userdata); // Keep for debugging; remove later if not needed
+    // console.log("first", userdata); // Keep for debugging; remove later if not needed
     let name = null;
 
     // Handle nested structure (from loadUser)

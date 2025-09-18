@@ -21,6 +21,7 @@ import AllUsers from './AdminPanel/AllUsers'
 import AllReviews from './AdminPanel/AllReviews'
 import Register from './components/signup/Register'
 import Login from './components/signup/Login'
+import AdminLogin from './components/signup/AdminLogin'
 
 function App() {
 
@@ -45,9 +46,9 @@ function App() {
         <Route path="/login"  element={<Login/>}/>
 
         {/* //Admin Routes */}
-        <Route path="/admin" element={<Dashboard />} />
-        <Route path="/admin/users" element={<AllUsers />} />
-        <Route path="/admin/reviews" element={<AllReviews />} />
+        <Route path="/admin/receptive/users" element={<AllUsers />} />
+        <Route path="/admin/receptive/reviews" element={<AllReviews />} />
+        <Route path='/admin/receptive/login' element={<AdminLogin/>}/>
       </Routes>
       <Footer/>
 

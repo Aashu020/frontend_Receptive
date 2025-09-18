@@ -6,9 +6,8 @@ const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const links = [
-    { name: "Dashboard", path: "/admin", icon: <FiHome /> },
-    { name: "Users", path: "/admin/users", icon: <FiUsers /> },
-    { name: "Reviews", path: "/admin/reviews", icon: <FiStar /> },
+    { name: "Users", path: "/admin/receptive/users", icon: <FiUsers /> },
+    { name: "Reviews", path: "/admin/receptive/reviews", icon: <FiStar /> },
   ];
 
   return (
@@ -28,7 +27,7 @@ const Sidebar = () => {
       <div
         className={`
           fixed top-0 left-0 h-[110vh] w-64 bg-gray-900 text-white flex flex-col md:mt-20
-          transform transition-transform duration-300 ease-in-out
+          transform transition-transform duration-300 ease-in-out pl-2
           ${isOpen ? "translate-x-0" : "-translate-x-full"}
           md:translate-x-0 md:static md:w-64 z-40
         `}

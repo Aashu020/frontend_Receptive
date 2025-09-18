@@ -13,44 +13,63 @@ function Reviews() {
   const userToken = localStorage.getItem("token");
 
   useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const res = await axios.get("https://backend-receptive.onrender.com/api/reviews/", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        console.log(res.data, "data");
+  const fetchReviews = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const storedUserId = localStorage.getItem("user"); // must be set at login
 
-        // Add debugging log to check userId and likes
-        console.log("userId in fetchReviews:", userId);
+      const res = await axios.get("http://localhost:5000/api/reviews", {
+        headers: token ? { Authorization: `Bearer ${token}` } : {}
+      });
 
-        // Adapt data from backend to frontend fields
-        const formatted = res.data.reviews.map((r) => {
-          const likes = r.likes || [];
-          console.log(`Review ${r._id} likes:`, likes); // Debug likes array
-          return {
-            id: r._id,
-            name: r.demoName || r.displayName,
-            country: "Unknown",
-            rating: Number(r.ratings),
-            date: new Date(r.createdAt).toLocaleDateString(),
-            text: r.content,
-            likes: likes,
-            totalLikes: likes.length,
-            isLiked: userId ? likes.some(id => id.toString() === userId) : false // Fixed isLiked calculation
-          };
-        });
+      console.log("Backend response:", res.data);
 
-        setReviews(formatted);
-      } catch (err) {
-        console.error("Error fetching reviews:", err);
-      }
-    };
+      const allReviews = res.data.reviews || [];
 
-    fetchReviews();
-  }, [userId]);
+      // Filter: show approved OR own reviews only
+      const filtered = allReviews.filter((r) => {
+        // Always show approved reviews
+        if (r.isapproved) return true;
+
+        // Show unapproved review only if the logged-in user is the author
+        if (storedUserId) {
+          const authorId = typeof r.author === "string" ? r.author : r.author?._id;
+          if (authorId === storedUserId) return true;
+        }
+
+        // Otherwise hide
+        return false;
+      });
+
+      console.log("Filtered reviews:", filtered);
+
+      // Map to frontend-friendly shape
+      const formatted = filtered.map((r) => {
+        const likes = r.likes || [];
+        const authorName =
+          typeof r.author === "string" ? "Unknown" : r.author?.name || "Unknown";
+
+        return {
+          id: r._id,
+          name: r.displayName || authorName,
+          text: r.content,
+          rating: Number(r.ratings) || 0,
+          date: new Date(r.createdAt).toLocaleDateString(),
+          likes: likes,
+          totalLikes: likes.length,
+          isLiked: storedUserId ? likes.some((id) => id.toString() === storedUserId) : false,
+        };
+      });
+
+      setReviews(formatted);
+      console.log("Formatted reviews:", formatted);
+    } catch (err) {
+      console.error("Error fetching reviews", err);
+    }
+  };
+
+  fetchReviews();
+}, []);
 
   const toggleLike = async (reviewId) => {
     if (!userId || !userToken) {
@@ -60,7 +79,7 @@ function Reviews() {
 
     try {
       const res = await fetch(
-        `https://backend-receptive.onrender.com/api/reviews/${reviewId}/like`,
+        `http://localhost:5000/api/reviews/${reviewId}/like`,
         {
           method: "POST",
           headers: {

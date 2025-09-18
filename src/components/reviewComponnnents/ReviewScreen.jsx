@@ -21,7 +21,7 @@ function ReviewScreen({ onClose }) {
 
       // Send POST request with token
       const token = localStorage.getItem('token'); // adjust if you store JWT elsewhere
-      await axios.post('https://backend-receptive.onrender.com/api/reviews/', data, {
+      await axios.post('http://localhost:5000/api/reviews/', data, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
