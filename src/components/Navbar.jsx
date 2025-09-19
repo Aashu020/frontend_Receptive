@@ -77,9 +77,9 @@ function UpperHeader() {
             className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
             aria-label="Call +91 98765 43210"
           >
-            <FaPhone className="text-xs lg:text-sm" />
+            {/* <FaPhone className="text-xs lg:text-sm" /> */}
             <span className="ml-1 text-xs lg:text-sm hidden lg:inline hover:text-white cursor-pointer">
-              +91 77380 56424
+              IN +91 77380 56424
             </span>
           </button>
           <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
@@ -100,9 +100,9 @@ function UpperHeader() {
             className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
             aria-label="Call +91 98856 02560"
           >
-            <FaPhone className="text-xs lg:text-sm" />
+            {/* <FaPhone className="text-xs lg:text-sm" /> */}
             <span className="ml-1 text-xs lg:text-sm hidden hover:text-white cursor-pointer lg:inline">
-              +971 562744455
+             UAE +971 562744455
             </span>
           </button>
           <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
