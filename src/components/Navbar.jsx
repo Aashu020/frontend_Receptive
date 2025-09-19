@@ -349,7 +349,8 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { name: "About Us", icon: FiUsers, path: "/about" },
+    
+    { name: "Home", icon: FiUsers, path: "/" },
     {
       name: "Countries",
       icon: FiGlobe,
@@ -358,6 +359,7 @@ const Navbar = () => {
     { name: "Success Stories", icon: FiTrendingUp, path: "/succes_story" },
     { name: "Reviews", icon: FiStar, path: "/reviews" },
     { name: "Contact", icon: FiMail, path: "/contact" },
+    { name: "About Us", icon: FiUsers, path: "/about" },
   ];
 
   const countries = {

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import Reviews from "./Reviews";
 import receptiveThumbnial from "../assets/images/recpetive-thumbnial.png"
+import Collage from "../components/Collage";
 
 // Grab images from multiple folders (recursive glob)
 const images = import.meta.glob(
@@ -88,6 +89,11 @@ function SuccessStory() {
   return (
     <div className="min-h-screen bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+
+
+
+<Collage></Collage>
+        
         {/* Header with tabs */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-extrabold text-[#0C3B34] mb-8">
@@ -197,7 +203,10 @@ function SuccessStory() {
             </div>
           )}
 
+          
+
           <Reviews></Reviews>
+
 
           
         </div>
