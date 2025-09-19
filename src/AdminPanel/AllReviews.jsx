@@ -10,7 +10,7 @@ const AllReviews = () => {
     const fetchReviews = async () => {
       try {
         // const token = localStorage.getItem("token"); // admin token
-        const res = await axios.get("http://localhost:5000/api/reviews", {
+        const res = await axios.get("https://backend-receptive.onrender.com/api/reviews", {
           // headers: { Authorization: `Bearer ${token}` },
         });
         console.log(res.data.reviews);
@@ -36,7 +36,7 @@ const AllReviews = () => {
   try {
     const token = localStorage.getItem("token");
     const res = await axios.put(
-      `http://localhost:5000/api/reviews/${reviewId}/approve`,
+      `https://backend-receptive.onrender.com/api/reviews/${reviewId}/approve`,
       {},
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -60,7 +60,7 @@ const deleteReview = async (reviewId) => {
   try {
     const token = localStorage.getItem("token");
     const res = await axios.delete(
-      `http://localhost:5000/api/reviews/${reviewId}`,
+      `https://backend-receptive.onrender.com/api/reviews/${reviewId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

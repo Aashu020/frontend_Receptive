@@ -9,7 +9,7 @@ const AllUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/auth", {
+        const res = await axios.get("https://backend-receptive.onrender.com/api/auth", {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         });
         if (res.data.success) setUsers(res.data.users);
@@ -27,7 +27,7 @@ const AllUsers = () => {
 
     try {
       const token = localStorage.getItem("token"); // Make sure token is fetched
-      const res = await axios.delete(`http://localhost:5000/api/auth/delete/${userId}`, {
+      const res = await axios.delete(`https://backend-receptive.onrender.com/api/auth/delete/${userId}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
 

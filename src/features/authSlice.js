@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 // Example: Replace with your backend URL
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = "https://backend-receptive.onrender.com/api/auth";
 // --- Register User ---
 export const registerUser = createAsyncThunk(
   "auth/registerUser",

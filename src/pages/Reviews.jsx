@@ -18,7 +18,7 @@ function Reviews() {
       const token = localStorage.getItem("token");
       const storedUserId = localStorage.getItem("user"); // must be set at login
 
-      const res = await axios.get("http://localhost:5000/api/reviews", {
+      const res = await axios.get("https://backend-receptive.onrender.com/api/reviews", {
         headers: token ? { Authorization: `Bearer ${token}` } : {}
       });
 
@@ -79,7 +79,7 @@ function Reviews() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/reviews/${reviewId}/like`,
+        `https://backend-receptive.onrender.com/api/reviews/${reviewId}/like`,
         {
           method: "POST",
           headers: {
