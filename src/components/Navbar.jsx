@@ -79,7 +79,7 @@ function UpperHeader() {
           >
             {/* <FaPhone className="text-xs lg:text-sm" /> */}
             <span className="ml-1 text-xs lg:text-sm hidden lg:inline hover:text-white cursor-pointer">
-              IN +91 77380 56424
+             IN +91 77380 56424
             </span>
           </button>
           <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>

@@ -2,13 +2,12 @@
 import React, { useState } from "react";
 import Reviews from "./Reviews";
 import receptiveThumbnial from "../assets/images/recpetive-thumbnial.png"
-import Collage from "../components/Collage";
 
 // Grab images from multiple folders (recursive glob)
 const images = import.meta.glob(
   [
-    "/src/assets/visaCopy/canada/*.{png,jpg,jpeg,svg}",
-    "/src/assets/visaCopy/unitedKingdom/*.{png,jpg,jpeg,svg}",
+    // "/src/assets/visaCopy/canada/*.{png,jpg,jpeg,svg}",
+    // "/src/assets/visaCopy/unitedKingdom/*.{png,jpg,jpeg,svg}",
     "/src/assets/testimoniels/**/*.{png,jpg,jpeg,svg}",
   ],
   { eager: true }
@@ -20,37 +19,7 @@ const videos = import.meta.glob(
   { eager: true }
 );
 
-// Mock reviews data (replace with your actual reviews)
-const reviews = [
-  {
-    id: 1,
-    name: "Rajesh Kumar",
-    country: "Canada",
-    rating: 5,
-    text: "The visa process was smooth and hassle-free. The team guided me at every step and made sure all documents were perfect.",
-  },
-  {
-    id: 2,
-    name: "Priya Sharma",
-    country: "United Kingdom",
-    rating: 4,
-    text: "Great service! I got my UK student visa within the expected timeframe. Would recommend to others.",
-  },
-  {
-    id: 3,
-    name: "Amit Patel",
-    country: "Canada",
-    rating: 5,
-    text: "Excellent consultation services. They helped me navigate the complex PR process with ease.",
-  },
-  {
-    id: 4,
-    name: "Sneha Gupta",
-    country: "Australia",
-    rating: 4,
-    text: "Professional and knowledgeable staff. Made my visa application process much simpler than I expected.",
-  },
-];
+
 
 function SuccessStory() {
   const [activeTab, setActiveTab] = useState("clients");
@@ -89,14 +58,9 @@ function SuccessStory() {
   return (
     <div className="min-h-screen bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-
-
-
-<Collage></Collage>
-        
         {/* Header with tabs */}
         <div className="text-center mb-12">
-          <h1 className="text-5xl font-extrabold text-[#0C3B34] mb-8">
+          <h1 className="text-5xl font-extrabold text-[#0C3B34] mb-8 mt-20">
             Success Stories
           </h1>
 
@@ -121,7 +85,7 @@ function SuccessStory() {
             >
               Visa Stories
             </button>
-            <button
+            {/* <button
               onClick={() => setActiveTab("reviews")}
               className={`py-4 px-6 font-medium text-lg transition-colors ${
                 activeTab === "reviews"
@@ -130,7 +94,7 @@ function SuccessStory() {
               }`}
             >
               Reviews
-            </button>
+            </button> */}
           </div>
         </div>
 
@@ -138,7 +102,7 @@ function SuccessStory() {
         <div className="bg-white rounded-2xl shadow-xl p-8">
           {activeTab === "clients" && (
             <div className="space-y-16">
-              {["Testimonials", "Canada", "United Kingdom"].map((section) => (
+              {["Testimonials"].map((section) => (
                 <div key={section}>
                   <h2 className="text-3xl font-semibold mb-8 text-[#0C3B34] border-b border-[#D8C287] pb-4">
                     {section}
@@ -203,10 +167,7 @@ function SuccessStory() {
             </div>
           )}
 
-          
-
-          <Reviews></Reviews>
-
+         
 
           
         </div>

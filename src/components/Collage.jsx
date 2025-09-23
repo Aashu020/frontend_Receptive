@@ -4,7 +4,7 @@ function Collage() {
   // Grab images from multiple folders (recursive glob)
   const images = import.meta.glob(
     [
-      "/src/assets/testimoniels/**/*.{png,jpg,jpeg,svg}",
+      "/src/assets/caullagePhotos/**/*.{png,jpg,jpeg,svg}",
     ],
     { eager: true }
   );
@@ -13,54 +13,40 @@ function Collage() {
   const imageArray = Object.values(images).map(module => module.default);
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      <div className="p-8 pb-0">
-        <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Testimonials Collage</h1>
-      </div>
-      
-      {/* Grid layout with no gaps */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {imageArray.map((imageSrc, index) => (
-          <div
-            key={index}
-            className="relative group overflow-hidden aspect-square"
-          >
-            <img
-              src={imageSrc}
-              alt={`Testimonial ${index + 1}`}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
-              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-white font-semibold text-lg">Testimonial {index + 1}</span>
-              </div>
+    <div className="min-h-screen relative mt-30">
+      {/* All images as background - 3 rows with 6 images each */}
+      <div className="absolute inset-0 overflow-hidden opacity-30">
+        <div className="grid grid-rows-3 grid-cols-6 gap-2 p-4 h-full">
+          {imageArray.slice(0, 18).map((imageSrc, index) => (
+            <div
+              key={index}
+              className="aspect-square"
+              style={{ zIndex: -1 }}
+            >
+              <img
+                src={imageSrc}
+                alt=""
+                className="w-full h-full object-cover rounded shadow-lg"
+              />
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
-      {/* Masonry layout with no gaps */}
-      {imageArray.length > 0 && (
-        <div className="mt-12 p-8 pt-0">
-          <h2 className="text-2xl font-bold text-center mb-6 text-gray-800">Masonry Layout (No Gaps)</h2>
-          <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4">
-            {imageArray.map((imageSrc, index) => (
-              <div
-                key={index}
-                className="break-inside-avoid relative group overflow-hidden"
-              >
-                <img
-                  src={imageSrc}
-                  alt={`Testimonial ${index + 1}`}
-                  className="w-full h-auto object-cover block"
-                  loading="lazy"
-                />
-              </div>
-            ))}
-          </div>
+      {/* Hero Content */}
+      <div className="relative z-10 min-h-screen flex items-center justify-center px-8 bg-black/50">
+        <div className="text-center text-white">
+          <h1 className="text-8xl font-bold mb-8">
+            TESTIMONIALS
+          </h1>
+          <p className="text-2xl mb-12">
+            Real stories from real customers
+          </p>
+          <button className="bg-white text-black px-12 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition-colors">
+            View All
+          </button>
         </div>
-      )}
+      </div>
     </div>
   )
 }
