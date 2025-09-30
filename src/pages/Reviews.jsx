@@ -9,6 +9,8 @@ function Reviews() {
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [reviews, setReviews] = useState([]);
+  const [expandedImages, setExpandedImages] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null); // For modal
   const userId = localStorage.getItem("user");
   const userToken = localStorage.getItem("token");
   const BaseUrl = import.meta.env.VITE_BASE_URL;
@@ -16,63 +18,85 @@ function Reviews() {
   console.log("Base URL:", BaseUrl);
 
   useEffect(() => {
-  const fetchReviews = async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const storedUserId = localStorage.getItem("user"); // must be set at login
+    const fetchReviews = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const storedUserId = localStorage.getItem("user");
 
-      const res = await axios.get(`${BaseUrl}/api/reviews`, {
-        headers: token ? { Authorization: `Bearer ${token}` } : {}
-      });
+        const res = await axios.get(`${BaseUrl}/api/reviews`, {
+          headers: token ? { Authorization: `Bearer ${token}` } : {}
+        });
 
-      console.log("Backend :", res.data);
+        console.log("Backend :", res.data);
 
-      const allReviews = res.data.reviews || [];
+        const allReviews = res.data.reviews || [];
 
-      // Filter: show approved OR own reviews only
-      const filtered = allReviews.filter((r) => {
-        // Always show approved reviews
-        if (r.isapproved) return true;
+        // Filter: show approved OR own reviews only
+        const filtered = allReviews.filter((r) => {
+          if (r.isapproved) return true;
+          if (storedUserId) {
+            const authorId = typeof r.author === "string" ? r.author : r.author?._id;
+            if (authorId === storedUserId) return true;
+          }
+          return false;
+        });
 
-        // Show unapproved review only if the logged-in user is the author
-        if (storedUserId) {
-          const authorId = typeof r.author === "string" ? r.author : r.author?._id;
-          if (authorId === storedUserId) return true;
-        }
+        console.log("Filtered reviews:", filtered);
 
-        // Otherwise hide
-        return false;
-      });
+        // Map to frontend-friendly shape
+        const formatted = filtered.map((r) => {
+          const likes = r.likes || [];
+          const authorName =
+            typeof r.author === "string" ? "Unknown" : r.author?.name || "Unknown";
 
-      console.log("Filtered reviews:", filtered);
+          return {
+            id: r._id,
+            name: r.displayName || authorName,
+            text: r.content,
+            rating: Number(r.ratings) || 0,
+            date: new Date(r.createdAt).toLocaleDateString(),
+            likes: likes,
+            totalLikes: likes.length,
+            isLiked: storedUserId ? likes.some((id) => id.toString() === storedUserId) : false,
+            // FIX: Convert relative paths to full URLs
+            images: (r.images || []).map(img => {
+              // If image already has http/https, return as is
+              if (img.startsWith('http://') || img.startsWith('https://')) {
+                return img;
+              }
+              // Otherwise, prepend the BaseUrl
+              return `${BaseUrl}${img}`;
+            }),
+          };
+        });
 
-      // Map to frontend-friendly shape
-      const formatted = filtered.map((r) => {
-        const likes = r.likes || [];
-        const authorName =
-          typeof r.author === "string" ? "Unknown" : r.author?.name || "Unknown";
+        setReviews(formatted);
+        console.log("Formatted reviews:", formatted);
+      } catch (err) {
+        console.error("Error fetching reviews", err);
+      }
+    };
 
-        return {
-          id: r._id,
-          name: r.displayName || authorName,
-          text: r.content,
-          rating: Number(r.ratings) || 0,
-          date: new Date(r.createdAt).toLocaleDateString(),
-          likes: likes,
-          totalLikes: likes.length,
-          isLiked: storedUserId ? likes.some((id) => id.toString() === storedUserId) : false,
-        };
-      });
+    fetchReviews();
+  }, []);
 
-      setReviews(formatted);
-      console.log("Formatted reviews:", formatted);
-    } catch (err) {
-      console.error("Error fetching reviews", err);
-    }
+  // Toggle images visibility for a review
+  const toggleImages = (reviewId) => {
+    setExpandedImages((prev) => ({
+      ...prev,
+      [reviewId]: !prev[reviewId],
+    }));
   };
 
-  fetchReviews();
-}, []);
+  // Open image in modal
+  const openImageModal = (imageUrl) => {
+    setSelectedImage(imageUrl);
+  };
+
+  // Close image modal
+  const closeImageModal = () => {
+    setSelectedImage(null);
+  };
 
   const toggleLike = async (reviewId) => {
     if (!userId || !userToken) {
@@ -94,7 +118,7 @@ function Reviews() {
       const data = await res.json();
 
       if (data.success) {
-        console.log("userId in toggleLike:", userId, "likes:", data.review.likes); // Debug userId and likes
+        console.log("userId in toggleLike:", userId, "likes:", data.review.likes);
         setReviews(prevReviews =>
           prevReviews.map(review =>
             review.id === reviewId
@@ -163,9 +187,9 @@ function Reviews() {
         </button>
       </div>
 
-      {/* Review Form Modal (shown when user is logged in) */}
+      {/* Review Form Modal */}
       {showReviewForm && (
-        <div className="fixed inset-0 backdrop-blur bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 backdrop-blur bg-opacity-50 bg-black/30 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg w-full max-w-md p-6 relative">
             <button
               onClick={handleCloseReviewForm}
@@ -180,7 +204,7 @@ function Reviews() {
         </div>
       )}
 
-      {/* Login Prompt Modal (shown when user is not logged in) */}
+      {/* Login Prompt Modal */}
       {showLoginPrompt && (
         <div className="fixed inset-0 backdrop-blur bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-lg w-full max-w-md p-6 relative">
@@ -209,7 +233,33 @@ function Reviews() {
         </div>
       )}
 
-      {/* Rest of your existing Reviews component */}
+      {/* Image Modal - Full Screen View */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 bg-black/10 bg-opacity-90 flex items-center justify-center z-[1000] p-4"
+          onClick={closeImageModal}
+        >
+          <button
+            onClick={closeImageModal}
+            className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-[70]"
+            aria-label="Close image"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <div className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center">
+            <img
+              src={selectedImage}
+              alt="Full size review"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Header */}
       <div className="text-center mb-8 md:mb-12">
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0C3B34] mb-3 md:mb-4">What Our Clients Say</h1>
         <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto px-2 sm:px-0">
@@ -292,7 +342,7 @@ function Reviews() {
               </div>
             </div>
 
-            {/* Bottom Border - Like Button */}
+            {/* Bottom Border - Like Button and Images */}
             <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-[#D8C287] flex items-center gap-2">
               <button
                 onClick={() => toggleLike(review.id)}
@@ -301,7 +351,46 @@ function Reviews() {
                 <AiFillHeart className="text-red-500" size={22} />
               </button>
               <p className="text-sm md:text-base text-[#2c2c2c]">{review.totalLikes}</p>
+              {review.images?.length > 0 && (
+                <button
+                  onClick={() => toggleImages(review.id)}
+                  className="ml-auto text-sm md:text-base text-[#0C3B34] hover:text-[#1a5a4f] font-semibold flex items-center gap-1"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  {expandedImages[review.id] ? "Hide Images" : `View Images (${review.images.length})`}
+                </button>
+              )}
             </div>
+
+            {/* Images Section */}
+            {expandedImages[review.id] && review.images?.length > 0 && (
+              <div className="mt-4 grid grid-cols-2 gap-2">
+                {review.images.map((img, index) => (
+                  <div
+                    key={index}
+                    className="relative group cursor-pointer overflow-hidden rounded-lg"
+                    onClick={() => openImageModal(img)}
+                  >
+                    <img
+                      src={img}
+                      alt={`Review image ${index + 1}`}
+                      className="h-32 w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
+                      onError={(e) => {
+                        console.error(`Failed to load image: ${img}`);
+                        e.target.style.display = "none";
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-black\20 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                      </svg>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>
