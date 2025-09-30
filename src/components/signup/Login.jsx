@@ -22,13 +22,20 @@ function Login() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    dispatch(loginUser(formData))
-      .unwrap()
-      .then(() => {
-        navigate("/"); // Redirect after login
-      });
-  };
+  e.preventDefault();
+  dispatch(loginUser(formData))
+    .unwrap()
+    .then((res) => {
+      if (res.user.isAdmin) {
+        navigate("/admin/receptive/users"); // 👈 admin panel
+      } else {
+        navigate("/"); // 👈 normal user home
+      }
+    })
+    .catch(() => {
+      // error is already in state, but you could handle extra here if needed
+    });
+};
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -60,6 +67,7 @@ function Login() {
                 required
                 className="appearance-none rounded-t-md relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#D8C287] focus:border-[#D8C287] focus:z-10 sm:text-sm"
                 placeholder="Email address"
+                autoComplete="email"
                 value={formData.email}
                 onChange={handleChange}
               />
@@ -71,6 +79,7 @@ function Login() {
                 required
                 className="appearance-none rounded-b-md relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#D8C287] focus:border-[#D8C287] focus:z-10 sm:text-sm pr-10"
                 placeholder="Password"
+                autoComplete="current-password"
                 value={formData.password}
                 onChange={handleChange}
               />

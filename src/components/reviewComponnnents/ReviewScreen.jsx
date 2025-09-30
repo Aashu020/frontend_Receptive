@@ -6,6 +6,7 @@ function ReviewScreen({ onClose }) {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(false);
+  const BaseUrl = import.meta.env.VITE_BASE_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ function ReviewScreen({ onClose }) {
 
       // Send POST request with token
       const token = localStorage.getItem('token'); // adjust if you store JWT elsewhere
-      await axios.post('https://backend-receptive.onrender.com/api/reviews/', data, {
+      await axios.post(`${BaseUrl}/api/reviews/`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'

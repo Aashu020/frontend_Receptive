@@ -11,6 +11,9 @@ function Reviews() {
   const [reviews, setReviews] = useState([]);
   const userId = localStorage.getItem("user");
   const userToken = localStorage.getItem("token");
+  const BaseUrl = import.meta.env.VITE_BASE_URL;
+
+  console.log("Base URL:", BaseUrl);
 
   useEffect(() => {
   const fetchReviews = async () => {
@@ -18,11 +21,11 @@ function Reviews() {
       const token = localStorage.getItem("token");
       const storedUserId = localStorage.getItem("user"); // must be set at login
 
-      const res = await axios.get("https://backend-receptive.onrender.com/api/reviews", {
+      const res = await axios.get(`${BaseUrl}/api/reviews`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {}
       });
 
-      console.log("Backend response:", res.data);
+      console.log("Backend :", res.data);
 
       const allReviews = res.data.reviews || [];
 
@@ -79,7 +82,7 @@ function Reviews() {
 
     try {
       const res = await fetch(
-        `https://backend-receptive.onrender.com/api/reviews/${reviewId}/like`,
+        `${BaseUrl}/api/reviews/${reviewId}/like`,
         {
           method: "POST",
           headers: {

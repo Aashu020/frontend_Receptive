@@ -75,6 +75,7 @@ function Register() {
                 className="appearance-none rounded-t-md relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#D8C287] focus:border-[#D8C287] focus:z-10 sm:text-sm"
                 placeholder="Full Name"
                 value={formData.name}
+                
                 onChange={handleChange}
               />
             </div>
@@ -96,6 +97,7 @@ function Register() {
                 required
                 className="appearance-none relative block w-full px-3 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-[#D8C287] focus:border-[#D8C287] focus:z-10 sm:text-sm pr-10"
                 placeholder="Password"
+                autoComplete="new-password"
                 value={formData.password}
                 onChange={handleChange}
               />

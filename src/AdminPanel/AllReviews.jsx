@@ -4,16 +4,16 @@ import AdminLayout from "../components/adminComponents/AdminLayout";
 
 const AllReviews = () => {
   const [reviews, setReviews] = useState([]);
-
+  const BaseUrl = import.meta.env.VITE_BASE_URL;
   // Fetch reviews on mount
   useEffect(() => {
     const fetchReviews = async () => {
       try {
         // const token = localStorage.getItem("token"); // admin token
-        const res = await axios.get("https://backend-receptive.onrender.com/api/reviews", {
+        const res = await axios.get(`${BaseUrl}/api/reviews`, {
           // headers: { Authorization: `Bearer ${token}` },
         });
-        console.log(res.data.reviews);
+        console.log(res.data.reviews,"kdjdj");
 
         // Only keep not-approved reviews
         const unapproved = (res.data.reviews || []).filter(
@@ -36,7 +36,7 @@ const AllReviews = () => {
   try {
     const token = localStorage.getItem("token");
     const res = await axios.put(
-      `https://backend-receptive.onrender.com/api/reviews/${reviewId}/approve`,
+      `${BaseUrl}/api/reviews/${reviewId}/approve`,
       {},
       {
         headers: { Authorization: `Bearer ${token}` },
@@ -60,7 +60,7 @@ const deleteReview = async (reviewId) => {
   try {
     const token = localStorage.getItem("token");
     const res = await axios.delete(
-      `https://backend-receptive.onrender.com/api/reviews/${reviewId}`,
+      `${BaseUrl}/api/reviews/${reviewId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

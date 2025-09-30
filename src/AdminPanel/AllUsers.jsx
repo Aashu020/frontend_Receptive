@@ -5,11 +5,11 @@ import axios from "axios";
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
   const token = localStorage.getItem("token"); // assuming admin token stored here
-
+  const BaseUrl = import.meta.env.VITE_BASE_URL;
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("https://backend-receptive.onrender.com/api/auth", {
+        const res = await axios.get(`${BaseUrl}/api/auth`, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         });
         if (res.data.success) setUsers(res.data.users);
@@ -27,7 +27,7 @@ const AllUsers = () => {
 
     try {
       const token = localStorage.getItem("token"); // Make sure token is fetched
-      const res = await axios.delete(`https://backend-receptive.onrender.com/api/auth/delete/${userId}`, {
+      const res = await axios.delete(`${BaseUrl}/api/auth/delete/${userId}`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
 

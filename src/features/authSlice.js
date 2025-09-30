@@ -1,9 +1,10 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
 // Example: Replace with your backend URL
-const API_URL = "https://backend-receptive.onrender.com/api/auth";
+const BaseUrl = import.meta.env.VITE_BASE_URL;
+
+const API_URL = `${BaseUrl}/api/auth`;
 // --- Register User ---
 export const registerUser = createAsyncThunk(
   "auth/registerUser",
