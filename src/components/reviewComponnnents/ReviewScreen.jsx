@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { FiPlus } from "react-icons/fi";
-
+import BaseUrl from "../../../url";
 function ReviewScreen({ onClose }) {
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
   const [images, setImages] = useState([]); // Store selected images
-  const BaseUrl = import.meta.env.VITE_BASE_URL;
+  // const BaseUrl = import.meta.env.VITE_BASE_URL;
 
   // Add a new image input
   const handleAddImageInput = () => {

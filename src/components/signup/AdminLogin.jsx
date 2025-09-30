@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import BaseUrl from "../../../url";
 
 const AdminLogin = () => {
   const [email, setEmail] = useState("");

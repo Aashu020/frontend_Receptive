@@ -1,7 +1,7 @@
 // SuccessStory.jsx
 import React, { useState } from "react";
 import Reviews from "./Reviews";
-import receptiveThumbnial from "../assets/images/recpetive-thumbnial.png"
+// import receptiveThumbnial from "../assets/images/recpetive-thumbnial.png"
 
 // Grab images from multiple folders (recursive glob)
 const images = import.meta.glob(
@@ -150,7 +150,7 @@ function SuccessStory() {
                       <video
                         className="w-full h-[350px] object-fit"
                         controls
-                       poster={receptiveThumbnial}
+                      //  poster={receptiveThumbnial}
                       >
                         <source src={video.src} type="video/mp4" />
                         Your browser does not support the video tag.

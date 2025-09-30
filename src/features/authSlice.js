@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import BaseUrl from "../../url";
 // Example: Replace with your backend URL
-const BaseUrl = import.meta.env.VITE_BASE_URL;
+// const BaseUrl = import.meta.env.VITE_BASE_URL;
 
 const API_URL = `${BaseUrl}/api/auth`;
 // --- Register User ---

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import AdminLayout from "../components/adminComponents/AdminLayout";
-
+import BaseUrl from "../../url";
 const AllReviews = () => {
   const [reviews, setReviews] = useState([]);
-  const BaseUrl = import.meta.env.VITE_BASE_URL;
+  // const BaseUrl = import.meta.env.VITE_BASE_URL;
   // Fetch reviews on mount
   useEffect(() => {
     const fetchReviews = async () => {

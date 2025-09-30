@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import AdminLayout from "../components/adminComponents/AdminLayout";
 import axios from "axios";
-
+import BaseUrl from "../../url";
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
   const token = localStorage.getItem("token"); // assuming admin token stored here
-  const BaseUrl = import.meta.env.VITE_BASE_URL;
+  // const BaseUrl = import.meta.env.VITE_BASE_URL;
   useEffect(() => {
     const fetchUsers = async () => {
       try {

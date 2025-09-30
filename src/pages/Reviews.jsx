@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import ReviewScreen from '../components/reviewComponnnents/ReviewScreen';
 import axios from 'axios';
 import { AiFillHeart } from "react-icons/ai";
+import BaseUrl from "../../url";
 
 function Reviews() {
   const { user } = useSelector(state => state.auth);
@@ -13,7 +14,7 @@ function Reviews() {
   const [selectedImage, setSelectedImage] = useState(null); // For modal
   const userId = localStorage.getItem("user");
   const userToken = localStorage.getItem("token");
-  const BaseUrl = import.meta.env.VITE_BASE_URL;
+  // const BaseUrl = import.meta.env.VITE_BASE_URL;
 
   console.log("Base URL:", BaseUrl);
 
