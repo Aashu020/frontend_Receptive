@@ -492,7 +492,7 @@ const Navbar = () => {
                 <img
                   src={logo}
                   alt="Receptive Logo"
-                  className="h-11 lg:h-20 transition-all duration-300 group-hover:scale-105"
+                  className="h-14 lg:h-20 transition-all duration-300 group-hover:scale-105"
                 />
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div>
               </div>
@@ -566,12 +566,12 @@ const Navbar = () => {
                       Choose Your Country
                     </h3>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-7 gap-3 xl:gap-4">
+                  <div className="grid grid-cols-2  md:grid-cols-4 xl:grid-cols-7 gap-3 xl:gap-4">
                     {Object.keys(countries).map((country, index) => (
                       <button
                         key={country}
                         onClick={() => handleCountryClick(country)}
-                        className="text-left p-4 xl:p-5 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl relative overflow-hidden group bg-white text-gray-700 hover:bg-gradient-to-br hover:from-white hover:to-gray-50 shadow-md border border-gray-200 hover:border-[#D8C287]"
+                        className="text-left p-4 xl:p-5 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl relative overflow-hidden group bg-[#c4a567] text-[#0C3B34] shadow-md border border-gray-200 hover:border-[#D8C287]"
                         style={{ animationDelay: `${index * 50}ms` }}
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
@@ -581,7 +581,7 @@ const Navbar = () => {
                           </span>
                           <FiChevronRight className="w-4 h-4 xl:w-5 xl:h-5 transition-transform duration-300 group-hover:translate-x-1" />
                         </div>
-                        <div className="mt-2 text-xs text-gray-500 relative z-10">
+                        <div className="mt-2 text-xs text-[#0C3B34] relative z-10">
                           {countries[country].length} visa
                         </div>
                         <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-br from-[#D8C287] to-[#e6d098] rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
@@ -667,13 +667,13 @@ const Navbar = () => {
                                 <button
                                   key={country}
                                   onClick={() => handleCountryClick(country)}
-                                  className="w-full text-left p-3 rounded-xl flex items-center justify-between transition-all duration-300 bg-white text-gray-700 hover:bg-gray-50 shadow-sm border border-gray-200 hover:border-[#D8C287]"
+                                  className="w-full text-left p-3 rounded-xl flex items-center justify-between transition-all duration-300 bg-[#c4a567] text-[#0C3B34] hover:bg-gray-50 shadow-sm border border-gray-200 hover:border-[#D8C287]"
                                 >
                                   <div>
                                     <span className="font-semibold">
                                       {country}
                                     </span>
-                                    <div className="text-xs text-gray-500">
+                                    <div className="text-xs text-[#0C3B34]">
                                       {countries[country].length} Programs
                                     </div>
                                   </div>
