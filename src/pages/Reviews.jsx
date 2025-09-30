@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import ReviewScreen from '../components/reviewComponnnents/ReviewScreen';
 import axios from 'axios';
-import { AiFillHeart } from "react-icons/ai";
-import BaseUrl from "../../url";
+import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
+import BaseUrl from '../../url';
 
 function Reviews() {
   const { user } = useSelector(state => state.auth);
@@ -11,86 +11,259 @@ function Reviews() {
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [expandedImages, setExpandedImages] = useState({});
-  const [selectedImage, setSelectedImage] = useState(null); // For modal
-  const userId = localStorage.getItem("user");
-  const userToken = localStorage.getItem("token");
-  // const BaseUrl = import.meta.env.VITE_BASE_URL;
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [editReview, setEditReview] = useState(null);
+  const userId = user?._id || localStorage.getItem('user');
+  const userToken = localStorage.getItem('token');
+  const [newImagePreviews, setNewImagePreviews] = useState([]);
+  const [newImageFiles, setNewImageFiles] = useState([]);
+  const [existingImages, setExistingImages] = useState([]);
 
-  console.log("Base URL:", BaseUrl);
+  console.log('Base URL:', BaseUrl);
+
+  // Fetch reviews
+  const fetchReviews = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      const storedUserId = localStorage.getItem('user');
+
+      const res = await axios.get(`${BaseUrl}/api/reviews`, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
+
+      console.log('Backend response:', res.data);
+
+      const allReviews = res.data.reviews || [];
+
+      // Filter: show approved OR own reviews only
+      const filtered = allReviews.filter((r) => {
+        if (r.isapproved) return true;
+        if (storedUserId) {
+          const authorId = typeof r.author === 'string' ? r.author : r.author?._id;
+          if (authorId === storedUserId) return true;
+        }
+        return false;
+      });
+
+      console.log('Filtered reviews:', filtered);
+
+      // Map to frontend-friendly shape
+      const formatted = filtered.map((r) => {
+        const likes = r.likes || [];
+        const authorName =
+          typeof r.author === 'string' ? 'Unknown' : r.author?.name || 'Unknown';
+        const authorId = typeof r.author === 'string' ? r.author : r.author?._id;
+
+        const images = (r.images || [])
+          .filter(img => img && typeof img === 'string' && (img.endsWith('.jpg') || img.endsWith('.jpeg') || img.endsWith('.png')))
+          .map(img => {
+            // Ensure path starts with /uploads and prepend BaseUrl
+            const imagePath = img.startsWith('/uploads/') ? img : `/uploads/${img}`;
+            const imageUrl = img.startsWith('http://') || img.startsWith('https://') ? img : `${BaseUrl}${imagePath}`;
+            console.log('Raw image path:', img);
+            console.log('Normalized image URL for review', r._id, ':', imageUrl);
+            return imageUrl;
+          });
+
+        return {
+          id: r._id,
+          name: r.displayName || authorName,
+          text: r.content,
+          rating: Number(r.ratings) || 0,
+          date: new Date(r.createdAt).toLocaleDateString(),
+          likes: likes,
+          totalLikes: likes.length,
+          isLiked: storedUserId ? likes.some((id) => id.toString() === storedUserId) : false,
+          author: authorId,
+          images,
+        };
+      });
+
+      setReviews(formatted);
+      console.log('Formatted reviews:', formatted);
+    } catch (err) {
+      console.error('Error fetching reviews:', err);
+    }
+  };
 
   useEffect(() => {
-    const fetchReviews = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const storedUserId = localStorage.getItem("user");
-
-        const res = await axios.get(`${BaseUrl}/api/reviews`, {
-          headers: token ? { Authorization: `Bearer ${token}` } : {}
-        });
-
-        console.log("Backend :", res.data);
-
-        const allReviews = res.data.reviews || [];
-
-        // Filter: show approved OR own reviews only
-        const filtered = allReviews.filter((r) => {
-          if (r.isapproved) return true;
-          if (storedUserId) {
-            const authorId = typeof r.author === "string" ? r.author : r.author?._id;
-            if (authorId === storedUserId) return true;
-          }
-          return false;
-        });
-
-        console.log("Filtered reviews:", filtered);
-
-        // Map to frontend-friendly shape
-        const formatted = filtered.map((r) => {
-          const likes = r.likes || [];
-          const authorName =
-            typeof r.author === "string" ? "Unknown" : r.author?.name || "Unknown";
-
-          return {
-            id: r._id,
-            name: r.displayName || authorName,
-            text: r.content,
-            rating: Number(r.ratings) || 0,
-            date: new Date(r.createdAt).toLocaleDateString(),
-            likes: likes,
-            totalLikes: likes.length,
-            isLiked: storedUserId ? likes.some((id) => id.toString() === storedUserId) : false,
-            // FIX: Convert relative paths to full URLs
-            images: (r.images || []).map(img => {
-              // If image already has http/https, return as is
-              if (img.startsWith('http://') || img.startsWith('https://')) {
-                return img;
-              }
-              // Otherwise, prepend the BaseUrl
-              return `${BaseUrl}${img}`;
-            }),
-          };
-        });
-
-        setReviews(formatted);
-        console.log("Formatted reviews:", formatted);
-      } catch (err) {
-        console.error("Error fetching reviews", err);
-      }
-    };
-
     fetchReviews();
   }, []);
 
+  // Handle delete review
+  const handleDelete = async (reviewId) => {
+    if (!window.confirm('Are you sure you want to delete this review?')) return;
+
+    try {
+      const url = `${BaseUrl}/api/reviews/${reviewId}/delete`;
+      console.log('DELETE request to:', url);
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('No token found. Please log in.');
+      }
+
+      const res = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) {
+        const errData = await res.json();
+        console.error('Delete failed:', errData);
+        throw new Error(errData.message || 'Failed to delete review');
+      }
+
+      console.log('Delete successful for review:', reviewId);
+      setReviews((prev) => prev.filter((r) => r.id !== reviewId));
+      alert('Review deleted!');
+    } catch (err) {
+      console.error('Delete error:', err.message);
+      alert(err.message);
+    }
+  };
+
+  // Initialize existing images when opening edit form
+  const openEditForm = (review) => {
+    console.log('Opening edit form for review:', review.id);
+    setEditReview(review);
+    setExistingImages(review.images || []);
+    setNewImagePreviews([]);
+    setNewImageFiles([]);
+  };
+
+  // Handle new image preview
+  const handleNewImagePreview = (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length + newImageFiles.length + existingImages.length > 5) {
+      alert('You can upload a maximum of 5 images in total');
+      return;
+    }
+
+    const previews = files.map(file => URL.createObjectURL(file));
+    console.log('New images selected:', files.map(f => f.name));
+    setNewImagePreviews([...newImagePreviews, ...previews]);
+    setNewImageFiles([...newImageFiles, ...files]);
+  };
+
+  // Remove existing image
+  const handleRemoveExistingImage = (index) => {
+    console.log('Removing existing image at index:', index);
+    const updatedImages = existingImages.filter((_, i) => i !== index);
+    setExistingImages(updatedImages);
+  };
+
+  // Remove new image
+  const handleRemoveNewImage = (index) => {
+    console.log('Removing new image at index:', index);
+    const updatedPreviews = newImagePreviews.filter((_, i) => i !== index);
+    const updatedFiles = newImageFiles.filter((_, i) => i !== index);
+    setNewImagePreviews(updatedPreviews);
+    setNewImageFiles(updatedFiles);
+  };
+
+  // Handle edit with images
+  const handleEditWithImages = async (reviewId, formData) => {
+    console.log('Editing review:', reviewId);
+    console.log('FormData contents:', Array.from(formData.entries()));
+
+    try {
+      if (!reviewId) {
+        throw new Error('Review ID is missing');
+      }
+
+      const trimmedReviewId = String(reviewId).trim();
+      const url = `${BaseUrl}/api/reviews/${trimmedReviewId}`;
+      console.log('PUT request to:', url);
+
+      const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error('Edit failed:', errorData);
+        throw new Error(errorData.message || 'Failed to update review');
+      }
+
+      const data = await response.json();
+      console.log('Edit successful:', data.message);
+      console.log('Updated review images:', data.review.images);
+      await fetchReviews();
+      closeEditForm();
+      return data.review;
+    } catch (error) {
+      console.error('Error updating review:', error);
+      alert(`Failed to update review: ${error.message}`);
+    }
+  };
+
+  // Handle edit form submission
+  const handleEditSubmit = async (e, reviewId) => {
+    e.preventDefault();
+
+    const rating = e.target.rating.value;
+    const comment = e.target.comment.value.trim();
+
+    if (!rating || !comment) {
+      alert('Please provide both a rating and a comment');
+      return;
+    }
+
+    console.log('Submitting edit for review:', reviewId, 'Rating:', rating, 'Comment:', comment);
+
+    const formData = new FormData();
+    formData.append('rating', rating);
+    formData.append('comment', comment);
+
+    // Normalize existing image paths for backend
+    const imagesToSend = existingImages.map(img => {
+      // Remove BaseUrl if present
+      let path = img.startsWith(BaseUrl) ? img.replace(BaseUrl, '') : img;
+      // Ensure path starts with /uploads
+      path = path.startsWith('/uploads/') ? path : `/uploads/${path}`;
+      return path;
+    });
+
+    console.log('Existing images to send:', imagesToSend);
+    formData.append('existingImages', JSON.stringify(imagesToSend));
+
+    console.log('New image files:', newImageFiles.map(f => f.name));
+    newImageFiles.forEach(file => {
+      formData.append('images', file);
+    });
+
+    await handleEditWithImages(reviewId, formData);
+  };
+
+  // Close edit form
+  const closeEditForm = () => {
+    console.log('Closing edit form');
+    setEditReview(null);
+    setNewImagePreviews([]);
+    setNewImageFiles([]);
+    setExistingImages([]);
+    newImagePreviews.forEach(url => URL.revokeObjectURL(url));
+  };
+
   // Toggle images visibility for a review
   const toggleImages = (reviewId) => {
-    setExpandedImages((prev) => ({
-      ...prev,
-      [reviewId]: !prev[reviewId],
-    }));
+    setExpandedImages((prev) => {
+      const newState = { ...prev, [reviewId]: !prev[reviewId] };
+      console.log('Toggled images for review:', reviewId, 'New state:', newState);
+      return newState;
+    });
   };
 
   // Open image in modal
   const openImageModal = (imageUrl) => {
+    console.log('Opening image modal for URL:', imageUrl);
     setSelectedImage(imageUrl);
   };
 
@@ -99,59 +272,13 @@ function Reviews() {
     setSelectedImage(null);
   };
 
-  const toggleLike = async (reviewId) => {
-    if (!userId || !userToken) {
-      setShowLoginPrompt(true);
-      return;
-    }
-
-    try {
-      const res = await fetch(
-        `${BaseUrl}/api/reviews/${reviewId}/like`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${userToken}`,
-          },
-        }
-      );
-      const data = await res.json();
-
-      if (data.success) {
-        console.log("userId in toggleLike:", userId, "likes:", data.review.likes);
-        setReviews(prevReviews =>
-          prevReviews.map(review =>
-            review.id === reviewId
-              ? {
-                ...review,
-                likes: data.review.likes,
-                totalLikes: data.review.likes.length,
-                isLiked: data.review.likes.some(id => id.toString() === userId)
-              }
-              : review
-          )
-        );
-      } else {
-        console.error("API error:", data.message);
-      }
-    } catch (err) {
-      console.error("Error liking review:", err);
-    }
-  };
-
   // Render stars for ratings
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
-      <span key={i} className={i < rating ? "text-yellow-400" : "text-gray-300"}>
+      <span key={i} className={i < rating ? 'text-yellow-400' : 'text-gray-300'}>
         ★
       </span>
     ));
-  };
-
-  // Function to handle external link redirection
-  const handleExternalRedirect = (url) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
   };
 
   // Handle add review button click
@@ -166,6 +293,7 @@ function Reviews() {
   // Handle closing the review form
   const handleCloseReviewForm = () => {
     setShowReviewForm(false);
+    fetchReviews();
   };
 
   // Handle closing the login prompt
@@ -181,8 +309,19 @@ function Reviews() {
           onClick={handleAddReviewClick}
           className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] hover:from-[#1a5a4f] hover:to-[#0C3B34] text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 mr-2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+            />
           </svg>
           Add Review
         </button>
@@ -196,11 +335,212 @@ function Reviews() {
               onClick={handleCloseReviewForm}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
             <ReviewScreen onClose={handleCloseReviewForm} />
+          </div>
+        </div>
+      )}
+
+      {/* Edit Review Form Modal */}
+      {editReview && (
+        <div className="fixed inset-0 backdrop-blur bg-opacity-50 bg-black/30 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={closeEditForm}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+            <h3 className="text-xl font-bold text-[#0C3B34] mb-4">Edit Review</h3>
+            <form onSubmit={(e) => handleEditSubmit(e, editReview.id)}>
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">Rating</label>
+                <select
+                  name="rating"
+                  defaultValue={editReview.rating}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#0C3B34] focus:ring-[#0C3B34] p-2 border"
+                >
+                  {[1, 2, 3, 4, 5].map(num => (
+                    <option key={num} value={num}>{num}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700">Comment</label>
+                <textarea
+                  name="comment"
+                  defaultValue={editReview.text}
+                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#0C3B34] focus:ring-[#0C3B34] p-2 border"
+                  rows="4"
+                />
+              </div>
+
+              {/* Existing Images */}
+              {existingImages && existingImages.length > 0 && (
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Current Images</label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {existingImages.map((image, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={image}
+                          alt={`Review ${index + 1}`}
+                          className="w-full h-24 object-cover rounded-lg"
+                          onError={(e) => {
+                            console.error(`Failed to load existing image: ${image}`);
+                            e.target.src = '/images/fallback-image.jpg'; // Ensure this exists
+                          }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveExistingImage(index)}
+                          className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* New Images Upload */}
+              <div className="mb-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">Add New Images</label>
+                <div className="flex items-center justify-center w-full">
+                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                      <svg
+                        className="w-8 h-8 mb-2 text-gray-500"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 20 16"
+                      >
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                        />
+                      </svg>
+                      <p className="mb-2 text-sm text-gray-500">
+                        <span className="font-semibold">Click to upload</span> or drag and drop
+                      </p>
+                      <p className="text-xs text-gray-500">PNG, JPG or JPEG (MAX. 5 images)</p>
+                    </div>
+                    <input
+                      type="file"
+                      name="images"
+                      multiple
+                      accept="image/*"
+                      onChange={handleNewImagePreview}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+              </div>
+
+              {/* Preview New Images */}
+              {newImagePreviews && newImagePreviews.length > 0 && (
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">New Images Preview</label>
+                  <div className="grid grid-cols-3 gap-2">
+                    {newImagePreviews.map((preview, index) => (
+                      <div key={index} className="relative group">
+                        <img
+                          src={preview}
+                          alt={`New ${index + 1}`}
+                          className="w-full h-24 object-cover rounded-lg"
+                          onError={(e) => {
+                            console.error(`Failed to load new image preview: ${preview}`);
+                            e.target.src = '/images/fallback-image.jpg'; // Ensure this exists
+                          }}
+                        />
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveNewImage(index)}
+                          className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            className="h-4 w-4"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M6 18L18 6M6 6l12 12"
+                            />
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              <div className="flex justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={closeEditForm}
+                  className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-400"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="bg-[#0C3B34] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#1a5a4f]"
+                >
+                  Save
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
@@ -213,13 +553,35 @@ function Reviews() {
               onClick={handleCloseLoginPrompt}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
             <div className="text-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 mx-auto text-[#0C3B34]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-16 w-16 mx-auto text-[#0C3B34]"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                />
               </svg>
               <h3 className="text-xl font-bold text-[#0C3B34] mt-4">Login Required</h3>
               <p className="text-gray-600 mt-2">Please log in to like reviews.</p>
@@ -236,7 +598,7 @@ function Reviews() {
 
       {/* Image Modal - Full Screen View */}
       {selectedImage && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/10 bg-opacity-90 flex items-center justify-center z-[1000] p-4"
           onClick={closeImageModal}
         >
@@ -245,8 +607,19 @@ function Reviews() {
             className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-[70]"
             aria-label="Close image"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-10 w-10"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
           <div className="relative max-w-7xl max-h-[90vh] w-full h-full flex items-center justify-center">
@@ -255,6 +628,10 @@ function Reviews() {
               alt="Full size review"
               className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
               onClick={(e) => e.stopPropagation()}
+              onError={(e) => {
+                console.error(`Failed to load modal image: ${selectedImage}`);
+                e.target.src = '/images/fallback-image.jpg'; // Ensure this exists
+              }}
             />
           </div>
         </div>
@@ -262,7 +639,9 @@ function Reviews() {
 
       {/* Header */}
       <div className="text-center mb-8 md:mb-12">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0C3B34] mb-3 md:mb-4">What Our Clients Say</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0C3B34] mb-3 md:mb-4">
+          What Our Clients Say
+        </h1>
         <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto px-2 sm:px-0">
           For over a decade, we've helped thousands of clients achieve their immigration dreams.
           Here's what some of them have to say about their experience with our services.
@@ -277,13 +656,19 @@ function Reviews() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
         <div className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] p-3 md:p-4 rounded-lg text-white text-center">
           <div className="text-xl md:text-2xl font-bold">
-           4.9
+            {reviews.length > 0
+              ? (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1)
+              : '0.0'}
           </div>
           <div className="text-xs md:text-sm opacity-90">Average Rating</div>
           <div className="flex justify-center mt-1 text-sm md:text-base">
-            {renderStars(Math.round(reviews.length > 0
-              ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
-              : 0))}
+            {renderStars(
+              Math.round(
+                reviews.length > 0
+                  ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
+                  : 0
+              )
+            )}
           </div>
         </div>
         <div className="bg-gradient-to-r from-[#D8C287] to-[#c4a567] p-3 md:p-4 rounded-lg text-[#0C3B34] text-center">
@@ -307,7 +692,7 @@ function Reviews() {
             <div className="flex justify-between items-start mb-3 md:mb-4">
               <div className="flex items-center space-x-2 md:space-x-3">
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg">
-                  {review.name.split(" ").map((n) => n[0]).join("")}
+                  {review.name.split(' ').map((n) => n[0]).join('')}
                 </div>
                 <div>
                   <h3 className="font-bold text-base md:text-lg text-[#0C3B34]">
@@ -321,9 +706,7 @@ function Reviews() {
                 </div>
               </div>
               <div className="text-right">
-                <div className="flex mb-1 text-sm md:text-base">
-                  {renderStars(review.rating)}
-                </div>
+                <div className="flex mb-1 text-sm md:text-base">{renderStars(review.rating)}</div>
                 <div className="text-xs text-gray-500">{review.rating}</div>
               </div>
             </div>
@@ -341,24 +724,46 @@ function Reviews() {
               </div>
             </div>
 
-            {/* Bottom Border - Like Button and Images */}
+            {/* Bottom Border - Delete/Edit Buttons and Images */}
             <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-[#D8C287] flex items-center gap-2">
-              <button
-                onClick={() => toggleLike(review.id)}
-                className="p-1 rounded-full hover:scale-110 transition-transform"
-              >
-                <AiFillHeart className="text-red-500" size={22} />
-              </button>
-              <p className="text-sm md:text-base text-[#2c2c2c]">{review.totalLikes}</p>
+              {(user?.isAdmin || (userId && review.author?.toString() === userId?.toString())) && (
+                <>
+                  <button
+                    onClick={() => handleDelete(review.id)}
+                    className="p-1 rounded-full hover:scale-110 transition-transform"
+                    title="Delete Review"
+                  >
+                    <AiOutlineDelete className="text-red-500" size={22} />
+                  </button>
+                  <button
+                    onClick={() => openEditForm(review)}
+                    className="p-1 rounded-full hover:scale-110 transition-transform"
+                    title="Edit Review"
+                  >
+                    <AiOutlineEdit className="text-orange-500" size={22} />
+                  </button>
+                </>
+              )}
               {review.images?.length > 0 && (
                 <button
                   onClick={() => toggleImages(review.id)}
                   className="ml-auto text-sm md:text-base text-[#0C3B34] hover:text-[#1a5a4f] font-semibold flex items-center gap-1"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
                   </svg>
-                  {expandedImages[review.id] ? "Hide Images" : `View Images (${review.images.length})`}
+                  {expandedImages[review.id] ? 'Hide Images' : `View Images (${review.images.length})`}
                 </button>
               )}
             </div>
@@ -366,61 +771,47 @@ function Reviews() {
             {/* Images Section */}
             {expandedImages[review.id] && review.images?.length > 0 && (
               <div className="mt-4 grid grid-cols-2 gap-2">
-                {review.images.map((img, index) => (
-                  <div
-                    key={index}
-                    className="relative group cursor-pointer overflow-hidden rounded-lg"
-                    onClick={() => openImageModal(img)}
-                  >
-                    <img
-                      src={img}
-                      alt={`Review image ${index + 1}`}
-                      className="h-32 w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
-                      onError={(e) => {
-                        console.error(`Failed to load image: ${img}`);
-                        e.target.style.display = "none";
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-black\20 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-                      </svg>
+                {review.images.map((img, index) => {
+                  console.log('Rendering image for review', review.id, ':', img);
+                  return (
+                    <div
+                      key={index}
+                      className="relative group cursor-pointer overflow-hidden rounded-lg"
+                      onClick={() => openImageModal(img)}
+                    >
+                      <img
+                        src={img}
+                        alt={`Review image ${index + 1}`}
+                        className="h-32 w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
+                        onError={(e) => {
+                          console.error(`Failed to load image: ${img}`);
+                          e.target.src = '/images/fallback-image.jpg'; // Ensure this exists
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-black/20 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                          />
+                        </svg>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             )}
           </div>
         ))}
       </div>
-
-      {/* External Review Platforms
-      <div className="mb-8 md:mb-12 mt-8 md:mt-10 bg-gradient-to-r from-[#f8f5ea] to-[#faf7ee] p-4 md:p-6 rounded-xl border border-[#D8C287]">
-        <h3 className="text-lg md:text-xl font-bold text-[#0C3B34] mb-3 md:mb-4 text-center">Read More Reviews on These Platforms</h3>
-        <p className="text-sm md:text-base text-gray-700 text-center mb-4 md:mb-6 max-w-2xl mx-auto px-2 md:px-0">
-          Our clients have shared their experiences on various platforms. Click below to read more reviews about our services.
-        </p>
-        <div className="flex flex-col sm:flex-row justify-center gap-3 md:gap-4 mt-4 md:mt-6">
-          <button
-            onClick={() => handleExternalRedirect('https://www.justdial.com/Mumbai/Receptive-Solutions-Malad-West/022PXX22-XX22-210525154644-Y9W8_BZDET')}
-            className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] hover:from-[#1a5a4f] hover:to-[#0C3B34] text-white font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm md:text-base"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-            </svg>
-            Read Reviews on JustDial
-          </button>
-          <button
-            onClick={() => handleExternalRedirect('https://www.mouthshut.com/product-reviews/receptive-solutaions-reviews-926102567')}
-            className="flex items-center justify-center gap-2 bg-gradient-to-r from-[#D8C287] to-[#c4a567] hover:from-[#c4a567] hover:to-[#D8C287] text-[#0C3B34] font-semibold py-2 md:py-3 px-4 md:px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg text-sm md:text-base"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 md:h-5 md:w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-            </svg>
-            Read Reviews on MouthShut
-          </button>
-        </div>
-      </div> */}
     </div>
   );
 }
