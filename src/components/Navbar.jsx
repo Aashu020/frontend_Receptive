@@ -482,7 +482,7 @@ const Navbar = () => {
             window.innerWidth >= 768 && isUpperHeaderVisible ? "2.75rem" : "0",
         }}
       >
-        <div className="container mx-auto px-4 lg:px-6">
+        <div className="container mx-auto px-4 lg:px-6 py-2">
           <div className="flex justify-between items-center h-16 lg:h-20">
             <div
               className="flex items-center group cursor-pointer"
@@ -492,7 +492,7 @@ const Navbar = () => {
                 <img
                   src={logo}
                   alt="Receptive Logo"
-                  className="h-11 lg:h-13 transition-all duration-300 group-hover:scale-105"
+                  className="h-11 lg:h-20 transition-all duration-300 group-hover:scale-105"
                 />
                 <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div>
               </div>

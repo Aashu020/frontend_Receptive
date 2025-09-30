@@ -276,9 +276,7 @@ function Reviews() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
         <div className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] p-3 md:p-4 rounded-lg text-white text-center">
           <div className="text-xl md:text-2xl font-bold">
-            {reviews.length > 0
-              ? (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1)
-              : "0.0"}
+           4.9
           </div>
           <div className="text-xs md:text-sm opacity-90">Average Rating</div>
           <div className="flex justify-center mt-1 text-sm md:text-base">
@@ -288,17 +286,17 @@ function Reviews() {
           </div>
         </div>
         <div className="bg-gradient-to-r from-[#D8C287] to-[#c4a567] p-3 md:p-4 rounded-lg text-[#0C3B34] text-center">
-          <div className="text-xl md:text-2xl font-bold">2000+</div>
+          <div className="text-xl md:text-2xl font-bold">3000+</div>
           <div className="text-xs md:text-sm font-semibold">Happy Clients</div>
         </div>
         <div className="bg-gradient-to-r from-green-500 to-green-600 p-3 md:p-4 rounded-lg text-white text-center">
-          <div className="text-xl md:text-2xl font-bold">70%</div>
+          <div className="text-xl md:text-2xl font-bold">95%</div>
           <div className="text-xs md:text-sm opacity-90">Success Rate</div>
         </div>
       </div>
 
       {/* Reviews Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-start">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-start mb-20">
         {reviews.map((review) => (
           <div
             key={review.id}
@@ -395,7 +393,7 @@ function Reviews() {
         ))}
       </div>
 
-      {/* External Review Platforms */}
+      {/* External Review Platforms
       <div className="mb-8 md:mb-12 mt-8 md:mt-10 bg-gradient-to-r from-[#f8f5ea] to-[#faf7ee] p-4 md:p-6 rounded-xl border border-[#D8C287]">
         <h3 className="text-lg md:text-xl font-bold text-[#0C3B34] mb-3 md:mb-4 text-center">Read More Reviews on These Platforms</h3>
         <p className="text-sm md:text-base text-gray-700 text-center mb-4 md:mb-6 max-w-2xl mx-auto px-2 md:px-0">
@@ -421,7 +419,7 @@ function Reviews() {
             Read Reviews on MouthShut
           </button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

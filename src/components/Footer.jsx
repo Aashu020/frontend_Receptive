@@ -94,11 +94,11 @@ function Footer() {
               <div className="flex space-x-6">
                 {['Receptive Group', 'Receptive Investment', 'Receptive Properties'].map((company, index) => (
                   <div key={index} className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-2 bg-white rounded-lg p-2 flex items-center justify-center">
+                    <div className="w-16 h-16 mx-auto mb-2 bg-[#D8C287] rounded-lg p-2 flex items-center justify-center">
                       <img 
                         src={portfolioLogos[company]} 
                         alt={`${company} logo`}
-                        className="max-w-full max-h-full object-contain"
+                        className="max-w-full max-h-full object-contain "
                       />
                     </div>
                     <span className="text-[#D8C287] text-sm font-medium">{company}</span>
@@ -144,7 +144,7 @@ function Footer() {
                 
                 {/* UAE Branch */}
                 <div className="bg-[#092620]/30 p-4 rounded-lg">
-                  <h4 className="font-medium text-[#D8C287] mb-2">🇦🇪 UAE Branch</h4>
+                  <h4 className="font-medium text-[#D8C287] mb-2"> UAE Branch</h4>
                   <p className="text-xs text-gray-300 mb-2">
                     Suite No -201, Al Salemiyah Tower, Deria Riggat Al Buteen, Dubai, UAE
                   </p>
@@ -152,9 +152,18 @@ function Footer() {
                   <p className="text-[#D8C287] text-xs">info@receptivegroup.com</p>
                 </div>
 
+                 <div className="bg-[#092620]/30 p-4 rounded-lg">
+                  <h4 className="font-medium text-[#D8C287] mb-2"> UK Branch</h4>
+                  <p className="text-xs text-gray-300 mb-2">
+                    PO Box 4385, 15801109 - COMPANIES HOUSE DEFAULT ADDRESS, Cardiff, CF14 8LH
+                  </p>
+                  <p className="text-[#D8C287] text-xs font-medium">+971 565344435</p>
+                  <p className="text-[#D8C287] text-xs">info@receptivegroup.com</p>
+                </div>
+
                 {/* Mumbai Branch */}
                 <div className="bg-[#092620]/30 p-4 rounded-lg">
-                  <h4 className="font-medium text-[#D8C287] mb-2">🇮🇳 Mumbai Branch</h4>
+                  <h4 className="font-medium text-[#D8C287] mb-2">(India) Mumbai Branch</h4>
                   <p className="text-xs text-gray-300 mb-2">
                     425 Gemstar Commerical Complex, Ramchandra Lane Extn, Kanchpada, Malad West, Mumbai 400064
                   </p>
@@ -164,7 +173,7 @@ function Footer() {
 
                 {/* Ahmedabad Branch */}
                 <div className="bg-[#092620]/30 p-4 rounded-lg">
-                  <h4 className="font-medium text-[#D8C287] mb-2">🇮🇳 Ahmedabad Branch</h4>
+                  <h4 className="font-medium text-[#D8C287] mb-2">(India) Ahmedabad Branch</h4>
                   <p className="text-xs text-gray-300 mb-2">
                     106, Dev Prime, Nr. Vodafone House, Corporate Road, Makarba, Ahmedabad - 380051
                   </p>

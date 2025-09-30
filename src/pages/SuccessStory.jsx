@@ -6,8 +6,8 @@ import receptiveThumbnial from "../assets/images/recpetive-thumbnial.png"
 // Grab images from multiple folders (recursive glob)
 const images = import.meta.glob(
   [
-    // "/src/assets/visaCopy/canada/*.{png,jpg,jpeg,svg}",
-    // "/src/assets/visaCopy/unitedKingdom/*.{png,jpg,jpeg,svg}",
+    "/src/assets/visaCopy/canada/*.{png,jpg,jpeg,svg}",
+    "/src/assets/visaCopy/unitedKingdom/*.{png,jpg,jpeg,svg}",
     "/src/assets/testimoniels/**/*.{png,jpg,jpeg,svg}",
   ],
   { eager: true }
