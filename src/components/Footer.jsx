@@ -117,7 +117,7 @@ function Footer() {
           </div>
 
           {/* Main Content Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3  mb-10">
             
             {/* Services - Updated with clickable links */}
             <div>
@@ -140,7 +140,7 @@ function Footer() {
             {/* Global Offices */}
             <div className="lg:col-span-2">
               <h3 className="text-lg font-semibold text-[#D8C287] mb-4">Global Offices</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                 
                 {/* UAE Branch */}
                 <div className="bg-[#092620]/30 p-4 rounded-lg">
@@ -163,7 +163,7 @@ function Footer() {
 
                 {/* Mumbai Branch */}
                 <div className="bg-[#092620]/30 p-4 rounded-lg">
-                  <h4 className="font-medium text-[#D8C287] mb-2">(India) Mumbai Branch</h4>
+                  <h4 className="font-medium text-[#D8C287] mb-2"> Mumbai Branch (India)</h4>
                   <p className="text-xs text-gray-300 mb-2">
                     425 Gemstar Commerical Complex, Ramchandra Lane Extn, Kanchpada, Malad West, Mumbai 400064
                   </p>
@@ -173,7 +173,7 @@ function Footer() {
 
                 {/* Ahmedabad Branch */}
                 <div className="bg-[#092620]/30 p-4 rounded-lg">
-                  <h4 className="font-medium text-[#D8C287] mb-2">(India) Ahmedabad Branch</h4>
+                  <h4 className="font-medium text-[#D8C287] mb-2"> Ahmedabad Branch (India)</h4>
                   <p className="text-xs text-gray-300 mb-2">
                     106, Dev Prime, Nr. Vodafone House, Corporate Road, Makarba, Ahmedabad - 380051
                   </p>

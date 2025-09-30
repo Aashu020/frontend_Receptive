@@ -11,6 +11,12 @@ const ContactPage = () => {
       email: "info@receptivegroup.com"
     },
     {
+      title: "UK Branch",
+      address: "PO Box 4385, 15801109 - COMPANIES HOUSE DEFAULT ADDRESS, Cardiff, CF14 8LH", 
+      phone: "+91 8104767778",
+      email: "info@receptivesolutions.co.in"
+    },
+    {
       title: "Mumbai Branch", 
       address: "425 Gemstar Commercial Complex, Ramchandra Lane Extn, Malad West, Mumbai 400064",
       phone: "+91 7738056424",
@@ -20,7 +26,7 @@ const ContactPage = () => {
       title: "Ahmedabad Branch",
       address: "106, Dev Prime, Nr. Vodafone House, Makarba, Ahmedabad - 380051", 
       phone: "+91 8104767778",
-      email: "ketan@receptivesolutions.co.in"
+      email: "info@receptivesolutions.co.in"
     }
   ];
 
@@ -45,7 +51,7 @@ const ContactPage = () => {
             </p>
           </div>
 
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 px-6">
+          <div className="max-w-8xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 px-6">
             {branches.map((branch, index) => (
               <div 
                 key={index}
