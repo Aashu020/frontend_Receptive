@@ -149,7 +149,7 @@ const ContactForm = () => {
       const response = await emailjs.send(serviceID, templateID, formData, publicKey);
 
       // Log response for debugging
-      console.log("EmailJS response:", response);
+      // console.log("EmailJS response:", response);
 
       toast.success("Message sent successfully! We'll get back to you soon.", {
         position: "top-right",

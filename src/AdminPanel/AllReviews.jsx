@@ -13,7 +13,7 @@ const AllReviews = () => {
         const res = await axios.get(`${BaseUrl}/api/reviews`, {
           // headers: { Authorization: `Bearer ${token}` },
         });
-        console.log(res.data.reviews,"kdjdj");
+        // console.log(res.data.reviews,"kdjdj");
 
         // Only keep not-approved reviews
         const unapproved = (res.data.reviews || []).filter(
