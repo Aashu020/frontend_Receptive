@@ -17,10 +17,8 @@ const EUJobsComponent = () => {
           <li>Min qualification: Graduation/Diploma</li>
           <li>Experience: 2 years in the last 5y</li>
         </ul>
-        <h3 className="text-lg font-semibold text-[#0C3B34] mt-4">Temporary Residence Transition Stream:</h3>
-        <p className="text-[#0C3B34] mt-2">
-          This is for subclass 482 and 457 visa holders who have worked for their employer for at least three years and the employer wants to offer them a permanent position in that same occupation.
-        </p>
+       
+       
         <h4 className="text-md font-medium text-[#0C3B34] mt-2">Benefits:</h4>
         <ul className="list-disc list-inside text-[#0C3B34] mt-1 [word-spacing:3px] text-[15px]">
           <li>Contract Term: 3 years</li>

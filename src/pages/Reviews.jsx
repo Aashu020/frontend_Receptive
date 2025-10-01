@@ -4,6 +4,8 @@ import ReviewScreen from '../components/reviewComponnnents/ReviewScreen';
 import axios from 'axios';
 import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
 import BaseUrl from '../../url';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Reviews() {
   const { user } = useSelector(state => state.auth);
@@ -205,19 +207,32 @@ function Reviews() {
   };
 
   // Handle edit form submission
-  const handleEditSubmit = async (e, reviewId) => {
-    e.preventDefault();
+ // Handle edit form submission
+const handleEditSubmit = async (e, reviewId) => {
+  e.preventDefault();
 
-    const rating = e.target.rating.value;
-    const comment = e.target.comment.value.trim();
+  const rating = e.target.rating.value;
+  const comment = e.target.comment.value.trim();
 
-    if (!rating || !comment) {
-      alert('Please provide both a rating and a comment');
-      return;
-    }
+  if (!rating || !comment) {
+    toast.error('Please provide both a rating and a comment', {
+      position: "bottom-left",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+    });
+    return;
+  }
 
-    // console.log('Submitting edit for review:', reviewId, 'Rating:', rating, 'Comment:', comment);
+  // Show loading toast
+  const loadingToast = toast.loading('Updating your review...', {
+    position: "bottom-left",
+  });
 
+  try {
     const formData = new FormData();
     formData.append('rating', rating);
     formData.append('comment', comment);
@@ -231,7 +246,6 @@ function Reviews() {
       return path;
     });
 
-    // console.log('Existing images to send:', imagesToSend);
     formData.append('existingImages', JSON.stringify(imagesToSend));
 
     console.log('New image files:', newImageFiles.map(f => f.name));
@@ -240,7 +254,48 @@ function Reviews() {
     });
 
     await handleEditWithImages(reviewId, formData);
-  };
+
+    // Dismiss loading toast and show success
+    toast.dismiss(loadingToast);
+    toast.success('Review has been successfully updated!', {
+      position: "bottom-left",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      theme: "colored",
+    });
+
+    // Delay closing and reload so toast shows
+    setTimeout(() => {
+      closeEditForm();
+      window.location.reload();
+    }, 2000);
+
+  } catch (error) {
+    // Dismiss loading toast and show error
+    toast.dismiss(loadingToast);
+    console.error('Error updating review:', error);
+    
+    toast.error(
+      `Failed to update review: ${
+        error.response?.data?.message ||
+        error.message ||
+        "Please try again later."
+      }`,
+      {
+        position: "bottom-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      }
+    );
+  }
+};
 
   // Close edit form
   const closeEditForm = () => {
@@ -302,12 +357,12 @@ function Reviews() {
   };
 
   return (
-    <div className="mt-20 md:mt-45 px-4 lg:px-8 max-w-7xl mx-auto">
+    <div className="mt-20 md:mt-45  px-4 lg:px-8 max-w-7xl mx-auto ">
       {/* Add Review Button */}
       <div className="flex justify-end mb-6">
         <button
           onClick={handleAddReviewClick}
-          className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] hover:from-[#1a5a4f] hover:to-[#0C3B34] text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center"
+          className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] hover:from-[#1a5a4f] hover:to-[#0C3B34] text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center mt-2 md:mt-0"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -327,223 +382,245 @@ function Reviews() {
         </button>
       </div>
 
-      {/* Review Form Modal */}
-      {showReviewForm && (
-        <div className="fixed inset-0 backdrop-blur bg-opacity-50 bg-black/30 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg w-full max-w-md p-6 relative">
-            <button
-              onClick={handleCloseReviewForm}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+    
+{/* Review Form Modal */}
+{showReviewForm && (
+  <div className="fixed inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-[9999] p-4 overflow-y-auto pt-20 sm:pt-24">
+    <div className="bg-white rounded-xl w-full max-w-2xl lg:max-w-3xl shadow-2xl relative my-8">
+      <button
+        onClick={handleCloseReviewForm}
+        className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 bg-white rounded-full p-1.5 shadow-md hover:shadow-lg transition-all"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+      <ReviewScreen onClose={handleCloseReviewForm} />
+    </div>
+  </div>
+)}
+
+
+     {/* Edit Review Form Modal */}
+{editReview && (
+  <div className="fixed inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-[9999] p-4 overflow-y-auto pt-20 sm:pt-24">
+    <div className="bg-white rounded-xl w-full max-w-2xl lg:max-w-3xl shadow-2xl relative my-8">
+      <button
+        onClick={closeEditForm}
+        className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 bg-white rounded-full p-1.5 shadow-md hover:shadow-lg transition-all"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+
+      <div className="p-5 sm:p-6 md:p-8 bg-white rounded-xl relative w-full max-h-[85vh] overflow-y-auto">
+        <h3 className="text-2xl sm:text-3xl font-bold text-[#0C3B34] mb-6">
+          Edit Review
+        </h3>
+
+        <form onSubmit={(e) => handleEditSubmit(e, editReview.id)} className="space-y-6">
+          {/* Rating */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-3">
+              Rating <span className="text-red-500">*</span>
+            </label>
+            <select
+              name="rating"
+              defaultValue={editReview.rating}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C3B34] focus:border-transparent transition-all bg-white"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-            <ReviewScreen onClose={handleCloseReviewForm} />
+              {[1, 2, 3, 4, 5].map(num => (
+                <option key={num} value={num}>{num} Star{num > 1 ? 's' : ''}</option>
+              ))}
+            </select>
           </div>
-        </div>
-      )}
 
-      {/* Edit Review Form Modal */}
-      {editReview && (
-        <div className="fixed inset-0 backdrop-blur bg-opacity-50 bg-black/30 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto mt-10 md:mt-20">
-            <button
-              onClick={closeEditForm}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-            <h3 className="text-xl font-bold text-[#0C3B34] mb-4">Edit Review</h3>
-            <form onSubmit={(e) => handleEditSubmit(e, editReview.id)}>
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Rating</label>
-                <select
-                  name="rating"
-                  defaultValue={editReview.rating}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#0C3B34] focus:ring-[#0C3B34] p-2 border"
-                >
-                  {[1, 2, 3, 4, 5].map(num => (
-                    <option key={num} value={num}>{num}</option>
-                  ))}
-                </select>
-              </div>
+          {/* Comment */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-3">
+              Comment <span className="text-red-500">*</span>
+            </label>
+            <textarea
+              name="comment"
+              defaultValue={editReview.text}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C3B34] focus:border-transparent transition-all resize-none"
+              rows="5"
+              placeholder="Share your experience..."
+            />
+          </div>
 
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700">Comment</label>
-                <textarea
-                  name="comment"
-                  defaultValue={editReview.text}
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#0C3B34] focus:ring-[#0C3B34] p-2 border"
-                  rows="4"
-                />
-              </div>
-
-              {/* Existing Images */}
-              {existingImages && existingImages.length > 0 && (
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">Current Images</label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {existingImages.map((image, index) => (
-                      <div key={index} className="relative group">
-                        <img
-                          src={image}
-                          alt={`Review ${index + 1}`}
-                          className="w-full h-24 object-cover rounded-lg"
-                          onError={(e) => {
-                            console.error(`Failed to load existing image: ${image}`);
-                            e.target.src = '/images/fallback-image.jpg'; // Ensure this exists
-                          }}
-                        />
-                        <button
-                          type="button"
-                          onClick={() => handleRemoveExistingImage(index)}
-                          className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* New Images Upload */}
-              <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">Add New Images</label>
-                <div className="flex items-center justify-center w-full">
-                  <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
-                    <div className="flex flex-col items-center justify-center pt-5 pb-6">
+          {/* Existing Images */}
+          {existingImages && existingImages.length > 0 && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-3">
+                Current Images
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                {existingImages.map((image, index) => (
+                  <div key={index} className="relative group">
+                    <img
+                      src={image}
+                      alt={`Review ${index + 1}`}
+                      className="w-full h-28 sm:h-32 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
+                      onError={(e) => {
+                        console.error(`Failed to load existing image: ${image}`);
+                        e.target.src = '/images/fallback-image.jpg';
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveExistingImage(index)}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 shadow-lg"
+                    >
                       <svg
-                        className="w-8 h-8 mb-2 text-gray-500"
-                        aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
                         fill="none"
-                        viewBox="0 0 20 16"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
                       >
                         <path
-                          stroke="currentColor"
                           strokeLinecap="round"
                           strokeLinejoin="round"
-                          strokeWidth="2"
-                          d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
                         />
                       </svg>
-                      <p className="mb-2 text-sm text-gray-500">
-                        <span className="font-semibold">Click to upload</span> or drag and drop
-                      </p>
-                      <p className="text-xs text-gray-500">PNG, JPG or JPEG (MAX. 5 images)</p>
-                    </div>
-                    <input
-                      type="file"
-                      name="images"
-                      multiple
-                      accept="image/*"
-                      onChange={handleNewImagePreview}
-                      className="hidden"
-                    />
-                  </label>
-                </div>
-              </div>
-
-              {/* Preview New Images */}
-              {newImagePreviews && newImagePreviews.length > 0 && (
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 mb-2">New Images Preview</label>
-                  <div className="grid grid-cols-3 gap-2">
-                    {newImagePreviews.map((preview, index) => (
-                      <div key={index} className="relative group">
-                        <img
-                          src={preview}
-                          alt={`New ${index + 1}`}
-                          className="w-full h-24 object-cover rounded-lg"
-                          onError={(e) => {
-                            console.error(`Failed to load new image preview: ${preview}`);
-                            e.target.src = '/images/fallback-image.jpg'; // Ensure this exists
-                          }}
-                        />
-                        <button
-                          type="button"
-                          onClick={() => handleRemoveNewImage(index)}
-                          className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            className="h-4 w-4"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M6 18L18 6M6 6l12 12"
-                            />
-                          </svg>
-                        </button>
-                      </div>
-                    ))}
+                    </button>
                   </div>
-                </div>
-              )}
-
-              <div className="flex justify-end gap-2">
-                <button
-                  type="button"
-                  onClick={closeEditForm}
-                  className="bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-lg hover:bg-gray-400"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="bg-[#0C3B34] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#1a5a4f]"
-                >
-                  Save
-                </button>
+                ))}
               </div>
-            </form>
+            </div>
+          )}
+
+          {/* New Images Upload */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-3">
+              Add New Images
+            </label>
+            <div className="flex items-center justify-center w-full">
+              <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-all">
+                <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                  <svg
+                    className="w-10 h-10 mb-3 text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 20 16"
+                  >
+                    <path
+                      stroke="currentColor"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                    />
+                  </svg>
+                  <p className="mb-2 text-sm text-gray-600">
+                    <span className="font-semibold">Click to upload</span> or drag and drop
+                  </p>
+                  <p className="text-xs text-gray-500">PNG, JPG or JPEG (MAX. 4 images)</p>
+                </div>
+                <input
+                  type="file"
+                  name="images"
+                  multiple
+                  accept="image/*"
+                  onChange={handleNewImagePreview}
+                  className="hidden"
+                />
+              </label>
+            </div>
           </div>
-        </div>
-      )}
+
+          {/* Preview New Images */}
+          {newImagePreviews && newImagePreviews.length > 0 && (
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-3">
+                New Images Preview
+              </label>
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                {newImagePreviews.map((preview, index) => (
+                  <div key={index} className="relative group">
+                    <img
+                      src={preview}
+                      alt={`New ${index + 1}`}
+                      className="w-full h-28 sm:h-32 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
+                      onError={(e) => {
+                        console.error(`Failed to load new image preview: ${preview}`);
+                        e.target.src = '/images/fallback-image.jpg';
+                      }}
+                    />
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveNewImage(index)}
+                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 shadow-lg"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Actions */}
+          <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 sm:gap-4 pt-4 border-t border-gray-200">
+            <button
+              type="button"
+              onClick={closeEditForm}
+              className="w-full sm:w-auto px-6 py-2.5 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 font-medium transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="w-full sm:w-auto px-6 py-2.5 bg-[#0C3B34] text-white rounded-lg hover:bg-[#1a5a4f] font-medium transition-colors"
+            >
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+)}
 
       {/* Login Prompt Modal */}
       {showLoginPrompt && (
@@ -642,7 +719,7 @@ function Reviews() {
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0C3B34] mb-3 md:mb-4">
           What Our Clients Say
         </h1>
-        <p className="text-base md:text-lg text-gray-700 max-w-3xl mx-auto px-2 sm:px-0">
+        <p className="text-base md:text-lg text-gray-700 text-justify max-w-3xl mx-auto px-2 sm:px-0">
           For over a decade, we've helped thousands of clients achieve their immigration dreams.
           Here's what some of them have to say about their experience with our services.
         </p>
@@ -704,7 +781,7 @@ function Reviews() {
                 </div>
               </div>
               <div className="text-right">
-                <div className="flex mb-1 text-sm md:text-base">{renderStars(review.rating)}</div>
+                <div className="flex mb-1 text-lg md:text-xl">{renderStars(review.rating)}</div>
                 <div className="text-xs text-gray-500">{review.rating}</div>
               </div>
             </div>
@@ -810,6 +887,21 @@ function Reviews() {
           </div>
         ))}
       </div>
+
+      {/* Toast notifications */}
+        <ToastContainer
+          position="bottom-left"
+          autoClose={4000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+          style={{ zIndex: 10000 }}
+        />
     </div>
   );
 }
