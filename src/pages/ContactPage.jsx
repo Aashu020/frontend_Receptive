@@ -13,7 +13,7 @@ const ContactPage = () => {
     {
       title: "UK Branch",
       address: "PO Box 4385, 15801109 - COMPANIES HOUSE DEFAULT ADDRESS, Cardiff, CF14 8LH",
-      phone: "+91 8104767778",
+      phone: "971 562744455",
       email: "info@receptivesolutions.co.in"
     },
     {
@@ -41,8 +41,8 @@ const ContactPage = () => {
           </div>
 
           <div className="relative z-10">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
+            <div className="text-center mb-6 md:mb-16">
+              <h2 className="text-3xl md:text-5xl font-bold text-white md:mb-4 tracking-tight">
                 Our Global Presence
               </h2>
               <div className="w-24 h-1 mx-auto rounded-full"></div>
@@ -51,64 +51,62 @@ const ContactPage = () => {
               </p>
             </div>
 
-            <div className="max-w-8xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-8 px-6 ">
+            <div className="max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6 ">
               {branches.map((branch, index) => (
                 <div
                   key={index}
-                  className="group bg-[#D8C287] backdrop-blur-sm shadow-2xl rounded-2xl p-8 text-center transform hover:scale-100 transition-all duration-500 hover:shadow-emerald-500/20 border border-emerald-100/20"
+                  className="group bg-[#D8C287] shadow-2xl rounded-2xl  text-center transform hover:scale-100 transition-all duration-500 hover:shadow-emerald-500/20 border border-emerald-100/20"
                 >
                   {/* Icon Container */}
-                  <div className="flex justify-center mb-6 ">
-                    <div className="bg-[#0C3B34] text-white p-4 rounded-2xl shadow-lg group-hover:shadow-emerald-500/30 group-hover:from-emerald-800 group-hover:to-green-900 transition-all duration-300">
-                      <Building2 size={32} className="group-hover:scale-110 transition-transform duration-300" />
+                  <div className='bg-white/20 backdrop-blur-5xl rounded-2xl w-full p-4 md:p-8'>
+
+                    <div className="flex justify-center mb-6 ">
+                      <div className="bg-[#0C3B34] text-white p-4 rounded-2xl shadow-lg group-hover:shadow-emerald-500/30 group-hover:from-emerald-800 group-hover:to-green-900 transition-all duration-300">
+                        <Building2 size={32} className="group-hover:scale-110 transition-transform duration-300" />
+                      </div>
+                    </div>
+
+                    {/* Branch Title */}
+                    <h3 className="text-2xl md:text-2xl font-bold text-[#0c3b34] mb-6 group-hover:text-emerald-900 transition-colors">
+                      {branch.title}
+                    </h3>
+
+                    {/* Contact Details */}
+                    <div className="space-y-2 md:space-y-4 text-left">
+                      {/* Address */}
+                      <div className="flex items-start space-x-3 group-hover:translate-x-1 transition-transform duration-300">
+                        <MapPin size={20} className="text-[#0c3b34] mt-1 flex-shrink-0" />
+                        <p className="text-[#0c3b34] md:leading-relaxed">
+                          {branch.address}
+                        </p>
+                      </div>
+
+                      {/* Phone */}
+                      <div className="flex items-center space-x-3 group-hover:translate-x-1 transition-transform duration-300 delay-75">
+                        <Phone size={18} className="text-[#0c3b34]flex-shrink-0" />
+                        <a
+                          href={`tel:${branch.phone}`}
+                          className="text-[#0c3b34] hover:text-emerald-900 transition-colors font-medium"
+                        >
+                          {branch.phone}
+                        </a>
+                      </div>
+
+                      {/* Email */}
+                      <div className="flex items-center space-x-3 group-hover:translate-x-1 transition-transform duration-300 delay-150">
+                        <Mail size={18} className="text-[#0c3b34] flex-shrink-0" />
+                        <a
+                          href={`mailto:${branch.email}`}
+                          className="text-[#0c3b34] hover:text-emerald-900 transition-colors break-all"
+                        >
+                          {branch.email}
+                        </a>
+                      </div>
                     </div>
                   </div>
-
-                  {/* Branch Title */}
-                  <h3 className="text-2xl font-bold text-[#0c3b34] mb-6 group-hover:text-emerald-900 transition-colors">
-                    {branch.title}
-                  </h3>
-
-                  {/* Contact Details */}
-                  <div className="space-y-4 text-left">
-                    {/* Address */}
-                    <div className="flex items-start space-x-3 group-hover:translate-x-1 transition-transform duration-300">
-                      <MapPin size={20} className="text-[#0c3b34] mt-1 flex-shrink-0" />
-                      <p className="text-[#0c3b34] leading-relaxed">
-                        {branch.address}
-                      </p>
-                    </div>
-
-                    {/* Phone */}
-                    <div className="flex items-center space-x-3 group-hover:translate-x-1 transition-transform duration-300 delay-75">
-                      <Phone size={18} className="text-[#0c3b34]flex-shrink-0" />
-                      <a
-                        href={`tel:${branch.phone}`}
-                        className="text-[#0c3b34] hover:text-emerald-900 transition-colors font-medium"
-                      >
-                        {branch.phone}
-                      </a>
-                    </div>
-
-                    {/* Email */}
-                    <div className="flex items-center space-x-3 group-hover:translate-x-1 transition-transform duration-300 delay-150">
-                      <Mail size={18} className="text-[#0c3b34] flex-shrink-0" />
-                      <a
-                        href={`mailto:${branch.email}`}
-                        className="text-[#0c3b34] hover:text-emerald-900 transition-colors break-all"
-                      >
-                        {branch.email}
-                      </a>
-                    </div>
-                  </div>
-
-
                 </div>
               ))}
             </div>
-
-
-
           </div>
         </div>
       </div>
