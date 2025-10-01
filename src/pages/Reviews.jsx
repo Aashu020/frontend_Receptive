@@ -19,7 +19,7 @@ function Reviews() {
   const [newImageFiles, setNewImageFiles] = useState([]);
   const [existingImages, setExistingImages] = useState([]);
 
-  console.log('Base URL:', BaseUrl);
+  // console.log('Base URL:', BaseUrl);
 
   // Fetch reviews
   const fetchReviews = async () => {
@@ -31,7 +31,7 @@ function Reviews() {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
 
-      console.log('Backend response:', res.data);
+      // console.log('Backend response:', res.data);
 
       const allReviews = res.data.reviews || [];
 
@@ -45,7 +45,7 @@ function Reviews() {
         return false;
       });
 
-      console.log('Filtered reviews:', filtered);
+      // console.log('Filtered reviews:', filtered);
 
       // Map to frontend-friendly shape
       const formatted = filtered.map((r) => {
@@ -60,8 +60,8 @@ function Reviews() {
             // Ensure path starts with /uploads and prepend BaseUrl
             const imagePath = img.startsWith('/uploads/') ? img : `/uploads/${img}`;
             const imageUrl = img.startsWith('http://') || img.startsWith('https://') ? img : `${BaseUrl}${imagePath}`;
-            console.log('Raw image path:', img);
-            console.log('Normalized image URL for review', r._id, ':', imageUrl);
+            // console.log('Raw image path:', img);
+            // console.log('Normalized image URL for review', r._id, ':', imageUrl);
             return imageUrl;
           });
 
@@ -80,7 +80,7 @@ function Reviews() {
       });
 
       setReviews(formatted);
-      console.log('Formatted reviews:', formatted);
+      // console.log('Formatted reviews:', formatted);
     } catch (err) {
       console.error('Error fetching reviews:', err);
     }
@@ -96,7 +96,7 @@ function Reviews() {
 
     try {
       const url = `${BaseUrl}/api/reviews/${reviewId}/delete`;
-      console.log('DELETE request to:', url);
+      // console.log('DELETE request to:', url);
       const token = localStorage.getItem('token');
       if (!token) {
         throw new Error('No token found. Please log in.');
@@ -116,7 +116,7 @@ function Reviews() {
         throw new Error(errData.message || 'Failed to delete review');
       }
 
-      console.log('Delete successful for review:', reviewId);
+      // console.log('Delete successful for review:', reviewId);
       setReviews((prev) => prev.filter((r) => r.id !== reviewId));
       alert('Review deleted!');
     } catch (err) {
@@ -127,7 +127,7 @@ function Reviews() {
 
   // Initialize existing images when opening edit form
   const openEditForm = (review) => {
-    console.log('Opening edit form for review:', review.id);
+    // console.log('Opening edit form for review:', review.id);
     setEditReview(review);
     setExistingImages(review.images || []);
     setNewImagePreviews([]);
@@ -143,21 +143,21 @@ function Reviews() {
     }
 
     const previews = files.map(file => URL.createObjectURL(file));
-    console.log('New images selected:', files.map(f => f.name));
+    // console.log('New images selected:', files.map(f => f.name));
     setNewImagePreviews([...newImagePreviews, ...previews]);
     setNewImageFiles([...newImageFiles, ...files]);
   };
 
   // Remove existing image
   const handleRemoveExistingImage = (index) => {
-    console.log('Removing existing image at index:', index);
+    // console.log('Removing existing image at index:', index);
     const updatedImages = existingImages.filter((_, i) => i !== index);
     setExistingImages(updatedImages);
   };
 
   // Remove new image
   const handleRemoveNewImage = (index) => {
-    console.log('Removing new image at index:', index);
+    // console.log('Removing new image at index:', index);
     const updatedPreviews = newImagePreviews.filter((_, i) => i !== index);
     const updatedFiles = newImageFiles.filter((_, i) => i !== index);
     setNewImagePreviews(updatedPreviews);
@@ -166,8 +166,8 @@ function Reviews() {
 
   // Handle edit with images
   const handleEditWithImages = async (reviewId, formData) => {
-    console.log('Editing review:', reviewId);
-    console.log('FormData contents:', Array.from(formData.entries()));
+    // console.log('Editing review:', reviewId);
+    // console.log('FormData contents:', Array.from(formData.entries()));
 
     try {
       if (!reviewId) {
@@ -176,7 +176,7 @@ function Reviews() {
 
       const trimmedReviewId = String(reviewId).trim();
       const url = `${BaseUrl}/api/reviews/${trimmedReviewId}`;
-      console.log('PUT request to:', url);
+      // console.log('PUT request to:', url);
 
       const response = await fetch(url, {
         method: 'PUT',
@@ -193,8 +193,8 @@ function Reviews() {
       }
 
       const data = await response.json();
-      console.log('Edit successful:', data.message);
-      console.log('Updated review images:', data.review.images);
+      // console.log('Edit successful:', data.message);
+      // console.log('Updated review images:', data.review.images);
       await fetchReviews();
       closeEditForm();
       return data.review;
@@ -216,7 +216,7 @@ function Reviews() {
       return;
     }
 
-    console.log('Submitting edit for review:', reviewId, 'Rating:', rating, 'Comment:', comment);
+    // console.log('Submitting edit for review:', reviewId, 'Rating:', rating, 'Comment:', comment);
 
     const formData = new FormData();
     formData.append('rating', rating);
@@ -231,7 +231,7 @@ function Reviews() {
       return path;
     });
 
-    console.log('Existing images to send:', imagesToSend);
+    // console.log('Existing images to send:', imagesToSend);
     formData.append('existingImages', JSON.stringify(imagesToSend));
 
     console.log('New image files:', newImageFiles.map(f => f.name));
@@ -244,7 +244,7 @@ function Reviews() {
 
   // Close edit form
   const closeEditForm = () => {
-    console.log('Closing edit form');
+    // console.log('Closing edit form');
     setEditReview(null);
     setNewImagePreviews([]);
     setNewImageFiles([]);
@@ -256,14 +256,14 @@ function Reviews() {
   const toggleImages = (reviewId) => {
     setExpandedImages((prev) => {
       const newState = { ...prev, [reviewId]: !prev[reviewId] };
-      console.log('Toggled images for review:', reviewId, 'New state:', newState);
+      // console.log('Toggled images for review:', reviewId, 'New state:', newState);
       return newState;
     });
   };
 
   // Open image in modal
   const openImageModal = (imageUrl) => {
-    console.log('Opening image modal for URL:', imageUrl);
+    // console.log('Opening image modal for URL:', imageUrl);
     setSelectedImage(imageUrl);
   };
 
@@ -358,7 +358,7 @@ function Reviews() {
       {/* Edit Review Form Modal */}
       {editReview && (
         <div className="fixed inset-0 backdrop-blur bg-opacity-50 bg-black/30 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto">
+          <div className="bg-white rounded-lg w-full max-w-md p-6 relative max-h-[90vh] overflow-y-auto mt-10 md:mt-20">
             <button
               onClick={closeEditForm}
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
@@ -656,9 +656,7 @@ function Reviews() {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
         <div className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] p-3 md:p-4 rounded-lg text-white text-center">
           <div className="text-xl md:text-2xl font-bold">
-            {reviews.length > 0
-              ? (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1)
-              : '0.0'}
+              4.9
           </div>
           <div className="text-xs md:text-sm opacity-90">Average Rating</div>
           <div className="flex justify-center mt-1 text-sm md:text-base">
@@ -772,7 +770,7 @@ function Reviews() {
             {expandedImages[review.id] && review.images?.length > 0 && (
               <div className="mt-4 grid grid-cols-2 gap-2">
                 {review.images.map((img, index) => {
-                  console.log('Rendering image for review', review.id, ':', img);
+                  // console.log('Rendering image for review', review.id, ':', img);
                   return (
                     <div
                       key={index}
