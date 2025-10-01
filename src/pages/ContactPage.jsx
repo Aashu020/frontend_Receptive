@@ -5,18 +5,6 @@ import { Building2, MapPin, Phone, Mail } from 'lucide-react';
 const ContactPage = () => {
   const branches = [
     {
-      title: "UAE Branch",
-      address: "Suite No -201, Al Salemiyah Tower, Deria Riggat Al Buteen, Dubai, UAE",
-      phone: "+971 562744455",
-      email: "info@receptivegroup.com"
-    },
-    {
-      title: "UK Branch",
-      address: "PO Box 4385, 15801109 - COMPANIES HOUSE DEFAULT ADDRESS, Cardiff, CF14 8LH",
-      phone: "971 562744455",
-      email: "info@receptivesolutions.co.in"
-    },
-    {
       title: "Mumbai Branch",
       address: "425 Gemstar Commercial Complex, Ramchandra Lane Extn, Malad West, Mumbai 400064",
       phone: "+91 7738056424",
@@ -27,7 +15,19 @@ const ContactPage = () => {
       address: "106, Dev Prime, Nr. Vodafone House, Makarba, Ahmedabad - 380051",
       phone: "+91 8104767778",
       email: "info@receptivesolutions.co.in"
-    }
+    },
+    {
+      title: "UAE (Dubai) Branch",
+      address: "Suite No -201, Al Salemiyah Tower, Deria Riggat Al Buteen, Dubai, UAE",
+      phone: "+971 562744455",
+      email: "info@receptivegroup.com"
+    },
+    {
+      title: "UK Branch",
+      address: "PO Box 4385, 15801109, Cardiff, CF14 8LH",
+      phone: "971 562744455",
+      email: "info@receptivesolutions.co.in"
+    },
   ];
 
   return (
