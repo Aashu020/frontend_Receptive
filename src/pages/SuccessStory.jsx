@@ -8,6 +8,7 @@ const images = import.meta.glob(
   [
     "/src/assets/visaCopy/canada/*.{png,jpg,jpeg,svg}",
     "/src/assets/visaCopy/unitedKingdom/*.{png,jpg,jpeg,svg}",
+    "/src/assets/visaCopy/europe/*.{png,jpg,jpeg,svg}",
     "/src/assets/testimoniels/**/*.{png,jpg,jpeg,svg}",
   ],
   { eager: true }
@@ -32,6 +33,8 @@ function SuccessStory() {
       ? "Canada"
       : path.includes("unitedKingdom")
       ? "United Kingdom"
+      : path.includes("europe")
+      ? "Europe"
       : path.includes("testimoniels")
       ? "Testimonials"
       : "Other",
@@ -102,7 +105,7 @@ function SuccessStory() {
         <div className="bg-white rounded-2xl shadow-xl p-8">
           {activeTab === "clients" && (
             <div className="space-y-16">
-              {["Testimonials"].map((section) => (
+              {["Testimonials","Canada", "United Kingdom", "Europe"].map((section) => (
                 <div key={section}>
                   <h2 className="text-3xl font-semibold mb-8 text-[#0C3B34] border-b border-[#D8C287] pb-4">
                     {section}
@@ -128,6 +131,10 @@ function SuccessStory() {
               ))}
             </div>
           )}
+
+       
+
+
 
           {activeTab === "visa" && (
             <div>
