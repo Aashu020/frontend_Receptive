@@ -7,8 +7,8 @@ import Reviews from "./Reviews";
 const images = import.meta.glob(
   [
     "/src/assets/visaCopy/canada/*.{png,jpg,jpeg,svg}",
-        "/src/assets/visaCopy/europe/*.{png,jpg,jpeg,svg}",
     "/src/assets/visaCopy/unitedKingdom/*.{png,jpg,jpeg,svg}",
+    "/src/assets/visaCopy/europe/*.{png,jpg,jpeg,svg}",
     "/src/assets/testimoniels/**/*.{png,jpg,jpeg,svg}",
   ],
   { eager: true }
@@ -20,6 +20,8 @@ const videos = import.meta.glob(
   { eager: true }
 );
 
+
+
 function SuccessStory() {
   const [activeTab, setActiveTab] = useState("clients");
   const [selectedImage, setSelectedImage] = useState(null);
@@ -29,16 +31,12 @@ function SuccessStory() {
     src: mod.default,
     folder: path.includes("canada")
       ? "Canada"
-
       : path.includes("unitedKingdom")
       ? "United Kingdom"
-
+      : path.includes("europe")
+      ? "Europe"
       : path.includes("testimoniels")
       ? "Testimonials"
-
-       :path.includes("europe")
-      ? "Europe"
-      
       : "Other",
   }));
 
@@ -88,7 +86,7 @@ function SuccessStory() {
                   : "text-gray-500 hover:text-[#0C3B34] hover:border-b-4 hover:border-[#D8C287]"
               }`}
             >
-              Video Stories
+              Visa Stories
             </button>
             {/* <button
               onClick={() => setActiveTab("reviews")}
@@ -107,7 +105,7 @@ function SuccessStory() {
         <div className="bg-white rounded-2xl shadow-xl p-8">
           {activeTab === "clients" && (
             <div className="space-y-16">
-              {["Testimonials","Canada", "United Kingdom","Europe"].map((section) => (
+              {["Testimonials","Canada", "United Kingdom", "Europe"].map((section) => (
                 <div key={section}>
                   <h2 className="text-3xl font-semibold mb-8 text-[#0C3B34] border-b border-[#D8C287] pb-4">
                     {section}
@@ -131,10 +129,54 @@ function SuccessStory() {
                   </div>
                 </div>
               ))}
-
-             
             </div>
           )}
+
+       
+
+
+
+          {activeTab === "visa" && (
+            <div>
+              <style>{`
+                video::-webkit-media-controls-panel {
+                  display: flex !important;
+                  opacity: 1 !important;
+                }
+              `}</style>
+              <h2 className="text-3xl font-semibold mb-8 text-[#0C3B34] border-b border-[#D8C287] pb-4">
+                Visa Success Stories
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {videoList.map((video, i) => (
+                  <div
+                    key={i}
+                    className="bg-gray-50 rounded-md overflow-hidden shadow hover:shadow-lg transition-shadow h-[450px] flex flex-col"
+                  >
+                    <div className="flex-grow">
+                      <video
+                        className="w-full h-[350px] object-fit"
+                        controls
+                      //  poster={receptiveThumbnial}
+                      >
+                        <source src={video.src} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    </div>
+                    <div className="p-2 bg-white">
+                      <h3 className="font-semibold text-[#0C3B34] text-lg">
+                        #Our Stories
+                      </h3>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+         
+
+          
         </div>
       </div>
 
