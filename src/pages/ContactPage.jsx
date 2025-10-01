@@ -13,7 +13,7 @@ const ContactPage = () => {
     {
       title: "UK Branch",
       address: "PO Box 4385, 15801109 - COMPANIES HOUSE DEFAULT ADDRESS, Cardiff, CF14 8LH",
-      phone: "+91 8104767778",
+      phone: "",
       email: "info@receptivesolutions.co.in"
     },
     {
