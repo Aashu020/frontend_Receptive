@@ -109,7 +109,7 @@ function Services() {
       shortTitle: "Work Visa",
       image: workvisa,
       description: "There are certain options for Work Visa where you can take your family along. But that depends on the company and the Visa norms. All you need is a high level of Education, strong Profile and company selection in most matters. If you possess the required qualities, no doubt you'll easily fly to some offshore country.",
-      subServices: ["Work Permit Canada", "Tier2 Work Permit Canada", "Tier5 Work Permit Canada"]
+      subServices: ["Canda Work Visa ", "Europe Work Visa", "Singapore Work Visa","UAE Work Visa","Maldives Work Visa","Australia Work Visa"]
     },
     {
       id: "s4",
@@ -117,16 +117,16 @@ function Services() {
       shortTitle: "Permanent Residence",
       image: permannet,
       description: "Immigrant visas are issued to foreign nationals who intend to live permanently in the United States. Nonimmigrant visas are for foreign nationals wishing to enter the United States on a temporary basis.",
-      subServices: ["Australia Immigration Visa", "Canada Immigration Visa", "Denmark Immigration Visa"]
+      subServices: ["Canda Immigration Visa", "UK Immigration Visa", "Europe Immigration Visa","Austarlia Immigration Visa"]
     },
-    {
-      id: "s5",
-      title: "Second Citizenship through Investment",
-      shortTitle: "Second Citizenship",
-      image: secondvisa,
-      description: "Immigrant visas are issued to foreign nationals who intend to live permanently in the United States. Nonimmigrant visas are for foreign nationals wishing to enter the United States on a temporary basis.",
-      subServices: ["Australia Immigration Visa", "Canada Immigration Visa", "Denmark Immigration Visa"]
-    }
+    // {
+    //   id: "s5",
+    //   title: "Second Citizenship through Investment",
+    //   shortTitle: "Second Citizenship",
+    //   image: secondvisa,
+    //   description: "Immigrant visas are issued to foreign nationals who intend to live permanently in the United States. Nonimmigrant visas are for foreign nationals wishing to enter the United States on a temporary basis.",
+    //   subServices: ["Australia Immigration Visa", "Canada Immigration Visa", "Denmark Immigration Visa"]
+    // }
   ]
 
   return (
