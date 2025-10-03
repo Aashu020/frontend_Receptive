@@ -18,6 +18,7 @@ import {
   FiUserPlus,
   FiLogOut,
   FiUser,
+  FiHome,
 } from "react-icons/fi";
 import {
   FaPhone,
@@ -294,10 +295,13 @@ const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navRef.current && !navRef.current.contains(event.target)) {
+        console.log("Clicked outside, closing dropdowns");
         setIsCountriesOpen(false);
         setSelectedCountry(null);
         setIsMobileMenuOpen(false);
         setIsUserMenuOpen(false);
+      } else {
+        console.log("Clicked inside dropdown, ignoring");
       }
     };
 
@@ -306,6 +310,7 @@ const Navbar = () => {
   }, []);
 
   const handleCountryClick = (country) => {
+    console.log("Selected country:", country);
     setSelectedCountry(country);
   };
 
@@ -349,17 +354,16 @@ const Navbar = () => {
   };
 
   const navItems = [
-
-    { name: "Home", icon: FiUsers, path: "/" },
+    { name: "Home", icon: FiHome, path: "/" },
     {
       name: "Countries",
       icon: FiGlobe,
       hasDropdown: true,
     },
-    { name: "Success Stories", icon: FiTrendingUp, path: "/succes_story" },
+    { name: `Success\u00A0Stories`, icon: FiTrendingUp, path: "/succes_story" },
     { name: "Reviews", icon: FiStar, path: "/reviews" },
     { name: "Contact", icon: FiMail, path: "/contact" },
-    { name: "About Us", icon: FiUsers, path: "/about" },
+    { name: "About\u00A0Us", icon: FiUsers, path: "/about" },
   ];
 
   const countries = {
@@ -420,7 +424,7 @@ const Navbar = () => {
       return (
         <div className="flex items-center space-x-2 px-4 xl:p-3 py-2.5 rounded-full bg-gray-200 text-gray-500 font-bold text-sm xl:text-base animate-pulse">
           <div className="w-8 h-8 rounded-full bg-gray-300"></div>
-          <span>Loading...</span>
+          <span>...</span>
         </div>
       );
     }
@@ -465,7 +469,7 @@ const Navbar = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
         <FiUserPlus className="w-4 h-4 xl:w-5 xl:h-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
-        <span className="relative z-10 group-hover:text-[#0C3B34] transition-colors duration-300">Sign In</span>
+        <span className="relative z-10 group-hover:text-[#0C3B34] transition-colors duration-300">Sign&nbsp;In</span>
       </button>
     );
   };
@@ -474,20 +478,20 @@ const Navbar = () => {
     <header ref={navRef} className="relative">
       <UpperHeader />
       <nav
-        className={`bg-white/95 backdrop-blur-md border-b border-gray-200 fixed w-full z-[100] transition-all duration-300 ${isScrolled ? "shadow-xl bg-white/98" : "shadow-lg"
+        className={`flex justify-center bg-white/95 backdrop-blur-md border-b border-gray-200 fixed w-full z-[100] transition-all duration-300 ${isScrolled ? "shadow-xl bg-white/98" : "shadow-lg"
           }`}
         style={{
           top:
             window.innerWidth >= 768 && isUpperHeaderVisible ? "2.75rem" : "0",
         }}
       >
-        <div className="container mx-auto px-4 lg:px-6 py-2">
+        <div className="container mx-0 w-full px-4 lg:px-6 py-2">
           <div className="flex justify-between items-center h-16 lg:h-20">
             <div
               className="flex items-center group cursor-pointer"
               onClick={() => handleNavigation("/")}
             >
-              <div className="flex items-center justify-between gap-4 md:gap-4">
+              <div className="flex items-center justify-between gap-4 md:gap-4 w-full">
                 <div className="relative">
                   <img
                     src={logo}
@@ -496,8 +500,8 @@ const Navbar = () => {
                   />
                   <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div>
                 </div>
-                <p className="text-[#0c3b34] font-bold md:text-lg hidden md:flex">Trusted Since 2011 | Licensed & Certified</p>
-                <p className="text-[#0c3b34] font-bold md:text-lg  md:hidden">Trusted Since 2011 | <br/> Licensed & Certified</p>
+                <span className="text-[#0c3b34] font-bold md:text-lg md:text-[15.5px] xl:text-[17px] hidden md:flex">Trusted Since 2011 | Licensed & Certified</span>
+                <p className="text-[#0c3b34] font-bold md:text-lg md:hidden text-center"><span className="border-b border-b-2 text-[18px]">Trusted Since 2011</span> <br/> Licensed & Certified</p>
               </div>
             </div>
             <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 cursor-pointer">
@@ -527,10 +531,10 @@ const Navbar = () => {
                   ) : (
                     <button
                       onClick={() => handleNavigation(item.path)}
-                      className="flex items-center space-x-2 px-4 xl:px-6 py-2.5 xl:py-3 rounded-full transition-all duration-300 font-medium text-sm xl:text-base text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54] hover:shadow-lg hover:scale-105 relative overflow-hidden group"
+                      className="flex items-center space-x-2 px-4 xl:px-2 py-2.5 xl:py-3 rounded-full transition-all duration-300 font-medium text-sm xl:text-base text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54] hover:shadow-lg hover:scale-105 relative overflow-hidden group"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D8C287] to-[#e6d098] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                      <item.icon className="w-4 h-4 xl:w-5 xl:h-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
+                      <item.icon className="w-4 h-4 xl:w-4 xl:h-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
                       <span className="relative z-10">{item.name}</span>
                     </button>
                   )}
@@ -556,7 +560,8 @@ const Navbar = () => {
 
         {/* Desktop Countries Dropdown */}
         {isCountriesOpen && (
-          <div className="absolute left-0 right-0 bg-gradient-to-br from-gray-50 to-white shadow-2xl border-t border-gray-100 hidden lg:block animate-slideDown">
+          <div className="absolute top-23 left-0 right-0 bg-gradient-to-br from-gray-50 to-white shadow-2xl border-t border-gray-100 hidden lg:block animate-slideDown z-[101]">
+            {console.log("Countries dropdown open, selectedCountry:", selectedCountry)}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0C3B34] via-[#D8C287] to-[#0C3B34]"></div>
             <div className="container mx-auto px-6 py-6 xl:py-8">
               {!selectedCountry ? (
@@ -583,7 +588,7 @@ const Navbar = () => {
                           <FiChevronRight className="w-4 h-4 xl:w-5 xl:h-5 transition-transform duration-300 group-hover:translate-x-1" />
                         </div>
                         <div className="mt-2 text-xs text-[#0C3B34] relative z-10">
-                          {countries[country].length} visa
+                          {countries[country].length} programs
                         </div>
                         <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-br from-[#D8C287] to-[#e6d098] rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
                       </button>
@@ -656,7 +661,7 @@ const Navbar = () => {
                         />
                       </button>
                       {isCountriesOpen && (
-                        <div className="ml-4 mb-4 bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-100">
+                        <div className="ml-4 mb-4 bg-gradient-to-br from-gray-50 to-white rounded-xl p-4 border border-gray-100 z-[101]">
                           {!selectedCountry ? (
                             <div className="space-y-2">
                               <h4 className="font-semibold text-[#0C3B34] mb-3 flex items-center">
@@ -768,7 +773,7 @@ const Navbar = () => {
                     className="w-full flex items-center justify-center space-x-3 py-4 px-6 bg-gradient-to-r from-[#D8C287] to-[#e6d098] text-[#0C3B34] font-bold rounded-xl hover:shadow-lg transition-all duration-300 hover:scale-105"
                   >
                     <FiUserPlus className="w-5 h-5" />
-                    <span>Sign In</span>
+                    <span>Sign&nbsp;In</span>
                   </button>
                 )}
               </div>
