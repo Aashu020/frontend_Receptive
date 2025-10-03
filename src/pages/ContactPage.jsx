@@ -7,7 +7,7 @@ const ContactPage = () => {
     {
       title: "Mumbai Branch",
       address: "425 Gemstar Commercial Complex, Ramchandra Lane Extn, Malad West, Mumbai 400064",
-      phone: "+91 7738056424",
+      phone: "+91 98677 29568",
       email: "info@receptivesolutions.co.in"
     },
     {

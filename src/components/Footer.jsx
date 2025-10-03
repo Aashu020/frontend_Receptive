@@ -130,24 +130,7 @@ function Footer() {
               <h3 className="text-lg font-semibold text-[#D8C287] mb-4">Global Offices</h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
 
-                {/* UAE Branch */}
-                <div className="bg-[#D8C287] p-4 rounded-lg">
-                  <h4 className="font-medium text-[#0c3b34] mb-2"> UAE Branch</h4>
-                  <p className="text-xs font-medium text-[#0c3b34] mb-2">
-                    Suite No -201, Al Salemiyah Tower, Deria Riggat Al Buteen, Dubai, UAE
-                  </p>
-                  <p className="text-[#0c3b34] font-medium text-xs font-medium">+971 565344435</p>
-                  <p className="text-[#0c3b34] font-medium text-xs">info@receptivegroup.com</p>
-                </div>
-
-                <div className="bg-[#092620]/30 p-4 rounded-lg">
-                  <h4 className="font-medium text-[#D8C287] mb-2"> UK Branch</h4>
-                  <p className="text-xs text-gray-300 mb-2">
-                    PO Box 4385, 15801109 - COMPANIES HOUSE DEFAULT ADDRESS, Cardiff, CF14 8LH
-                  </p>
-                  {/* <p className="text-[#0c3b34] text-xs font-medium">+971 565344435</p> */}
-                  <p className="text-[#0c3b34] text-xs font-medium">info@receptivegroup.com</p>
-                </div>
+                
 
                 {/* Mumbai Branch */}
                 <div className="bg-[#D8C287] p-4 rounded-lg">
@@ -167,6 +150,25 @@ function Footer() {
                   </p>
                   <p className="text-[#D8C287] text-xs font-medium">+91 98677 29568</p>
                   <p className="text-[#D8C287] text-xs">ketan@receptivesolutions.co.in</p>
+                </div>
+
+                {/* UAE Branch */}
+                <div className="bg-[#D8C287] p-4 rounded-lg">
+                  <h4 className="font-medium text-[#0c3b34] mb-2"> UAE Branch</h4>
+                  <p className="text-xs font-medium text-[#0c3b34] mb-2">
+                    Suite No -201, Al Salemiyah Tower, Deria Riggat Al Buteen, Dubai, UAE
+                  </p>
+                  <p className="text-[#0c3b34] font-medium text-xs font-medium">+971 565344435</p>
+                  <p className="text-[#0c3b34] font-medium text-xs">info@receptivegroup.com</p>
+                </div>
+
+                <div className="bg-[#D8C287] p-4 rounded-lg">
+                  <h4 className="font-medium text-[#0c3b34] mb-2"> UK Branch</h4>
+                  <p className="text-xs text-[#0c3b34] mb-2">
+                    PO Box 4385, 15801109 - COMPANIES HOUSE DEFAULT ADDRESS, Cardiff, CF14 8LH
+                  </p>
+                  {/* <p className="text-[#0c3b34] text-xs font-medium">+971 565344435</p> */}
+                  <p className="text-[#0c3b34] text-xs font-medium">info@receptivegroup.com</p>
                 </div>
               </div>
             </div>
