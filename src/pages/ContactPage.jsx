@@ -58,7 +58,7 @@ const ContactPage = () => {
                   className="group bg-[#D8C287] shadow-2xl rounded-2xl  text-center transform hover:scale-100 transition-all duration-500 hover:shadow-emerald-500/20 border border-emerald-100/20"
                 >
                   {/* Icon Container */}
-                  <div className='bg-white/20 backdrop-blur-5xl rounded-2xl w-full p-4 md:p-8'>
+                  <div className='bg-white/20 backdrop-blur-5xl rounded-2xl w-full h-full p-4 md:p-8'>
 
                     <div className="flex justify-center mb-6 ">
                       <div className="bg-[#0C3B34] text-white p-4 rounded-2xl shadow-lg group-hover:shadow-emerald-500/30 group-hover:from-emerald-800 group-hover:to-green-900 transition-all duration-300">
