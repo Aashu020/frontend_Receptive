@@ -424,7 +424,7 @@ const Navbar = () => {
       return (
         <div className="flex items-center space-x-2 px-4 xl:p-3 py-2.5 rounded-full bg-gray-200 text-gray-500 font-bold text-sm xl:text-base animate-pulse">
           <div className="w-8 h-8 rounded-full bg-gray-300"></div>
-          <span>...</span>
+          {/* <span>...</span> */}
         </div>
       );
     }

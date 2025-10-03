@@ -25,68 +25,64 @@ function Reviews() {
 
   // Fetch reviews
   const fetchReviews = async () => {
-    try {
-      const token = localStorage.getItem('token');
-      const storedUserId = localStorage.getItem('user');
+  console.log('Starting fetchReviews...'); // Log start
+  try {
+    const token = localStorage.getItem('token');
+    const storedUserId = localStorage.getItem('user');
+    console.log('Token:', token, 'UserID:', storedUserId); // Log credentials
 
-      const res = await axios.get(`${BaseUrl}/api/reviews`, {
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-      });
+    const res = await axios.get(`${BaseUrl}/api/reviews`, {
+      headers: token ? { Authorization: `Bearer ${token}` } : {},
+    });
+    console.log('Backend response:', res.data); // Log full response
 
-      // console.log('Backend response:', res.data);
+    const allReviews = res.data.reviews || [];
+    console.log('Raw reviews data:', allReviews); // Log raw data
 
-      const allReviews = res.data.reviews || [];
-
-      // Filter: show approved OR own reviews only
-      const filtered = allReviews.filter((r) => {
-        if (r.isapproved) return true;
-        if (storedUserId) {
-          const authorId = typeof r.author === 'string' ? r.author : r.author?._id;
-          if (authorId === storedUserId) return true;
-        }
-        return false;
-      });
-
-      // console.log('Filtered reviews:', filtered);
-
-      // Map to frontend-friendly shape
-      const formatted = filtered.map((r) => {
-        const likes = r.likes || [];
-        const authorName =
-          typeof r.author === 'string' ? 'Unknown' : r.author?.name || 'Unknown';
+    const filtered = allReviews.filter((r) => {
+      if (r.isapproved) return true;
+      if (storedUserId) {
         const authorId = typeof r.author === 'string' ? r.author : r.author?._id;
+        return authorId === storedUserId;
+      }
+      return false;
+    });
+    console.log('Filtered reviews:', filtered); // Log filtered data
 
-        const images = (r.images || [])
-          .filter(img => img && typeof img === 'string' && (img.endsWith('.jpg') || img.endsWith('.jpeg') || img.endsWith('.png')))
-          .map(img => {
-            // Ensure path starts with /uploads and prepend BaseUrl
-            const imagePath = img.startsWith('/uploads/') ? img : `/uploads/${img}`;
-            const imageUrl = img.startsWith('http://') || img.startsWith('https://') ? img : `${BaseUrl}${imagePath}`;
-            // console.log('Raw image path:', img);
-            // console.log('Normalized image URL for review', r._id, ':', imageUrl);
-            return imageUrl;
-          });
+    const formatted = filtered.map((r) => {
+      const likes = r.likes || [];
+      const authorName = typeof r.author === 'string' ? 'Unknown' : r.author?.name || 'Unknown';
+      const authorId = typeof r.author === 'string' ? r.author : r.author?._id;
 
-        return {
-          id: r._id,
-          name: r.displayName || authorName,
-          text: r.content,
-          rating: Number(r.ratings) || 0,
-          date: new Date(r.createdAt).toLocaleDateString(),
-          likes: likes,
-          totalLikes: likes.length,
-          isLiked: storedUserId ? likes.some((id) => id.toString() === storedUserId) : false,
-          author: authorId,
-          images,
-        };
-      });
+      const images = (r.images || [])
+        .filter(img => img && typeof img === 'string' && (img.endsWith('.jpg') || img.endsWith('.jpeg') || img.endsWith('.png')))
+        .map(img => {
+          const imagePath = img.startsWith('/uploads/') ? img : `/uploads/${img}`;
+          const imageUrl = img.startsWith('http://') || img.startsWith('https://') ? img : `${BaseUrl}${imagePath}`;
+          console.log('Generated image URL:', imageUrl); // Log each image URL
+          return imageUrl;
+        });
 
-      setReviews(formatted);
-      // console.log('Formatted reviews:', formatted);
-    } catch (err) {
-      console.error('Error fetching reviews:', err);
-    }
-  };
+      return {
+        id: r._id,
+        name: r.displayName || authorName,
+        text: r.content,
+        rating: Number(r.ratings) || 0,
+        date: new Date(r.createdAt).toLocaleDateString(),
+        likes: likes,
+        totalLikes: likes.length,
+        isLiked: storedUserId ? likes.some((id) => id.toString() === storedUserId) : false,
+        author: authorId,
+        images,
+      };
+    });
+
+    setReviews(formatted);
+    console.log('Formatted reviews set:', formatted); // Log final state
+  } catch (err) {
+    console.error('Error fetching reviews:', err); // Log any errors
+  }
+};
 
   useEffect(() => {
     fetchReviews();
