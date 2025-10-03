@@ -13,7 +13,7 @@ const ContactPage = () => {
     {
       title: "Ahmedabad Branch",
       address: "106, Dev Prime, Nr. Vodafone House, Makarba, Ahmedabad - 380051",
-      phone: "+91 8104767778",
+      phone: "+91 98677 29568",
       email: "info@receptivesolutions.co.in"
     },
     {
