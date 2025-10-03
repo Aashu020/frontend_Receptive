@@ -513,16 +513,16 @@ const Navbar = () => {
                         setIsCountriesOpen(!isCountriesOpen);
                         setSelectedCountry(null);
                       }}
-                      className={`flex items-center space-x-2 px-4 xl:px-6 py-2.5 xl:py-3 rounded-full transition-all duration-300 font-medium text-sm xl:text-base relative overflow-hidden group ${isCountriesOpen
+                      className={`flex items-center space-x-1 px-4 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base relative overflow-hidden group ${isCountriesOpen
                           ? "bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white shadow-lg scale-105"
                           : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54]"
                         }`}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D8C287] to-[#e6d098] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                      <item.icon className="w-4 h-4 xl:w-5 xl:h-5 relative z-10" />
+                      <item.icon className="h-4 xl:h-4 relative z-10" />
                       <span className="relative z-10">{item.name}</span>
                       <FiChevronDown
-                        className={`w-3 h-3 xl:w-4 xl:h-4 transition-all duration-300 relative z-10 ${isCountriesOpen
+                        className={`h-3 xl:w-3 xl:h-4 transition-all duration-300 relative z-10 ${isCountriesOpen
                             ? "rotate-180"
                             : "group-hover:rotate-12"
                           }`}
@@ -531,7 +531,7 @@ const Navbar = () => {
                   ) : (
                     <button
                       onClick={() => handleNavigation(item.path)}
-                      className="flex items-center space-x-2 px-4 xl:px-2 py-2.5 xl:py-3 rounded-full transition-all duration-300 font-medium text-sm xl:text-base text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54] hover:shadow-lg hover:scale-105 relative overflow-hidden group"
+                      className="flex items-center space-x-2 px-4 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54] hover:shadow-lg hover:scale-105 relative overflow-hidden group"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D8C287] to-[#e6d098] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                       <item.icon className="w-4 h-4 xl:w-4 xl:h-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
@@ -652,7 +652,7 @@ const Navbar = () => {
                         className="w-full flex items-center justify-between py-4 px-3 text-gray-700 hover:text-[#0C3B34] transition-colors duration-300 rounded-lg hover:bg-gray-50"
                       >
                         <div className="flex items-center space-x-3">
-                          <item.icon className="w-5 h-5" />
+                          <item.icon className="w-6 h-5" />
                           <span className="font-medium">{item.name}</span>
                         </div>
                         <FiChevronDown
