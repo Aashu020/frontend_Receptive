@@ -138,8 +138,8 @@ function Footer() {
                   <p className="text-xs text-[#0c3b34]  font-medium mb-2">
                     425 Gemstar Commerical Complex, Ramchandra Lane Extn, Kanchpada, Malad West, Mumbai 400064
                   </p>
-                  <p className="text-[#D8C287] text-xs font-medium">+91 98677 29568</p>
-                  <p className="text-[#D8C287] text-xs">info@receptivesolutions.co.in</p>
+                  <p className="text-[#0c3b34] text-xs font-medium">+91 98677 29568</p>
+                  <p className="text-[#0c3b34] text-xs">info@receptivesolutions.co.in</p>
                 </div>
 
                 {/* Ahmedabad Branch */}
@@ -148,8 +148,8 @@ function Footer() {
                   <p className="text-xs text-[#0c3b34] font-medium mb-2">
                     106, Dev Prime, Nr. Vodafone House, Corporate Road, Makarba, Ahmedabad - 380051
                   </p>
-                  <p className="text-[#D8C287] text-xs font-medium">+91 98677 29568</p>
-                  <p className="text-[#D8C287] text-xs">ketan@receptivesolutions.co.in</p>
+                  <p className="text-[#0c3b34] text-xs font-medium">+91 98677 29568</p>
+                  <p className="text-[#0c3b34] text-xs">ketan@receptivesolutions.co.in</p>
                 </div>
 
                 {/* UAE Branch */}
@@ -165,7 +165,7 @@ function Footer() {
                 <div className="bg-[#D8C287] p-4 rounded-lg">
                   <h4 className="font-medium text-[#0c3b34] mb-2"> UK Branch</h4>
                   <p className="text-xs text-[#0c3b34] mb-2">
-                    PO Box 4385, 15801109 - COMPANIES HOUSE DEFAULT ADDRESS, Cardiff, CF14 8LH
+                    PO Box 4385, Cardiff, CF14 8LH
                   </p>
                   {/* <p className="text-[#0c3b34] text-xs font-medium">+971 565344435</p> */}
                   <p className="text-[#0c3b34] text-xs font-medium">info@receptivegroup.com</p>

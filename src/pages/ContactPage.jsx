@@ -24,7 +24,7 @@ const ContactPage = () => {
     },
     {
       title: "UK Branch",
-      address: "PO Box 4385, 15801109, Cardiff, CF14 8LH",
+      address: "PO Box 4385, Cardiff, CF14 8LH",
       phone: "971 562744455",
       email: "info@receptivesolutions.co.in"
     },
