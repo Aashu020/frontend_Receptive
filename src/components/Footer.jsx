@@ -28,7 +28,7 @@ function Footer() {
     'Student Visa': 1,
     'Work Visa': 2,
     'Permanennt Residence': 3,
-   
+    'Second Citizenship': 4
   };
 
   // WhatsApp click handler
@@ -85,7 +85,7 @@ function Footer() {
                     <div className="w-16 h-16 mx-auto mb-2 bg-[#D8C287] rounded-lg p-2 flex items-center justify-center">
                       <img
                         src={portfolioLogos[company]}
-                        alt={`${company} logo`}
+                        alt={`${company}logo`}
                         className="max-w-full max-h-full object-contain "
                       />
                     </div>
@@ -148,8 +148,27 @@ function Footer() {
                   <p className="text-xs text-[#0c3b34] font-medium mb-2">
                     106, Dev Prime, Nr. Vodafone House, Corporate Road, Makarba, Ahmedabad - 380051
                   </p>
-                  <p className="text-[#D8C287] text-xs font-medium">+91 98677 29568</p>
-                  <p className="text-[#D8C287] text-xs">info@receptivesolutions.co.in</p>
+                  <p className="text-[#0c3b34] text-xs font-medium">+91 98677 29568</p>
+                  <p className="text-[#0c3b34] text-xs">info@receptivesolutions.co.in</p>
+                </div>
+
+                {/* UAE Branch */}
+                <div className="bg-[#D8C287] p-4 rounded-lg">
+                  <h4 className="font-medium text-[#0c3b34] mb-2"> UAE Branch</h4>
+                  <p className="text-xs font-medium text-[#0c3b34] mb-2">
+                    Suite No -201, Al Salemiyah Tower, Deria Riggat Al Buteen, Dubai, UAE
+                  </p>
+                  <p className="text-[#0c3b34] font-medium text-xs">+971 565344435</p>
+                  <p className="text-[#0c3b34] font-medium text-xs">info@receptivegroup.com</p>
+                </div>
+
+                <div className="bg-[#D8C287] p-4 rounded-lg">
+                  <h4 className="font-medium text-[#0c3b34] mb-2"> UK Branch</h4>
+                  <p className="text-xs text-[#0c3b34] mb-2">
+                    PO Box 4385, Cardiff, CF14 8LH
+                  </p>
+                  {/* <p className="text-[#0c3b34] text-xs font-medium">+971 565344435</p> */}
+                  <p className="text-[#0c3b34] text-xs font-medium">info@receptivegroup.com</p>
                 </div>
               </div>
             </div>
