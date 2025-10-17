@@ -207,7 +207,7 @@ const ContactForm = () => {
     },
     UK: {
       mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.7250556349986!2d-3.1910898233507403!3d51.499912771811644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e1c9bfa599a21%3A0x6fb9bdf12c51408e!2sCompanies%20House!5e0!3m2!1sen!2sin!4v1759312788470!5m2!1sen!2sin",
-      address: "PO Box 4385, 15801109 - COMPANIES HOUSE DEFAULT ADDRESS, Cardiff, CF14 8LH",
+      address: "PO Box 4385, Cardiff, CF14 8LH",
       link: "https://www.google.com/maps/place/Dev+Prime+Office/@22.9987941,72.4961219,17z/data=!3m1!4b1!4m6!3m5!1s0x395e9b647f912aa7:0xd188fe7d9db47c9f!8m2!3d22.9987942!4d72.5009928!16s%2Fg%2F11ft1xjcrb?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D",
     },
   };

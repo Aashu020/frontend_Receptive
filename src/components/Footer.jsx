@@ -28,7 +28,7 @@ function Footer() {
     'Student Visa': 1,
     'Work Visa': 2,
     'Permanennt Residence': 3,
-    'Second Citizenship': 4
+   
   };
 
   // WhatsApp click handler
@@ -111,7 +111,7 @@ function Footer() {
             <div>
               <h3 className="text-lg font-semibold text-[#D8C287] mb-4">Our Services</h3>
               <ul className="space-y-2">
-                {['Vistor Visa', 'Student Visa', 'Work Visa', 'Permanennt Residence', 'Second Citizenship'].map((service, index) => (
+                {['Vistor Visa', 'Student Visa', 'Work Visa', 'Permanennt Residence',].map((service, index) => (
                   <li key={index} className="text-gray-200 text-sm flex items-center">
                     <span className="w-1.5 h-1.5 bg-[#D8C287] rounded-full mr-3"></span>
                     <button
@@ -130,39 +130,22 @@ function Footer() {
               <h3 className="text-lg font-semibold text-[#D8C287] mb-4">Global Offices</h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
 
-                {/* UAE Branch */}
-                <div className="bg-[#092620]/30 p-4 rounded-lg">
-                  <h4 className="font-medium text-[#D8C287] mb-2"> UAE Branch</h4>
-                  <p className="text-xs text-gray-300 mb-2">
-                    Suite No -201, Al Salemiyah Tower, Deria Riggat Al Buteen, Dubai, UAE
-                  </p>
-                  <p className="text-[#D8C287] text-xs font-medium">+971 565344435</p>
-                  <p className="text-[#D8C287] text-xs">info@receptivegroup.com</p>
-                </div>
-
-                <div className="bg-[#092620]/30 p-4 rounded-lg">
-                  <h4 className="font-medium text-[#D8C287] mb-2"> UK Branch</h4>
-                  <p className="text-xs text-gray-300 mb-2">
-                    PO Box 4385, 15801109 - COMPANIES HOUSE DEFAULT ADDRESS, Cardiff, CF14 8LH
-                  </p>
-                  <p className="text-[#D8C287] text-xs font-medium">+971 565344435</p>
-                  <p className="text-[#D8C287] text-xs">info@receptivegroup.com</p>
-                </div>
+                
 
                 {/* Mumbai Branch */}
-                <div className="bg-[#092620]/30 p-4 rounded-lg">
-                  <h4 className="font-medium text-[#D8C287] mb-2"> Mumbai Branch (India)</h4>
-                  <p className="text-xs text-gray-300 mb-2">
+                <div className="bg-[#D8C287] p-4 rounded-lg">
+                  <h4 className="font-medium text-[#0c3b34] mb-2"> Mumbai Branch (India)</h4>
+                  <p className="text-xs text-[#0c3b34]  font-medium mb-2">
                     425 Gemstar Commerical Complex, Ramchandra Lane Extn, Kanchpada, Malad West, Mumbai 400064
                   </p>
-                  <p className="text-[#D8C287] text-xs font-medium">+91 98677 29568</p>
-                  <p className="text-[#D8C287] text-xs">info@receptivesolutions.co.in</p>
+                  <p className="text-[#0c3b34] text-xs font-medium">+91 98677 29568</p>
+                  <p className="text-[#0c3b34] text-xs">info@receptivesolutions.co.in</p>
                 </div>
 
                 {/* Ahmedabad Branch */}
-                <div className="bg-[#092620]/30 p-4 rounded-lg">
-                  <h4 className="font-medium text-[#D8C287] mb-2"> Ahmedabad Branch (India)</h4>
-                  <p className="text-xs text-gray-300 mb-2">
+                <div className="bg-[#D8C287] p-4 rounded-lg">
+                  <h4 className="font-medium text-[#0c3b34] mb-2"> Ahmedabad Branch (India)</h4>
+                  <p className="text-xs text-[#0c3b34] font-medium mb-2">
                     106, Dev Prime, Nr. Vodafone House, Corporate Road, Makarba, Ahmedabad - 380051
                   </p>
                   <p className="text-[#D8C287] text-xs font-medium">+91 98677 29568</p>

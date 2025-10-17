@@ -7,7 +7,7 @@ const ContactPage = () => {
     {
       title: "Mumbai Branch",
       address: "425 Gemstar Commercial Complex, Ramchandra Lane Extn, Malad West, Mumbai 400064",
-      phone: "+91 7738056424",
+      phone: "+91 98677 29568",
       email: "info@receptivesolutions.co.in"
     },
     {
@@ -24,7 +24,7 @@ const ContactPage = () => {
     },
     {
       title: "UK Branch",
-      address: "PO Box 4385, 15801109, Cardiff, CF14 8LH",
+      address: "PO Box 4385, Cardiff, CF14 8LH",
       phone: "971 562744455",
       email: "info@receptivesolutions.co.in"
     },
@@ -58,7 +58,7 @@ const ContactPage = () => {
                   className="group bg-[#D8C287] shadow-2xl rounded-2xl  text-center transform hover:scale-100 transition-all duration-500 hover:shadow-emerald-500/20 border border-emerald-100/20"
                 >
                   {/* Icon Container */}
-                  <div className='bg-white/20 backdrop-blur-5xl rounded-2xl w-full p-4 md:p-8'>
+                  <div className='bg-white/20 backdrop-blur-5xl rounded-2xl w-full h-full p-4 md:p-8'>
 
                     <div className="flex justify-center mb-6 ">
                       <div className="bg-[#0C3B34] text-white p-4 rounded-2xl shadow-lg group-hover:shadow-emerald-500/30 group-hover:from-emerald-800 group-hover:to-green-900 transition-all duration-300">
