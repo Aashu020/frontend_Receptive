@@ -533,7 +533,7 @@ const Navbar = () => {
                       onClick={() => handleNavigation(item.path)}
                       className="flex items-center space-x-2 px-4 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54] hover:shadow-lg hover:scale-105 relative overflow-hidden group"
                     >
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#D8C287] to-[#e6d098] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#D8C287] to-[#e6d098] opacity-0 group-hover:opacity-10 transition-opacity duration-300 cursor-pointer"></div>
                       <item.icon className="w-4 h-4 xl:w-4 xl:h-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
                       <span className="relative z-10">{item.name}</span>
                     </button>
