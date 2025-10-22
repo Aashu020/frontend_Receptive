@@ -6,6 +6,7 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import BaseUrl from "../../url";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from "react-helmet-async";
 
 function Reviews() {
   const { user } = useSelector((state) => state.auth);
@@ -372,6 +373,19 @@ function Reviews() {
   };
 
   return (
+    <>
+    <Helmet>
+            <title>Reviews | Receptive Solutions</title>
+            <meta
+              name="description"
+              content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
+            />
+            <link 
+              rel="canonical" 
+              href="https://www.receptivesolutions.co.in/about" 
+            />
+          </Helmet>
+    
     <div className="mt-20 md:mt-45 px-4 lg:px-8 max-w-7xl mx-auto">
       {/* Add Review Button */}
       <div className="flex justify-end mb-6">
@@ -953,6 +967,7 @@ function Reviews() {
         style={{ zIndex: 10000 }}
       />
     </div>
+    </>
   );
 }
 

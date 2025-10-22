@@ -6,9 +6,23 @@ import img from "../../assets/countryHero/UaeHero.jpg"
 import uaeimg from "../../assets/images/uae2.png"
 import uaeFlag from "../../assets/flags/UaeFlag.jpg"  // <-- add your flag image
 import UaeVisaRequirements from '../../components/countriesComponents/uaeComponents/UaeVisaRequirements '
+import { Helmet } from 'react-helmet-async'
 
 const UAE = () => {
   return (
+    <>
+     {/* ✅ Helmet is only for SEO metadata */}
+          <Helmet>
+            <title>UAE | Receptive Solutions</title>
+            <meta
+              name="description"
+              content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
+            />
+            <link 
+              rel="canonical" 
+              href="https://www.receptivesolutions.co.in/about" 
+            />
+          </Helmet>
     <div>
       <HeroSection
         title="UAE"
@@ -32,6 +46,7 @@ const UAE = () => {
       <UaeQuest1 />
       <UaeVisaRequirements />
     </div>
+    </>
   )
 }
 

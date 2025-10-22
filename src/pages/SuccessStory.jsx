@@ -1,6 +1,7 @@
 // SuccessStory.jsx
 import React, { useState } from "react";
 import Reviews from "./Reviews";
+import { Helmet } from "react-helmet-async";
 // import receptiveThumbnial from "../assets/images/recpetive-thumbnial.png"
 
 // Grab images from multiple folders (recursive glob)
@@ -59,6 +60,20 @@ function SuccessStory() {
   };
 
   return (
+    <>
+    {/* ✅ Helmet is only for SEO metadata */}
+          <Helmet>
+            <title>Success Story | Receptive Solutions</title>
+            <meta
+              name="description"
+              content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
+            />
+            <link 
+              rel="canonical" 
+              href="https://www.receptivesolutions.co.in/about" 
+            />
+          </Helmet>
+    
     <div className="min-h-screen bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         {/* Header with tabs */}
@@ -88,16 +103,6 @@ function SuccessStory() {
             >
               Visa Stories
             </button>
-            {/* <button
-              onClick={() => setActiveTab("reviews")}
-              className={`py-4 px-6 font-medium text-lg transition-colors ${
-                activeTab === "reviews"
-                  ? "border-b-4 border-[#0C3B34] text-[#0C3B34]"
-                  : "text-gray-500 hover:text-[#0C3B34] hover:border-b-4 hover:border-[#D8C287]"
-              }`}
-            >
-              Reviews
-            </button> */}
           </div>
         </div>
 
@@ -219,6 +224,7 @@ function SuccessStory() {
         </div>
       )}
     </div>
+    </>
   );
 }
 

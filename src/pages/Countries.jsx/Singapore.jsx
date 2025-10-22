@@ -5,10 +5,25 @@ import singapore from '../../assets/flags/sinagpore.jpg'
 import CountrySection from '../../components/countriesComponents/CountrySection';
 import singimg from '../../assets/images/sing.jpg'
 import SingaporeEPass from '../../components/countriesComponents/Singapore/Epass';
+import { Helmet } from 'react-helmet-async';
 const Singapore = () => {
     return (
         <>
-            <HeroSection
+         {/* ✅ Helmet is only for SEO metadata */}
+              <Helmet>
+                <title>Singapore | Receptive Solutions</title>
+                <meta
+                  name="description"
+                  content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
+                />
+                <link 
+                  rel="canonical" 
+                  href="https://www.receptivesolutions.co.in/about" 
+                />
+              </Helmet>
+
+            <div>
+                <HeroSection
                 title="Singapore"
                 subtitle="Singapore is a global financial hub known for its modern skyline, diverse culture, and strict laws. Key attractions include Marina Bay Sands, Gardens by the Bay, and Sentosa Island. The city-state is renowned for its cleanliness, safety, and efficient public transport system."
                 bgImage={img}
@@ -33,6 +48,7 @@ const Singapore = () => {
 
 
             <SingaporeEPass/>
+            </div>
         </>
     )
 }

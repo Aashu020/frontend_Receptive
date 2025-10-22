@@ -1,6 +1,7 @@
 import React from 'react'
 import ContactForm from '../components/ContactForm'
 import { Building2, MapPin, Phone, Mail } from 'lucide-react';
+import { Helmet } from "react-helmet-async";
 
 const ContactPage = () => {
   const branches = [
@@ -32,6 +33,18 @@ const ContactPage = () => {
 
   return (
     <>
+
+    <Helmet>
+        <title>Contact | Receptive Solutions</title>
+        <meta
+          name="description"
+          content="Receptive Solutions provides immigration consulting and global services across 7 countries."
+        />
+        <link
+          rel="canonical"
+          href="https://www.receptivesolutions.co.in/about"
+        />
+      </Helmet>
       <div className="pt-16 md:pt-24 lg:pt-28 xl:pt-32">
         <div className="bg-[#0C3B34] py-20 relative overflow-hidden">
           {/* Background Pattern */}

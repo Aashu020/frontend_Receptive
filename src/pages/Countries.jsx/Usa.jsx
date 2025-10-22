@@ -7,6 +7,20 @@ import UsaVisatypes from '../../components/countriesComponents/usaComponents/Usa
 import ContactForm from '../../components/ContactForm'
 const Usa = () => {
     return (
+        <>
+         {/* ✅ Helmet is only for SEO metadata */}
+              <Helmet>
+                <title>USA | Receptive Solutions</title>
+                <meta
+                  name="description"
+                  content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
+                />
+                <link 
+                  rel="canonical" 
+                  href="https://www.receptivesolutions.co.in/about" 
+                />
+              </Helmet>
+        
         <div>
             <HeroSection
                 title="Usa"
@@ -27,6 +41,7 @@ const Usa = () => {
             <UsaVisatypes/>
             <ContactForm/>
         </div>
+        </>
     )
 }
 

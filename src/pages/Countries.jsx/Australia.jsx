@@ -9,10 +9,24 @@ import Subclass400 from '../../components/countriesComponents/Asutralia/Subclass
 import Subclass186 from '../../components/countriesComponents/Asutralia/Subclass186'
 import AotherinfoAus from '../../components/countriesComponents/Asutralia/AotherinfoAus'
 import Subclass from '../../components/countriesComponents/Asutralia/Subclass'
+import { Helmet } from 'react-helmet-async'
 const Australia = () => {
     return (
         <>
-            <HeroSection
+            {/* ✅ Helmet is only for SEO metadata */}
+            <Helmet>
+                <title>Australia | Receptive Solutions</title>
+                <meta
+                    name="description"
+                    content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
+                />
+                <link
+                    rel="canonical"
+                    href="https://www.receptivesolutions.co.in/about"
+                />
+            </Helmet>
+            <div>
+                <HeroSection
                 title="Australia"
                 subtitle="Australia is a country and continent surrounded by the Indian and Pacific oceans. Its major cities – Sydney, Brisbane, Melbourne, Perth, Adelaide – are coastal. Its vast interior, known as the Outback, features arid desert landscapes. The country is known for its Sydney Opera House, the Great Barrier Reef, the vast Outback, and unique animal species including kangaroos and duck-billed platypuses."
                 bgImage={img}
@@ -43,11 +57,12 @@ const Australia = () => {
                 img={ausimg}
             />
 
-            <VisitervisaAus/>
-            <Subclass400/>
-            <Subclass/>
-            <Subclass186/>
-            <AotherinfoAus/>
+            <VisitervisaAus />
+            <Subclass400 />
+            <Subclass />
+            <Subclass186 />
+            <AotherinfoAus />
+            </div>
         </>
     )
 }

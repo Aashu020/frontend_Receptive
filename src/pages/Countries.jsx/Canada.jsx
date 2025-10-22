@@ -14,6 +14,7 @@ import CanadaAtlanticImmigrationProgram from '../../components/countriesComponen
 import BCPNPComponent from '../../components/countriesComponents/canadaComponents/BCPNPComponent';
 import AlbertaProgram from '../../components/countriesComponents/canadaComponents/AlbertaProgram';
 import ContactForm from '../../components/ContactForm';
+import { Helmet } from 'react-helmet-async';
 const Canada = () => {
 
     const docsData = [
@@ -104,52 +105,67 @@ const Canada = () => {
 
     return (
         <>
-            <HeroSection
-                title="Canada"
-                subtitle="Canada is a country in North America. It is known for its vast landscapes, multicultural cities, and friendly people. Canada offers a high quality of life, excellent education and healthcare systems, and a strong economy. Popular destinations include Toronto, Vancouver, Montreal, and the stunning natural beauty of places like Banff and Jasper National Parks."
-                bgImage={img}
-               
-        flag={canadaFlag}   // <-- pass the flag here
-            />
 
-            <CountrySection
-                countryName="Canada"
-                mainTitle={`Relocate to Canada with Ease`}
-                title={
-                    <>
-                        Explore the beauty of Canada with ease by obtaining a visitor/tourist visa. Our temporary visa allows you to immerse yourself in the stunning landscapes and vibrant culture of Canada for up to six months. Simply apply online, provide proof of your intention to return home, and demonstrate financial stability. With a visitor/tourist visa, you can travel and explore Canada, but remember, no working or studying allowed. Start your Canadian adventure today with our hassle-free visa application process.
-                    </>
-                }
-                desc={
-                    <>
-                        To incorporate the provided text into the CountrySection component for Canada while addressing the issues with country-specific images and the navbar gap on small devices, here’s a description of the solution without code:
-                    </>
-                }
-                img={canimg}
-            />
+            {/* ✅ Helmet is only for SEO metadata */}
+            <Helmet>
+                <title>Canada | Receptive Solutions</title>
+                <meta
+                    name="description"
+                    content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
+                />
+                <link
+                    rel="canonical"
+                    href="https://www.receptivesolutions.co.in/about"
+                />
+            </Helmet>
+            <div>
+                <HeroSection
+                    title="Canada"
+                    subtitle="Canada is a country in North America. It is known for its vast landscapes, multicultural cities, and friendly people. Canada offers a high quality of life, excellent education and healthcare systems, and a strong economy. Popular destinations include Toronto, Vancouver, Montreal, and the stunning natural beauty of places like Banff and Jasper National Parks."
+                    bgImage={img}
 
-            <CanadianVisitorDocs
-                id="canada-tourist"
-                title="Essential Documents for Canadian Visitor / Tourist Visa:"
-                points={docsData}
-                image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
-            />
-
-            <CanadianVisitorDocs
-                title="How will Receptive Immigration help you?"
-                points={docsData2}
-                image={helpimage}
+                    flag={canadaFlag}   // <-- pass the flag here
                 />
 
-            <SkilledImmigration
-            />
-            <WorkPermitCanada/>
-            <ObtainWorkPermitCanada/>
-            <CanadaStartUpVisaInfo/>
-            <CanadaAtlanticImmigrationProgram/>
-            <BCPNPComponent/>
-            <AlbertaProgram/>
-            <ContactForm/>
+                <CountrySection
+                    countryName="Canada"
+                    mainTitle={`Relocate to Canada with Ease`}
+                    title={
+                        <>
+                            Explore the beauty of Canada with ease by obtaining a visitor/tourist visa. Our temporary visa allows you to immerse yourself in the stunning landscapes and vibrant culture of Canada for up to six months. Simply apply online, provide proof of your intention to return home, and demonstrate financial stability. With a visitor/tourist visa, you can travel and explore Canada, but remember, no working or studying allowed. Start your Canadian adventure today with our hassle-free visa application process.
+                        </>
+                    }
+                    desc={
+                        <>
+                            To incorporate the provided text into the CountrySection component for Canada while addressing the issues with country-specific images and the navbar gap on small devices, here’s a description of the solution without code:
+                        </>
+                    }
+                    img={canimg}
+                />
+
+                <CanadianVisitorDocs
+                    id="canada-tourist"
+                    title="Essential Documents for Canadian Visitor / Tourist Visa:"
+                    points={docsData}
+                    image="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80"
+                />
+
+                <CanadianVisitorDocs
+                    title="How will Receptive Immigration help you?"
+                    points={docsData2}
+                    image={helpimage}
+                />
+
+                <SkilledImmigration
+                />
+                <WorkPermitCanada />
+                <ObtainWorkPermitCanada />
+                <CanadaStartUpVisaInfo />
+                <CanadaAtlanticImmigrationProgram />
+                <BCPNPComponent />
+                <AlbertaProgram />
+                <ContactForm />
+            </div>
         </>
     )
 }

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Home -->
+  <url><loc>https://www.receptivesolutions.co.in/</loc></url>
+  <!-- About -->
+  <url><loc>https://www.receptivesolutions.co.in/about</loc></url>
+  <!-- Contact -->
+  <url><loc>https://www.receptivesolutions.co.in/contact</loc></url>
+  <!-- Countries -->
+  <url><loc>https://www.receptivesolutions.co.in/country/uae</loc></url>
+  <url><loc>https://www.receptivesolutions.co.in/country/usa</loc></url>
+  <url><loc>https://www.receptivesolutions.co.in/country/uk</loc></url>
+  <url><loc>https://www.receptivesolutions.co.in/country/canada</loc></url>
+  <url><loc>https://www.receptivesolutions.co.in/country/europe</loc></url>
+  <url><loc>https://www.receptivesolutions.co.in/country/australia</loc></url>
+  <url><loc>https://www.receptivesolutions.co.in/country/singapore</loc></url>
+  <!-- Success story -->
+  <url><loc>https://www.receptivesolutions.co.in/succes_story</loc></url>
+  <!-- Reviews -->
+  <url><loc>https://www.receptivesolutions.co.in/reviews</loc></url>
+</urlset>
