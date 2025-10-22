@@ -97,6 +97,16 @@ function Reviews() {
       });
 
       setReviews(formatted);
+      
+      // Initialize expandedImages with all reviews having images set to true (visible by default)
+      const initialExpandedState = {};
+      formatted.forEach((review) => {
+        if (review.images && review.images.length > 0) {
+          initialExpandedState[review.id] = true;
+        }
+      });
+      setExpandedImages(initialExpandedState);
+      
       console.log("Formatted reviews set:", formatted);
     } catch (err) {
       console.error("Error fetching reviews:", err);
@@ -505,11 +515,7 @@ function Reviews() {
                             className="w-full h-28 sm:h-32 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
                             onError={(e) => {
                               console.error(`Failed to load existing image: ${image}`);
-                              e.target.src = "/images/placeholder.jpg"; // Fallback image
-                              // toast.error(`Failed to load image ${index + 1}`, {
-                              //   position: "bottom-left",
-                              //   autoClose: 4000,
-                              // });
+                              e.target.src = "/images/placeholder.jpg";
                             }}
                           />
                           <button
@@ -596,11 +602,7 @@ function Reviews() {
                             className="w-full h-28 sm:h-32 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
                             onError={(e) => {
                               console.error(`Failed to load new image preview: ${preview}`);
-                              e.target.src = "/images/placeholder.jpg"; // Fallback image
-                              // toast.error(`Failed to load new image ${index + 1}`, {
-                              //   position: "bottom-left",
-                              //   autoClose: 4000,
-                              // });
+                              e.target.src = "/images/placeholder.jpg";
                             }}
                           />
                           <button
@@ -740,11 +742,7 @@ function Reviews() {
               onClick={(e) => e.stopPropagation()}
               onError={(e) => {
                 console.error(`Failed to load modal image: ${selectedImage}`);
-                e.target.src = "/images/placeholder.jpg"; // Fallback image
-                // toast.error("Failed to load full-size image", {
-                //   position: "bottom-left",
-                //   autoClose: 4000,
-                // });
+                e.target.src = "/images/placeholder.jpg";
               }}
             />
           </div>
@@ -841,7 +839,54 @@ function Reviews() {
               </div>
             </div>
 
-            {/* Bottom Border - Delete/Edit Buttons and Images */}
+            {/* Images Section - Now Visible by Default */}
+            {review.images?.length > 0 && (
+              <div className="mt-4">
+                {expandedImages[review.id] && (
+                  <div className="grid grid-cols-2 gap-2 mb-3">
+                    {review.images.map((img, index) => {
+                      if (!img) return null;
+
+                      return (
+                        <div
+                          key={index}
+                          className="relative group cursor-pointer overflow-hidden rounded-lg"
+                          onClick={() => openImageModal(img)}
+                        >
+                          <img
+                            src={img}
+                            alt={`Review image ${index + 1}`}
+                            className="h-32 w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
+                            onError={(e) => {
+                              console.error(`Failed to load image: ${img}`);
+                              e.target.src = "/images/placeholder.jpg";
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-black/20 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* Bottom Border - Delete/Edit Buttons and Hide/Show Images Toggle */}
             <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-[#D8C287] flex items-center gap-2">
               {(user?.isAdmin ||
                 (userId && review.author?.toString() === userId?.toString())) && (
@@ -883,57 +928,10 @@ function Reviews() {
                   </svg>
                   {expandedImages[review.id]
                     ? "Hide Images"
-                    : `View Images (${review.images.length})`}
+                    : `Show Images (${review.images.length})`}
                 </button>
               )}
             </div>
-
-            {/* Images Section */}
-            {expandedImages[review.id] && review.images?.length > 0 && (
-              <div className="mt-4 grid grid-cols-2 gap-2">
-                {review.images.map((img, index) => {
-                  if (!img) return null;
-
-                  return (
-                    <div
-                      key={index}
-                      className="relative group cursor-pointer overflow-hidden rounded-lg"
-                      onClick={() => openImageModal(img)}
-                    >
-                      <img
-                        src={img}
-                        alt={`Review image ${index + 1}`}
-                        className="h-32 w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
-                        onError={(e) => {
-                          console.error(`Failed to load image: ${img}`);
-                          e.target.src = "/images/placeholder.jpg"; // Fallback image
-                          // toast.error(`Failed to load image ${index + 1}`, {
-                          //   position: "bottom-left",
-                          //   autoClose: 4000,
-                          // });
-                        }}
-                      />
-                      <div className="absolute inset-0 bg-black/20 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
           </div>
         ))}
       </div>
