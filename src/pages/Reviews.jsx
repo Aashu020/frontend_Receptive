@@ -21,23 +21,32 @@ function Reviews() {
   const [newImageFiles, setNewImageFiles] = useState([]);
   const [existingImages, setExistingImages] = useState([]);
 
-  // console.log('Base URL:', BaseUrl);
+  // Helper function to format image URLs
+  const formatImageUrl = (img) => {
+    if (!img) return null;
+    if (img.startsWith("http://") || img.startsWith("https://")) return img;
+    const cleanBaseUrl = BaseUrl.replace(/\/$/, "");
+    const cleanImgPath = img.replace(/^\/+/, "").replace(/^uploads\//, "");
+    const imageUrl = `${cleanBaseUrl}/uploads/${cleanImgPath}`;
+    console.log("Generated image URL:", imageUrl);
+    return imageUrl;
+  };
 
   // Fetch reviews
   const fetchReviews = async () => {
-    console.log("Starting fetchReviews..."); // Log start
+    console.log("Starting fetchReviews...");
     try {
       const token = localStorage.getItem("token");
       const storedUserId = localStorage.getItem("user");
-      console.log("Token:", token, "UserID:", storedUserId); // Log credentials
+      console.log("Token:", token, "UserID:", storedUserId);
 
       const res = await axios.get(`${BaseUrl}/api/reviews`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
-      console.log("Backend response:", res.data); // Log full response
+      console.log("Backend response:", JSON.stringify(res.data, null, 2));
 
       const allReviews = res.data.reviews || [];
-      console.log("Raw reviews data:", allReviews); // Log raw data
+      console.log("Raw reviews data:", allReviews);
 
       const filtered = allReviews.filter((r) => {
         if (r.isapproved) return true;
@@ -48,7 +57,7 @@ function Reviews() {
         }
         return false;
       });
-      console.log("Filtered reviews:", filtered); // Log filtered data
+      console.log("Filtered reviews:", filtered);
 
       const formatted = filtered.map((r) => {
         const likes = r.likes || [];
@@ -68,17 +77,8 @@ function Reviews() {
                 img.endsWith(".jpeg") ||
                 img.endsWith(".png"))
           )
-          .map((img) => {
-            const imagePath = img.startsWith("/uploads/")
-              ? img
-              : `/uploads/${img}`;
-            const imageUrl =
-              img.startsWith("http://") || img.startsWith("https://")
-                ? img
-                : `${BaseUrl}${imagePath}`;
-            console.log("Generated image URL:", imageUrl); // Log each image URL
-            return imageUrl;
-          });
+          .map(formatImageUrl)
+          .filter(Boolean);
 
         return {
           id: r._id,
@@ -97,9 +97,13 @@ function Reviews() {
       });
 
       setReviews(formatted);
-      console.log("Formatted reviews set:", formatted); // Log final state
+      console.log("Formatted reviews set:", formatted);
     } catch (err) {
-      console.error("Error fetching reviews:", err); // Log any errors
+      console.error("Error fetching reviews:", err);
+      toast.error("Failed to fetch reviews", {
+        position: "bottom-left",
+        autoClose: 4000,
+      });
     }
   };
 
@@ -113,7 +117,6 @@ function Reviews() {
 
     try {
       const url = `${BaseUrl}/api/reviews/${reviewId}/delete`;
-      // console.log('DELETE request to:', url);
       const token = localStorage.getItem("token");
       if (!token) {
         throw new Error("No token found. Please log in.");
@@ -133,18 +136,22 @@ function Reviews() {
         throw new Error(errData.message || "Failed to delete review");
       }
 
-      // console.log('Delete successful for review:', reviewId);
       setReviews((prev) => prev.filter((r) => r.id !== reviewId));
-      alert("Review deleted!");
+      toast.success("Review deleted!", {
+        position: "bottom-left",
+        autoClose: 4000,
+      });
     } catch (err) {
       console.error("Delete error:", err.message);
-      alert(err.message);
+      toast.error(err.message, {
+        position: "bottom-left",
+        autoClose: 4000,
+      });
     }
   };
 
   // Initialize existing images when opening edit form
   const openEditForm = (review) => {
-    // console.log('Opening edit form for review:', review.id);
     setEditReview(review);
     setExistingImages(review.images || []);
     setNewImagePreviews([]);
@@ -155,26 +162,26 @@ function Reviews() {
   const handleNewImagePreview = (e) => {
     const files = Array.from(e.target.files);
     if (files.length + newImageFiles.length + existingImages.length > 5) {
-      alert("You can upload a maximum of 5 images in total");
+      toast.error("You can upload a maximum of 5 images in total", {
+        position: "bottom-left",
+        autoClose: 4000,
+      });
       return;
     }
 
     const previews = files.map((file) => URL.createObjectURL(file));
-    // console.log('New images selected:', files.map(f => f.name));
     setNewImagePreviews([...newImagePreviews, ...previews]);
     setNewImageFiles([...newImageFiles, ...files]);
   };
 
   // Remove existing image
   const handleRemoveExistingImage = (index) => {
-    // console.log('Removing existing image at index:', index);
     const updatedImages = existingImages.filter((_, i) => i !== index);
     setExistingImages(updatedImages);
   };
 
   // Remove new image
   const handleRemoveNewImage = (index) => {
-    // console.log('Removing new image at index:', index);
     const updatedPreviews = newImagePreviews.filter((_, i) => i !== index);
     const updatedFiles = newImageFiles.filter((_, i) => i !== index);
     setNewImagePreviews(updatedPreviews);
@@ -183,9 +190,6 @@ function Reviews() {
 
   // Handle edit with images
   const handleEditWithImages = async (reviewId, formData) => {
-    // console.log('Editing review:', reviewId);
-    // console.log('FormData contents:', Array.from(formData.entries()));
-
     try {
       if (!reviewId) {
         throw new Error("Review ID is missing");
@@ -193,7 +197,6 @@ function Reviews() {
 
       const trimmedReviewId = String(reviewId).trim();
       const url = `${BaseUrl}/api/reviews/${trimmedReviewId}`;
-      // console.log('PUT request to:', url);
 
       const response = await fetch(url, {
         method: "PUT",
@@ -210,18 +213,18 @@ function Reviews() {
       }
 
       const data = await response.json();
-      // console.log('Edit successful:', data.message);
-      // console.log('Updated review images:', data.review.images);
       await fetchReviews();
       closeEditForm();
       return data.review;
     } catch (error) {
       console.error("Error updating review:", error);
-      alert(`Failed to update review: ${error.message}`);
+      toast.error(`Failed to update review: ${error.message}`, {
+        position: "bottom-left",
+        autoClose: 4000,
+      });
     }
   };
 
-  // Handle edit form submission
   // Handle edit form submission
   const handleEditSubmit = async (e, reviewId) => {
     e.preventDefault();
@@ -254,10 +257,8 @@ function Reviews() {
 
       // Normalize existing image paths for backend
       const imagesToSend = existingImages.map((img) => {
-        // Remove BaseUrl if present
         let path = img.startsWith(BaseUrl) ? img.replace(BaseUrl, "") : img;
-        // Ensure path starts with /uploads
-        path = path.startsWith("/uploads/") ? path : `/uploads/${path}`;
+        path = path.startsWith("/Uploads/") ? path : `/Uploads/${path}`;
         return path;
       });
 
@@ -285,16 +286,13 @@ function Reviews() {
         theme: "colored",
       });
 
-      // Delay closing and reload so toast shows
+      // Delay closing so toast shows
       setTimeout(() => {
         closeEditForm();
-        window.location.reload();
       }, 2000);
     } catch (error) {
-      // Dismiss loading toast and show error
       toast.dismiss(loadingToast);
       console.error("Error updating review:", error);
-
       toast.error(
         `Failed to update review: ${
           error.response?.data?.message ||
@@ -316,7 +314,6 @@ function Reviews() {
 
   // Close edit form
   const closeEditForm = () => {
-    // console.log('Closing edit form');
     setEditReview(null);
     setNewImagePreviews([]);
     setNewImageFiles([]);
@@ -326,16 +323,14 @@ function Reviews() {
 
   // Toggle images visibility for a review
   const toggleImages = (reviewId) => {
-    setExpandedImages((prev) => {
-      const newState = { ...prev, [reviewId]: !prev[reviewId] };
-      // console.log('Toggled images for review:', reviewId, 'New state:', newState);
-      return newState;
-    });
+    setExpandedImages((prev) => ({
+      ...prev,
+      [reviewId]: !prev[reviewId],
+    }));
   };
 
   // Open image in modal
   const openImageModal = (imageUrl) => {
-    // console.log('Opening image modal for URL:', imageUrl);
     setSelectedImage(imageUrl);
   };
 
@@ -377,7 +372,7 @@ function Reviews() {
   };
 
   return (
-    <div className="mt-20 md:mt-45  px-4 lg:px-8 max-w-7xl mx-auto ">
+    <div className="mt-20 md:mt-45 px-4 lg:px-8 max-w-7xl mx-auto">
       {/* Add Review Button */}
       <div className="flex justify-end mb-6">
         <button
@@ -509,10 +504,12 @@ function Reviews() {
                             alt={`Review ${index + 1}`}
                             className="w-full h-28 sm:h-32 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
                             onError={(e) => {
-                              console.error(
-                                `Failed to load existing image: ${image}`
-                              );
-                              e.target.src = "/images/fallback-image.jpg";
+                              console.error(`Failed to load existing image: ${image}`);
+                              e.target.src = "/images/placeholder.jpg"; // Fallback image
+                              // toast.error(`Failed to load image ${index + 1}`, {
+                              //   position: "bottom-left",
+                              //   autoClose: 4000,
+                              // });
                             }}
                           />
                           <button
@@ -569,7 +566,7 @@ function Reviews() {
                           or drag and drop
                         </p>
                         <p className="text-xs text-gray-500">
-                          PNG, JPG or JPEG (MAX. 4 images)
+                          PNG, JPG or JPEG (MAX. 5 images)
                         </p>
                       </div>
                       <input
@@ -598,10 +595,12 @@ function Reviews() {
                             alt={`New ${index + 1}`}
                             className="w-full h-28 sm:h-32 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
                             onError={(e) => {
-                              console.error(
-                                `Failed to load new image preview: ${preview}`
-                              );
-                              e.target.src = "/images/fallback-image.jpg";
+                              console.error(`Failed to load new image preview: ${preview}`);
+                              e.target.src = "/images/placeholder.jpg"; // Fallback image
+                              // toast.error(`Failed to load new image ${index + 1}`, {
+                              //   position: "bottom-left",
+                              //   autoClose: 4000,
+                              // });
                             }}
                           />
                           <button
@@ -694,7 +693,7 @@ function Reviews() {
                 Login Required
               </h3>
               <p className="text-gray-600 mt-2">
-                Please log in to like reviews.
+                Please log in to post or edit reviews.
               </p>
               <button
                 onClick={handleCloseLoginPrompt}
@@ -710,7 +709,7 @@ function Reviews() {
       {/* Image Modal - Full Screen View */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black/10 bg-opacity-90 flex items-center justify-center z-[1000] p-4"
+          className="fixed inset-0 bg-black/90 flex items-center justify-center z-[1000] p-4"
           onClick={closeImageModal}
         >
           <button
@@ -741,7 +740,11 @@ function Reviews() {
               onClick={(e) => e.stopPropagation()}
               onError={(e) => {
                 console.error(`Failed to load modal image: ${selectedImage}`);
-                e.target.src = "/images/fallback-image.jpg"; // Ensure this exists
+                e.target.src = "/images/placeholder.jpg"; // Fallback image
+                // toast.error("Failed to load full-size image", {
+                //   position: "bottom-left",
+                //   autoClose: 4000,
+                // });
               }}
             />
           </div>
@@ -789,10 +792,6 @@ function Reviews() {
           <div className="text-xs md:text-sm opacity-90">Success Rate</div>
         </div>
       </div>
-
-
-
-      
 
       {/* Reviews Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-start mb-20">
@@ -845,8 +844,7 @@ function Reviews() {
             {/* Bottom Border - Delete/Edit Buttons and Images */}
             <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-[#D8C287] flex items-center gap-2">
               {(user?.isAdmin ||
-                (userId &&
-                  review.author?.toString() === userId?.toString())) && (
+                (userId && review.author?.toString() === userId?.toString())) && (
                 <>
                   <button
                     onClick={() => handleDelete(review.id)}
@@ -894,7 +892,8 @@ function Reviews() {
             {expandedImages[review.id] && review.images?.length > 0 && (
               <div className="mt-4 grid grid-cols-2 gap-2">
                 {review.images.map((img, index) => {
-                  // console.log('Rendering image for review', review.id, ':', img);
+                  if (!img) return null;
+
                   return (
                     <div
                       key={index}
@@ -907,7 +906,11 @@ function Reviews() {
                         className="h-32 w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
                         onError={(e) => {
                           console.error(`Failed to load image: ${img}`);
-                          e.target.src = "/images/fallback-image.jpg"; // Ensure this exists
+                          e.target.src = "/images/placeholder.jpg"; // Fallback image
+                          // toast.error(`Failed to load image ${index + 1}`, {
+                          //   position: "bottom-left",
+                          //   autoClose: 4000,
+                          // });
                         }}
                       />
                       <div className="absolute inset-0 bg-black/20 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">

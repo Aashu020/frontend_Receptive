@@ -43,7 +43,7 @@ function Footer() {
   const handleServiceClick = (serviceName) => {
     const serviceIndex = serviceMapping[serviceName];
 
-    navigate('/services', {
+    navigate('/services', { 
       state: { activeService: serviceIndex }
     });
 
