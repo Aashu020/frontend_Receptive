@@ -22,9 +22,10 @@ function Intro() {
 
   useEffect(() => {
     if (inView2) {
-      animateCounter(50, setSocialFollowers, 2500);
+      animateCounter(3, setSocialFollowers, 2500);
       animateCounter(32, setNationalities, 2200);
-      animateCounter(20, setCountries, 1800);
+      animateCounter(25, setCountries, 1800);
+      animateCounter(12, setYearsExp, 1800);
     }
   }, [inView2]);
 
