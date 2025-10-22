@@ -27,7 +27,7 @@ export default function ReceptiveAbout() {
             Welcome to Receptive Group of Companies
           </h1>
           
-          <div className="text-[#333333] text-md md:text-lg leading-relaxed space-y-6 md:text-justify">
+          <div className="text-[#333333] text-md md:text-lg text-sm  text-justify leading-relaxed space-y-6 md:text-justify">
             <p className={`transform transition-all duration-700 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
               A trusted name in the Immigration and HR consultancy industry for over 12 years in India with now global presence in UK and Dubai. We take pride in our commitment to excellence and personalized service, helping individuals and businesses navigate the complexities of immigration and HR processes with ease across the globe.
             </p>
