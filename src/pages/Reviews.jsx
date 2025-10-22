@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import ReviewScreen from '../components/reviewComponnnents/ReviewScreen';
-import axios from 'axios';
-import { AiOutlineDelete, AiOutlineEdit } from 'react-icons/ai';
-import BaseUrl from '../../url';
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import ReviewScreen from "../components/reviewComponnnents/ReviewScreen";
+import axios from "axios";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import BaseUrl from "../../url";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function Reviews() {
-  const { user } = useSelector(state => state.auth);
+  const { user } = useSelector((state) => state.auth);
   const [showReviewForm, setShowReviewForm] = useState(false);
   const [showLoginPrompt, setShowLoginPrompt] = useState(false);
   const [reviews, setReviews] = useState([]);
   const [expandedImages, setExpandedImages] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
   const [editReview, setEditReview] = useState(null);
-  const userId = user?._id || localStorage.getItem('user');
-  const userToken = localStorage.getItem('token');
+  const userId = user?._id || localStorage.getItem("user");
+  const userToken = localStorage.getItem("token");
   const [newImagePreviews, setNewImagePreviews] = useState([]);
   const [newImageFiles, setNewImageFiles] = useState([]);
   const [existingImages, setExistingImages] = useState([]);
@@ -25,64 +25,83 @@ function Reviews() {
 
   // Fetch reviews
   const fetchReviews = async () => {
-  console.log('Starting fetchReviews...'); // Log start
-  try {
-    const token = localStorage.getItem('token');
-    const storedUserId = localStorage.getItem('user');
-    console.log('Token:', token, 'UserID:', storedUserId); // Log credentials
+    console.log("Starting fetchReviews..."); // Log start
+    try {
+      const token = localStorage.getItem("token");
+      const storedUserId = localStorage.getItem("user");
+      console.log("Token:", token, "UserID:", storedUserId); // Log credentials
 
-    const res = await axios.get(`${BaseUrl}/api/reviews`, {
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
-    });
-    console.log('Backend response:', res.data); // Log full response
+      const res = await axios.get(`${BaseUrl}/api/reviews`, {
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+      });
+      console.log("Backend response:", res.data); // Log full response
 
-    const allReviews = res.data.reviews || [];
-    console.log('Raw reviews data:', allReviews); // Log raw data
+      const allReviews = res.data.reviews || [];
+      console.log("Raw reviews data:", allReviews); // Log raw data
 
-    const filtered = allReviews.filter((r) => {
-      if (r.isapproved) return true;
-      if (storedUserId) {
-        const authorId = typeof r.author === 'string' ? r.author : r.author?._id;
-        return authorId === storedUserId;
-      }
-      return false;
-    });
-    console.log('Filtered reviews:', filtered); // Log filtered data
+      const filtered = allReviews.filter((r) => {
+        if (r.isapproved) return true;
+        if (storedUserId) {
+          const authorId =
+            typeof r.author === "string" ? r.author : r.author?._id;
+          return authorId === storedUserId;
+        }
+        return false;
+      });
+      console.log("Filtered reviews:", filtered); // Log filtered data
 
-    const formatted = filtered.map((r) => {
-      const likes = r.likes || [];
-      const authorName = typeof r.author === 'string' ? 'Unknown' : r.author?.name || 'Unknown';
-      const authorId = typeof r.author === 'string' ? r.author : r.author?._id;
+      const formatted = filtered.map((r) => {
+        const likes = r.likes || [];
+        const authorName =
+          typeof r.author === "string"
+            ? "Unknown"
+            : r.author?.name || "Unknown";
+        const authorId =
+          typeof r.author === "string" ? r.author : r.author?._id;
 
-      const images = (r.images || [])
-        .filter(img => img && typeof img === 'string' && (img.endsWith('.jpg') || img.endsWith('.jpeg') || img.endsWith('.png')))
-        .map(img => {
-          const imagePath = img.startsWith('/uploads/') ? img : `/uploads/${img}`;
-          const imageUrl = img.startsWith('http://') || img.startsWith('https://') ? img : `${BaseUrl}${imagePath}`;
-          console.log('Generated image URL:', imageUrl); // Log each image URL
-          return imageUrl;
-        });
+        const images = (r.images || [])
+          .filter(
+            (img) =>
+              img &&
+              typeof img === "string" &&
+              (img.endsWith(".jpg") ||
+                img.endsWith(".jpeg") ||
+                img.endsWith(".png"))
+          )
+          .map((img) => {
+            const imagePath = img.startsWith("/uploads/")
+              ? img
+              : `/uploads/${img}`;
+            const imageUrl =
+              img.startsWith("http://") || img.startsWith("https://")
+                ? img
+                : `${BaseUrl}${imagePath}`;
+            console.log("Generated image URL:", imageUrl); // Log each image URL
+            return imageUrl;
+          });
 
-      return {
-        id: r._id,
-        name: r.displayName || authorName,
-        text: r.content,
-        rating: Number(r.ratings) || 0,
-        date: new Date(r.createdAt).toLocaleDateString(),
-        likes: likes,
-        totalLikes: likes.length,
-        isLiked: storedUserId ? likes.some((id) => id.toString() === storedUserId) : false,
-        author: authorId,
-        images,
-      };
-    });
+        return {
+          id: r._id,
+          name: r.displayName || authorName,
+          text: r.content,
+          rating: Number(r.ratings) || 0,
+          date: new Date(r.createdAt).toLocaleDateString(),
+          likes: likes,
+          totalLikes: likes.length,
+          isLiked: storedUserId
+            ? likes.some((id) => id.toString() === storedUserId)
+            : false,
+          author: authorId,
+          images,
+        };
+      });
 
-    setReviews(formatted);
-    console.log('Formatted reviews set:', formatted); // Log final state
-  } catch (err) {
-    console.error('Error fetching reviews:', err); // Log any errors
-  }
-};
+      setReviews(formatted);
+      console.log("Formatted reviews set:", formatted); // Log final state
+    } catch (err) {
+      console.error("Error fetching reviews:", err); // Log any errors
+    }
+  };
 
   useEffect(() => {
     fetchReviews();
@@ -90,35 +109,35 @@ function Reviews() {
 
   // Handle delete review
   const handleDelete = async (reviewId) => {
-    if (!window.confirm('Are you sure you want to delete this review?')) return;
+    if (!window.confirm("Are you sure you want to delete this review?")) return;
 
     try {
       const url = `${BaseUrl}/api/reviews/${reviewId}/delete`;
       // console.log('DELETE request to:', url);
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       if (!token) {
-        throw new Error('No token found. Please log in.');
+        throw new Error("No token found. Please log in.");
       }
 
       const res = await fetch(url, {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
       });
 
       if (!res.ok) {
         const errData = await res.json();
-        console.error('Delete failed:', errData);
-        throw new Error(errData.message || 'Failed to delete review');
+        console.error("Delete failed:", errData);
+        throw new Error(errData.message || "Failed to delete review");
       }
 
       // console.log('Delete successful for review:', reviewId);
       setReviews((prev) => prev.filter((r) => r.id !== reviewId));
-      alert('Review deleted!');
+      alert("Review deleted!");
     } catch (err) {
-      console.error('Delete error:', err.message);
+      console.error("Delete error:", err.message);
       alert(err.message);
     }
   };
@@ -136,11 +155,11 @@ function Reviews() {
   const handleNewImagePreview = (e) => {
     const files = Array.from(e.target.files);
     if (files.length + newImageFiles.length + existingImages.length > 5) {
-      alert('You can upload a maximum of 5 images in total');
+      alert("You can upload a maximum of 5 images in total");
       return;
     }
 
-    const previews = files.map(file => URL.createObjectURL(file));
+    const previews = files.map((file) => URL.createObjectURL(file));
     // console.log('New images selected:', files.map(f => f.name));
     setNewImagePreviews([...newImagePreviews, ...previews]);
     setNewImageFiles([...newImageFiles, ...files]);
@@ -169,7 +188,7 @@ function Reviews() {
 
     try {
       if (!reviewId) {
-        throw new Error('Review ID is missing');
+        throw new Error("Review ID is missing");
       }
 
       const trimmedReviewId = String(reviewId).trim();
@@ -177,7 +196,7 @@ function Reviews() {
       // console.log('PUT request to:', url);
 
       const response = await fetch(url, {
-        method: 'PUT',
+        method: "PUT",
         headers: {
           Authorization: `Bearer ${userToken}`,
         },
@@ -186,8 +205,8 @@ function Reviews() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        console.error('Edit failed:', errorData);
-        throw new Error(errorData.message || 'Failed to update review');
+        console.error("Edit failed:", errorData);
+        throw new Error(errorData.message || "Failed to update review");
       }
 
       const data = await response.json();
@@ -197,101 +216,103 @@ function Reviews() {
       closeEditForm();
       return data.review;
     } catch (error) {
-      console.error('Error updating review:', error);
+      console.error("Error updating review:", error);
       alert(`Failed to update review: ${error.message}`);
     }
   };
 
   // Handle edit form submission
- // Handle edit form submission
-const handleEditSubmit = async (e, reviewId) => {
-  e.preventDefault();
+  // Handle edit form submission
+  const handleEditSubmit = async (e, reviewId) => {
+    e.preventDefault();
 
-  const rating = e.target.rating.value;
-  const comment = e.target.comment.value.trim();
+    const rating = e.target.rating.value;
+    const comment = e.target.comment.value.trim();
 
-  if (!rating || !comment) {
-    toast.error('Please provide both a rating and a comment', {
-      position: "bottom-left",
-      autoClose: 4000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme: "colored",
-    });
-    return;
-  }
-
-  // Show loading toast
-  const loadingToast = toast.loading('Updating your review...', {
-    position: "bottom-left",
-  });
-
-  try {
-    const formData = new FormData();
-    formData.append('rating', rating);
-    formData.append('comment', comment);
-
-    // Normalize existing image paths for backend
-    const imagesToSend = existingImages.map(img => {
-      // Remove BaseUrl if present
-      let path = img.startsWith(BaseUrl) ? img.replace(BaseUrl, '') : img;
-      // Ensure path starts with /uploads
-      path = path.startsWith('/uploads/') ? path : `/uploads/${path}`;
-      return path;
-    });
-
-    formData.append('existingImages', JSON.stringify(imagesToSend));
-
-    console.log('New image files:', newImageFiles.map(f => f.name));
-    newImageFiles.forEach(file => {
-      formData.append('images', file);
-    });
-
-    await handleEditWithImages(reviewId, formData);
-
-    // Dismiss loading toast and show success
-    toast.dismiss(loadingToast);
-    toast.success('Review has been successfully updated!', {
-      position: "bottom-left",
-      autoClose: 4000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      theme: "colored",
-    });
-
-    // Delay closing and reload so toast shows
-    setTimeout(() => {
-      closeEditForm();
-      window.location.reload();
-    }, 2000);
-
-  } catch (error) {
-    // Dismiss loading toast and show error
-    toast.dismiss(loadingToast);
-    console.error('Error updating review:', error);
-    
-    toast.error(
-      `Failed to update review: ${
-        error.response?.data?.message ||
-        error.message ||
-        "Please try again later."
-      }`,
-      {
+    if (!rating || !comment) {
+      toast.error("Please provide both a rating and a comment", {
         position: "bottom-left",
-        autoClose: 5000,
+        autoClose: 4000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
         theme: "colored",
-      }
-    );
-  }
-};
+      });
+      return;
+    }
+
+    // Show loading toast
+    const loadingToast = toast.loading("Updating your review...", {
+      position: "bottom-left",
+    });
+
+    try {
+      const formData = new FormData();
+      formData.append("rating", rating);
+      formData.append("comment", comment);
+
+      // Normalize existing image paths for backend
+      const imagesToSend = existingImages.map((img) => {
+        // Remove BaseUrl if present
+        let path = img.startsWith(BaseUrl) ? img.replace(BaseUrl, "") : img;
+        // Ensure path starts with /uploads
+        path = path.startsWith("/uploads/") ? path : `/uploads/${path}`;
+        return path;
+      });
+
+      formData.append("existingImages", JSON.stringify(imagesToSend));
+
+      console.log(
+        "New image files:",
+        newImageFiles.map((f) => f.name)
+      );
+      newImageFiles.forEach((file) => {
+        formData.append("images", file);
+      });
+
+      await handleEditWithImages(reviewId, formData);
+
+      // Dismiss loading toast and show success
+      toast.dismiss(loadingToast);
+      toast.success("Review has been successfully updated!", {
+        position: "bottom-left",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: "colored",
+      });
+
+      // Delay closing and reload so toast shows
+      setTimeout(() => {
+        closeEditForm();
+        window.location.reload();
+      }, 2000);
+    } catch (error) {
+      // Dismiss loading toast and show error
+      toast.dismiss(loadingToast);
+      console.error("Error updating review:", error);
+
+      toast.error(
+        `Failed to update review: ${
+          error.response?.data?.message ||
+          error.message ||
+          "Please try again later."
+        }`,
+        {
+          position: "bottom-left",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          theme: "colored",
+        }
+      );
+    }
+  };
 
   // Close edit form
   const closeEditForm = () => {
@@ -300,7 +321,7 @@ const handleEditSubmit = async (e, reviewId) => {
     setNewImagePreviews([]);
     setNewImageFiles([]);
     setExistingImages([]);
-    newImagePreviews.forEach(url => URL.revokeObjectURL(url));
+    newImagePreviews.forEach((url) => URL.revokeObjectURL(url));
   };
 
   // Toggle images visibility for a review
@@ -326,7 +347,10 @@ const handleEditSubmit = async (e, reviewId) => {
   // Render stars for ratings
   const renderStars = (rating) => {
     return Array.from({ length: 5 }, (_, i) => (
-      <span key={i} className={i < rating ? 'text-yellow-400' : 'text-gray-300'}>
+      <span
+        key={i}
+        className={i < rating ? "text-yellow-400" : "text-gray-300"}
+      >
         ★
       </span>
     ));
@@ -378,245 +402,255 @@ const handleEditSubmit = async (e, reviewId) => {
         </button>
       </div>
 
-    
-{/* Review Form Modal */}
-{showReviewForm && (
-  <div className="fixed inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-[9999] p-4 overflow-y-auto pt-20 sm:pt-24">
-    <div className="bg-white rounded-xl w-full max-w-2xl lg:max-w-3xl shadow-2xl relative my-8">
-      <button
-        onClick={handleCloseReviewForm}
-        className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 bg-white rounded-full p-1.5 shadow-md hover:shadow-lg transition-all"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
-      <ReviewScreen onClose={handleCloseReviewForm} />
-    </div>
-  </div>
-)}
-
-
-     {/* Edit Review Form Modal */}
-{editReview && (
-  <div className="fixed inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-[9999] p-4 overflow-y-auto pt-20 sm:pt-24">
-    <div className="bg-white rounded-xl w-full max-w-2xl lg:max-w-3xl shadow-2xl relative my-8">
-      <button
-        onClick={closeEditForm}
-        className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 bg-white rounded-full p-1.5 shadow-md hover:shadow-lg transition-all"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
-      </button>
-
-      <div className="p-5 sm:p-6 md:p-8 bg-white rounded-xl relative w-full max-h-[85vh] overflow-y-auto">
-        <h3 className="text-2xl sm:text-3xl font-bold text-[#0C3B34] mb-6">
-          Edit Review
-        </h3>
-
-        <form onSubmit={(e) => handleEditSubmit(e, editReview.id)} className="space-y-6">
-          {/* Rating */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
-              Rating <span className="text-red-500">*</span>
-            </label>
-            <select
-              name="rating"
-              defaultValue={editReview.rating}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C3B34] focus:border-transparent transition-all bg-white"
+      {/* Review Form Modal */}
+      {showReviewForm && (
+        <div className="fixed inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-[9999] p-4 overflow-y-auto pt-20 sm:pt-24">
+          <div className="bg-white rounded-xl w-full max-w-2xl lg:max-w-3xl shadow-2xl relative my-8">
+            <button
+              onClick={handleCloseReviewForm}
+              className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 bg-white rounded-full p-1.5 shadow-md hover:shadow-lg transition-all"
             >
-              {[1, 2, 3, 4, 5].map(num => (
-                <option key={num} value={num}>{num} Star{num > 1 ? 's' : ''}</option>
-              ))}
-            </select>
-          </div>
-
-          {/* Comment */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
-              Comment <span className="text-red-500">*</span>
-            </label>
-            <textarea
-              name="comment"
-              defaultValue={editReview.text}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C3B34] focus:border-transparent transition-all resize-none"
-              rows="5"
-              placeholder="Share your experience..."
-            />
-          </div>
-
-          {/* Existing Images */}
-          {existingImages && existingImages.length > 0 && (
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
-                Current Images
-              </label>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                {existingImages.map((image, index) => (
-                  <div key={index} className="relative group">
-                    <img
-                      src={image}
-                      alt={`Review ${index + 1}`}
-                      className="w-full h-28 sm:h-32 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
-                      onError={(e) => {
-                        console.error(`Failed to load existing image: ${image}`);
-                        e.target.src = '/images/fallback-image.jpg';
-                      }}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveExistingImage(index)}
-                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 shadow-lg"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* New Images Upload */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
-              Add New Images
-            </label>
-            <div className="flex items-center justify-center w-full">
-              <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-all">
-                <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                  <svg
-                    className="w-10 h-10 mb-3 text-gray-400"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 20 16"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                    />
-                  </svg>
-                  <p className="mb-2 text-sm text-gray-600">
-                    <span className="font-semibold">Click to upload</span> or drag and drop
-                  </p>
-                  <p className="text-xs text-gray-500">PNG, JPG or JPEG (MAX. 4 images)</p>
-                </div>
-                <input
-                  type="file"
-                  name="images"
-                  multiple
-                  accept="image/*"
-                  onChange={handleNewImagePreview}
-                  className="hidden"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
                 />
-              </label>
-            </div>
+              </svg>
+            </button>
+            <ReviewScreen onClose={handleCloseReviewForm} />
           </div>
+        </div>
+      )}
 
-          {/* Preview New Images */}
-          {newImagePreviews && newImagePreviews.length > 0 && (
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
-                New Images Preview
-              </label>
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-                {newImagePreviews.map((preview, index) => (
-                  <div key={index} className="relative group">
-                    <img
-                      src={preview}
-                      alt={`New ${index + 1}`}
-                      className="w-full h-28 sm:h-32 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
-                      onError={(e) => {
-                        console.error(`Failed to load new image preview: ${preview}`);
-                        e.target.src = '/images/fallback-image.jpg';
-                      }}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => handleRemoveNewImage(index)}
-                      className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 shadow-lg"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="h-4 w-4"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Actions */}
-          <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 sm:gap-4 pt-4 border-t border-gray-200">
+      {/* Edit Review Form Modal */}
+      {editReview && (
+        <div className="fixed inset-0 backdrop-blur-sm bg-black/40 flex items-center justify-center z-[9999] p-4 overflow-y-auto pt-20 sm:pt-24">
+          <div className="bg-white rounded-xl w-full max-w-2xl lg:max-w-3xl shadow-2xl relative my-8">
             <button
-              type="button"
               onClick={closeEditForm}
-              className="w-full sm:w-auto px-6 py-2.5 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 font-medium transition-colors"
+              className="absolute top-4 right-4 z-10 text-gray-400 hover:text-gray-600 bg-white rounded-full p-1.5 shadow-md hover:shadow-lg transition-all"
             >
-              Cancel
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
             </button>
-            <button
-              type="submit"
-              className="w-full sm:w-auto px-6 py-2.5 bg-[#0C3B34] text-white rounded-lg hover:bg-[#1a5a4f] font-medium transition-colors"
-            >
-              Save
-            </button>
+
+            <div className="p-5 sm:p-6 md:p-8 bg-white rounded-xl relative w-full max-h-[85vh] overflow-y-auto">
+              <h3 className="text-2xl sm:text-3xl font-bold text-[#0C3B34] mb-6">
+                Edit Review
+              </h3>
+
+              <form
+                onSubmit={(e) => handleEditSubmit(e, editReview.id)}
+                className="space-y-6"
+              >
+                {/* Rating */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                    Rating <span className="text-red-500">*</span>
+                  </label>
+                  <select
+                    name="rating"
+                    defaultValue={editReview.rating}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C3B34] focus:border-transparent transition-all bg-white"
+                  >
+                    {[1, 2, 3, 4, 5].map((num) => (
+                      <option key={num} value={num}>
+                        {num} Star{num > 1 ? "s" : ""}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Comment */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                    Comment <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    name="comment"
+                    defaultValue={editReview.text}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C3B34] focus:border-transparent transition-all resize-none"
+                    rows="5"
+                    placeholder="Share your experience..."
+                  />
+                </div>
+
+                {/* Existing Images */}
+                {existingImages && existingImages.length > 0 && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                      Current Images
+                    </label>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                      {existingImages.map((image, index) => (
+                        <div key={index} className="relative group">
+                          <img
+                            src={image}
+                            alt={`Review ${index + 1}`}
+                            className="w-full h-28 sm:h-32 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
+                            onError={(e) => {
+                              console.error(
+                                `Failed to load existing image: ${image}`
+                              );
+                              e.target.src = "/images/fallback-image.jpg";
+                            }}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveExistingImage(index)}
+                            className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 shadow-lg"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M6 18L18 6M6 6l12 12"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* New Images Upload */}
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-3">
+                    Add New Images
+                  </label>
+                  <div className="flex items-center justify-center w-full">
+                    <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100 transition-all">
+                      <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                        <svg
+                          className="w-10 h-10 mb-3 text-gray-400"
+                          aria-hidden="true"
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 20 16"
+                        >
+                          <path
+                            stroke="currentColor"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
+                          />
+                        </svg>
+                        <p className="mb-2 text-sm text-gray-600">
+                          <span className="font-semibold">Click to upload</span>{" "}
+                          or drag and drop
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          PNG, JPG or JPEG (MAX. 4 images)
+                        </p>
+                      </div>
+                      <input
+                        type="file"
+                        name="images"
+                        multiple
+                        accept="image/*"
+                        onChange={handleNewImagePreview}
+                        className="hidden"
+                      />
+                    </label>
+                  </div>
+                </div>
+
+                {/* Preview New Images */}
+                {newImagePreviews && newImagePreviews.length > 0 && (
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-3">
+                      New Images Preview
+                    </label>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+                      {newImagePreviews.map((preview, index) => (
+                        <div key={index} className="relative group">
+                          <img
+                            src={preview}
+                            alt={`New ${index + 1}`}
+                            className="w-full h-28 sm:h-32 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
+                            onError={(e) => {
+                              console.error(
+                                `Failed to load new image preview: ${preview}`
+                              );
+                              e.target.src = "/images/fallback-image.jpg";
+                            }}
+                          />
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveNewImage(index)}
+                            className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1.5 opacity-0 group-hover:opacity-100 transition-all hover:bg-red-600 shadow-lg"
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-4 w-4"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M6 18L18 6M6 6l12 12"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Actions */}
+                <div className="flex flex-col-reverse sm:flex-row justify-end gap-3 sm:gap-4 pt-4 border-t border-gray-200">
+                  <button
+                    type="button"
+                    onClick={closeEditForm}
+                    className="w-full sm:w-auto px-6 py-2.5 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 font-medium transition-colors"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="w-full sm:w-auto px-6 py-2.5 bg-[#0C3B34] text-white rounded-lg hover:bg-[#1a5a4f] font-medium transition-colors"
+                  >
+                    Save
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-        </form>
-      </div>
-    </div>
-  </div>
-)}
+        </div>
+      )}
 
       {/* Login Prompt Modal */}
       {showLoginPrompt && (
@@ -656,8 +690,12 @@ const handleEditSubmit = async (e, reviewId) => {
                   d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                 />
               </svg>
-              <h3 className="text-xl font-bold text-[#0C3B34] mt-4">Login Required</h3>
-              <p className="text-gray-600 mt-2">Please log in to like reviews.</p>
+              <h3 className="text-xl font-bold text-[#0C3B34] mt-4">
+                Login Required
+              </h3>
+              <p className="text-gray-600 mt-2">
+                Please log in to like reviews.
+              </p>
               <button
                 onClick={handleCloseLoginPrompt}
                 className="mt-6 bg-[#0C3B34] text-white font-semibold py-2 px-6 rounded-lg hover:bg-[#1a5a4f] transition-colors"
@@ -703,7 +741,7 @@ const handleEditSubmit = async (e, reviewId) => {
               onClick={(e) => e.stopPropagation()}
               onError={(e) => {
                 console.error(`Failed to load modal image: ${selectedImage}`);
-                e.target.src = '/images/fallback-image.jpg'; // Ensure this exists
+                e.target.src = "/images/fallback-image.jpg"; // Ensure this exists
               }}
             />
           </div>
@@ -716,8 +754,9 @@ const handleEditSubmit = async (e, reviewId) => {
           What Our Clients Say
         </h1>
         <p className="text-base md:text-lg text-gray-700 text-justify max-w-3xl mx-auto px-2 sm:px-0">
-          For over a decade, we've helped thousands of clients achieve their immigration dreams.
-          Here's what some of them have to say about their experience with our services.
+          For over a decade, we've helped thousands of clients achieve their
+          immigration dreams. Here's what some of them have to say about their
+          experience with our services.
         </p>
       </div>
 
@@ -728,15 +767,14 @@ const handleEditSubmit = async (e, reviewId) => {
       {/* Statistics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
         <div className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] p-3 md:p-4 rounded-lg text-white text-center">
-          <div className="text-xl md:text-2xl font-bold">
-              4.9
-          </div>
+          <div className="text-xl md:text-2xl font-bold">4.9</div>
           <div className="text-xs md:text-sm opacity-90">Average Rating</div>
           <div className="flex justify-center mt-1 text-sm md:text-base">
             {renderStars(
               Math.round(
                 reviews.length > 0
-                  ? reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length
+                  ? reviews.reduce((sum, review) => sum + review.rating, 0) /
+                      reviews.length
                   : 0
               )
             )}
@@ -752,6 +790,10 @@ const handleEditSubmit = async (e, reviewId) => {
         </div>
       </div>
 
+
+
+      
+
       {/* Reviews Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-start mb-20">
         {reviews.map((review) => (
@@ -763,7 +805,10 @@ const handleEditSubmit = async (e, reviewId) => {
             <div className="flex justify-between items-start mb-3 md:mb-4">
               <div className="flex items-center space-x-2 md:space-x-3">
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg">
-                  {review.name.split(' ').map((n) => n[0]).join('')}
+                  {review.name
+                    .split(" ")
+                    .map((n) => n[0])
+                    .join("")}
                 </div>
                 <div>
                   <h3 className="font-bold text-base md:text-lg text-[#0C3B34]">
@@ -777,7 +822,9 @@ const handleEditSubmit = async (e, reviewId) => {
                 </div>
               </div>
               <div className="text-right">
-                <div className="flex mb-1 text-lg md:text-xl">{renderStars(review.rating)}</div>
+                <div className="flex mb-1 text-lg md:text-xl">
+                  {renderStars(review.rating)}
+                </div>
                 <div className="text-xs text-gray-500">{review.rating}</div>
               </div>
             </div>
@@ -797,7 +844,9 @@ const handleEditSubmit = async (e, reviewId) => {
 
             {/* Bottom Border - Delete/Edit Buttons and Images */}
             <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-[#D8C287] flex items-center gap-2">
-              {(user?.isAdmin || (userId && review.author?.toString() === userId?.toString())) && (
+              {(user?.isAdmin ||
+                (userId &&
+                  review.author?.toString() === userId?.toString())) && (
                 <>
                   <button
                     onClick={() => handleDelete(review.id)}
@@ -834,7 +883,9 @@ const handleEditSubmit = async (e, reviewId) => {
                       d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
                     />
                   </svg>
-                  {expandedImages[review.id] ? 'Hide Images' : `View Images (${review.images.length})`}
+                  {expandedImages[review.id]
+                    ? "Hide Images"
+                    : `View Images (${review.images.length})`}
                 </button>
               )}
             </div>
@@ -856,7 +907,7 @@ const handleEditSubmit = async (e, reviewId) => {
                         className="h-32 w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
                         onError={(e) => {
                           console.error(`Failed to load image: ${img}`);
-                          e.target.src = '/images/fallback-image.jpg'; // Ensure this exists
+                          e.target.src = "/images/fallback-image.jpg"; // Ensure this exists
                         }}
                       />
                       <div className="absolute inset-0 bg-black/20 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
@@ -885,19 +936,19 @@ const handleEditSubmit = async (e, reviewId) => {
       </div>
 
       {/* Toast notifications */}
-        <ToastContainer
-          position="bottom-left"
-          autoClose={4000}
-          hideProgressBar={false}
-          newestOnTop
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-          style={{ zIndex: 10000 }}
-        />
+      <ToastContainer
+        position="bottom-left"
+        autoClose={4000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+        style={{ zIndex: 10000 }}
+      />
     </div>
   );
 }

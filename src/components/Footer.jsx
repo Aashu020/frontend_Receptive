@@ -149,7 +149,7 @@ function Footer() {
                     106, Dev Prime, Nr. Vodafone House, Corporate Road, Makarba, Ahmedabad - 380051
                   </p>
                   <p className="text-[#0c3b34] text-xs font-medium">+91 98677 29568</p>
-                  <p className="text-[#0c3b34] text-xs">ketan@receptivesolutions.co.in</p>
+                  <p className="text-[#0c3b34] text-xs">info@receptivesolutions.co.in</p>
                 </div>
 
                 {/* UAE Branch */}
