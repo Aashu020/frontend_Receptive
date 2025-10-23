@@ -501,7 +501,7 @@ const Navbar = () => {
                   <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div>
                 </div>
                 <span className="text-[#0c3b34] font-bold md:text-lg md:text-[15.5px] xl:text-[17px] hidden md:flex">Trusted Since 2011 | Licensed & Certified</span>
-                <p className="text-[#0c3b34] font-bold md:text-lg md:hidden text-center"><span className="border-b border-b-2 text-[14px]">Trusted Since 2011</span> <br/> Licensed & Certified</p>
+                <p className="text-[#0c3b34] font-bold md:text-lg md:hidden text-center text-[13px]"><span className="border-b border-b-2 ">Trusted Since 2011</span> <br/> Licensed & Certified</p>
               </div>
             </div>
             <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 cursor-pointer">

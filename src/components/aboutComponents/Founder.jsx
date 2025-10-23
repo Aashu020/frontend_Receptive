@@ -8,7 +8,7 @@ const Founder = () => {
             <div className=" mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center">
                     {/* Image Section - Animate from right */}
-                    <motion.div 
+                    <div 
                         className="w-full lg:w-2/5 rounded-2xl overflow-hidden shadow-lg"
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -24,10 +24,10 @@ const Founder = () => {
                     >
                         <img
                             src={img}
-                            alt="Mr. Vikal Gilani, Founder of Receptive Group"
+                            alt="Founder of Receptive Group"
                             className="w-full h-full object-cover"
                         />
-                    </motion.div>
+                    </div>
 
                     {/* Text Section - Animate from left */}
                     <motion.div 
