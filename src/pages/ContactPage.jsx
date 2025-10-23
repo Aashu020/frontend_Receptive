@@ -42,7 +42,7 @@ const ContactPage = () => {
         />
         <link
           rel="canonical"
-          href="https://www.receptivesolutions.co.in/about"
+          href="https://www.receptivesolutions.co.in/contact"
         />
       </Helmet>
       <div className="pt-16 md:pt-24 lg:pt-28 xl:pt-32">

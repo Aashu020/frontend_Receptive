@@ -18,7 +18,7 @@ const Usa = () => {
                 />
                 <link 
                   rel="canonical" 
-                  href="https://www.receptivesolutions.co.in/about" 
+                  href="https://www.receptivesolutions.co.in/country/usa" 
                 />
               </Helmet>
         

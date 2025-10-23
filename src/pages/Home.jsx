@@ -18,7 +18,7 @@ const Home = () => {
         />
         <link
           rel="canonical"
-          href="https://www.receptivesolutions.co.in/about"
+          href="https://www.receptivesolutions.co.in/"
         />
       </Helmet>
       <div>
