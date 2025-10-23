@@ -21,6 +21,7 @@ function Reviews() {
   const [newImagePreviews, setNewImagePreviews] = useState([]);
   const [newImageFiles, setNewImageFiles] = useState([]);
   const [existingImages, setExistingImages] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Helper function to format image URLs
   const formatImageUrl = (img) => {
@@ -36,6 +37,7 @@ function Reviews() {
   // Fetch reviews
   const fetchReviews = async () => {
     console.log("Starting fetchReviews...");
+    setIsLoading(true);
     try {
       const token = localStorage.getItem("token");
       const storedUserId = localStorage.getItem("user");
@@ -115,6 +117,8 @@ function Reviews() {
         position: "bottom-left",
         autoClose: 4000,
       });
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -388,7 +392,7 @@ function Reviews() {
             <title>Reviews | Receptive Solutions</title>
             <meta
               name="description"
-              content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
+              content="Learn about Receptive International's mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
             />
             <link 
               rel="canonical" 
@@ -763,192 +767,205 @@ function Reviews() {
         </div>
       )}
 
-      {/* Header */}
-      <div className="text-center mb-8 md:mb-12">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0C3B34] mb-3 md:mb-4">
-          What Our Clients Say
-        </h1>
-        <p className="text-base md:text-lg text-gray-700 text-justify max-w-3xl mx-auto px-2 sm:px-0">
-          For over a decade, we've helped thousands of clients achieve their
-          immigration dreams. Here's what some of them have to say about their
-          experience with our services.
-        </p>
-      </div>
-
-      <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-[#0C3B34] border-b-2 border-[#D8C287] pb-2">
-        Client Reviews
-      </h2>
-
-      {/* Statistics */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
-        <div className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] p-3 md:p-4 rounded-lg text-white text-center">
-          <div className="text-xl md:text-2xl font-bold">4.9</div>
-          <div className="text-xs md:text-sm opacity-90">Average Rating</div>
-          <div className="flex justify-center mt-1 text-sm md:text-base">
-            {renderStars(
-              Math.round(
-                reviews.length > 0
-                  ? reviews.reduce((sum, review) => sum + review.rating, 0) /
-                      reviews.length
-                  : 0
-              )
-            )}
+      {/* Loader */}
+      {isLoading ? (
+        <div className="flex flex-col items-center justify-center py-20">
+          <div className="relative">
+            <div className="w-20 h-20 border-[#D8C287] border-4 rounded-full"></div>
+            <div className="w-20 h-20 border-[#0C3B34] border-t-4 animate-spin rounded-full absolute left-0 top-0"></div>
           </div>
+          <p className="mt-6 text-lg text-gray-600 font-medium">Loading reviews...</p>
         </div>
-        <div className="bg-gradient-to-r from-[#D8C287] to-[#c4a567] p-3 md:p-4 rounded-lg text-[#0C3B34] text-center">
-          <div className="text-xl md:text-2xl font-bold">3000+</div>
-          <div className="text-xs md:text-sm font-semibold">Happy Clients</div>
-        </div>
-        <div className="bg-gradient-to-r from-green-500 to-green-600 p-3 md:p-4 rounded-lg text-white text-center">
-          <div className="text-xl md:text-2xl font-bold">95%</div>
-          <div className="text-xs md:text-sm opacity-90">Success Rate</div>
-        </div>
-      </div>
+      ) : (
+        <>
+          {/* Header */}
+          <div className="text-center mb-8 md:mb-12">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0C3B34] mb-3 md:mb-4">
+              What Our Clients Say
+            </h1>
+            <p className="text-base md:text-lg text-gray-700 text-justify max-w-3xl mx-auto px-2 sm:px-0">
+              For over a decade, we've helped thousands of clients achieve their
+              immigration dreams. Here's what some of them have to say about their
+              experience with our services.
+            </p>
+          </div>
 
-      {/* Reviews Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-start mb-20">
-        {reviews.map((review) => (
-          <div
-            key={review.id}
-            className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-          >
-            {/* Header */}
-            <div className="flex justify-between items-start mb-3 md:mb-4">
-              <div className="flex items-center space-x-2 md:space-x-3">
-                <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg">
-                  {review.name
-                    .split(" ")
-                    .map((n) => n[0])
-                    .join("")}
-                </div>
-                <div>
-                  <h3 className="font-bold text-base md:text-lg text-[#0C3B34]">
-                    {review.name}
-                  </h3>
-                  <div className="flex items-center space-x-1 md:space-x-2">
-                    <span className="text-base md:text-lg">
-                      <div className="text-xs text-gray-500">{review.date}</div>
-                    </span>
-                  </div>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="flex mb-1 text-lg md:text-xl">
-                  {renderStars(review.rating)}
-                </div>
-                <div className="text-xs text-gray-500">{review.rating}</div>
-              </div>
-            </div>
+          <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-[#0C3B34] border-b-2 border-[#D8C287] pb-2">
+            Client Reviews
+          </h2>
 
-            {/* Review Text */}
-            <div className="relative">
-              <div className="text-3xl md:text-4xl text-[#D8C287] absolute -top-2 -left-1 opacity-50">
-                "
-              </div>
-              <p className="text-sm md:text-base text-gray-700 italic pl-4 md:pl-6 leading-relaxed">
-                {review.text}
-              </p>
-              <div className="text-3xl md:text-4xl text-[#D8C287] absolute -bottom-6 right-2 opacity-50">
-                "
-              </div>
-            </div>
-
-            {/* Images Section - Now Visible by Default */}
-            {review.images?.length > 0 && (
-              <div className="mt-4">
-                {expandedImages[review.id] && (
-                  <div className="grid grid-cols-2 gap-2 mb-3">
-                    {review.images.map((img, index) => {
-                      if (!img) return null;
-
-                      return (
-                        <div
-                          key={index}
-                          className="relative group cursor-pointer overflow-hidden rounded-lg"
-                          onClick={() => openImageModal(img)}
-                        >
-                          <img
-                            src={img}
-                            alt={`Review image ${index + 1}`}
-                            className="h-32 w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
-                            onError={(e) => {
-                              console.error(`Failed to load image: ${img}`);
-                              e.target.src = "/images/placeholder.jpg";
-                            }}
-                          />
-                          <div className="absolute inset-0 bg-black/20 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                              />
-                            </svg>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </div>
+          {/* Statistics */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
+            <div className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] p-3 md:p-4 rounded-lg text-white text-center">
+              <div className="text-xl md:text-2xl font-bold">4.9</div>
+              <div className="text-xs md:text-sm opacity-90">Average Rating</div>
+              <div className="flex justify-center mt-1 text-sm md:text-base">
+                {renderStars(
+                  Math.round(
+                    reviews.length > 0
+                      ? reviews.reduce((sum, review) => sum + review.rating, 0) /
+                          reviews.length
+                      : 0
+                  )
                 )}
               </div>
-            )}
-
-            {/* Bottom Border - Delete/Edit Buttons and Hide/Show Images Toggle */}
-            <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-[#D8C287] flex items-center gap-2">
-              {(user?.isAdmin ||
-                (userId && review.author?.toString() === userId?.toString())) && (
-                <>
-                  <button
-                    onClick={() => handleDelete(review.id)}
-                    className="p-1 rounded-full hover:scale-110 transition-transform"
-                    title="Delete Review"
-                  >
-                    <AiOutlineDelete className="text-red-500" size={22} />
-                  </button>
-                  <button
-                    onClick={() => openEditForm(review)}
-                    className="p-1 rounded-full hover:scale-110 transition-transform"
-                    title="Edit Review"
-                  >
-                    <AiOutlineEdit className="text-orange-500" size={22} />
-                  </button>
-                </>
-              )}
-              {review.images?.length > 0 && (
-                <button
-                  onClick={() => toggleImages(review.id)}
-                  className="ml-auto text-sm md:text-base text-[#0C3B34] hover:text-[#1a5a4f] font-semibold flex items-center gap-1"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-4 w-4"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                    />
-                  </svg>
-                  {expandedImages[review.id]
-                    ? "Hide Images"
-                    : `Show Images (${review.images.length})`}
-                </button>
-              )}
+            </div>
+            <div className="bg-gradient-to-r from-[#D8C287] to-[#c4a567] p-3 md:p-4 rounded-lg text-[#0C3B34] text-center">
+              <div className="text-xl md:text-2xl font-bold">3000+</div>
+              <div className="text-xs md:text-sm font-semibold">Happy Clients</div>
+            </div>
+            <div className="bg-gradient-to-r from-green-500 to-green-600 p-3 md:p-4 rounded-lg text-white text-center">
+              <div className="text-xl md:text-2xl font-bold">95%</div>
+              <div className="text-xs md:text-sm opacity-90">Success Rate</div>
             </div>
           </div>
-        ))}
-      </div>
+
+          {/* Reviews Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-start mb-20">
+            {reviews.map((review) => (
+              <div
+                key={review.id}
+                className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+              >
+                {/* Header */}
+                <div className="flex justify-between items-start mb-3 md:mb-4">
+                  <div className="flex items-center space-x-2 md:space-x-3">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg">
+                      {review.name
+                        .split(" ")
+                        .map((n) => n[0])
+                        .join("")}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-base md:text-lg text-[#0C3B34]">
+                        {review.name}
+                      </h3>
+                      <div className="flex items-center space-x-1 md:space-x-2">
+                        <span className="text-base md:text-lg">
+                          <div className="text-xs text-gray-500">{review.date}</div>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <div className="flex mb-1 text-lg md:text-xl">
+                      {renderStars(review.rating)}
+                    </div>
+                    <div className="text-xs text-gray-500">{review.rating}</div>
+                  </div>
+                </div>
+
+                {/* Review Text */}
+                <div className="relative">
+                  <div className="text-3xl md:text-4xl text-[#D8C287] absolute -top-2 -left-1 opacity-50">
+                    "
+                  </div>
+                  <p className="text-sm md:text-base text-gray-700 italic pl-4 md:pl-6 leading-relaxed">
+                    {review.text}
+                  </p>
+                  <div className="text-3xl md:text-4xl text-[#D8C287] absolute -bottom-6 right-2 opacity-50">
+                    "
+                  </div>
+                </div>
+
+                {/* Images Section - Now Visible by Default */}
+                {review.images?.length > 0 && (
+                  <div className="mt-4">
+                    {expandedImages[review.id] && (
+                      <div className="grid grid-cols-2 gap-2 mb-3">
+                        {review.images.map((img, index) => {
+                          if (!img) return null;
+
+                          return (
+                            <div
+                              key={index}
+                              className="relative group cursor-pointer overflow-hidden rounded-lg"
+                              onClick={() => openImageModal(img)}
+                            >
+                              <img
+                                src={img}
+                                alt={`Review image ${index + 1}`}
+                                className="h-32 w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
+                                onError={(e) => {
+                                  console.error(`Failed to load image: ${img}`);
+                                  e.target.src = "/images/placeholder.jpg";
+                                }}
+                              />
+                              <div className="absolute inset-0 bg-black/20 bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 flex items-center justify-center">
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-8 w-8 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                                  />
+                                </svg>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* Bottom Border - Delete/Edit Buttons and Hide/Show Images Toggle */}
+                <div className="mt-3 md:mt-4 pt-3 md:pt-4 border-t border-[#D8C287] flex items-center gap-2">
+                  {(user?.isAdmin ||
+                    (userId && review.author?.toString() === userId?.toString())) && (
+                    <>
+                      <button
+                        onClick={() => handleDelete(review.id)}
+                        className="p-1 rounded-full hover:scale-110 transition-transform"
+                        title="Delete Review"
+                      >
+                        <AiOutlineDelete className="text-red-500" size={22} />
+                      </button>
+                      <button
+                        onClick={() => openEditForm(review)}
+                        className="p-1 rounded-full hover:scale-110 transition-transform"
+                        title="Edit Review"
+                      >
+                        <AiOutlineEdit className="text-orange-500" size={22} />
+                      </button>
+                    </>
+                  )}
+                  {review.images?.length > 0 && (
+                    <button
+                      onClick={() => toggleImages(review.id)}
+                      className="ml-auto text-sm md:text-base text-[#0C3B34] hover:text-[#1a5a4f] font-semibold flex items-center gap-1"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        />
+                      </svg>
+                      {expandedImages[review.id]
+                        ? "Hide Images"
+                        : `Show Images (${review.images.length})`}
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
 
       {/* Toast notifications */}
       <ToastContainer
