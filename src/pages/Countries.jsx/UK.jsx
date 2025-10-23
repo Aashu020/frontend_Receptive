@@ -19,7 +19,7 @@ const UK = () => {
                 />
                 <link
                     rel="canonical"
-                    href="https://www.receptivesolutions.co.in/about"
+                    href="https://www.receptivesolutions.co.in/country/uk"
                 />
             </Helmet>
 

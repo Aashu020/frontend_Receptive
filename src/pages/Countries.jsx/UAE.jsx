@@ -20,7 +20,7 @@ const UAE = () => {
             />
             <link 
               rel="canonical" 
-              href="https://www.receptivesolutions.co.in/about" 
+              href="https://www.receptivesolutions.co.in/country/uae" 
             />
           </Helmet>
     <div>

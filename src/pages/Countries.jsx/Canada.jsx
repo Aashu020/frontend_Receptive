@@ -115,7 +115,7 @@ const Canada = () => {
                 />
                 <link
                     rel="canonical"
-                    href="https://www.receptivesolutions.co.in/about"
+                    href="https://www.receptivesolutions.co.in/country/canada"
                 />
             </Helmet>
             <div>

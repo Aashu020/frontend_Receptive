@@ -70,7 +70,7 @@ function SuccessStory() {
             />
             <link 
               rel="canonical" 
-              href="https://www.receptivesolutions.co.in/about" 
+              href="https://www.receptivesolutions.co.in/success-story" 
             />
           </Helmet>
     
