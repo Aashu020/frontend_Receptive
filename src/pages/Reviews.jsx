@@ -819,13 +819,14 @@ function Reviews() {
               </div>
             </div>
 
-            {/* Reviews Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 items-start mb-20">
-              {reviews.map((review) => (
-                <div
-                  key={review.id}
-                  className="bg-white p-4 md:p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-                >
+          
+          {/* Reviews Grid */}
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
+    {reviews.map((review) => (
+      <div
+        key={review.id}
+        className="mb-6 break-inside-avoid bg-white p-4 md:p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+      >
                   {/* Header */}
                   <div className="flex justify-between items-start mb-3 md:mb-4">
                     <div className="flex items-center space-x-2 md:space-x-3">
