@@ -5,6 +5,7 @@ import HeroSection from '../../components/countriesComponents/Herosection'
 import CountrySection from '../../components/countriesComponents/CountrySection'
 import UsaVisatypes from '../../components/countriesComponents/usaComponents/UsaVisatypes'
 import ContactForm from '../../components/ContactForm'
+import { Helmet } from 'react-helmet-async';
 const Usa = () => {
     return (
         <>

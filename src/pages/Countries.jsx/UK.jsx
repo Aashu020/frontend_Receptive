@@ -6,6 +6,7 @@ import CountrySection from '../../components/countriesComponents/CountrySection'
 import UkVisaTypes from '../../components/countriesComponents/ukComponents/UkVisaTypes'
 import UkVistior from '../../components/countriesComponents/ukComponents/UkVistior'
 import WorkerVisa from '../../components/countriesComponents/ukComponents/WorkerVisa'
+import { Helmet } from 'react-helmet-async';
 const UK = () => {
     return (
         <>
