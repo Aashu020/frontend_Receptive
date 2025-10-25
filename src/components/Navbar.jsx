@@ -72,14 +72,14 @@ function UpperHeader() {
       className="hidden sm:hidden md:flex lg:flex xl:flex fixed w-full z-100 justify-between items-center py-3 md:py-3 lg:py-4 px-4 md:px-4 lg:px-5 top-0"
     >
       <div className="flex flex-col md:flex-row gap-1 md:gap-2 lg:gap-3 xl:gap-8 text-xs lg:text-sm">
-        <div className="flex items-center gap-1 md:gap-2">
+        <div className="flex items-center gap-1 md:gap-1 lg:gap-2">
           <button
             onClick={() => handlePhoneClick("+919876543210")}
             className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
             aria-label="Call +91 98765 43210"
           >
             {/* <FaPhone className="text-xs lg:text-sm" /> */}
-            <span className="ml-1 text-xs lg:text-sm hidden lg:inline hover:text-white cursor-pointer">
+            <span className="ml-1 text-xs lg:text-sm hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
               IN +91 98677 29568
             </span>
           </button>
@@ -90,19 +90,19 @@ function UpperHeader() {
             aria-label="Email info@receptivegroup.com"
           >
             <FaEnvelope className="text-xs lg:text-sm" />
-            <span className="ml-1 hover:underline hover:text-white cursor-pointer text-xs lg:text-sm truncate max-w-[100px] md:max-w-[140px] lg:max-w-[180px] xl:max-w-none">
+            <span className="ml-1 hover:underline hover:text-white cursor-pointer text-xs lg:text-sm max-w-[100px] md:max-w-[150px] lg:max-w-[180px] xl:max-w-none">
               info@receptivesolutions.co.in
             </span>
           </button>
         </div>
-        <div className="flex items-center gap-1 md:gap-2">
+        <div className="flex items-center gap-1 md:gap-1 lg:gap-2">
           <button
             onClick={() => handlePhoneClick("+919885602560")}
             className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
             aria-label="Call +91 98856 02560"
           >
             {/* <FaPhone className="text-xs lg:text-sm" /> */}
-            <span className="ml-1 text-xs lg:text-sm hidden hover:text-white cursor-pointer lg:inline">
+            <span className="ml-1 text-xs lg:text-sm hidden md:block md:text-[10px] md:mt-1 hover:text-white cursor-pointer lg:inline">
               UAE +971 562744455
             </span>
           </button>
@@ -500,8 +500,8 @@ const Navbar = () => {
                   />
                   <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div>
                 </div>
-                <span className="text-[#0c3b34] font-bold md:text-lg md:text-[15.5px] xl:text-[17px] hidden md:flex">Trusted Since 2011 | Licensed & Certified</span>
-                <p className="text-[#0c3b34] font-bold md:text-lg md:hidden text-center text-[13px]"><span className="border-b border-b-2 ">Trusted Since 2011</span> <br/> Licensed & Certified</p>
+                <span className="text-[#0c3b34] font-bold md:text-[15.5px] lg:text-[15px] xl:text-[17px] hidden md:flex">Trusted&nbsp;Since&nbsp;2011 | Licensed&nbsp;&&nbsp;Certified</span>
+                <p className="text-[#0c3b34] font-bold md:text-lg md:hidden text-center text-[13px]"><span className=" border-b-2 ">Trusted&nbsp;Since&nbsp;2011</span> <br/> License&nbsp;&&nbsp;Certified</p>
               </div>
             </div>
             <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 cursor-pointer">
@@ -513,7 +513,7 @@ const Navbar = () => {
                         setIsCountriesOpen(!isCountriesOpen);
                         setSelectedCountry(null);
                       }}
-                      className={`flex items-center space-x-1 px-4 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base relative overflow-hidden group ${isCountriesOpen
+                      className={`flex items-center space-x-1 px-4 lg:px-2 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base relative overflow-hidden group ${isCountriesOpen
                           ? "bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white shadow-lg scale-105"
                           : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54]"
                         }`}
@@ -531,7 +531,7 @@ const Navbar = () => {
                   ) : (
                     <button
                       onClick={() => handleNavigation(item.path)}
-                      className="flex items-center space-x-2 px-4 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54] hover:shadow-lg hover:scale-105 relative overflow-hidden group"
+                      className="flex items-center space-x-2  px-4 lg:px-2 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54] hover:shadow-lg hover:scale-105 relative overflow-hidden group"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D8C287] to-[#e6d098] opacity-0 group-hover:opacity-10 transition-opacity duration-300 cursor-pointer"></div>
                       <item.icon className="w-4 h-4 xl:w-4 xl:h-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
