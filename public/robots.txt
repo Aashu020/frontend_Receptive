@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://receptivesolutions.co.in/sitemap.xml

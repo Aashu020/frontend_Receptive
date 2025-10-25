@@ -36,20 +36,20 @@ function Reviews() {
 
   // Fetch reviews
   const fetchReviews = async () => {
-    console.log("Starting fetchReviews...");
+    // console.log("Starting fetchReviews...");
     setIsLoading(true);
     try {
       const token = localStorage.getItem("token");
       const storedUserId = localStorage.getItem("user");
-      console.log("Token:", token, "UserID:", storedUserId);
+      // console.log("Token:", token, "UserID:", storedUserId);
 
       const res = await axios.get(`${BaseUrl}/api/reviews`, {
         headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
-      console.log("Backend response:", JSON.stringify(res.data, null, 2));
+      // console.log("Backend response:", JSON.stringify(res.data, null, 2));
 
       const allReviews = res.data.reviews || [];
-      console.log("Raw reviews data:", allReviews);
+      // console.log("Raw reviews data:", allReviews);
 
       const filtered = allReviews.filter((r) => {
         if (r.isapproved) return true;
@@ -60,7 +60,7 @@ function Reviews() {
         }
         return false;
       });
-      console.log("Filtered reviews:", filtered);
+      // console.log("Filtered reviews:", filtered);
 
       const formatted = filtered.map((r) => {
         const likes = r.likes || [];
@@ -110,7 +110,7 @@ function Reviews() {
       });
       setExpandedImages(initialExpandedState);
 
-      console.log("Formatted reviews set:", formatted);
+      // console.log("Formatted reviews set:", formatted);
     } catch (err) {
       console.error("Error fetching reviews:", err);
       toast.error("Failed to fetch reviews", {
