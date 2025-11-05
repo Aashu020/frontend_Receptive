@@ -11,38 +11,16 @@ const Home = () => {
     <>
       {/* ✅ Helmet is only for SEO metadata */}
       <Helmet>
-        <title>Receptive Solutions – Immigration & Overseas Placement Consultancy</title>
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "Receptive Solutions",
-            url: "https://receptivesolutions.co.in/",
-            logo: "https://receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg",
-            contactPoint: {
-              "@type": "ContactPoint",
-              telephone: "+91-77380-56424",
-              contactType: "customer support",
-              areaServed: "IN",
-              availableLanguage: ["English", "Hindi"]
-            },
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: "425, Gemstar Commercial Complex, Ramchandra Lane Extn, Kanchpada, Malad West",
-              addressLocality: "Mumbai",
-              postalCode: "400064",
-              addressRegion: "Maharashtra",
-              addressCountry: "IN"
-            },
-            sameAs: [
-              "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1", "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all", "https://www.youtube.com/@receptivegroup", "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
-          ],
-          description: "Receptive Solutions is an experienced immigration & overseas placement consultancy providing visa and job assistance services for Canada, UK, Singapore & Europe."
-          })}
-        </script>
+        <title>Receptive Solutions | Home</title>
+        <meta
+          name="description"
+          content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
+        />
+        <link
+          rel="canonical"
+          href="https://www.receptivesolutions.co.in/"
+        />
       </Helmet>
-
-
       <div>
 
         <Herosection />

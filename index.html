@@ -5,19 +5,54 @@
     <link rel="icon" type="image/svg+xml" href="/src/assets/images/IMMIGRATION_logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Receptive Solutions</title>
+
+    <!-- ✅ JSON-LD must be plain text -->
+    <script type="application/ld+json">
+   <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Receptive Solutions",
+  "url": "https://www.receptivesolutions.co.in",
+  "logo": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-77380-56424",
+    "contactType": "customer support",
+    "areaServed": "IN",
+    "availableLanguage": ["English", "Hindi"]
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "425, Gemstar Commercial Complex, Ramchandra Lane Extn, Kanchpada, Malad West",
+    "addressLocality": "Mumbai",
+    "postalCode": "400064",
+    "addressRegion": "Maharashtra",
+    "addressCountry": "IN"
+  },
+  "sameAs": [
+    "https://www.instagram.com/receptivesolutions",
+    "https://www.linkedin.com/company/receptivesolutions",
+    "https://www.youtube.com/@receptivegroup",
+    "https://www.facebook.com/receptivesoutions"
+  ]
+}
+</script>
+
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&family=Raleway:wght@600;700&display=swap" rel="stylesheet">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZG7YBJMXC"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag(){ dataLayer.push(arguments); }
       gtag('js', new Date());
-
       gtag('config', 'G-QZG7YBJMXC');
     </script>
-
   </head>
+
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
