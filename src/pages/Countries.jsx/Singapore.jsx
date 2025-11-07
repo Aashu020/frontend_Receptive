@@ -1,56 +1,124 @@
 import React from 'react'
-import HeroSection from '../../components/countriesComponents/Herosection';
+import HeroSection from '../../components/countriesComponents/Herosection'
 import img from '../../assets/images/singapore.jpg'
 import singapore from '../../assets/flags/sinagpore.jpg'
-import CountrySection from '../../components/countriesComponents/CountrySection';
+import CountrySection from '../../components/countriesComponents/CountrySection'
 import singimg from '../../assets/images/sing.jpg'
-import SingaporeEPass from '../../components/countriesComponents/Singapore/Epass';
-import { Helmet } from 'react-helmet-async';
+import SingaporeEPass from '../../components/countriesComponents/Singapore/Epass'
+import { Helmet } from 'react-helmet-async'
+
 const Singapore = () => {
-    return (
-        <>
-         {/* ✅ Helmet is only for SEO metadata */}
-              <Helmet>
-                <title>Singapore | Receptive Solutions</title>
-                <meta
-                  name="description"
-                  content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
-                />
-                <link 
-                  rel="canonical" 
-                  href="https://www.receptivesolutions.co.in/country/singapore" 
-                />
-              </Helmet>
+  return (
+    <>
+      {/* ✅ SEO Metadata */}
+      <Helmet>
+        <title>Singapore Immigration & Work Pass | Receptive Solutions</title>
 
-            <div>
-                <HeroSection
-                title="Singapore"
-                subtitle="Singapore is a global financial hub known for its modern skyline, diverse culture, and strict laws. Key attractions include Marina Bay Sands, Gardens by the Bay, and Sentosa Island. The city-state is renowned for its cleanliness, safety, and efficient public transport system."
-                bgImage={img}
-                flag={singapore}
-            />
+        <meta
+          name="description"
+          content="Explore Singapore immigration, Employment Pass (E-Pass), S-Pass, and work visa guidance with Receptive Solutions. Build your career in one of Asia’s strongest economies."
+        />
 
-            <CountrySection
-                countryName="Singapore"
-                mainTitle={`Relocate from the United Arab Emirates to Singapore…`}
-                title={
-                    <>  
-                        "Seize Success in Singapore: Your Gateway to Career Growth and Comfortable Living"
-                        </>
-                }
-                desc={
-                    <>
-                        The Singapore S Pass is a type of work permit designed for mid-skilled foreign employees such as technicians. There are several reasons why one should consider the Singapore S Pass. Firstly, it allows foreign workers to legally work in Singapore, providing them with numerous job opportunities in one of the world’s most dynamic and prosperous economies. Secondly, the S Pass is not tied to a specific employer, meaning that workers can switch jobs without needing to apply for a new pass. This offers a level of flexibility and job security that is not always available with other types of work permits. Thirdly, the S Pass includes provisions for dependents, which means that holders of the pass can bring certain family members to live with them in Singapore.
-                    </>
-                }
-                img={singimg}
-            />
+        {/* ✅ Canonical */}
+        <link 
+          rel="canonical" 
+          href="https://www.receptivesolutions.co.in/country/singapore" 
+        />
 
+        {/* ✅ Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.receptivesolutions.co.in/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Countries",
+                "item": "https://www.receptivesolutions.co.in/country"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Singapore",
+                "item": "https://www.receptivesolutions.co.in/country/singapore"
+              }
+            ]
+          }
+          `}
+        </script>
 
-            <SingaporeEPass/>
-            </div>
-        </>
-    )
+        {/* ✅ WebPage Schema */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Singapore Work Visa & Immigration Services | Receptive Solutions",
+            "url": "https://www.receptivesolutions.co.in/country/singapore",
+            "description": "Learn about Singapore E-Pass, S-Pass, and immigration opportunities with Receptive Solutions.",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@type": "WebSite",
+              "url": "https://www.receptivesolutions.co.in/"
+            },
+            "about": {
+              "@type": "Place",
+              "name": "Singapore",
+              "image": "https://www.receptivesolutions.co.in/assets/singapore.jpg"
+            }
+          }
+          `}
+        </script>
+      </Helmet>
+
+      {/* ✅ PAGE CONTENT */}
+      <div>
+        <HeroSection
+          title="Singapore"
+          subtitle="Singapore is a global hub for finance, technology, and innovation. Known for its safety, modern skyline, and strong economy, it offers excellent career opportunities for skilled professionals."
+          bgImage={img}
+          flag={singapore}
+        />
+
+        <CountrySection
+          countryName="SINGAPORE"
+          mainTitle="Build Your Future in Singapore"
+          title={
+            <>
+              Singapore offers excellent opportunities for skilled workers, professionals, and students. Its competitive job market, high quality of life, and world-class infrastructure make it one of the top destinations for global talent.
+            </>
+          }
+          desc={
+            <>
+              Singapore’s S-Pass and Employment Pass (E-Pass) programs allow skilled and mid-skilled professionals to work and thrive in the country’s dynamic economy.  
+              <br /><br />
+              The S-Pass is ideal for mid-skilled workers such as technicians and specialists. It provides:
+              <ul>
+                <li>✅ Legal permission to work in Singapore</li>
+                <li>✅ Flexible employment (can switch employers under valid rules)</li>
+                <li>✅ Eligibility for bringing dependents (for eligible holders)</li>
+              </ul>
+              <br />
+              With a transparent immigration system, competitive salaries, and excellent working conditions, Singapore remains one of the best places to build a successful career.
+              <br /><br />
+              Receptive Solutions offers expert guidance for S-Pass & E-Pass applications, documentation, employer matching, and complete visa filing support.
+            </>
+          }
+          img={singimg}
+        />
+
+        <SingaporeEPass />
+      </div>
+    </>
+  )
 }
 
 export default Singapore

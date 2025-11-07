@@ -7,54 +7,119 @@ import eurimg from "../../assets/images/eur.jpg"
 import EUJobsComponent from '../../components/countriesComponents/europeComponents/EUJobsComponent'
 import ContactForm from '../../components/ContactForm'
 import { Helmet } from 'react-helmet-async'
+
 const Europe = () => {
-    return (
-        <>
-         {/* ✅ Helmet is only for SEO metadata */}
-              <Helmet>
-                <title>Europe| Receptive Solutions</title>
-                <meta
-                  name="description"
-                  content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
-                />
-                <link 
-                  rel="canonical" 
-                  href="https://www.receptivesolutions.co.in/country/europe" 
-                />
-              </Helmet>
+  return (
+    <>
+      {/* ✅ SEO Metadata */}
+      <Helmet>
+        <title>Europe Immigration & Jobs | Receptive Solutions</title>
 
-            <div>
-                <HeroSection
-                    title="Europe"
-                    subtitle="EUrope is a continent rich in history, culture, and diversity. It is home to numerous countries, each with its own unique traditions, languages, and landmarks. From the romantic streets of Paris to the historic ruins of Rome, Europe offers a wide range of experiences for travelers. Key attractions include the Eiffel Tower, Colosseum, and the scenic landscapes of the Swiss Alps. Europe is also known for its art, music, and culinary delights."
-                    bgImage={img}
-                    flag={europe}
-                />
+        <meta
+          name="description"
+          content="Explore European immigration pathways, job opportunities, and visa assistance with Receptive Solutions. Work in countries like Germany, Poland, Portugal, Lithuania, and more."
+        />
 
-                <CountrySection
-                    countryName="Europe"
-                    mainTitle={`Welcome to Receptive Group of Companies, a trusted name in Immigration`}
-                    title={
-                        <>
-                            HR consultancy for over 12 years in India, now present globally in the UK and Dubai. Our experienced professionals provide tailored solutions for visa applications, employee recruitment, and Permanent Residence, ensuring a smooth journey towards your immigration and HR goals. Trust in our expertise and unwavering dedication to your success. Let us be your partner in realizing your dreams and aspirations.
-                        </>
-                    }
-                    desc={
-                        <>
-                            Moving to Europe on a work visa or for immigration is a great decision due to numerous reasons. Europe offers a wide array of job opportunities in various thriving industries like technology, engineering, Construction, Manufacturing finance, and Beauty & healthcare, providing excellent career growth. <br />
+        {/* ✅ Canonical */}
+        <link 
+          rel="canonical" 
+          href="https://www.receptivesolutions.co.in/country/europe" 
+        />
 
-                            Moreover, Europe boasts high living standards, with top-notch healthcare, education, and social welfare systems making it an ideal place to live. It also offers a culturally diverse environment, rich history, and is conveniently located for travel. <br />
+        {/* ✅ Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.receptivesolutions.co.in/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Countries",
+                "item": "https://www.receptivesolutions.co.in/country"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Europe",
+                "item": "https://www.receptivesolutions.co.in/country/europe"
+              }
+            ]
+          }
+          `}
+        </script>
 
-                            Receptive Group of Companies provides job placement and immigration services across Europe, with a successful track record in countries including Poland, Portugal, Estonia, Germany, Lithuania, Latvia, Slovakia, Hungary, Malta, Romania, Czech Republic, and Spain. Our expertise and experience make us a reliable partner in your journey to Europe.
-                        </>
-                    }
-                    img={eurimg}
-                />
-                <EUJobsComponent />
-                <ContactForm />
-            </div>
-        </>
-    )
+        {/* ✅ WebPage Schema */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Europe Immigration & Work Opportunities | Receptive Solutions",
+            "url": "https://www.receptivesolutions.co.in/country/europe",
+            "description": "Find immigration and job opportunities across Europe including Germany, Poland, Estonia, Portugal, and more.",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@type": "WebSite",
+              "url": "https://www.receptivesolutions.co.in/"
+            },
+            "about": {
+              "@type": "Place",
+              "name": "Europe",
+              "image": "https://www.receptivesolutions.co.in/assets/europe.jpg"
+            }
+          }
+          `}
+        </script>
+      </Helmet>
+
+      {/* ✅ PAGE CONTENT */}
+      <div>
+        <HeroSection
+          title="Europe"
+          subtitle="Europe is known for its rich history, advanced economies, cultural diversity, and strong job markets. Explore visa and employment pathways across multiple European countries with Receptive Solutions."
+          bgImage={img}
+          flag={europe}
+        />
+
+        <CountrySection
+          countryName="Europe"
+          mainTitle="Work & Settle in Europe with Receptive Solutions"
+          title={
+            <>
+              With 12+ years of expertise in global immigration and HR consulting, Receptive Solutions bridges skilled professionals with opportunities across the European continent.
+            </>
+          }
+          desc={
+            <>
+              Europe offers some of the strongest economies in the world, providing excellent job opportunities across industries like technology, engineering, manufacturing, construction, healthcare, and hospitality.
+              <br /><br />
+              European countries boast high living standards, world-class education, modern healthcare systems, and strong worker protections. Its diverse culture, historic architecture, and scenic beauty make Europe one of the most attractive destinations for migrants worldwide.
+              <br /><br />
+              Receptive Solutions provides immigration guidance and job placement services across countries such as:
+              <br />
+              <strong>
+                Germany, Poland, Portugal, Estonia, Lithuania, Latvia, Slovakia, Hungary, Malta, Romania, Czech Republic, and Spain.
+              </strong>
+              <br /><br />
+              Our expertise ensures a smooth process—from documentation to job placement and visa support—making your transition to Europe seamless and successful.
+            </>
+          }
+          img={eurimg}
+        />
+
+        <EUJobsComponent />
+        <ContactForm />
+      </div>
+    </>
+  )
 }
 
 export default Europe

@@ -1,50 +1,95 @@
-import React from 'react'
-import ContactForm from '../components/ContactForm'
-import { Building2, MapPin, Phone, Mail } from 'lucide-react';
+import React from "react";
+import ContactForm from "../components/ContactForm";
+import { Building2, MapPin, Phone, Mail } from "lucide-react";
 import { Helmet } from "react-helmet-async";
 
 const ContactPage = () => {
   const branches = [
     {
       title: "Mumbai Branch",
-      address: "425 Gemstar Commercial Complex, Ramchandra Lane Extn, Malad West, Mumbai 400064",
+      address:
+        "425 Gemstar Commercial Complex, Ramchandra Lane Extn, Malad West, Mumbai 400064",
       phone: "+91 98677 29568",
-      email: "info@receptivesolutions.co.in"
+      email: "info@receptivesolutions.co.in",
     },
     {
       title: "Ahmedabad Branch",
-      address: "106, Dev Prime, Nr. Vodafone House, Makarba, Ahmedabad - 380051",
+      address:
+        "106, Dev Prime, Nr. Vodafone House, Makarba, Ahmedabad - 380051",
       phone: "+91 98677 29568",
-      email: "info@receptivesolutions.co.in"
+      email: "info@receptivesolutions.co.in",
     },
     {
       title: "UAE (Dubai) Branch",
-      address: "Suite No -201, Al Salemiyah Tower, Deria Riggat Al Buteen, Dubai, UAE",
+      address:
+        "Suite No -201, Al Salemiyah Tower, Deria Riggat Al Buteen, Dubai, UAE",
       phone: "+971 562744455",
-      email: "info@receptivegroup.com"
+      email: "info@receptivegroup.com",
     },
     {
       title: "UK Branch",
       address: "PO Box 4385, Cardiff, CF14 8LH",
-      phone: "971 562744455",
-      email: "info@receptivesolutions.co.in"
+      phone: "+971 562744455",
+      email: "info@receptivesolutions.co.in",
     },
   ];
 
   return (
     <>
+      {/* ✅ SEO */}
+      <Helmet>
+        <title>Contact Us | Receptive Solutions</title>
 
-    <Helmet>
-        <title>Contact | Receptive Solutions</title>
         <meta
           name="description"
-          content="Receptive Solutions provides immigration consulting and global services across 7 countries."
+          content="Get in touch with Receptive Solutions. Reach our offices in Mumbai, Ahmedabad, Dubai, and the UK for immigration and global consulting services."
         />
+
+        {/* ✅ Canonical */}
         <link
           rel="canonical"
           href="https://www.receptivesolutions.co.in/contact"
         />
+
+        {/* ✅ Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.receptivesolutions.co.in/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Contact Us",
+                "item": "https://www.receptivesolutions.co.in/contact"
+              }
+            ]
+          }
+          `}
+        </script>
+
+        {/* ✅ WebPage Schema */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Contact Us - Receptive Solutions",
+            "url": "https://www.receptivesolutions.co.in/contact",
+            "description": "Contact Receptive Solutions for immigration, consulting, and global services in India, Dubai, and UK."
+          }
+          `}
+        </script>
       </Helmet>
+
+      {/* ✅ PAGE CONTENT */}
       <div className="pt-16 md:pt-24 lg:pt-28 xl:pt-32">
         <div className="bg-[#0C3B34] py-20 relative overflow-hidden">
           {/* Background Pattern */}
@@ -58,7 +103,6 @@ const ContactPage = () => {
               <h2 className="text-3xl md:text-5xl font-bold text-white md:mb-4 tracking-tight">
                 Our Global Presence
               </h2>
-              <div className="w-24 h-1 mx-auto rounded-full"></div>
               <p className="text-white mt-6 text-lg max-w-2xl mx-auto">
                 Strategically located across key markets to serve you better
               </p>
@@ -68,49 +112,43 @@ const ContactPage = () => {
               {branches.map((branch, index) => (
                 <div
                   key={index}
-                  className="group bg-[#D8C287] shadow-2xl rounded-2xl  text-center transform hover:scale-100 transition-all duration-500 hover:shadow-emerald-500/20 border border-emerald-100/20"
+                  className="group bg-[#D8C287] shadow-2xl rounded-2xl text-center transform hover:scale-100 transition-all duration-500 hover:shadow-emerald-500/20 border border-emerald-100/20"
                 >
-                  {/* Icon Container */}
-                  <div className='bg-white/20 backdrop-blur-5xl rounded-2xl w-full h-full p-4 md:p-8'>
-
-                    <div className="flex justify-center mb-6 ">
-                      <div className="bg-[#0C3B34] text-white p-4 rounded-2xl shadow-lg group-hover:shadow-emerald-500/30 group-hover:from-emerald-800 group-hover:to-green-900 transition-all duration-300">
-                        <Building2 size={32} className="group-hover:scale-110 transition-transform duration-300" />
+                  <div className="bg-white/20 backdrop-blur-5xl rounded-2xl w-full h-full p-4 md:p-8">
+                    <div className="flex justify-center mb-6">
+                      <div className="bg-[#0C3B34] text-white p-4 rounded-2xl shadow-lg transition-all duration-300 group-hover:shadow-emerald-500/30">
+                        <Building2
+                          size={32}
+                          className="group-hover:scale-110 transition-transform duration-300"
+                        />
                       </div>
                     </div>
 
-                    {/* Branch Title */}
-                    <h3 className="text-2xl md:text-2xl font-bold text-[#0c3b34] mb-6 group-hover:text-emerald-900 transition-colors">
+                    <h3 className="text-2xl font-bold text-[#0c3b34] mb-6 transition-colors group-hover:text-emerald-900">
                       {branch.title}
                     </h3>
 
-                    {/* Contact Details */}
-                    <div className="space-y-2 md:space-y-4 text-left">
-                      {/* Address */}
-                      <div className="flex items-start space-x-3 group-hover:translate-x-1 transition-transform duration-300">
-                        <MapPin size={20} className="text-[#0c3b34] mt-1 flex-shrink-0" />
-                        <p className="text-[#0c3b34] md:leading-relaxed">
-                          {branch.address}
-                        </p>
+                    <div className="space-y-4 text-left">
+                      <div className="flex items-start space-x-3 transition-transform group-hover:translate-x-1">
+                        <MapPin size={20} className="text-[#0c3b34] mt-1" />
+                        <p className="text-[#0c3b34]">{branch.address}</p>
                       </div>
 
-                      {/* Phone */}
-                      <div className="flex items-center space-x-3 group-hover:translate-x-1 transition-transform duration-300 delay-75">
-                        <Phone size={18} className="text-[#0c3b34]flex-shrink-0" />
+                      <div className="flex items-center space-x-3 transition-transform group-hover:translate-x-1 delay-75">
+                        <Phone size={18} className="text-[#0c3b34]" />
                         <a
                           href={`tel:${branch.phone}`}
-                          className="text-[#0c3b34] hover:text-emerald-900 transition-colors font-medium"
+                          className="text-[#0c3b34] hover:text-emerald-900 font-medium"
                         >
                           {branch.phone}
                         </a>
                       </div>
 
-                      {/* Email */}
-                      <div className="flex items-center space-x-3 group-hover:translate-x-1 transition-transform duration-300 delay-150">
-                        <Mail size={18} className="text-[#0c3b34] flex-shrink-0" />
+                      <div className="flex items-center space-x-3 transition-transform group-hover:translate-x-1 delay-150">
+                        <Mail size={18} className="text-[#0c3b34]" />
                         <a
                           href={`mailto:${branch.email}`}
-                          className="text-[#0c3b34] hover:text-emerald-900 transition-colors break-all"
+                          className="text-[#0c3b34] hover:text-emerald-900 break-all"
                         >
                           {branch.email}
                         </a>
@@ -123,9 +161,10 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
+
       <ContactForm />
     </>
-  )
-}
+  );
+};
 
-export default ContactPage
+export default ContactPage;

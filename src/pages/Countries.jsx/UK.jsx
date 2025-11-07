@@ -7,45 +7,108 @@ import UkVisaTypes from '../../components/countriesComponents/ukComponents/UkVis
 import UkVistior from '../../components/countriesComponents/ukComponents/UkVistior'
 import WorkerVisa from '../../components/countriesComponents/ukComponents/WorkerVisa'
 import { Helmet } from 'react-helmet-async';
-const UK = () => {
-    return (
-        <>
-            {/* ✅ Helmet is only for SEO metadata */}
-            <Helmet>
-                <title>Uk | Receptive Solutions</title>
-                <meta
-                    name="description"
-                    content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
-                />
-                <link
-                    rel="canonical"
-                    href="https://www.receptivesolutions.co.in/country/uk"
-                />
-            </Helmet>
 
-            <div>
-                <HeroSection
-                    title="England"
-                    subtitle="Uk is a country in Europe known for its rich history, diverse culture, and iconic landmarks. Key attractions include the Tower of London, Buckingham Palace, and the British Museum. The UK is also famous for its picturesque countryside, vibrant cities like London and Edinburgh, and contributions to literature, music, and theater."
-                    bgImage={img}
-                    flag={Ukflag}
-                />
-                <CountrySection
-                    countryName="UNITED KINGDOM"
-                    title='"Travel to the UK for work, short stays, tourism, and permanent residence to fulfil your dream of UK citizenship."'
-                    mainTitle={'Settle in UK from any part of the world!'}
-                    desc={`
-                   The United Kingdom, a land of rich history and diverse culture, offers a plethora of opportunities for individuals looking to relocate and start a new chapter in their lives. From the bustling streets of London to the picturesque countryside, the UK provides a unique blend of urban sophistication and natural beauty. With a world-class education system, thriving economy, and vibrant cultural scene, the UK is a popular destination for immigrants seeking a better future.
-                    As an immigration company, we specialize in assisting individuals in navigating the complexities of the immigration process to the UK. Whether you are looking to study, work, reunite with family, or invest in a business, our team of experts is here to guide you every step of the way. With our knowledge and experience, we can help you achieve your dream of living in the United Kingdom and make the transition as smooth and successful as possible. Let us be your partner in realizing your aspirations in this dynamic and welcoming country.
-                    `}
-                    img="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=1170&q=80"
-                />
-                <UkVisaTypes />
-                <UkVistior />
-                <WorkerVisa />
-            </div>
-        </>
-    )
+const UK = () => {
+  return (
+    <>
+      {/* ✅ SEO Metadata */}
+      <Helmet>
+        <title>UK Immigration & Visa | Receptive Solutions</title>
+
+        <meta
+          name="description"
+          content="Explore UK immigration services, work visas, study visas, visitor visas, and relocation guidance with Receptive Solutions. Trusted consultants for United Kingdom migration."
+        />
+
+        {/* ✅ Canonical */}
+        <link
+          rel="canonical"
+          href="https://www.receptivesolutions.co.in/country/uk"
+        />
+
+        {/* ✅ Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.receptivesolutions.co.in/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Countries",
+                "item": "https://www.receptivesolutions.co.in/country"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "United Kingdom",
+                "item": "https://www.receptivesolutions.co.in/country/uk"
+              }
+            ]
+          }
+          `}
+        </script>
+
+        {/* ✅ WebPage Schema */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "UK Immigration & Visa Services | Receptive Solutions",
+            "url": "https://www.receptivesolutions.co.in/country/uk",
+            "description": "Learn about UK visas, immigration pathways, work permits, study opportunities, and relocation assistance with Receptive Solutions.",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@type": "WebSite",
+              "url": "https://www.receptivesolutions.co.in/"
+            },
+            "about": {
+              "@type": "Place",
+              "name": "United Kingdom",
+              "image": "https://www.receptivesolutions.co.in/assets/uk.jpg"
+            }
+          }
+          `}
+        </script>
+      </Helmet>
+
+      {/* ✅ PAGE CONTENT */}
+      <div>
+        <HeroSection
+          title="United Kingdom"
+          subtitle="The UK is known for its rich heritage, world-class education system, diverse culture, and iconic landmarks such as Buckingham Palace and the Tower of London. Explore immigration and visa opportunities with Receptive Solutions."
+          bgImage={img}
+          flag={Ukflag}
+        />
+
+        <CountrySection
+          countryName="UNITED KINGDOM"
+          title='"Travel to the UK for work, studies, tourism, and permanent residence. Fulfil your dream of becoming a UK resident."'
+          mainTitle="Settle in the UK from any part of the world!"
+          desc={`
+            The United Kingdom offers a wealth of opportunities for individuals looking to relocate, study, or build a long-term career. From vibrant cities like London, Manchester, and Edinburgh to picturesque countryside villages, the UK combines modern living with historic charm.
+
+            With world-renowned universities, a strong and innovative economy, and an inclusive cultural environment, the UK attracts talent from around the globe. Whether your goal is to study, work, reunite with your family, or invest in a business, we are here to guide you through the UK immigration process.
+
+            As an experienced immigration consultancy, Receptive Solutions helps applicants navigate complex visa requirements, documentation, and application stages. Let us help you achieve your aspiration of living in the United Kingdom with smooth, professional assistance.
+          `}
+          img="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?auto=format&fit=crop&w=1170&q=80"
+        />
+
+        <UkVisaTypes />
+        <UkVistior />
+        <WorkerVisa />
+      </div>
+    </>
+  )
 }
 
 export default UK

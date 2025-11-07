@@ -11,16 +11,110 @@ const Home = () => {
     <>
       {/* ✅ Helmet is only for SEO metadata */}
       <Helmet>
-        <title>Receptive Solutions | Home</title>
+        {/* ✅ SEO Title */}
+        <title>Receptive Solutions – Global Immigration, Visa & Career Services</title>
+
+        {/* ✅ High-ranking Meta Description */}
         <meta
           name="description"
-          content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
+          content="Receptive Solutions is a trusted global immigration and visa consultancy serving clients across UAE, UK, Canada, Europe, USA, Australia & Singapore. 12+ years of experience, 3000+ successful clients, expert visa solutions."
         />
-        <link
-          rel="canonical"
-          href="https://www.receptivesolutions.co.in/"
-        />
+
+        {/* ✅ Canonical URL */}
+        <link rel="canonical" href="https://www.receptivesolutions.co.in/" />
+
+        {/* ✅ WebSite Schema – required for sitelinks */}
+        <script type="application/ld+json">
+                {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Receptive Solutions",
+            "url": "https://www.receptivesolutions.co.in/",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://www.receptivesolutions.co.in/?s={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+    `}
+        </script>
+
+        {/* ✅ Organization Schema */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": "https://www.receptivesolutions.co.in/logo192.png",
+              "description": "Receptive Solutions is a global immigration consultancy specializing in visas, work permits, and overseas career services.",
+              "sameAs": [
+                "https://www.facebook.com/",
+                "https://www.instagram.com/",
+                "https://www.linkedin.com/"
+              ]
+            }
+            `}
+        </script>
+
+        {/* ✅ LocalBusiness Schema (VERY powerful for SEO) */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "Receptive Solutions",
+              "image": "https://www.receptivesolutions.co.in/logo192.png",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "425 Gemstar Commercial Complex, Ramchandra Lane Extn",
+                "addressLocality": "Malad West",
+                "addressRegion": "Mumbai",
+                "postalCode": "400064",
+                "addressCountry": "IN"
+              },
+              "openingHours": "Mo-Sa 10:00-19:00",
+              "telephone": "+91 9867729568",
+              "url": "https://www.receptivesolutions.co.in/"
+            }
+          `}
+        </script>
+
+        {/* ✅ Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.receptivesolutions.co.in/"
+                }
+              ]
+            }
+          `}
+        </script>
+
+        {/* ✅ WebPage Schema */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Receptive Solutions – Global Immigration Experts",
+            "url": "https://www.receptivesolutions.co.in/",
+            "description": "Leading global immigration consultancy offering visa, PR, work permits and overseas career solutions.",
+            "inLanguage": "en"
+          }
+        `}
+        </script>
       </Helmet>
+
       <div>
 
         <Herosection />

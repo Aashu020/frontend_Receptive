@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/images/IMMIGRATION_logo.jpg" />
+    <link rel="icon" type="image/svg+xml"
+      href="/src/assets/images/IMMIGRATION_logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Default title (Helmet will override on pages) -->
@@ -40,11 +41,29 @@
     }
     </script>
 
+    <!-- ✅ WebSite Schema (Required for Google Sitelinks) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Receptive Solutions",
+        "url": "https://www.receptivesolutions.co.in",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://www.receptivesolutions.co.in/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
+
     <!-- ✅ Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&family=Raleway:wght@600;700&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&family=Raleway:wght@600;700&display=swap"
+      rel="stylesheet">
 
     <!-- ✅ Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZG7YBJMXC"></script>
+    <script async
+      src="https://www.googletagmanager.com/gtag/js?id=G-QZG7YBJMXC"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){ dataLayer.push(arguments); }

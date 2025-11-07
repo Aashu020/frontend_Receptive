@@ -119,14 +119,6 @@ function Services() {
       description: "Immigrant visas are issued to foreign nationals who intend to live permanently in the United States. Nonimmigrant visas are for foreign nationals wishing to enter the United States on a temporary basis.",
       subServices: ["Canda Immigration Visa", "UK Immigration Visa", "Europe Immigration Visa","Austarlia Immigration Visa"]
     },
-    // {
-    //   id: "s5",
-    //   title: "Second Citizenship through Investment",
-    //   shortTitle: "Second Citizenship",
-    //   image: secondvisa,
-    //   description: "Immigrant visas are issued to foreign nationals who intend to live permanently in the United States. Nonimmigrant visas are for foreign nationals wishing to enter the United States on a temporary basis.",
-    //   subServices: ["Australia Immigration Visa", "Canada Immigration Visa", "Denmark Immigration Visa"]
-    // }
   ]
 
   return (

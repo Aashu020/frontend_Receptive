@@ -10,61 +10,116 @@ import Subclass186 from '../../components/countriesComponents/Asutralia/Subclass
 import AotherinfoAus from '../../components/countriesComponents/Asutralia/AotherinfoAus'
 import Subclass from '../../components/countriesComponents/Asutralia/Subclass'
 import { Helmet } from 'react-helmet-async'
+
 const Australia = () => {
-    return (
-        <>
-            {/* ✅ Helmet is only for SEO metadata */}
-            <Helmet>
-                <title>Australia | Receptive Solutions</title>
-                <meta
-                    name="description"
-                    content="Learn about Receptive International’s mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
-                />
-                <link
-                    rel="canonical"
-                    href="https://www.receptivesolutions.co.in/country/australia"
-                />
-            </Helmet>
-            <div>
-                <HeroSection
-                title="Australia"
-                subtitle="Australia is a country and continent surrounded by the Indian and Pacific oceans. Its major cities – Sydney, Brisbane, Melbourne, Perth, Adelaide – are coastal. Its vast interior, known as the Outback, features arid desert landscapes. The country is known for its Sydney Opera House, the Great Barrier Reef, the vast Outback, and unique animal species including kangaroos and duck-billed platypuses."
-                bgImage={img}
-                flag={AusFlag}
-            />
+  return (
+    <>
+      {/* ✅ SEO Metadata */}
+      <Helmet>
+        <title>Australia Immigration & Visa | Receptive Solutions</title>
 
-            <CountrySection
-                countryName="Australia"
-                mainTitle={`Relocate from the United Arab Emirates to Australias`}
-                title={
-                    <>
-                        Seek out opportunities to travel, pursue education, secure employment or immigrate to Canada. Submit applications for citizenship, a permanent residency card, or protection as a refugee. Monitor the progress of your application or locate necessary forms.
-                    </>
-                }
-                desc={
-                    <>
+        <meta
+          name="description"
+          content="Explore immigration pathways, Australian work visas, study visas, visitor visas, and PR options with Receptive Solutions. Begin your journey to Australia with expert guidance."
+        />
 
-                        Premier Australian Immigration Agency in the UAE <br />
+        {/* ✅ Canonical */}
+        <link
+          rel="canonical"
+          href="https://www.receptivesolutions.co.in/country/australia"
+        />
 
-                        Australia is a highly esteemed country, recognized as one of the wealthiest globally. It's a sophisticated, multicultural society that consistently achieves top rankings on the Human Development Index and offers its residents an excellent quality of life, financial independence, and substantial safeguards for civil and political rights. <br />
+        {/* ✅ Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.receptivesolutions.co.in/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Countries",
+                "item": "https://www.receptivesolutions.co.in/country"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Australia",
+                "item": "https://www.receptivesolutions.co.in/country/australia"
+              }
+            ]
+          }
+          `}
+        </script>
 
-                        As an immigration consultancy based in Dubai for over two decades, we are licensed by the Australian Government's Migration Agents Registration Authority (MARA). We are committed to providing our clients with the most up-to-date and effective immigration strategies.<br />
+        {/* ✅ WebPage Schema */}
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Australia Immigration & Visa Services | Receptive Solutions",
+            "url": "https://www.receptivesolutions.co.in/country/australia",
+            "description": "Learn about Australian visas, immigration pathways, skilled migration, work permits, and permanent residency options with Receptive Solutions.",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@type": "WebSite",
+              "url": "https://www.receptivesolutions.co.in/"
+            },
+            "about": {
+              "@type": "Place",
+              "name": "Australia",
+              "image": "https://www.receptivesolutions.co.in/assets/australia.jpg"
+            }
+          }
+          `}
+        </script>
+      </Helmet>
 
+      {/* ✅ PAGE CONTENT */}
+      <div>
+        <HeroSection
+          title="Australia"
+          subtitle="Australia is known for its high quality of life, strong economy, world-class education system, and stunning landscapes. Explore pathways to visit, work, study, or settle in Australia with the support of Receptive Solutions."
+          bgImage={img}
+          flag={AusFlag}
+        />
 
-                        Australia is globally recognized as a favoured destination for migration, largely attributed to its welcoming culture, vibrant urban centres’, and sun-drenched beaches. The high standard of living and stable economic outlook make Australia a magnetic attraction for skilled professionals worldwide. As an English-speaking country, integration in Australia is relatively seamless. You can explore various immigration pathways to Australia based on your individual profile and immigration goals.
-                    </>
-                }
-                img={ausimg}
-            />
+        <CountrySection
+          countryName="AUSTRALIA"
+          mainTitle="Relocate to Australia with Confidence"
+          title={
+            <>
+              Discover opportunities to work, study, visit, or build a long-term future in Australia. Our expert consultants help you navigate every step of your immigration journey.
+            </>
+          }
+          desc={
+            <>
+              Australia is one of the most desirable destinations for immigration due to its robust economy, multicultural society, and excellent healthcare and education systems. The country ranks among the top globally in terms of quality of life, safety, and career opportunities.
+              <br /><br />
+              Skilled professionals from around the world choose Australia for its strong job market, particularly in industries such as engineering, IT, construction, healthcare, hospitality, and education. With multiple visa pathways—including skilled migration, employer-sponsored visas, student visas, and temporary work permits—Australia offers diverse options for individuals and families.
+              <br /><br />
+              Receptive Solutions provides full guidance on Australian visa requirements, documentation, eligibility, and the complete application process. Whether you're planning to visit Australia temporarily or explore pathways toward permanent residency, our team ensures an informed and stress-free experience.
+            </>
+          }
+          img={ausimg}
+        />
 
-            <VisitervisaAus />
-            <Subclass400 />
-            <Subclass />
-            <Subclass186 />
-            <AotherinfoAus />
-            </div>
-        </>
-    )
+        <VisitervisaAus />
+        <Subclass400 />
+        <Subclass />
+        <Subclass186 />
+        <AotherinfoAus />
+      </div>
+    </>
+  )
 }
 
 export default Australia

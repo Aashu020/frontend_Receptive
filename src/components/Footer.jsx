@@ -24,7 +24,7 @@ function Footer() {
 
   // Service mapping for navigation
   const serviceMapping = {
-    'Vistor Visa': 0,
+    'Visitor Visa': 0,
     'Student Visa': 1,
     'Work Visa': 2,
     'Permanennt Residence': 3,
@@ -111,7 +111,7 @@ function Footer() {
             <div>
               <h3 className="text-lg font-semibold text-[#D8C287] mb-4">Our Services</h3>
               <ul className="space-y-2">
-                {['Vistor Visa', 'Student Visa', 'Work Visa', 'Permanennt Residence',].map((service, index) => (
+                {['Visitor Visa', 'Student Visa', 'Work Visa', 'Permanennt Residence',].map((service, index) => (
                   <li key={index} className="text-gray-200 text-sm flex items-center">
                     <span className="w-1.5 h-1.5 bg-[#D8C287] rounded-full mr-3"></span>
                     <button

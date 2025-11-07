@@ -388,16 +388,64 @@ function Reviews() {
   return (
     <>
       <Helmet>
-        <title>Reviews | Receptive Solutions</title>
+        {/* ✅ SEO Title */}
+        <title>Client Reviews & Ratings | Receptive Solutions</title>
+
+        {/* ✅ SEO Meta Description */}
         <meta
           name="description"
-          content="Learn about Receptive International's mission, our founders, and our global expertise in immigration, real estate, and investment solutions."
+          content="Read genuine client reviews, immigration success experiences, and service feedback for Receptive Solutions. Rated 4.9/5 by 3000+ happy clients across Canada, UK, Europe, and more."
         />
+
+        {/* ✅ Canonical URL */}
         <link
           rel="canonical"
           href="https://www.receptivesolutions.co.in/reviews"
         />
+
+        {/* ✅ Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://www.receptivesolutions.co.in/"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Reviews",
+                  "item": "https://www.receptivesolutions.co.in/reviews"
+                }
+              ]
+            }
+            `}
+        </script>
+
+        {/* ✅ WebPage Schema */}
+        <script type="application/ld+json">
+          {`
+            {
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "name": "Client Reviews & Testimonials",
+              "url": "https://www.receptivesolutions.co.in/reviews",
+              "description": "Explore client testimonials, visa success stories, ratings, and feedback for Receptive Solutions.",
+              "inLanguage": "en",
+              "isPartOf": {
+                "@type": "WebSite",
+                "url": "https://www.receptivesolutions.co.in/"
+              }
+            }
+          `}
+        </script>
       </Helmet>
+
 
       <div className="mt-20 md:mt-45 px-4 lg:px-8 max-w-7xl mx-auto md:mb-4">
         {/* Add Review Button */}
@@ -728,7 +776,7 @@ function Reviews() {
         {/* Image Modal - Full Screen View */}
         {selectedImage && (
           <div
-            className="fixed inset-0 bg-black/90 flex items-center justify-center z-[1000] p-4"
+            className="fixed inset-0 bg-black/90 flex items-center justify-center z-1000 p-4"
             onClick={closeImageModal}
           >
             <button
@@ -819,14 +867,14 @@ function Reviews() {
               </div>
             </div>
 
-          
-          {/* Reviews Grid */}
+
+            {/* Reviews Grid */}
             <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
-    {reviews.map((review) => (
-      <div
-        key={review.id}
-        className="mb-6 break-inside-avoid bg-white p-4 md:p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
-      >
+              {reviews.map((review) => (
+                <div
+                  key={review.id}
+                  className="mb-6 break-inside-avoid bg-white p-4 md:p-6 rounded-xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                >
                   {/* Header */}
                   <div className="flex justify-between items-start mb-3 md:mb-4">
                     <div className="flex items-center space-x-2 md:space-x-3">
