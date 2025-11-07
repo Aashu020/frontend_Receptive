@@ -496,12 +496,12 @@ const Navbar = () => {
                   <img
                     src={logo}
                     alt="Receptive Logo"
-                    className="h-14 lg:h-20 transition-all duration-300 group-hover:scale-105"
+                    className="h-12 lg:h-15 transition-all duration-300 group-hover:scale-105"
                   />
                   <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div>
                 </div>
-                <span className="text-[#0c3b34] font-bold md:text-[15.5px] lg:text-[15px] xl:text-[17px] hidden md:flex">Trusted&nbsp;Since&nbsp;2011 | Licensed&nbsp;&&nbsp;Certified</span>
-                <p className="text-[#0c3b34] font-bold md:text-lg md:hidden text-center text-[13px]"><span className=" border-b-2 ">Trusted&nbsp;Since&nbsp;2011</span> <br/> License&nbsp;&&nbsp;Certified</p>
+                <span className="text-[#0c3b34] font-bold md:text-[15.5px] lg:text-[15px] xl:text-[1rem] hidden xl:flex">Trusted&nbsp;Since&nbsp;2011 | Licensed&nbsp;&&nbsp;Certified</span>
+                <p className="text-[#0c3b34] font-bold md:text-lg xl:hidden text-center text-[11px] lg:text-[0.8rem]"><span className=" border-b-2 ">Trusted&nbsp;Since&nbsp;2011</span> <br/> License&nbsp;&&nbsp;Certified</p>
               </div>
             </div>
             <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 cursor-pointer">
