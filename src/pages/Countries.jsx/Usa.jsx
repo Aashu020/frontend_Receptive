@@ -12,23 +12,24 @@ const Usa = () => {
     <>
       {/* ✅ SEO Metadata */}
       <Helmet>
-        <title>USA Immigration & Visa | Receptive Solutions</title>
+        {/* ✅ SEO Title */}
+        <title>USA Immigration, Study & Work Visa Consultancy | Receptive Solutions</title>
 
+        {/* ✅ Meta Description */}
         <meta
           name="description"
-          content="Explore USA immigration pathways, visa types, work permits, study visas, and relocation guidance with Receptive Solutions. Trusted visa consultants for the United States."
+          content="Apply for USA Study, Work, and Tourist Visas with expert help from Receptive Solutions. Trusted consultants helping professionals, students, and families relocate successfully to the United States."
         />
 
-        {/* ✅ Canonical */}
-        <link 
-          rel="canonical" 
-          href="https://www.receptivesolutions.co.in/country/usa" 
+        {/* ✅ Canonical URL */}
+        <link
+          rel="canonical"
+          href="https://www.receptivesolutions.co.in/country/usa"
         />
 
         {/* ✅ Breadcrumb Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -47,37 +48,108 @@ const Usa = () => {
               {
                 "@type": "ListItem",
                 "position": 3,
-                "name": "USA",
+                "name": "United States of America",
                 "item": "https://www.receptivesolutions.co.in/country/usa"
               }
             ]
-          }
-          `}
+          })}
         </script>
 
-        {/* ✅ WebPage Schema */}
+        {/* ✅ WebPage + Country Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "USA Immigration & Visa Services | Receptive Solutions",
+            "@type": ["WebPage", "CollectionPage"],
+            "name": "United States of America Immigration & Visa Services | Receptive Solutions",
             "url": "https://www.receptivesolutions.co.in/country/usa",
-            "description": "Learn about USA visa types including work visas, study visas, tourist visas, and permanent residency options. Guidance for relocation to the United States.",
+            "description":
+              "Receptive Solutions offers USA visa consulting including Study, Work, and Tourist Visa assistance. Expert guidance for documentation, eligibility, and smooth application process to the United States.",
             "inLanguage": "en",
-            "isPartOf": {
-              "@type": "WebSite",
-              "url": "https://www.receptivesolutions.co.in/"
-            },
             "about": {
-              "@type": "Place",
+              "@type": "Country",
               "name": "United States of America",
-              "image": "https://www.receptivesolutions.co.in/assets/usa.jpg"
+              "url": "https://en.wikipedia.org/wiki/United_States"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+              },
+              "sameAs": [
+                "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
+                "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
+                "https://www.youtube.com/@receptivegroup",
+                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+              ]
             }
-          }
-          `}
+          })}
+        </script>
+
+        {/* ✅ Service Schema – USA Visa & Immigration Services */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "USA Immigration & Visa Consulting",
+            "provider": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "United States of America"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "United States Visa Categories",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "USA Student Visa (F-1 / M-1)",
+                    "description":
+                      "Expert guidance for USA Study Visa (F-1 & M-1) including I-20 form support, interview preparation, and DS-160 filing."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "USA Work Visa (H-1B / L-1 / O-1)",
+                    "description":
+                      "Full assistance for USA employment-based visas including H-1B, L-1 intra-company transfers, and O-1 extraordinary ability categories."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "USA Tourist / Visitor Visa (B1/B2)",
+                    "description":
+                      "Application guidance for USA Tourist and Business Visas, including document preparation, scheduling, and interview readiness."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "USA Permanent Residency (Green Card Pathways)",
+                    "description":
+                      "Consultation on employment-based and family-sponsored USA permanent residency options with expert legal support."
+                  }
+                }
+              ]
+            }
+          })}
         </script>
       </Helmet>
+
 
       {/* ✅ PAGE CONTENT */}
       <div>

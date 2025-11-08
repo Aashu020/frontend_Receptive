@@ -12,23 +12,21 @@ const Singapore = () => {
     <>
       {/* ✅ SEO Metadata */}
       <Helmet>
-        <title>Singapore Immigration & Work Pass | Receptive Solutions</title>
+        {/* ✅ SEO Title */}
+        <title>Work in Singapore | S-Pass & Employment Pass Visa Guidance | Receptive Solutions</title>
 
+        {/* ✅ Meta Description */}
         <meta
           name="description"
-          content="Explore Singapore immigration, Employment Pass (E-Pass), S-Pass, and work visa guidance with Receptive Solutions. Build your career in one of Asia’s strongest economies."
+          content="Build your career in Singapore with Receptive Solutions. Expert guidance for S-Pass and Employment Pass (E Pass) visa applications, documentation, and employer matching to help professionals work and thrive in Singapore."
         />
 
-        {/* ✅ Canonical */}
-        <link 
-          rel="canonical" 
-          href="https://www.receptivesolutions.co.in/country/singapore" 
-        />
+        {/* ✅ Canonical URL */}
+        <link rel="canonical" href="https://www.receptivesolutions.co.in/country/singapore" />
 
         {/* ✅ Breadcrumb Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -51,33 +49,96 @@ const Singapore = () => {
                 "item": "https://www.receptivesolutions.co.in/country/singapore"
               }
             ]
-          }
-          `}
+          })}
         </script>
 
         {/* ✅ WebPage Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Singapore Work Visa & Immigration Services | Receptive Solutions",
+            "@type": ["WebPage", "CollectionPage"],
+            "name": "Singapore Work & Visa Consultancy | S-Pass & Employment Pass Support",
             "url": "https://www.receptivesolutions.co.in/country/singapore",
-            "description": "Learn about Singapore E-Pass, S-Pass, and immigration opportunities with Receptive Solutions.",
+            "description":
+              "Receptive Solutions helps professionals secure Singapore S-Pass and Employment Pass (E Pass) visas with expert documentation, employer matching, and immigration guidance.",
             "inLanguage": "en",
+            "about": {
+              "@type": "Country",
+              "name": "Singapore",
+              "url": "https://en.wikipedia.org/wiki/Singapore"
+            },
             "isPartOf": {
               "@type": "WebSite",
               "url": "https://www.receptivesolutions.co.in/"
             },
-            "about": {
-              "@type": "Place",
-              "name": "Singapore",
-              "image": "https://www.receptivesolutions.co.in/assets/singapore.jpg"
+            "publisher": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+              },
+              "sameAs": [
+                "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
+                "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
+                "https://www.youtube.com/@receptivegroup",
+                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+              ]
             }
-          }
-          `}
+          })}
+        </script>
+
+        {/* ✅ Service Schema – Singapore Work Visa Assistance */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Singapore Work Visa Consulting",
+            "provider": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+            },
+            "areaServed": { "@type": "Country", "name": "Singapore" },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Singapore Visa Categories",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "S-Pass Visa Assistance",
+                    "description":
+                      "Guidance for mid-skilled professionals applying for Singapore S-Pass including eligibility check, employer coordination, and documentation support."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Employment Pass (E Pass) Application Support",
+                    "description":
+                      "Full-service assistance for professionals, executives, and business owners applying for Singapore Employment Pass (E Pass)."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Temporary Employment Permit Consulting",
+                    "description":
+                      "Consulting support for applicants seeking short-term work opportunities or temporary permits in Singapore’s thriving economy."
+                  }
+                }
+              ]
+            }
+          })}
         </script>
       </Helmet>
+
 
       {/* ✅ PAGE CONTENT */}
       <div>
@@ -98,7 +159,7 @@ const Singapore = () => {
           }
           desc={
             <>
-              Singapore’s S-Pass and Employment Pass (E-Pass) programs allow skilled and mid-skilled professionals to work and thrive in the country’s dynamic economy.  
+              Singapore’s S-Pass and Employment Pass (E-Pass) programs allow skilled and mid-skilled professionals to work and thrive in the country’s dynamic economy.
               <br /><br />
               The S-Pass is ideal for mid-skilled workers such as technicians and specialists. It provides:
               <ul>

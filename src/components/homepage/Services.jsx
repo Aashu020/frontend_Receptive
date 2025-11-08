@@ -5,24 +5,25 @@ import permannet from "../../assets/HomepageImages/permannentvisa.avif"
 import secondvisa from "../../assets/HomepageImages/secondcitizenship.avif"
 import studentvisa from "../../assets/HomepageImages/studentvisa.png"
 import workvisa from "../../assets/HomepageImages/workvisa.png"
+import { Helmet } from 'react-helmet-async'
 
 function Services() {
   const location = useLocation()
   const [searchParams] = useSearchParams()
-  
+
   // Initialize activeService based on navigation data
   const [activeService, setActiveService] = useState(() => {
     // Check for state from navigation
     if (location.state?.activeService !== undefined) {
       return location.state.activeService
     }
-    
+
     // Check for query parameter
     const serviceParam = searchParams.get('service')
     if (serviceParam !== null && !isNaN(serviceParam)) {
       return parseInt(serviceParam)
     }
-    
+
     // Check for hash
     if (location.hash) {
       const hashMatch = location.hash.match(/service-(\d+)/)
@@ -30,7 +31,7 @@ function Services() {
         return parseInt(hashMatch[1])
       }
     }
-    
+
     // Default to first service
     return 0
   })
@@ -41,7 +42,7 @@ function Services() {
   // Update activeService when navigation data changes
   useEffect(() => {
     let newActiveService = 0;
-    
+
     // Check for state from navigation
     if (location.state?.activeService !== undefined) {
       newActiveService = location.state.activeService;
@@ -57,14 +58,14 @@ function Services() {
         newActiveService = parseInt(hashMatch[1]);
       }
     }
-    
+
     // Update active service
     setActiveService(newActiveService);
-    
+
     // Scroll to services section when navigating from footer with more margin
-    if (location.state?.activeService !== undefined || 
-        searchParams.get('service') !== null || 
-        location.hash.includes('service-')) {
+    if (location.state?.activeService !== undefined ||
+      searchParams.get('service') !== null ||
+      location.hash.includes('service-')) {
       // Small delay to ensure component is rendered
       setTimeout(() => {
         window.scrollTo({
@@ -109,7 +110,7 @@ function Services() {
       shortTitle: "Work Visa",
       image: workvisa,
       description: "There are certain options for Work Visa where you can take your family along. But that depends on the company and the Visa norms. All you need is a high level of Education, strong Profile and company selection in most matters. If you possess the required qualities, no doubt you'll easily fly to some offshore country.",
-      subServices: ["Canda Work Visa ", "Europe Work Visa", "Singapore Work Visa","UAE Work Visa","Maldives Work Visa","Australia Work Visa"]
+      subServices: ["Canda Work Visa ", "Europe Work Visa", "Singapore Work Visa", "UAE Work Visa", "Maldives Work Visa", "Australia Work Visa"]
     },
     {
       id: "s4",
@@ -117,172 +118,306 @@ function Services() {
       shortTitle: "Permanent Residence",
       image: permannet,
       description: "Immigrant visas are issued to foreign nationals who intend to live permanently in the United States. Nonimmigrant visas are for foreign nationals wishing to enter the United States on a temporary basis.",
-      subServices: ["Canda Immigration Visa", "UK Immigration Visa", "Europe Immigration Visa","Austarlia Immigration Visa"]
+      subServices: ["Canda Immigration Visa", "UK Immigration Visa", "Europe Immigration Visa", "Austarlia Immigration Visa"]
     },
   ]
 
   return (
-    <div className="bg-gray-50 py-16 mt:5 md:mt-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 xl:px-8">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className=" text-xl md:text-4xl font-bold mb-4 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text">
-            Our Services
-          </h2>
-          <p className=" text-md md:text-lg text-gray-600">
-            Comprehensive visa and immigration services tailored to your needs
-          </p>
-        </div>
+    <>
+      <Helmet>
+        {/* ✅ SEO Title */}
+        <title>Visa & Immigration Services | Visitor, Student, Work & PR Visas | Receptive Solutions</title>
 
-        {/* Services Navigation Bar - Desktop Only */}
-        <div className="mb-12 hidden md:block">
-          <div className="flex justify-around md:justify-center md:gap-2 p-2 rounded-xl shadow-lg" style={{ backgroundColor: '#0C3B34' }}>
-            {services.map((service, index) => (
-              <button
-                key={service.id}
-                onClick={() => setActiveService(index)}
-                className={`lg:px-6 lg:py-3 rounded-lg font-medium transition-all duration-300 text-[13px] p-2 ${
-                  activeService === index
-                    ? 'bg-[#D8C287] text-[#0a2d27] shadow-md'
-                    : 'hover:bg-[#0a2d27] hover:text-white'
-                }`}
-                style={{
-                  color: activeService === index ? '#0C3B34' : 'white'
-                }}
-              >
-                <span className="hidden sm:inline">{String(index + 1).padStart(2, '0')}. {service.shortTitle}</span>
-                <span className="sm:hidden">{String(index + 1).padStart(2, '0')}</span>
-              </button>
-            ))}
-          </div>
-        </div>
+        {/* ✅ Meta Description */}
+        <meta
+          name="description"
+          content="Explore Receptive Solutions’ range of global immigration services — Visitor Visa, Student Visa, Work Visa, and Permanent Residence guidance. 12+ years of experience in helping clients move to Canada, UK, Australia, UAE, Europe, Singapore, and more."
+        />
 
-        {/* Active Service Display - Desktop Only */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden hidden md:block">
-          <div className="lg:flex">
-            {/* Image Section */}
-            <div className="lg:w-1/2">
-              <img
-                src={services[activeService].image}
-                alt={services[activeService].title}
-                className="w-full h-64 lg:h-full object-cover"
-              />
-            </div>
+        {/* ✅ Canonical URL */}
+        <link rel="canonical" href="https://www.receptivesolutions.co.in/services" />
 
-            {/* Content Section */}
-            <div className="lg:w-1/2 p-8 lg:p-12">
-              <div className="flex items-center gap-4 mb-6">
-                <span 
-                  className="text-6xl font-bold opacity-20"
-                  style={{ color: '#D8C287' }}
-                >
-                  {String(activeService + 1).padStart(2, '0')}
-                </span>
-                <div>
-                  <h3 className="text-3xl font-bold mb-2" style={{ color: '#0C3B34' }}>
-                    {services[activeService].title}
-                  </h3>
-                  <p className="text-sm font-medium" style={{ color: '#D8C287' }}>
-                    12 Years Of Experience In This Industry
-                  </p>
-                </div>
-              </div>
-
-              <p className="text-gray-600 leading-relaxed mb-8">
-                {services[activeService].description}
-              </p>
-
-              {/* Sub-services */}
-              <div className="space-y-3">
-                <h4 className="text-lg font-semibold mb-4" style={{ color: '#0C3B34' }}>
-                  Available Services:
-                </h4>
-                {services[activeService].subServices.map((subService, index) => (
-                  <div key={index} className="flex items-center gap-3 group">
-                    <div 
-                      className="w-2 h-2 rounded-full flex-shrink-0"
-                      style={{ backgroundColor: '#D8C287' }}
-                    ></div>
-                    <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
-                      {subService}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Service Cards Grid - Mobile Only */}
-        <div className="md:hidden mt-0 grid gap-6 grid-cols-1 sm:grid-cols-2 items-start">
-
-          {services.map((service, index) => {
-            const isExpanded = expandedCards.has(service.id)
-            return (
-              <div key={service.id} className="bg-white rounded-xl shadow-md overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
-                    <span 
-                      className="text-2xl font-bold"
-                      style={{ color: '#D8C287' }}
-                    >
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <h3 className="text-xl font-bold" style={{ color: '#0C3B34' }}>
-                      {service.title}
-                    </h3>
-                  </div>
-                  
-                  {/* Description - truncated or full based on expansion */}
-                  <p className="text-sm text-gray-600 mb-4 leading-relaxed">
-                    {isExpanded ? service.description : `${service.description.substring(0, 120)}...`}
-                  </p>
-
-                  {/* Expanded content */}
-                  {isExpanded && (
-                    <div className="mb-4 pt-4 border-t border-gray-100">
-                      <p className="text-sm font-medium mb-3" style={{ color: '#D8C287' }}>
-                        12 Years Of Experience In This Industry
-                      </p>
-                      <div className="space-y-2">
-                        <h4 className="text-base font-semibold" style={{ color: '#0C3B34' }}>
-                          Available Services:
-                        </h4>
-                        {service.subServices.map((subService, subIndex) => (
-                          <div key={subIndex} className="flex items-center gap-3">
-                            <div 
-                              className="w-2 h-2 rounded-full flex-shrink-0"
-                              style={{ backgroundColor: '#D8C287' }}
-                            ></div>
-                            <span className="text-sm text-gray-700">
-                              {subService}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Toggle button */}
-                  <button
-                    onClick={() => toggleCardExpansion(service.id)}
-                    className="text-sm font-medium hover:underline transition-colors duration-200"
-                    style={{ color: '#0C3B34' }}
-                  >
-                    {isExpanded ? 'View Less ↑' : 'View Details →'}
-                  </button>
-                </div>
-              </div>
-            )
+        {/* ✅ Breadcrumb Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.receptivesolutions.co.in/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Services",
+                "item": "https://www.receptivesolutions.co.in/services"
+              }
+            ]
           })}
+        </script>
+
+        {/* ✅ WebPage Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebPage",
+            "name": "Visa & Immigration Services | Receptive Solutions",
+            "url": "https://www.receptivesolutions.co.in/services",
+            "description":
+              "Receptive Solutions offers professional visa and immigration consulting for Visitor Visa, Student Visa, Work Visa, and Permanent Residence across multiple destinations.",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@type": "WebSite",
+              "url": "https://www.receptivesolutions.co.in/"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+              },
+              "sameAs": [
+                "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
+                "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
+                "https://www.youtube.com/@receptivegroup",
+                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+              ]
+            }
+          })}
+        </script>
+
+        {/* ✅ Service Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Immigration & Visa Consulting",
+            "provider": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+            },
+            "areaServed": {
+              "@type": "Place",
+              "name": "Worldwide"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Visa & Immigration Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Visitor Visa",
+                    "description":
+                      "Visitor visa consulting for tourism, family visits, business, or religious travel. Expert documentation and visa filing assistance.",
+                    "areaServed": ["Canada", "UK", "Australia", "UAE", "Europe", "Singapore"]
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Student Visa",
+                    "description":
+                      "Study visa assistance for international students seeking education opportunities in Canada, UK, Australia, and New Zealand.",
+                    "areaServed": ["Canada", "UK", "Australia", "New Zealand"]
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Work Visa",
+                    "description":
+                      "Work visa consulting for skilled professionals across Canada, Europe, Singapore, UAE, Maldives, and Australia.",
+                    "areaServed": ["Canada", "Europe", "Singapore", "UAE", "Maldives", "Australia"]
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Permanent Residence Visa",
+                    "description":
+                      "Comprehensive support for immigration and PR visa applications for Canada, UK, Europe, and Australia.",
+                    "areaServed": ["Canada", "UK", "Europe", "Australia"]
+                  }
+                }
+              ]
+            }
+          })}
+        </script>
+      </Helmet>
+
+      <div className="bg-gray-50 py-16 mt:5 md:mt-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 xl:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-12">
+            <h2 className=" text-xl md:text-4xl font-bold mb-4 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text">
+              Our Services
+            </h2>
+            <p className=" text-md md:text-lg text-gray-600">
+              Comprehensive visa and immigration services tailored to your needs
+            </p>
+          </div>
+
+          {/* Services Navigation Bar - Desktop Only */}
+          <div className="mb-12 hidden md:block">
+            <div className="flex justify-around md:justify-center md:gap-2 p-2 rounded-xl shadow-lg" style={{ backgroundColor: '#0C3B34' }}>
+              {services.map((service, index) => (
+                <button
+                  key={service.id}
+                  onClick={() => setActiveService(index)}
+                  className={`lg:px-6 lg:py-3 rounded-lg font-medium transition-all duration-300 text-[13px] p-2 ${activeService === index
+                      ? 'bg-[#D8C287] text-[#0a2d27] shadow-md'
+                      : 'hover:bg-[#0a2d27] hover:text-white'
+                    }`}
+                  style={{
+                    color: activeService === index ? '#0C3B34' : 'white'
+                  }}
+                >
+                  <span className="hidden sm:inline">{String(index + 1).padStart(2, '0')}. {service.shortTitle}</span>
+                  <span className="sm:hidden">{String(index + 1).padStart(2, '0')}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Active Service Display - Desktop Only */}
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden hidden md:block">
+            <div className="lg:flex">
+              {/* Image Section */}
+              <div className="lg:w-1/2">
+                <img
+                  src={services[activeService].image}
+                  alt={services[activeService].title}
+                  className="w-full h-64 lg:h-full object-cover"
+                />
+              </div>
+
+              {/* Content Section */}
+              <div className="lg:w-1/2 p-8 lg:p-12">
+                <div className="flex items-center gap-4 mb-6">
+                  <span
+                    className="text-6xl font-bold opacity-20"
+                    style={{ color: '#D8C287' }}
+                  >
+                    {String(activeService + 1).padStart(2, '0')}
+                  </span>
+                  <div>
+                    <h3 className="text-3xl font-bold mb-2" style={{ color: '#0C3B34' }}>
+                      {services[activeService].title}
+                    </h3>
+                    <p className="text-sm font-medium" style={{ color: '#D8C287' }}>
+                      12 Years Of Experience In This Industry
+                    </p>
+                  </div>
+                </div>
+
+                <p className="text-gray-600 leading-relaxed mb-8">
+                  {services[activeService].description}
+                </p>
+
+                {/* Sub-services */}
+                <div className="space-y-3">
+                  <h4 className="text-lg font-semibold mb-4" style={{ color: '#0C3B34' }}>
+                    Available Services:
+                  </h4>
+                  {services[activeService].subServices.map((subService, index) => (
+                    <div key={index} className="flex items-center gap-3 group">
+                      <div
+                        className="w-2 h-2 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: '#D8C287' }}
+                      ></div>
+                      <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
+                        {subService}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Service Cards Grid - Mobile Only */}
+          <div className="md:hidden mt-0 grid gap-6 grid-cols-1 sm:grid-cols-2 items-start">
+
+            {services.map((service, index) => {
+              const isExpanded = expandedCards.has(service.id)
+              return (
+                <div key={service.id} className="bg-white rounded-xl shadow-md overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span
+                        className="text-2xl font-bold"
+                        style={{ color: '#D8C287' }}
+                      >
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <h3 className="text-xl font-bold" style={{ color: '#0C3B34' }}>
+                        {service.title}
+                      </h3>
+                    </div>
+
+                    {/* Description - truncated or full based on expansion */}
+                    <p className="text-sm text-gray-600 mb-4 leading-relaxed">
+                      {isExpanded ? service.description : `${service.description.substring(0, 120)}...`}
+                    </p>
+
+                    {/* Expanded content */}
+                    {isExpanded && (
+                      <div className="mb-4 pt-4 border-t border-gray-100">
+                        <p className="text-sm font-medium mb-3" style={{ color: '#D8C287' }}>
+                          12 Years Of Experience In This Industry
+                        </p>
+                        <div className="space-y-2">
+                          <h4 className="text-base font-semibold" style={{ color: '#0C3B34' }}>
+                            Available Services:
+                          </h4>
+                          {service.subServices.map((subService, subIndex) => (
+                            <div key={subIndex} className="flex items-center gap-3">
+                              <div
+                                className="w-2 h-2 rounded-full flex-shrink-0"
+                                style={{ backgroundColor: '#D8C287' }}
+                              ></div>
+                              <span className="text-sm text-gray-700">
+                                {subService}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Toggle button */}
+                    <button
+                      onClick={() => toggleCardExpansion(service.id)}
+                      className="text-sm font-medium hover:underline transition-colors duration-200"
+                      style={{ color: '#0C3B34' }}
+                    >
+                      {isExpanded ? 'View Less ↑' : 'View Details →'}
+                    </button>
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

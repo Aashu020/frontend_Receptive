@@ -29,12 +29,12 @@ function SuccessStory() {
     folder: path.includes("canada")
       ? "Canada"
       : path.includes("unitedKingdom")
-      ? "United Kingdom"
-      : path.includes("europe")
-      ? "Europe"
-      : path.includes("testimoniels")
-      ? "Testimonials"
-      : "Other",
+        ? "United Kingdom"
+        : path.includes("europe")
+          ? "Europe"
+          : path.includes("testimoniels")
+            ? "Testimonials"
+            : "Other",
   }));
 
   const videoList = Object.entries(videos).map(([path, mod]) => ({
@@ -46,23 +46,16 @@ function SuccessStory() {
     <>
       {/* ✅ SEO Metadata */}
       <Helmet>
-        <title>Success Stories | Receptive Solutions</title>
-
+        <title>Success Stories | Visa Approvals & Testimonials | Receptive Solutions</title>
         <meta
           name="description"
-          content="Explore real success stories from Receptive Solutions. See visa approvals, client testimonials, immigration success videos, and inspiring journeys from Canada, UK, Europe, and more."
+          content="See how Receptive Solutions has helped clients achieve their visa and overseas placement dreams. Watch success stories, testimonials, and approval videos."
         />
-
-        {/* ✅ Canonical */}
-        <link
-          rel="canonical"
-          href="https://www.receptivesolutions.co.in/success-story"
-        />
+        <link rel="canonical" href="https://www.receptivesolutions.co.in/success-story" />
 
         {/* ✅ Breadcrumb Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -79,28 +72,38 @@ function SuccessStory() {
                 "item": "https://www.receptivesolutions.co.in/success-story"
               }
             ]
-          }
-          `}
+          })}
         </script>
 
-        {/* ✅ WebPage Schema */}
+        {/* ✅ CollectionPage Schema (Main content type) */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebPage",
+            "@type": "CollectionPage",
             "name": "Success Stories - Visa Approvals & Testimonials",
             "url": "https://www.receptivesolutions.co.in/success-story",
-            "description": "Watch visa success stories, client testimonials, approval videos, and immigration journey highlights from Receptive Solutions clients.",
-            "inLanguage": "en",
+            "description":
+              "Browse client success stories and testimonials of Receptive Solutions, featuring real visa approvals and overseas placement achievements.",
             "isPartOf": {
               "@type": "WebSite",
               "url": "https://www.receptivesolutions.co.in/"
+            },
+            "about": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": "https://receptivesolutions.co.in/assets/IMMIGRATION_logo-C2HZCFoU.jpg",
+              "sameAs": [
+                "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
+                "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
+                "https://www.youtube.com/@receptivegroup",
+                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+              ]
             }
-          }
-          `}
+          })}
         </script>
       </Helmet>
+
 
       {/* ✅ PAGE CONTENT */}
       <div className="min-h-screen bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
@@ -113,22 +116,20 @@ function SuccessStory() {
             <div className="flex justify-center space-x-8 border-b border-gray-200">
               <button
                 onClick={() => setActiveTab("clients")}
-                className={`py-4 px-6 font-medium text-lg transition-colors ${
-                  activeTab === "clients"
+                className={`py-4 px-6 font-medium text-lg transition-colors ${activeTab === "clients"
                     ? "border-b-4 border-[#0C3B34] text-[#0C3B34]"
                     : "text-gray-500 hover:text-[#0C3B34] hover:border-b-4 hover:border-[#D8C287]"
-                }`}
+                  }`}
               >
                 Our Clients
               </button>
 
               <button
                 onClick={() => setActiveTab("visa")}
-                className={`py-4 px-6 font-medium text-lg transition-colors ${
-                  activeTab === "visa"
+                className={`py-4 px-6 font-medium text-lg transition-colors ${activeTab === "visa"
                     ? "border-b-4 border-[#0C3B34] text-[#0C3B34]"
                     : "text-gray-500 hover:text-[#0C3B34] hover:border-b-4 hover:border-[#D8C287]"
-                }`}
+                  }`}
               >
                 Visa Stories
               </button>

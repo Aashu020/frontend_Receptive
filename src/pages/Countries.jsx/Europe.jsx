@@ -13,72 +13,107 @@ const Europe = () => {
     <>
       {/* ✅ SEO Metadata */}
       <Helmet>
-        <title>Europe Immigration & Jobs | Receptive Solutions</title>
+        {/* ✅ SEO Title */}
+        <title>Work & Settle in Europe | EU Work Permit & Job Placement | Receptive Solutions</title>
 
+        {/* ✅ Meta Description */}
         <meta
           name="description"
-          content="Explore European immigration pathways, job opportunities, and visa assistance with Receptive Solutions. Work in countries like Germany, Poland, Portugal, Lithuania, and more."
+          content="Work and settle across Europe with Receptive Solutions. Get EU work permit guidance, documentation, and job placement support for skilled and semi-skilled professionals."
         />
 
         {/* ✅ Canonical */}
-        <link 
-          rel="canonical" 
-          href="https://www.receptivesolutions.co.in/country/europe" 
-        />
+        <link rel="canonical" href="https://www.receptivesolutions.co.in/country/europe" />
 
         {/* ✅ Breadcrumb Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://www.receptivesolutions.co.in/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Countries",
-                "item": "https://www.receptivesolutions.co.in/country"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Europe",
-                "item": "https://www.receptivesolutions.co.in/country/europe"
-              }
+              { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.receptivesolutions.co.in/" },
+              { "@type": "ListItem", "position": 2, "name": "Countries", "item": "https://www.receptivesolutions.co.in/country" },
+              { "@type": "ListItem", "position": 3, "name": "Europe", "item": "https://www.receptivesolutions.co.in/country/europe" }
             ]
-          }
-          `}
+          })}
         </script>
 
-        {/* ✅ WebPage Schema */}
+        {/* ✅ WebPage + Continent Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Europe Immigration & Work Opportunities | Receptive Solutions",
+            "@type": ["WebPage", "CollectionPage"],
+            "name": "Europe – Work & Settle with EU Work Permits",
             "url": "https://www.receptivesolutions.co.in/country/europe",
-            "description": "Find immigration and job opportunities across Europe including Germany, Poland, Estonia, Portugal, and more.",
+            "description": "EU work permit & job placement guidance for skilled and semi-skilled professionals across Europe.",
             "inLanguage": "en",
-            "isPartOf": {
-              "@type": "WebSite",
-              "url": "https://www.receptivesolutions.co.in/"
-            },
             "about": {
-              "@type": "Place",
+              "@type": "Continent",
               "name": "Europe",
-              "image": "https://www.receptivesolutions.co.in/assets/europe.jpg"
+              "url": "https://en.wikipedia.org/wiki/Europe"
+            },
+            "isPartOf": { "@type": "WebSite", "url": "https://www.receptivesolutions.co.in/" },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": { "@type": "ImageObject", "url": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg" },
+              "sameAs": [
+                "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
+                "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
+                "https://www.youtube.com/@receptivegroup",
+                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+              ]
             }
-          }
-          `}
+          })}
+        </script>
+
+        {/* ✅ Service Schema – EU Work Permit & Job Placement */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Europe Work Permit & Job Placement",
+            "provider": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+            },
+            "areaServed": { "@type": "Continent", "name": "Europe" },
+            "offers": {
+              "@type": "AggregateOffer",
+              "priceCurrency": "EUR",
+              "lowPrice": "1500",
+              "highPrice": "4000",
+              "description": "Typical monthly pay packages for EU work permits, varying by role and skill level."
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "EU Job Categories & Sectors",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Skilled Roles (Tech, Engineering, Healthcare, Construction, Hospitality)",
+                    "description": "EU work permit and placement for skilled professionals (22–55 yrs; Graduate/Diploma; 2+ yrs experience). Contracts: 3 years; Pay €2500–€4000/mo; Benefits: accommodation, food, transport, medical insurance."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Semi-Skilled & Unskilled Roles (Hospitality, Manufacturing, Agriculture, Retail)",
+                    "description": "EU work permit & placement for entry roles (18–65 yrs; min 10th pass; no prior experience needed). Contracts: 3 years; Pay €1500–€2500/mo; Benefits: accommodation, food, transport, medical insurance."
+                  }
+                }
+              ]
+            }
+          })}
         </script>
       </Helmet>
+
 
       {/* ✅ PAGE CONTENT */}
       <div>

@@ -13,14 +13,16 @@ const UK = () => {
     <>
       {/* ✅ SEO Metadata */}
       <Helmet>
-        <title>UK Immigration & Visa | Receptive Solutions</title>
+        {/* ✅ SEO Title */}
+        <title>UK Immigration, Work & Study Visa Consultancy | Receptive Solutions</title>
 
+        {/* ✅ Meta Description */}
         <meta
           name="description"
-          content="Explore UK immigration services, work visas, study visas, visitor visas, and relocation guidance with Receptive Solutions. Trusted consultants for United Kingdom migration."
+          content="Apply for UK Study, Work, Skilled Worker, Visitor, or Innovator Visas with expert guidance from Receptive Solutions. Trusted UK immigration consultants helping professionals, students & entrepreneurs settle in the UK."
         />
 
-        {/* ✅ Canonical */}
+        {/* ✅ Canonical URL */}
         <link
           rel="canonical"
           href="https://www.receptivesolutions.co.in/country/uk"
@@ -28,8 +30,7 @@ const UK = () => {
 
         {/* ✅ Breadcrumb Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -52,33 +53,122 @@ const UK = () => {
                 "item": "https://www.receptivesolutions.co.in/country/uk"
               }
             ]
-          }
-          `}
+          })}
         </script>
 
-        {/* ✅ WebPage Schema */}
+        {/* ✅ WebPage + Country Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "UK Immigration & Visa Services | Receptive Solutions",
+            "@type": ["WebPage", "CollectionPage"],
+            "name": "United Kingdom Immigration & Visa Services | Receptive Solutions",
             "url": "https://www.receptivesolutions.co.in/country/uk",
-            "description": "Learn about UK visas, immigration pathways, work permits, study opportunities, and relocation assistance with Receptive Solutions.",
+            "description":
+              "Explore UK visa programs including Student, Skilled Worker, Visitor, Innovator, and Self-Sponsorship visas. Receptive Solutions provides expert guidance for smooth UK immigration and relocation.",
             "inLanguage": "en",
-            "isPartOf": {
-              "@type": "WebSite",
-              "url": "https://www.receptivesolutions.co.in/"
-            },
             "about": {
-              "@type": "Place",
+              "@type": "Country",
               "name": "United Kingdom",
-              "image": "https://www.receptivesolutions.co.in/assets/uk.jpg"
+              "url": "https://en.wikipedia.org/wiki/United_Kingdom"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+              },
+              "sameAs": [
+                "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
+                "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
+                "https://www.youtube.com/@receptivegroup",
+                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+              ]
             }
-          }
-          `}
+          })}
+        </script>
+
+        {/* ✅ Service Schema – UK Visa & Immigration Services */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "UK Immigration & Visa Consulting",
+            "provider": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+            },
+            "areaServed": {
+              "@type": "Country",
+              "name": "United Kingdom"
+            },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "United Kingdom Visa Categories",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "UK Student Visa",
+                    "description":
+                      "Get expert guidance for UK Study Visa (Tier 4) applications — including admission support, document review, and visa filing assistance."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "UK Visitor Visa",
+                    "description":
+                      "Assistance with UK Visitor Visa applications for tourism, business, or family visits. Includes document preparation and travel guidance."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "UK Skilled Worker Visa",
+                    "description":
+                      "Tier 2 Skilled Worker Visa support for professionals seeking sponsorship-based employment opportunities in the UK."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "UK Temporary Worker (Tier 5) Visa",
+                    "description":
+                      "End-to-end guidance for Tier 5 visas including Creative & Sporting, Charity Worker, and Youth Mobility Scheme categories."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "UK Self-Sponsorship Visa",
+                    "description":
+                      "Advisory and documentation services for entrepreneurs establishing or acquiring businesses in the UK through self-sponsorship route."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "UK Innovator & Start-up Visa",
+                    "description":
+                      "Consultation and business plan assistance for Innovator and Start-Up Visa applicants establishing innovative ventures in the UK."
+                  }
+                }
+              ]
+            }
+          })}
         </script>
       </Helmet>
+
 
       {/* ✅ PAGE CONTENT */}
       <div>

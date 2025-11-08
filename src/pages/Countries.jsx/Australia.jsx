@@ -16,23 +16,21 @@ const Australia = () => {
     <>
       {/* ✅ SEO Metadata */}
       <Helmet>
-        <title>Australia Immigration & Visa | Receptive Solutions</title>
+        {/* ✅ SEO Title */}
+        <title>Work, Study & Migrate to Australia | Visa Guidance & PR Pathways | Receptive Solutions</title>
 
+        {/* ✅ Meta Description */}
         <meta
           name="description"
-          content="Explore immigration pathways, Australian work visas, study visas, visitor visas, and PR options with Receptive Solutions. Begin your journey to Australia with expert guidance."
+          content="Migrate to Australia confidently with Receptive Solutions. Expert visa consultancy for Skilled Migration, Employer-Sponsored Visas, Subclass 186 & Subclass 400 programs, and pathways to Australian Permanent Residency."
         />
 
-        {/* ✅ Canonical */}
-        <link
-          rel="canonical"
-          href="https://www.receptivesolutions.co.in/country/australia"
-        />
+        {/* ✅ Canonical URL */}
+        <link rel="canonical" href="https://www.receptivesolutions.co.in/country/australia" />
 
         {/* ✅ Breadcrumb Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -55,33 +53,105 @@ const Australia = () => {
                 "item": "https://www.receptivesolutions.co.in/country/australia"
               }
             ]
-          }
-          `}
+          })}
         </script>
 
-        {/* ✅ WebPage Schema */}
+        {/* ✅ WebPage + Country Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Australia Immigration & Visa Services | Receptive Solutions",
+            "@type": ["WebPage", "CollectionPage"],
+            "name": "Australia Immigration, Work & PR Visa Guidance | Receptive Solutions",
             "url": "https://www.receptivesolutions.co.in/country/australia",
-            "description": "Learn about Australian visas, immigration pathways, skilled migration, work permits, and permanent residency options with Receptive Solutions.",
+            "description":
+              "Receptive Solutions provides expert immigration assistance for Australia, including Skilled Migration, Employer Nomination (Subclass 186), and Temporary Work (Subclass 400) visas.",
             "inLanguage": "en",
+            "about": {
+              "@type": "Country",
+              "name": "Australia",
+              "url": "https://en.wikipedia.org/wiki/Australia"
+            },
             "isPartOf": {
               "@type": "WebSite",
               "url": "https://www.receptivesolutions.co.in/"
             },
-            "about": {
-              "@type": "Place",
-              "name": "Australia",
-              "image": "https://www.receptivesolutions.co.in/assets/australia.jpg"
+            "publisher": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+              },
+              "sameAs": [
+                "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
+                "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
+                "https://www.youtube.com/@receptivegroup",
+                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+              ]
             }
-          }
-          `}
+          })}
+        </script>
+
+        {/* ✅ Service Schema – Australian Visa & Immigration Assistance */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Service",
+            "serviceType": "Australia Immigration & Visa Consulting",
+            "provider": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+            },
+            "areaServed": { "@type": "Country", "name": "Australia" },
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Australian Visa Categories",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Subclass 186 – Employer Nomination Scheme Visa",
+                    "description":
+                      "Permanent residency visa for skilled workers nominated by an approved Australian employer under Direct Entry, Temporary Residence Transition, or Labor Agreement streams."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Subclass 400 – Temporary Work (Short Stay Specialist) Visa",
+                    "description":
+                      "Temporary visa allowing individuals to undertake short-term, highly specialized work in Australia for 3–6 months."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Skilled Migration & Employer Sponsored Visas",
+                    "description":
+                      "Full assistance with skilled migration, employer sponsorships, and documentation required for permanent residency eligibility."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Pathway to Permanent Residency (PR)",
+                    "description":
+                      "Comprehensive consultation for transitioning from Subclass 400 or 482 to Subclass 186 and achieving permanent residency in Australia."
+                  }
+                }
+              ]
+            }
+          })}
         </script>
       </Helmet>
+
 
       {/* ✅ PAGE CONTENT */}
       <div>

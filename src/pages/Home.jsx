@@ -11,109 +11,123 @@ const Home = () => {
     <>
       {/* ✅ Helmet is only for SEO metadata */}
       <Helmet>
-        {/* ✅ SEO Title */}
-        <title>Receptive Solutions – Global Immigration, Visa & Career Services</title>
-
-        {/* ✅ High-ranking Meta Description */}
+        {/* ✅ SEO Title & Description */}
+        <title>Receptive Solutions – Global Immigration, Visa & Career Experts</title>
         <meta
           name="description"
-          content="Receptive Solutions is a trusted global immigration and visa consultancy serving clients across UAE, UK, Canada, Europe, USA, Australia & Singapore. 12+ years of experience, 3000+ successful clients, expert visa solutions."
+          content="Receptive Solutions is a trusted global immigration consultancy helping clients from India, UAE, UK, Canada, Europe, USA, Australia & Singapore. 12+ years of experience, 3000+ success stories."
         />
-
-        {/* ✅ Canonical URL */}
         <link rel="canonical" href="https://www.receptivesolutions.co.in/" />
 
-        {/* ✅ WebSite Schema – required for sitelinks */}
+        {/* ✅ WebSite Schema (for sitelinks) */}
         <script type="application/ld+json">
-                {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebSite",
-            "name": "Receptive Solutions",
             "url": "https://www.receptivesolutions.co.in/",
+            "name": "Receptive Solutions",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://www.receptivesolutions.co.in/?s={search_term_string}",
+              "target":
+                "https://www.receptivesolutions.co.in/?s={search_term_string}",
               "query-input": "required name=search_term_string"
             }
-          }
-    `}
+          })}
         </script>
 
-        {/* ✅ Organization Schema */}
+        {/* ✅ Organization Schema (main entity for brand) */}
         <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Receptive Solutions",
-              "url": "https://www.receptivesolutions.co.in/",
-              "logo": "https://www.receptivesolutions.co.in/logo192.png",
-              "description": "Receptive Solutions is a global immigration consultancy specializing in visas, work permits, and overseas career services.",
-              "sameAs": [
-                "https://www.facebook.com/",
-                "https://www.instagram.com/",
-                "https://www.linkedin.com/"
-              ]
-            }
-            `}
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Receptive Solutions",
+            "url": "https://www.receptivesolutions.co.in/",
+            "logo":
+              "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg",
+            "description":
+              "Receptive Solutions is an experienced immigration & overseas placement consultancy providing visa and job assistance services for Canada, UK, Singapore & Europe.",
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+91-77380-56424",
+              "contactType": "customer support",
+              "areaServed": "IN",
+              "availableLanguage": ["English", "Hindi"]
+            },
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress":
+                "425, Gemstar Commercial Complex, Ramchandra Lane Extn, Kanchpada, Malad West",
+              "addressLocality": "Mumbai",
+              "postalCode": "400064",
+              "addressRegion": "Maharashtra",
+              "addressCountry": "IN"
+            },
+            "sameAs": [
+              "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
+              "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
+              "https://www.youtube.com/@receptivegroup",
+              "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+            ]
+          })}
         </script>
 
-        {/* ✅ LocalBusiness Schema (VERY powerful for SEO) */}
+        {/* ✅ LocalBusiness Schema (for Maps & local SEO) */}
         <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "Receptive Solutions",
-              "image": "https://www.receptivesolutions.co.in/logo192.png",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "425 Gemstar Commercial Complex, Ramchandra Lane Extn",
-                "addressLocality": "Malad West",
-                "addressRegion": "Mumbai",
-                "postalCode": "400064",
-                "addressCountry": "IN"
-              },
-              "openingHours": "Mo-Sa 10:00-19:00",
-              "telephone": "+91 9867729568",
-              "url": "https://www.receptivesolutions.co.in/"
-            }
-          `}
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "Receptive Solutions",
+            "image":
+              "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress":
+                "425, Gemstar Commercial Complex, Ramchandra Lane Extn",
+              "addressLocality": "Malad West",
+              "addressRegion": "Mumbai",
+              "postalCode": "400064",
+              "addressCountry": "IN"
+            },
+            "openingHours": "Mo-Sa 10:00-19:00",
+            "telephone": "+91-77380-56424",
+            "url": "https://www.receptivesolutions.co.in/"
+          })}
         </script>
 
-        {/* ✅ Breadcrumb Schema */}
+        {/* ✅ BreadcrumbList Schema */}
         <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              "itemListElement": [
-                {
-                  "@type": "ListItem",
-                  "position": 1,
-                  "name": "Home",
-                  "item": "https://www.receptivesolutions.co.in/"
-                }
-              ]
-            }
-          `}
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.receptivesolutions.co.in/"
+              }
+            ]
+          })}
         </script>
 
         {/* ✅ WebPage Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebPage",
+            "@type": ["WebPage", "CollectionPage"],
             "name": "Receptive Solutions – Global Immigration Experts",
             "url": "https://www.receptivesolutions.co.in/",
-            "description": "Leading global immigration consultancy offering visa, PR, work permits and overseas career solutions.",
-            "inLanguage": "en"
-          }
-        `}
+            "description":
+              "Leading global immigration consultancy offering visa, PR, work permits and overseas career solutions.",
+            "inLanguage": "en",
+            "isPartOf": {
+              "@type": "WebSite",
+              "url": "https://www.receptivesolutions.co.in/"
+            }
+          })}
         </script>
       </Helmet>
+
 
       <div>
 

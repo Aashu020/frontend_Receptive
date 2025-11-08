@@ -388,63 +388,130 @@ function Reviews() {
   return (
     <>
       <Helmet>
-        {/* ✅ SEO Title */}
-        <title>Client Reviews & Ratings | Receptive Solutions</title>
-
-        {/* ✅ SEO Meta Description */}
+        {/* ✅ SEO Essentials */}
+        <title>Client Reviews & Testimonials | Receptive Solutions</title>
         <meta
           name="description"
-          content="Read genuine client reviews, immigration success experiences, and service feedback for Receptive Solutions. Rated 4.9/5 by 3000+ happy clients across Canada, UK, Europe, and more."
+          content="Read authentic client experiences and verified reviews of Receptive Solutions. Rated 4.4/5 by clients for visa success, reliability, and professional service."
         />
-
-        {/* ✅ Canonical URL */}
-        <link
-          rel="canonical"
-          href="https://www.receptivesolutions.co.in/reviews"
-        />
+        <link rel="canonical" href="https://www.receptivesolutions.co.in/reviews" />
 
         {/* ✅ Breadcrumb Schema */}
         <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "BreadcrumbList",
-              "itemListElement": [
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.receptivesolutions.co.in/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Client Reviews",
+                "item": "https://www.receptivesolutions.co.in/reviews"
+              }
+            ]
+          })}
+        </script>
+
+        {/* ✅ WebPage + Review Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["WebPage", "ReviewCollectionPage"],
+            "name": "Client Reviews & Testimonials - Receptive Solutions",
+            "url": "https://www.receptivesolutions.co.in/reviews",
+            "description":
+              "Explore genuine client reviews and visa success experiences from Receptive Solutions' immigration consultancy clients.",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo":
+                "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.4",
+                "ratingCount": "19"
+              },
+              "review": [
                 {
-                  "@type": "ListItem",
-                  "position": 1,
-                  "name": "Home",
-                  "item": "https://www.receptivesolutions.co.in/"
+                  "@type": "Review",
+                  "author": { "@type": "Person", "name": "Sam Daniel" },
+                  "datePublished": "2025-10-03",
+                  "reviewBody":
+                    "Impeccable support from a dedicated team led to a swift visa approval. They handled every detail with care, and their communication was top-notch. Thank you for the amazing service!",
+                  "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "5",
+                    "bestRating": "5",
+                    "worstRating": "1"
+                  },
+                  "image": "https://res.cloudinary.com/dwu1b3y1v/image/upload/v1761124385/reviews/aay9nef9s5u8ttoptren.jpg"
                 },
                 {
-                  "@type": "ListItem",
-                  "position": 2,
-                  "name": "Reviews",
-                  "item": "https://www.receptivesolutions.co.in/reviews"
+                  "@type": "Review",
+                  "author": { "@type": "Person", "name": "Isha Chawla" },
+                  "datePublished": "2025-10-03",
+                  "reviewBody":
+                    "Great service with clear explanations at every step. The staff’s dedication ensured a successful application, making immigration feel achievable.",
+                  "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "4",
+                    "bestRating": "5",
+                    "worstRating": "1"
+                  }
+                },
+                {
+                  "@type": "Review",
+                  "author": { "@type": "Person", "name": "Maya Kapoor" },
+                  "datePublished": "2025-10-03",
+                  "reviewBody":
+                    "The staff’s attention to detail was impressive during my visa process. They provided expert guidance, ensuring a smooth experience from start to finish.",
+                  "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "5",
+                    "bestRating": "5",
+                    "worstRating": "1"
+                  }
+                },
+                {
+                  "@type": "Review",
+                  "author": { "@type": "Person", "name": "Rahul Gupta" },
+                  "datePublished": "2025-10-03",
+                  "reviewBody":
+                    "The process was smooth thanks to their attentive and reliable service. They addressed all my concerns promptly, ensuring a successful outcome.",
+                  "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "4",
+                    "bestRating": "5",
+                    "worstRating": "1"
+                  }
+                },
+                {
+                  "@type": "Review",
+                  "author": { "@type": "Person", "name": "Sophia Ansari" },
+                  "datePublished": "2025-10-03",
+                  "reviewBody":
+                    "Fast, reliable, and very transparent throughout the process. Highly recommend Receptive Solutions for immigration help.",
+                  "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "5",
+                    "bestRating": "5",
+                    "worstRating": "1"
+                  }
                 }
               ]
             }
-            `}
-        </script>
-
-        {/* ✅ WebPage Schema */}
-        <script type="application/ld+json">
-          {`
-            {
-              "@context": "https://schema.org",
-              "@type": "WebPage",
-              "name": "Client Reviews & Testimonials",
-              "url": "https://www.receptivesolutions.co.in/reviews",
-              "description": "Explore client testimonials, visa success stories, ratings, and feedback for Receptive Solutions.",
-              "inLanguage": "en",
-              "isPartOf": {
-                "@type": "WebSite",
-                "url": "https://www.receptivesolutions.co.in/"
-              }
-            }
-          `}
+          })}
         </script>
       </Helmet>
+
+``
 
 
       <div className="mt-20 md:mt-45 px-4 lg:px-8 max-w-7xl mx-auto md:mb-4">

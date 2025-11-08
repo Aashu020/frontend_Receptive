@@ -22,72 +22,168 @@ const Canada = () => {
         <>
             {/* ✅ SEO Metadata */}
             <Helmet>
-                <title>Canada Immigration & Visa | Receptive Solutions</title>
+                {/* ✅ SEO Title */}
+                <title>Canada Immigration & Visa Programs | Receptive Solutions</title>
 
+                {/* ✅ Meta Description */}
                 <meta
                     name="description"
-                    content="Explore Canada immigration pathways, skilled worker programs, visitor visas, work permits, and relocation assistance with Receptive Solutions. Start your journey to Canada today."
+                    content="Explore Receptive Solutions’ expert guidance for Canada immigration. Learn about Express Entry, Work Permit, Start-Up Visa, PNP programs, and more for your Canadian PR journey."
                 />
 
                 {/* ✅ Canonical */}
-                <link
-                    rel="canonical"
-                    href="https://www.receptivesolutions.co.in/country/canada"
-                />
+                <link rel="canonical" href="https://www.receptivesolutions.co.in/country/canada" />
 
                 {/* ✅ Breadcrumb Schema */}
                 <script type="application/ld+json">
-                    {`
-                    {
-                      "@context": "https://schema.org",
-                      "@type": "BreadcrumbList",
-                      "itemListElement": [
-                        {
-                          "@type": "ListItem",
-                          "position": 1,
-                          "name": "Home",
-                          "item": "https://www.receptivesolutions.co.in/"
-                        },
-                        {
-                          "@type": "ListItem",
-                          "position": 2,
-                          "name": "Countries",
-                          "item": "https://www.receptivesolutions.co.in/country"
-                        },
-                        {
-                          "@type": "ListItem",
-                          "position": 3,
-                          "name": "Canada",
-                          "item": "https://www.receptivesolutions.co.in/country/canada"
-                        }
-                      ]
-                    }
-                `}
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [
+                            {
+                                "@type": "ListItem",
+                                "position": 1,
+                                "name": "Home",
+                                "item": "https://www.receptivesolutions.co.in/"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 2,
+                                "name": "Countries",
+                                "item": "https://www.receptivesolutions.co.in/country"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 3,
+                                "name": "Canada",
+                                "item": "https://www.receptivesolutions.co.in/country/canada"
+                            }
+                        ]
+                    })}
                 </script>
 
-                {/* ✅ WebPage Schema */}
+                {/* ✅ WebPage + Country Schema */}
                 <script type="application/ld+json">
-                    {`
-                    {
-                      "@context": "https://schema.org",
-                      "@type": "WebPage",
-                      "name": "Canada Immigration & Visa Services | Receptive Solutions",
-                      "url": "https://www.receptivesolutions.co.in/country/canada",
-                      "description": "Find details about Canada immigration programs, visitor visas, work permits, and skilled migration pathways with expert guidance from Receptive Solutions.",
-                      "inLanguage": "en",
-                      "isPartOf": {
-                        "@type": "WebSite",
-                        "url": "https://www.receptivesolutions.co.in/"
-                      },
-                      "about": {
-                        "@type": "Place",
-                        "name": "Canada",
-                        "image": "https://www.receptivesolutions.co.in/assets/canada.jpeg"
-                      }
-                    }
-                `}
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": ["WebPage", "CollectionPage"],
+                        "name": "Canada Immigration & Visa Services | Receptive Solutions",
+                        "url": "https://www.receptivesolutions.co.in/country/canada",
+                        "description":
+                            "Comprehensive guide for Canadian immigration and visa services by Receptive Solutions. Learn about Express Entry, Skilled Worker, Work Permits, Start-Up Visa, PNP, and more.",
+                        "inLanguage": "en",
+                        "about": {
+                            "@type": "Country",
+                            "name": "Canada",
+                            "url": "https://en.wikipedia.org/wiki/Canada"
+                        },
+                        "publisher": {
+                            "@type": "Organization",
+                            "name": "Receptive Solutions",
+                            "url": "https://www.receptivesolutions.co.in/",
+                            "logo": {
+                                "@type": "ImageObject",
+                                "url": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+                            },
+                            "sameAs": [
+                                "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
+                                "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
+                                "https://www.youtube.com/@receptivegroup",
+                                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+                            ]
+                        }
+                    })}
+                </script>
+
+                {/* ✅ Service Schema – Canada Immigration Programs */}
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Service",
+                        "serviceType": "Canada Immigration & Visa Consulting",
+                        "provider": {
+                            "@type": "Organization",
+                            "name": "Receptive Solutions",
+                            "url": "https://www.receptivesolutions.co.in/",
+                            "logo": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
+                        },
+                        "areaServed": {
+                            "@type": "Country",
+                            "name": "Canada"
+                        },
+                        "hasOfferCatalog": {
+                            "@type": "OfferCatalog",
+                            "name": "Canada Immigration Programs",
+                            "itemListElement": [
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Canada Express Entry Program",
+                                        "description":
+                                            "Fast-track skilled worker immigration system managing Federal Skilled Worker, Skilled Trades, and Canadian Experience Class applications."
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Canada Work Permit & Employment Visa",
+                                        "description":
+                                            "Temporary and open work permit options for skilled professionals, students, and accompanying spouses."
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Canada Start-Up Visa Program",
+                                        "description":
+                                            "Permanent residence pathway for entrepreneurs supported by Canadian venture capital funds or business incubators."
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Atlantic Immigration Program (AIP)",
+                                        "description":
+                                            "Employer-driven immigration program for skilled workers and graduates in Atlantic provinces – Nova Scotia, New Brunswick, PEI, Newfoundland & Labrador."
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Saskatchewan Immigrant Nominee Program (SINP)",
+                                        "description":
+                                            "Provincial Nominee Program offering skilled worker, entrepreneur, and international graduate streams for Canadian PR."
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "British Columbia PNP (BC PNP)",
+                                        "description":
+                                            "Provincial Nominee Program for skilled workers, healthcare professionals, international graduates, and entrepreneurs to settle in BC."
+                                    }
+                                },
+                                {
+                                    "@type": "Offer",
+                                    "itemOffered": {
+                                        "@type": "Service",
+                                        "name": "Alberta Tech Pathway Program",
+                                        "description":
+                                            "Accelerated immigration route for tech professionals with Alberta job offers in eligible industries."
+                                    }
+                                }
+                            ]
+                        }
+                    })}
                 </script>
             </Helmet>
+
 
             <div>
                 {/* ✅ HERO SECTION */}

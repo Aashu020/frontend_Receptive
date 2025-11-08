@@ -17,17 +17,13 @@ const About = () => {
         <title>About Us | Receptive Solutions</title>
         <meta
           name="description"
-          content="Discover Receptive Solutions: our mission, global expertise, founders, and our commitment to delivering immigration, real estate, and investment solutions worldwide."
+          content="Learn about Receptive Solutions our mission, founders, and expertise in immigration, real estate, and investment solutions worldwide."
         />
-        <link
-          rel="canonical"
-          href="https://www.receptivesolutions.co.in/about"
-        />
+        <link rel="canonical" href="https://www.receptivesolutions.co.in/about" />
 
         {/* ✅ Breadcrumb Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -44,31 +40,50 @@ const About = () => {
                 "item": "https://www.receptivesolutions.co.in/about"
               }
             ]
-          }
-        `}
+          })}
         </script>
 
-        {/* ✅ WebPage Schema (optional but increases SEO strength) */}
+        {/* ✅ AboutPage Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "About Us | Receptive Solutions",
+            "@type": "AboutPage",
             "url": "https://www.receptivesolutions.co.in/about",
-            "description": "Learn about Receptive Solutions, our founders, mission, vision, and global service excellence in immigration, real estate, and investment solutions.",
-            "publisher": {
+            "name": "About Receptive Solutions",
+            "description":
+              "Receptive Solutions is a premier immigration and overseas placement consultancy offering services for Canada, the UK, Singapore, and Europe.",
+            "mainEntity": {
               "@type": "Organization",
               "name": "Receptive Solutions",
-              "logo": {
-                "@type": "ImageObject",
-                "url": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg"
-              }
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+91-77380-56424",
+                "contactType": "customer support",
+                "areaServed": "IN",
+                "availableLanguage": ["English", "Hindi"]
+              },
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress":
+                  "425, Gemstar Commercial Complex, Ramchandra Lane Extn, Kanchpada, Malad West",
+                "addressLocality": "Mumbai",
+                "postalCode": "400064",
+                "addressRegion": "Maharashtra",
+                "addressCountry": "IN"
+              },
+              "sameAs": [
+                "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
+                "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
+                "https://www.youtube.com/@receptivegroup",
+                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+              ]
             }
-          }
-        `}
+          })}
         </script>
       </Helmet>
+
 
       {/* ✅ Page content goes here */}
       <HeroSection />

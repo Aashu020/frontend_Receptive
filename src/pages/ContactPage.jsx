@@ -38,23 +38,17 @@ const ContactPage = () => {
     <>
       {/* ✅ SEO */}
       <Helmet>
-        <title>Contact Us | Receptive Solutions</title>
-
+        {/* ✅ Title and Meta */}
+        <title>Contact Receptive Solutions | Immigration & Visa Consultancy Mumbai</title>
         <meta
           name="description"
-          content="Get in touch with Receptive Solutions. Reach our offices in Mumbai, Ahmedabad, Dubai, and the UK for immigration and global consulting services."
+          content="Reach out to Receptive Solutions for immigration and overseas career assistance. Call or visit our Mumbai office today."
         />
-
-        {/* ✅ Canonical */}
-        <link
-          rel="canonical"
-          href="https://www.receptivesolutions.co.in/contact"
-        />
+        <link rel="canonical" href="https://www.receptivesolutions.co.in/contact" />
 
         {/* ✅ Breadcrumb Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -71,23 +65,50 @@ const ContactPage = () => {
                 "item": "https://www.receptivesolutions.co.in/contact"
               }
             ]
-          }
-          `}
+          })}
         </script>
 
-        {/* ✅ WebPage Schema */}
+        {/* ✅ ContactPage Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebPage",
-            "name": "Contact Us - Receptive Solutions",
+            "@type": "ContactPage",
             "url": "https://www.receptivesolutions.co.in/contact",
-            "description": "Contact Receptive Solutions for immigration, consulting, and global services in India, Dubai, and UK."
-          }
-          `}
+            "name": "Contact Receptive Solutions",
+            "description":
+              "Get in touch with Receptive Solutions for immigration, visa, and overseas job assistance. Visit or call our Mumbai office.",
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+91-77380-56424",
+                "contactType": "customer support",
+                "areaServed": "IN",
+                "availableLanguage": ["English", "Hindi"]
+              },
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress":
+                  "425, Gemstar Commercial Complex, Ramchandra Lane Extn, Kanchpada, Malad West",
+                "addressLocality": "Mumbai",
+                "postalCode": "400064",
+                "addressRegion": "Maharashtra",
+                "addressCountry": "IN"
+              },
+              "sameAs": [
+                "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
+                "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
+                "https://www.youtube.com/@receptivegroup",
+                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+              ]
+            }
+          })}
         </script>
       </Helmet>
+
 
       {/* ✅ PAGE CONTENT */}
       <div className="pt-16 md:pt-24 lg:pt-28 xl:pt-32">

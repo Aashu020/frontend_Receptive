@@ -13,23 +13,16 @@ const UAE = () => {
     <>
       {/* ✅ Helmet — SEO Metadata */}
       <Helmet>
-        <title>UAE Immigration & Visa | Receptive Solutions</title>
-
+        <title>Immigration & Visa Services – UAE | Receptive Solutions</title>
         <meta
           name="description"
-          content="Explore UAE immigration services, visa requirements, Emirates ID process, and relocation assistance with Receptive Solutions. Trusted immigration consultants in UAE."
+          content="Explore Receptive Solutions’ immigration, visa and overseas placement services tailored for the UAE market. Trusted consultants helping UAE-based clients globally."
         />
+        <link rel="canonical" href="https://www.receptivesolutions.co.in/country/uae" />
 
-        {/* ✅ Canonical */}
-        <link 
-          rel="canonical" 
-          href="https://www.receptivesolutions.co.in/country/uae" 
-        />
-
-        {/* ✅ Breadcrumb Schema */}
+        {/* Breadcrumb Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             "itemListElement": [
@@ -42,7 +35,7 @@ const UAE = () => {
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Countries",
+                "name": "Country Services",
                 "item": "https://www.receptivesolutions.co.in/country"
               },
               {
@@ -52,33 +45,44 @@ const UAE = () => {
                 "item": "https://www.receptivesolutions.co.in/country/uae"
               }
             ]
-          }
-        `}
+          })}
         </script>
 
-        {/* ✅ WebPage Schema — UAE Immigration Page */}
+        {/* WebPage + Country + Organization Schema */}
         <script type="application/ld+json">
-          {`
-          {
+          {JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "WebPage",
+            "@type": ["WebPage", "CollectionPage"],
             "name": "UAE Immigration & Visa Services | Receptive Solutions",
             "url": "https://www.receptivesolutions.co.in/country/uae",
-            "description": "Learn about UAE visa types, immigration process, Emirates ID, residency, and relocation support with Receptive Solutions.",
+            "description": "Dedicated page for UAE-based immigration, visa and overseas job services by Receptive Solutions.",
             "inLanguage": "en",
             "isPartOf": {
               "@type": "WebSite",
               "url": "https://www.receptivesolutions.co.in/"
             },
             "about": {
-              "@type": "Place",
+              "@type": "Country",
               "name": "United Arab Emirates",
-              "image": "https://www.receptivesolutions.co.in/assets/uae2.png"
+              "url": "https://en.wikipedia.org/wiki/United_Arab_Emirates"
+            },
+            "mainEntity": {
+              "@type": "Organization",
+              "name": "Receptive Solutions",
+              "url": "https://www.receptivesolutions.co.in/",
+              "logo": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg",
+              "sameAs": [
+                "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
+                "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
+                "https://www.youtube.com/@receptivegroup",
+                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+              ]
             }
-          }
-        `}
+          })}
         </script>
       </Helmet>
+
+
 
       {/* ✅ PAGE CONTENT */}
       <div>
@@ -94,16 +98,16 @@ const UAE = () => {
           mainTitle={`"Welcome to Receptive Group of Companies"`}
           title={
             <>
-              A trusted name in Immigration and HR consultancy for over 12 years in India, now present globally in the UK and Dubai. 
+              A trusted name in Immigration and HR consultancy for over 12 years in India, now present globally in the UK and Dubai.
               Our experienced professionals provide tailored solutions for visa applications, employee recruitment, and Permanent Residence.
             </>
           }
           desc="Planning a move to the United Arab Emirates (UAE)? Learn how to obtain a UAE residence visa, Emirates ID, and more. Our guide helps you understand the complete immigration process quickly and easily."
           img={uaeimg}
         />
-        
+
         <UaeQuest1 />
-        <UaeVisaRequirements/>
+        <UaeVisaRequirements />
       </div>
     </>
   )
