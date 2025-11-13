@@ -107,16 +107,16 @@ function Herosection() {
           {/* Content Container */}
           <div className={`relative h-full flex items-center justify-${slide.alignment === 'left' ? 'start' : 'end'} px-4 md:px-16 lg:px-24`}>
             {/* Text Content with Transparent Background */}
-            <div className={`max-w-md md:max-w-xl bg-white/10 md:top-11 backdrop-blur-lg rounded-xl p-6 md:p-8 shadow-xl ${slide.alignment === 'left' ? 'ml-0 md:ml-10' : 'mr-6 md:mr-10'} relative`}>
-              <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white mb-4 drop-shadow-md">
+            <div className={`max-w-md md:max-w-xl bg-white/10 md:top-11 2xl:max-w-6xl backdrop-blur-lg rounded-xl p-6 md:p-8 2xl:p-28 shadow-xl ${slide.alignment === 'left' ? 'ml-0 md:ml-10' : 'mr-6 md:mr-10'} relative`}>
+              <h1 className="text-2xl md:text-4xl lg:text-5xl  2xl:text-7xl font-bold text-white mb-4 drop-shadow-md">
                 {slide.title}
               </h1>
-              <p className="text-md md:text-xl text-white mb-6 drop-shadow-md">
+              <p className="text-md md:text-xl  2xl:text-4xl text-white mb-6 drop-shadow-md">
                 {slide.description}
               </p>
               <button 
               onClick={() => handleExploreClick(slide.route)} 
-              className="text-sm md:text:md bg-[#D8C287] text-[#0a2d27] px-6 py-3 rounded-lg font-medium hover:bg-[#0a2d27] hover:text-white transition cursor-pointer mb-3 md:mb-8">
+              className="text-sm md:text:md 2xl:text-3xl bg-[#D8C287] text-[#0a2d27] px-6 py-3 rounded-lg font-medium hover:bg-[#0a2d27] hover:text-white transition cursor-pointer mb-3 md:mb-8">
                 Explore {slide.title}
               </button>
               
@@ -127,7 +127,7 @@ function Herosection() {
                   className="bg-[#0C3B34] bg-opacity-80 text-[#D8C287] p-3 rounded-full hover:bg-opacity-100 transition cursor-pointer"
                   aria-label="Previous slide"
                 >
-                  <svg className="md:w-5 md:h-5 h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="md:w-5 md:h-5 h-3 w-3 2xl:w-14 2xl:h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                 </button>
@@ -138,7 +138,7 @@ function Herosection() {
                     <button
                       key={indicatorIndex}
                       onClick={() => goToSlide(indicatorIndex)}
-                      className={`md:w-2.5 md:h-2.5 h-2 w-2 rounded-full transition-all cursor-pointer ${indicatorIndex === currentSlide ? 'bg-[#D8C287] scale-125' : 'bg-white bg-opacity-70 hover:bg-opacity-100'}`}
+                      className={`md:w-2.5 md:h-2.5 h-2 w-2 2xl:w-6 2xl:h-6 rounded-full transition-all cursor-pointer ${indicatorIndex === currentSlide ? 'bg-[#D8C287] scale-125' : 'bg-white bg-opacity-70 hover:bg-opacity-100'}`}
                       aria-label={`Go to slide ${indicatorIndex + 1}`}
                     />
                   ))}
@@ -149,7 +149,7 @@ function Herosection() {
                   className="bg-[#0C3B34] bg-opacity-80 text-[#D8C287] p-3 rounded-full hover:bg-opacity-100 transition cursor-pointer"
                   aria-label="Next slide"
                 >
-                  <svg className="md:w-5 md:h-5 h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <svg className="md:w-5 md:h-5 h-3 w-3 2xl:w-13 2xl:h-13" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </button>

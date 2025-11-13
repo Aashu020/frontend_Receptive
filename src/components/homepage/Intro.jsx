@@ -97,7 +97,7 @@ function Intro() {
 
       {/* Upper Section */}
       <div ref={ref1} className="relative">
-        <div className="container mx-auto px-6 md:px-12 lg:px-24 py-10 md:py-20">
+        <div className="container mx-auto px-6 md:px-12 lg:px-24 2xl:px-48 py-10 md:py-20 2xl:py-40">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             
             {/* Image Section */}
