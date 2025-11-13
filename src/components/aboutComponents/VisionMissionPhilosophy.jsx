@@ -23,12 +23,12 @@ export default function VisionMissionPhilosophy() {
         <div className="absolute inset-0 bg-gradient-to-br from-[#8B5A2B]/30 via-[#D2B48C]/25 to-[#8B5A2B]/30 md:from-[#8B5A2B]/20 md:via-[#D2B48C]/20 md:to-[#8B5A2B]/20"></div>
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+      <div className="relative z-10 max-w-7xl 2xl:max-w-[110rem] mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 md:mb-12 lg:mb-16 text-[#D8C287] text-center"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl 2xl:text-6xl font-bold mb-8 md:mb-12 lg:mb-16 text-[#D8C287] text-center"
         >
           About us
         </motion.h2>
@@ -48,8 +48,8 @@ export default function VisionMissionPhilosophy() {
               }}
               className="relative border border-[#D8C287]/90 rounded-xl md:rounded-2xl p-5 md:p-6 lg:p-8 shadow-md hover:border-[#D8C287]/40 transition-all duration-400 bg-transparent backdrop-blur-sm md:backdrop-blur-lg"
             >
-              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold mb-4 md:mb-5 lg:mb-6 text-white">{card.title}</h3>
-              <p className="text-xs sm:text-sm md:text-base leading-relaxed md:leading-loose text-white">{card.text}</p>
+              <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl 2xl:text-5xl font-semibold mb-4 md:mb-5 lg:mb-6 text-white">{card.title}</h3>
+              <p className="text-xs sm:text-sm md:text-base 2xl:text-2xl leading-relaxed md:leading-loose text-white">{card.text}</p>
             </motion.div>
           ))}
         </div>

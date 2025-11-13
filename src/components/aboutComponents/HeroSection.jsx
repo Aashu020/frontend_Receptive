@@ -73,22 +73,22 @@ export default function HeroSection() {
 
       {/* Content with blur backdrop */}
       <div className="relative h-full flex items-center">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
+        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 2xl:px-16">
           <div
             key={currentIndex}
-            className="max-w-xl sm:max-w-2xl lg:max-w-3xl text-white transition-all duration-500 ease-in-out"
+            className="max-w-xl sm:max-w-2xl lg:max-w-3xl 2xl:max-w-4xl text-white transition-all duration-500 ease-in-out"
           >
             {/* Blur backdrop container */}
             <div className="backdrop-blur-sm bg-black/20 rounded-xl p-6 sm:p-8 md:p-10 lg:p-12">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-bold mb-3 sm:mb-4 md:mb-6 leading-tight">
                 {heroItems[currentIndex].title}
               </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl mb-6 sm:mb-8 leading-relaxed text-gray-100">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl 2xl:text-2xl mb-6 sm:mb-8 leading-relaxed text-gray-100">
                 {heroItems[currentIndex].desc}
               </p>
               <a
                 href={heroItems[currentIndex].buttonLink}
-                className="inline-block px-4 sm:px-6 md:px-8 py-2 sm:py-3 bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white font-semibold rounded-lg transition-all duration-300 text-sm sm:text-base transform hover:scale-105"
+                className="inline-block px-4 sm:px-6 md:px-8 py-2 sm:py-3 2xl:text-2xl bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white font-semibold rounded-lg transition-all duration-300 text-sm sm:text-base transform hover:scale-105"
               >
                 {heroItems[currentIndex].buttonText}
               </a>
@@ -107,19 +107,25 @@ export default function HeroSection() {
             }`}
             onClick={() => goToSlide(index)}
             style={{ 
-              width: window.innerWidth < 640 ? "60px" : window.innerWidth < 768 ? "80px" : "100px",
-              height: window.innerWidth < 640 ? "60px" : window.innerWidth < 768 ? "80px" : "100px"
+              width: window.innerWidth < 640 ? "60px" 
+              : window.innerWidth < 768 ? "80px" 
+              :window.innerWidth < 1990 ? "140px"
+              : "140px",
+              height: window.innerWidth < 640 ? "60px" 
+              : window.innerWidth < 768 ? "80px" 
+              :window.innerWidth < 1990 ? "140px"
+              : "140px"
             }}
           >
-            <div className="h-2/3 overflow-hidden">
-              <img 
+            <div className="h-2/3 2xl:h-[70%] overflow-hidden">
+              <img  
                 src={item.img} 
                 alt={item.title}
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="h-1/3 flex items-center justify-center p-1 sm:p-2">
-              <p className="text-[10px] sm:text-xs font-medium text-gray-800 text-center leading-tight">
+              <p className="text-[10px] sm:text-xs 2xl:text-xl font-medium text-gray-800 text-center leading-tight">
                 {item.title}
               </p>
             </div>

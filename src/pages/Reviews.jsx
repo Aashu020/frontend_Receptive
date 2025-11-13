@@ -514,16 +514,16 @@ function Reviews() {
 ``
 
 
-      <div className="mt-20 md:mt-45 px-4 lg:px-8 max-w-7xl mx-auto md:mb-4">
+      <div className="mt-20 md:mt-45 px-4 lg:px-8 2xl:mt-60 max-w-7xl 2xl:max-w-[100rem] mx-auto md:mb-4">
         {/* Add Review Button */}
         <div className="flex justify-end mb-6">
           <button
             onClick={handleAddReviewClick}
-            className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] hover:from-[#1a5a4f] hover:to-[#0C3B34] text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center mt-2 md:mt-0"
+            className="bg-gradient-to-r 2xl:text-2xl from-[#0C3B34] to-[#1a5a4f] hover:from-[#1a5a4f] hover:to-[#0C3B34] text-white font-semibold py-2 px-6 2xl:py-4 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg flex items-center mt-2 md:mt-0"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 mr-2"
+              className="h-5 w-5 mr-2 2xl:h-7 2xl:w-7"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -894,26 +894,26 @@ function Reviews() {
           <>
             {/* Header */}
             <div className="text-center mb-8 md:mb-12">
-              <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0C3B34] mb-3 md:mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl 2xl:text-5xl font-bold text-[#0C3B34] mb-3 md:mb-4">
                 What Our Clients Say
               </h1>
-              <p className="text-base md:text-lg text-gray-700 text-justify max-w-3xl mx-auto px-2 sm:px-0">
+              <p className="text-base md:text-lg 2xl:text-2xl 2xl:text-center text-gray-700 text-justify max-w-3xl mx-auto px-2 sm:px-0">
                 For over a decade, we've helped thousands of clients achieve their
                 immigration dreams. Here's what some of them have to say about their
                 experience with our services.
               </p>
             </div>
 
-            <h2 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-[#0C3B34] border-b-2 border-[#D8C287] pb-2">
+            <h2 className="text-xl md:text-2xl 2xl:text-4xl font-bold mb-4 md:mb-6 text-[#0C3B34] border-b-2 border-[#D8C287] pb-2">
               Client Reviews
             </h2>
 
             {/* Statistics */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-8">
               <div className="bg-gradient-to-r from-[#0C3B34] to-[#1a5a4f] p-3 md:p-4 rounded-lg text-white text-center">
-                <div className="text-xl md:text-2xl font-bold">4.9</div>
-                <div className="text-xs md:text-sm opacity-90">Average Rating</div>
-                <div className="flex justify-center mt-1 text-sm md:text-base">
+                <div className="text-xl md:text-2xl font-bold 2xl:text-3xl">4.9</div>
+                <div className="text-xs md:text-sm 2xl:text-xl opacity-90">Average Rating</div>
+                <div className="flex justify-center mt-1 text-sm md:text-base 2xl:text-3xl">
                   {renderStars(
                     Math.round(
                       reviews.length > 0
@@ -925,12 +925,12 @@ function Reviews() {
                 </div>
               </div>
               <div className="bg-gradient-to-r from-[#D8C287] to-[#c4a567] p-3 md:p-4 rounded-lg text-[#0C3B34] text-center">
-                <div className="text-xl md:text-2xl font-bold">3000+</div>
-                <div className="text-xs md:text-sm font-semibold">Happy Clients</div>
+                <div className="text-xl md:text-2xl font-bold 2xl:text-3xl">3000+</div>
+                <div className="text-xs md:text-sm font-semibold 2xl:text-xl">Happy Clients</div>
               </div>
               <div className="bg-gradient-to-r from-green-500 to-green-600 p-3 md:p-4 rounded-lg text-white text-center">
-                <div className="text-xl md:text-2xl font-bold">95%</div>
-                <div className="text-xs md:text-sm opacity-90">Success Rate</div>
+                <div className="text-xl md:text-2xl font-bold 2xl:text-3xl">95%</div>
+                <div className="text-xs md:text-sm opacity-90 2xl:text-xl">Success Rate</div>
               </div>
             </div>
 
@@ -945,37 +945,37 @@ function Reviews() {
                   {/* Header */}
                   <div className="flex justify-between items-start mb-3 md:mb-4">
                     <div className="flex items-center space-x-2 md:space-x-3">
-                      <div className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg">
+                      <div className="w-10 h-10 md:w-12 md:h-12 2xl:w-14 2xl:h-14 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] rounded-full flex items-center justify-center text-white font-bold text-base md:text-lg 2xl:text-2xl">
                         {review.name
                           .split(" ")
                           .map((n) => n[0])
                           .join("")}
                       </div>
                       <div>
-                        <h3 className="font-bold text-base md:text-lg text-[#0C3B34]">
+                        <h3 className="font-bold text-base md:text-lg 2xl:text-2xl text-[#0C3B34]">
                           {review.name}
                         </h3>
                         <div className="flex items-center space-x-1 md:space-x-2">
                           <span className="text-base md:text-lg">
-                            <div className="text-xs text-gray-500">{review.date}</div>
+                            <div className="text-xs text-gray-500 2xl:text-xl">{review.date}</div>
                           </span>
                         </div>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="flex mb-1 text-lg md:text-xl">
+                      <div className="flex mb-1 text-lg md:text-xl 2xl:text-2xl">
                         {renderStars(review.rating)}
                       </div>
-                      <div className="text-xs text-gray-500">{review.rating}</div>
+                      <div className="text-xs text-gray-500 2xl:text-xl">{review.rating}</div>
                     </div>
                   </div>
 
                   {/* Review Text */}
                   <div className="relative">
-                    <div className="text-3xl md:text-4xl text-[#D8C287] absolute -top-2 -left-1 opacity-50">
+                    <div className="text-3xl md:text-4xl 2xl:text-6xl text-[#D8C287] absolute -top-2 -left-1 opacity-90">
                       "
                     </div>
-                    <p className="text-sm md:text-base text-gray-700 italic pl-4 md:pl-6 leading-relaxed">
+                    <p className="text-sm md:text-base 2xl:text-xl text-gray-700 italic pl-4 md:pl-6 leading-relaxed">
                       {review.text}
                     </p>
                     <div className="text-3xl md:text-4xl text-[#D8C287] absolute -bottom-6 right-2 opacity-50">
@@ -1000,7 +1000,7 @@ function Reviews() {
                                 <img
                                   src={img}
                                   alt={`Review image ${index + 1}`}
-                                  className="h-32 w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
+                                  className="h-32 2xl:h-40 w-full object-cover rounded-lg transition-transform duration-300 group-hover:scale-110"
                                   onError={(e) => {
                                     console.error(`Failed to load image: ${img}`);
                                     e.target.src = "/images/placeholder.jpg";
@@ -1054,11 +1054,11 @@ function Reviews() {
                     {review.images?.length > 0 && (
                       <button
                         onClick={() => toggleImages(review.id)}
-                        className="ml-auto text-sm md:text-base text-[#0C3B34] hover:text-[#1a5a4f] font-semibold flex items-center gap-1"
+                        className="ml-auto text-sm md:text-base 2xl:text-xl text-[#0C3B34] hover:text-[#1a5a4f] font-semibold flex items-center gap-1"
                       >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
-                          className="h-4 w-4"
+                          className="h-4 w-4 2xl:h-6 2xl:w-6"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
