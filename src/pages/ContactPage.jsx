@@ -111,7 +111,7 @@ const ContactPage = () => {
 
 
       {/* ✅ PAGE CONTENT */}
-      <div className="pt-16 md:pt-24 lg:pt-28 xl:pt-32">
+      <div className="pt-16 md:pt-24 lg:pt-28 xl:pt-32 2xl:pt-42 ">
         <div className="bg-[#0C3B34] py-20 relative overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
@@ -121,10 +121,10 @@ const ContactPage = () => {
 
           <div className="relative z-10">
             <div className="text-center mb-6 md:mb-16">
-              <h2 className="text-3xl md:text-5xl font-bold text-white md:mb-4 tracking-tight">
+              <h2 className="text-3xl md:text-5xl  2xl:text-7xl font-bold text-white md:mb-4 tracking-tight">
                 Our Global Presence
               </h2>
-              <p className="text-white mt-6 text-lg max-w-2xl mx-auto">
+              <p className="text-white mt-6 2xl:text-3xl text-lg max-w-2xl mx-auto">
                 Strategically located across key markets to serve you better
               </p>
             </div>
@@ -145,21 +145,21 @@ const ContactPage = () => {
                       </div>
                     </div>
 
-                    <h3 className="text-2xl font-bold text-[#0c3b34] mb-6 transition-colors group-hover:text-emerald-900">
+                    <h3 className="text-2xl 2xl:text-3xl  font-bold text-[#0c3b34] mb-6 transition-colors group-hover:text-emerald-900">
                       {branch.title}
                     </h3>
 
                     <div className="space-y-4 text-left">
                       <div className="flex items-start space-x-3 transition-transform group-hover:translate-x-1">
                         <MapPin size={20} className="text-[#0c3b34] mt-1" />
-                        <p className="text-[#0c3b34]">{branch.address}</p>
+                        <p className="text-[#0c3b34] 2xl:text-2xl">{branch.address}</p>
                       </div>
 
                       <div className="flex items-center space-x-3 transition-transform group-hover:translate-x-1 delay-75">
                         <Phone size={18} className="text-[#0c3b34]" />
                         <a
                           href={`tel:${branch.phone}`}
-                          className="text-[#0c3b34] hover:text-emerald-900 font-medium"
+                          className="text-[#0c3b34] hover:text-emerald-900 font-medium 2xl:text-2xl"
                         >
                           {branch.phone}
                         </a>
@@ -169,7 +169,7 @@ const ContactPage = () => {
                         <Mail size={18} className="text-[#0c3b34]" />
                         <a
                           href={`mailto:${branch.email}`}
-                          className="text-[#0c3b34] hover:text-emerald-900 break-all"
+                          className="text-[#0c3b34] hover:text-emerald-900 break-all 2xl:text-2xl"
                         >
                           {branch.email}
                         </a>

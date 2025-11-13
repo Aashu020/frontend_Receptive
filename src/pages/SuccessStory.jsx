@@ -107,16 +107,16 @@ function SuccessStory() {
 
       {/* ✅ PAGE CONTENT */}
       <div className="min-h-screen bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+        <div className=" container mx-auto">
           <div className="text-center mb-12">
-            <h1 className="text-5xl font-extrabold text-[#0C3B34] mb-8 mt-20">
+            <h1 className="text-5xl 2xl:text-7xl font-extrabold text-[#0C3B34] mb-8 mt-20 2xl:mt-50">
               Success Stories
             </h1>
 
             <div className="flex justify-center space-x-8 border-b border-gray-200">
               <button
                 onClick={() => setActiveTab("clients")}
-                className={`py-4 px-6 font-medium text-lg transition-colors ${activeTab === "clients"
+                className={`py-4 px-6 font-medium text-lg 2xl:text-4xl transition-colors ${activeTab === "clients"
                     ? "border-b-4 border-[#0C3B34] text-[#0C3B34]"
                     : "text-gray-500 hover:text-[#0C3B34] hover:border-b-4 hover:border-[#D8C287]"
                   }`}
@@ -126,7 +126,7 @@ function SuccessStory() {
 
               <button
                 onClick={() => setActiveTab("visa")}
-                className={`py-4 px-6 font-medium text-lg transition-colors ${activeTab === "visa"
+                className={`py-4 px-6 font-medium text-lg 2xl:text-4xl transition-colors ${activeTab === "visa"
                     ? "border-b-4 border-[#0C3B34] text-[#0C3B34]"
                     : "text-gray-500 hover:text-[#0C3B34] hover:border-b-4 hover:border-[#D8C287]"
                   }`}
@@ -159,7 +159,7 @@ function SuccessStory() {
                               <img
                                 src={img.src}
                                 alt={`${section} ${i + 1}`}
-                                className="w-full h-72 object-cover transition-transform group-hover:scale-110 duration-300"
+                                className="w-full h-72 2xl:w-full 2xl:h-[40rem] object-cover transition-transform group-hover:scale-110 duration-300"
                               />
                             </div>
                           ))}
@@ -214,7 +214,7 @@ function SuccessStory() {
                 className="w-full h-auto rounded-md shadow-2xl"
               />
               <button
-                className="absolute top-2 right-2 bg-white text-[#0C3B34] rounded-full p-1 hover:bg-[#D8C287] transition-colors"
+                className="absolute top-2 right-2 h-10 w-10 bg-white text-[#0C3B34] rounded-full p-1 hover:bg-[#D8C287] transition-colors"
                 onClick={() => setSelectedImage(null)}
               >
                 ✕

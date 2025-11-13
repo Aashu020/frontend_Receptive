@@ -72,24 +72,24 @@ function Footer() {
 
       {/* Footer */}
       <footer className="bg-[#0C3B34] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-[10rem] py-12">
 
           {/* Top Section: Logos on left, text on right */}
           <div className="flex flex-col md:flex-row justify-between items-center mb-10">
             {/* Logos on the left */}
             <div className="mb-6 md:mb-0">
-              <h3 className="text-lg font-semibold text-[#D8C287] mb-4 text-center md:text-left">Our Portfolio</h3>
+              <h3 className="text-lg 2xl:text-2xl font-semibold text-[#D8C287] mb-4 text-center md:text-left">Our Portfolio</h3>
               <div className="flex space-x-6">
                 {['Receptive Group', 'Receptive Investment', 'Receptive Properties'].map((company, index) => (
                   <div key={index} className="text-center">
-                    <div className="w-16 h-16 mx-auto mb-2 bg-[#D8C287] rounded-lg p-2 flex items-center justify-center">
+                    <div className="w-16 h-16 2xl:w-30 2xl:h-30  mx-auto mb-2 bg-[#D8C287] rounded-lg p-2 flex items-center justify-center">
                       <img
                         src={portfolioLogos[company]}
                         alt={`${company}logo`}
                         className="max-w-full max-h-full object-contain "
                       />
                     </div>
-                    <span className="text-[#D8C287] text-sm font-medium">{company}</span>
+                    <span className="text-[#D8C287] text-sm  2xl:text-2xl font-medium">{company}</span>
                   </div>
                 ))}
               </div>
@@ -97,8 +97,8 @@ function Footer() {
 
             {/* Text on the right */}
             <div className="text-center md:text-right">
-              <h2 className="text-2xl font-bold text-[#D8C287] mb-3">Connect With Us</h2>
-              <p className="text-gray-200 max-w-md">
+              <h2 className="text-2xl 2xl:text-2xl font-bold text-[#D8C287] mb-3">Connect With Us</h2>
+              <p className="text-gray-200  2xl:text-2xl max-w-md">
                 Building bridges across borders with exceptional service and innovative solutions
               </p>
             </div>
@@ -109,14 +109,14 @@ function Footer() {
 
             {/* Services - Updated with clickable links */}
             <div>
-              <h3 className="text-lg font-semibold text-[#D8C287] mb-4">Our Services</h3>
+              <h3 className="text-lg font-semibold text-[#D8C287] 2xl:text-2xl  mb-4">Our Services</h3>
               <ul className="space-y-2">
                 {['Visitor Visa', 'Student Visa', 'Work Visa', 'Permanennt Residence',].map((service, index) => (
                   <li key={index} className="text-gray-200 text-sm flex items-center">
                     <span className="w-1.5 h-1.5 bg-[#D8C287] rounded-full mr-3"></span>
                     <button
                       onClick={() => handleServiceClick(service)}
-                      className="hover:text-[#D8C287] transition-colors duration-200 text-left cursor-pointer"
+                      className="hover:text-[#D8C287] transition-colors 2xl:text-2xl duration-200 text-left cursor-pointer"
                     >
                       {service}
                     </button>
@@ -127,48 +127,48 @@ function Footer() {
 
             {/* Global Offices */}
             <div className="lg:col-span-2">
-              <h3 className="text-lg font-semibold text-[#D8C287] mb-4">Global Offices</h3>
+              <h3 className="text-lg font-semibold text-[#D8C287]  2xl:text-2xl mb-4">Global Offices</h3>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
 
                 
 
                 {/* Mumbai Branch */}
-                <div className="bg-[#D8C287] p-4 rounded-lg">
-                  <h4 className="font-medium text-[#0c3b34] mb-2"> Mumbai Branch (India)</h4>
-                  <p className="text-xs text-[#0c3b34]  font-medium mb-2">
+                <div className="bg-[#D8C287] p-4 rounded-lg 2xl:text-2xl" >
+                  <h4 className="font-medium text-[#0c3b34]  2xl:text-2xl mb-2"> Mumbai Branch (India)</h4>
+                  <p className="text-xs text-[#0c3b34] 2xl:text-lg  font-medium mb-2">
                     425 Gemstar Commerical Complex, Ramchandra Lane Extn, Kanchpada, Malad West, Mumbai 400064
                   </p>
-                  <p className="text-[#0c3b34] text-xs font-medium">+91 98677 29568</p>
-                  <p className="text-[#0c3b34] text-xs">info@receptivesolutions.co.in</p>
+                  <p className="text-[#0c3b34] text-xs  2xl:text-lg font-medium">+91 98677 29568</p>
+                  <p className="text-[#0c3b34] text-xs 2xl:text-lg ">info@receptivesolutions.co.in</p>
                 </div>
 
                 {/* Ahmedabad Branch */}
-                <div className="bg-[#D8C287] p-4 rounded-lg">
+                <div className="bg-[#D8C287] p-4 rounded-lg 2xl:text-2xl" >
                   <h4 className="font-medium text-[#0c3b34] mb-2"> Ahmedabad Branch (India)</h4>
-                  <p className="text-xs text-[#0c3b34] font-medium mb-2">
+                  <p className="text-xs text-[#0c3b34] font-medium mb-2 2xl:text-lg ">
                     106, Dev Prime, Nr. Vodafone House, Corporate Road, Makarba, Ahmedabad - 380051
                   </p>
-                  <p className="text-[#0c3b34] text-xs font-medium">+91 98677 29568</p>
-                  <p className="text-[#0c3b34] text-xs">info@receptivesolutions.co.in</p>
+                  <p className="text-[#0c3b34] text-xs font-medium 2xl:text-lg">+91 98677 29568</p>
+                  <p className="text-[#0c3b34] text-xs 2xl:text-lg">info@receptivesolutions.co.in</p>
                 </div>
 
                 {/* UAE Branch */}
                 <div className="bg-[#D8C287] p-4 rounded-lg">
-                  <h4 className="font-medium text-[#0c3b34] mb-2"> UAE Branch</h4>
-                  <p className="text-xs font-medium text-[#0c3b34] mb-2">
+                  <h4 className="font-medium text-[#0c3b34] mb-2 2xl:text-2xl"> UAE Branch</h4>
+                  <p className="text-xs font-medium text-[#0c3b34] mb-2 2xl:text-lg">
                     Suite No -201, Al Salemiyah Tower, Deria Riggat Al Buteen, Dubai, UAE
                   </p>
-                  <p className="text-[#0c3b34] font-medium text-xs">+971 565344435</p>
-                  <p className="text-[#0c3b34] font-medium text-xs">info@receptivegroup.com</p>
+                  <p className="text-[#0c3b34] font-medium text-xs 2xl:text-lg">+971 565344435</p>
+                  <p className="text-[#0c3b34] font-medium text-xs 2xl:text-lg">info@receptivegroup.com</p>
                 </div>
 
                 <div className="bg-[#D8C287] p-4 rounded-lg">
-                  <h4 className="font-medium text-[#0c3b34] mb-2"> UK Branch</h4>
-                  <p className="text-xs text-[#0c3b34] mb-2">
+                  <h4 className="font-medium text-[#0c3b34] mb-2 2xl:text-2xl"> UK Branch</h4>
+                  <p className="text-xs text-[#0c3b34] 2xl:text-lg mb-2">
                     PO Box 4385, Cardiff, CF14 8LH
                   </p>
                   {/* <p className="text-[#0c3b34] text-xs font-medium">+971 565344435</p> */}
-                  <p className="text-[#0c3b34] text-xs font-medium">info@receptivegroup.com</p>
+                  <p className="text-[#0c3b34] text-xs font-medium 2xl:text-lg">info@receptivegroup.com</p>
                 </div>
               </div>
             </div>
@@ -186,7 +186,7 @@ function Footer() {
                     className="max-w-full max-h-full object-contain"
                   />
                 </div>
-                <p className="text-sm text-[#D8C287]">
+                <p className="text-sm 2xl:text-2xl text-[#D8C287]">
                   © {new Date().getFullYear()} Receptive Solutions. All rights reserved.
                 </p>
               </div>
@@ -200,7 +200,7 @@ function Footer() {
                   className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
                   aria-label="Instagram"
                 >
-                  <FaInstagram className="text-sm lg:text-base" />
+                  <FaInstagram className="text-sm  2xl:text-2xl lg:text-base" />
                 </a>
                 <a
                   href="https://facebook.com"
@@ -209,7 +209,7 @@ function Footer() {
                   className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
                   aria-label="Facebook"
                 >
-                  <FaFacebookF className="text-sm lg:text-base" />
+                  <FaFacebookF className="text-sm  2xl:text-2xl lg:text-base" />
                 </a>
                 <a
                   href="https://linkedin.com"
@@ -218,7 +218,7 @@ function Footer() {
                   className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
                   aria-label="LinkedIn"
                 >
-                  <FaLinkedinIn className="text-sm lg:text-base" />
+                  <FaLinkedinIn className="text-sm  2xl:text-2xl lg:text-base" />
                 </a>
                 <a
                   href="https://youtube.com"
@@ -227,7 +227,7 @@ function Footer() {
                   className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
                   aria-label="YouTube"
                 >
-                  <FaYoutube className="text-sm lg:text-base" />
+                  <FaYoutube className="text-sm  2xl:text-2xl lg:text-base" />
                 </a>
               </div>
             </div>
