@@ -1,6 +1,12 @@
 /* index.css */
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500&family=Raleway:wght@600;700&display=swap');
+@import "tailwindcss";
 
+@theme {
+  --breakpoint-xs: 30rem; /* 480px */
+  --breakpoint-2xl: 125rem; /* 1600px */
+  --breakpoint-3xl: 120rem; /* 1920px */
+}
 /* Global styles */
 :root {
   --primary: #0C3B34;

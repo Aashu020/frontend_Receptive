@@ -69,28 +69,28 @@ function UpperHeader() {
         transform: isVisible ? "translateY(0)" : "translateY(-100%)",
         transition: "transform 0.3s ease-in-out",
       }}
-      className="hidden sm:hidden md:flex lg:flex xl:flex fixed w-full z-100 justify-between items-center py-3 md:py-3 lg:py-4 px-4 md:px-4 lg:px-5 top-0"
+      className="hidden sm:hidden md:flex lg:flex xl:flex fixed w-full z-100 justify-between items-center py-3 md:py-3 lg:py-4 2xl:py-6 px-4 md:px-4 lg:px-5 top-0"
     >
       <div className="flex flex-col md:flex-row gap-1 md:gap-2 lg:gap-3 xl:gap-8 text-xs lg:text-sm">
-        <div className="flex items-center gap-1 md:gap-1 lg:gap-2">
+        <div className="flex items-center gap-1 md:gap-1 lg:gap-2 ">
           <button
             onClick={() => handlePhoneClick("+919876543210")}
             className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
             aria-label="Call +91 98765 43210"
           >
             {/* <FaPhone className="text-xs lg:text-sm" /> */}
-            <span className="ml-1 text-xs lg:text-sm hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
+            <span className="ml-1 text-xs lg:text-sm 2xl:text-2xl hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
               IN +91 98677 29568
             </span>
           </button>
-          <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
+          <span className="mx-1 text-xs lg:text-sm opacity-60 2xl:text-2xl">|</span>
           <button
             onClick={() => handleEmailClick("info@receptivegroup.com")}
             className="flex items-center gap-1 hover:opacity-80 hover:text-white cursor-pointer transition-opacity"
             aria-label="Email info@receptivegroup.com"
           >
             <FaEnvelope className="text-xs lg:text-sm" />
-            <span className="ml-1 hover:underline hover:text-white cursor-pointer text-xs lg:text-sm max-w-[100px] md:max-w-[150px] lg:max-w-[180px] xl:max-w-none">
+            <span className="ml-1 2xl:text-2xl hover:underline hover:text-white cursor-pointer text-xs lg:text-sm max-w-[100px] md:max-w-[150px] lg:max-w-[180px] xl:max-w-none">
               info@receptivesolutions.co.in
             </span>
           </button>
@@ -102,31 +102,31 @@ function UpperHeader() {
             aria-label="Call +91 98856 02560"
           >
             {/* <FaPhone className="text-xs lg:text-sm" /> */}
-            <span className="ml-1 text-xs lg:text-sm hidden md:block md:text-[10px] md:mt-1 hover:text-white cursor-pointer lg:inline">
+            <span className="ml-1 2xl:text-2xl text-xs lg:text-sm hidden md:block md:text-[10px] md:mt-1 hover:text-white cursor-pointer lg:inline">
               UAE +971 562744455
             </span>
           </button>
-          <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
+          <span className="mx-1 text-xs lg:text-sm opacity-60 2xl:text-2xl">|</span>
           <button
             onClick={() => handleEmailClick("info@receptivesolutions.com")}
             className="flex items-center gap-1 hover:opacity-80 hover:text-white cursor-pointer transition-opacity"
             aria-label="Email info@receptivesolutions.com"
           >
             <FaEnvelope className="text-xs lg:text-sm" />
-            <span className="ml-1 hover:underline hover:text-white cursor-pointer text-xs lg:text-sm truncate max-w-[100px] md:max-w-[140px] lg:max-w-[180px] xl:max-w-none">
+            <span className="ml-1 2xl:text-2xl hover:underline hover:text-white cursor-pointer text-xs lg:text-sm truncate max-w-[100px] md:max-w-[140px] lg:max-w-[180px] xl:max-w-none">
               info@receptivegroup.com
             </span>
           </button>
         </div>
       </div>
-      <div className="flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-6">
+      <div className="flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-6 ">
         <a
           href={termsPDF}
           download="Terms-and-Conditions.pdf"
           className="hidden lg:flex items-center hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
         >
-          <FaRegFileAlt className="mr-1 text-xs lg:text-sm" />
-          <span className="text-xs lg:text-sm hover:text-white cursor-pointer">
+          <FaRegFileAlt className="mr-1 text-xs lg:text-sm 2xl:text-2xl" />
+          <span className="text-xs lg:text-sm hover:text-white cursor-pointer 2xl:text-2xl">
             Terms
           </span>
         </a>
@@ -138,7 +138,7 @@ function UpperHeader() {
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
             aria-label="Instagram"
           >
-            <FaInstagram className="text-sm lg:text-base" />
+            <FaInstagram className="text-sm lg:text-base 2xl:text-2xl" />
           </a>
           <a
             href="https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
@@ -147,7 +147,7 @@ function UpperHeader() {
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
             aria-label="Facebook"
           >
-            <FaFacebookF className="text-sm lg:text-base" />
+            <FaFacebookF className="text-sm lg:text-base 2xl:text-2xl" />
           </a>
           <a
             href="https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all"
@@ -156,7 +156,7 @@ function UpperHeader() {
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
             aria-label="LinkedIn"
           >
-            <FaLinkedinIn className="text-sm lg:text-base" />
+            <FaLinkedinIn className="text-sm lg:text-base 2xl:text-2xl" />
           </a>
           <a
             href="https://www.youtube.com/@receptivegroup"
@@ -165,7 +165,7 @@ function UpperHeader() {
             className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
             aria-label="YouTube"
           >
-            <FaYoutube className="text-sm lg:text-base" />
+            <FaYoutube className="text-sm lg:text-base 2xl:text-2xl" />
           </a>
         </div>
       </div>
@@ -423,7 +423,7 @@ const Navbar = () => {
     if (shouldLoadUser || authLoading) {
       return (
         <div className="flex items-center space-x-2 px-4 xl:p-3 py-2.5 rounded-full bg-gray-200 text-gray-500 font-bold text-sm xl:text-base animate-pulse">
-          <div className="w-8 h-8 rounded-full bg-gray-300"></div>
+          <div className="w-8 h-8 2xl:*:w-10 2xl:h-10 rounded-full bg-gray-300"></div>
           {/* <span>...</span> */}
         </div>
       );
@@ -436,25 +436,25 @@ const Navbar = () => {
             onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
             className="flex cursor-pointer rounded-full bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white font-bold text-sm xl:text-base hover:shadow-xl hover:scale-105 transition-all duration-300 relative overflow-hidden group border-2 border-transparent hover:border-[#D8C287]/20"
           >
-            <div className="w-8 h-8 p-2 rounded-full bg-gradient-to-r from-[#D8C287] to-[#e6d098] flex items-center justify-center text-[#0C3B34] font-bold text-sm xl:text-base">
+            <div className="w-8 h-8 2xl:w-12 2xl:h-12 p-2 2xl:p-4 rounded-full bg-gradient-to-r from-[#D8C287] to-[#e6d098] flex items-center justify-center text-[#0C3B34] font-bold text-sm xl:text-base 2xl:text-2xl">
               {getUserInitials(user)}
             </div>
           </button>
           {isUserMenuOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50 animate-slideDown">
+            <div className="absolute right-0 mt-2 w-48 2xl:w-58 bg-white rounded-xl shadow-2xl border border-gray-100 py-2 z-50 animate-slideDown">
               <div className="px-4 py-3 border-b border-gray-100">
-                <p className="text-sm font-medium text-gray-900">
+                <p className="text-sm 2xl:text-2xl font-medium text-gray-900">
                   {getUserDetails(user).name}
                 </p>
-                <p className="text-xs text-gray-500 truncate">
+                <p className="text-xs 2xl:text-xl text-gray-500 truncate">
                   {getUserDetails(user).email}
                 </p>
               </div>
               <button
                 onClick={handleLogout}
-                className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-red-600 hover:bg-red-50 transition-colors duration-200"
+                className="w-full flex items-center space-x-3 px-4 py-3 text-sm 2xl:text-xl text-red-600 hover:bg-red-50 transition-colors duration-200"
               >
-                <FiLogOut className="w-4 h-4" />
+                <FiLogOut className="w-4 h-4 2xl:w-6 2xl:h-6" />
                 <span>Logout</span>
               </button>
             </div>
@@ -468,8 +468,8 @@ const Navbar = () => {
         className="flex items-center space-x-2 px-3 xl:px-5 py-2 xl:py-2 rounded-lg bg-gradient-to-r from-[#D8C287] to-[#e6d098] text-[#0C3B34] font-bold text-xs xl:text-sm hover:shadow-xl hover:scale-100 transition-all duration-300 relative overflow-hidden group border-1 border-transparent hover:border-[#0C3B34]/20"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-        <FiUserPlus className="w-4 h-4 xl:w-5 xl:h-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
-        <span className="relative z-10 group-hover:text-[#0C3B34] transition-colors duration-300">Sign&nbsp;In</span>
+        <FiUserPlus className="w-4 h-4 xl:w-5 xl:h-5 2xl:w-6 2xl:h-6 relative z-10 transition-transform duration-300 group-hover:scale-110" />
+        <span className="relative z-10 group-hover:text-[#0C3B34] transition-colors duration-300 2xl:text-2xl">Sign&nbsp;In</span>
       </button>
     );
   };
@@ -482,10 +482,15 @@ const Navbar = () => {
           }`}
         style={{
           top:
-            window.innerWidth >= 768 && isUpperHeaderVisible ? "2.75rem" : "0",
+            window.innerWidth >= 2500 && isUpperHeaderVisible
+              ? "80px"
+              : window.innerWidth >= 768 && isUpperHeaderVisible
+                ? "2.75rem"
+                : "0",
         }}
+
       >
-        <div className="container mx-0 w-full px-4 lg:px-6 py-2">
+        <div className=" mx-0 w-full px-4 lg:px-6 py-2 2xl:px-[5rem] 2xl:py-8">
           <div className="flex justify-between items-center h-16 lg:h-20">
             <div
               className="flex items-center group cursor-pointer"
@@ -496,12 +501,12 @@ const Navbar = () => {
                   <img
                     src={logo}
                     alt="Receptive Logo"
-                    className="h-12 lg:h-15 transition-all duration-300 group-hover:scale-105"
+                    className="h-12 lg:h-15 2xl:h-28 2xl:w-28 transition-all duration-300 group-hover:scale-105"
                   />
                   <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div>
                 </div>
-                <span className="text-[#0c3b34] font-bold md:text-[15.5px] lg:text-[15px] xl:text-[1rem] hidden xl:flex">Trusted&nbsp;Since&nbsp;2011 | Licensed&nbsp;&&nbsp;Certified</span>
-                <p className="text-[#0c3b34] font-bold md:text-lg xl:hidden text-center text-[11px] lg:text-[0.8rem]"><span className=" border-b-2 ">Trusted&nbsp;Since&nbsp;2011</span> <br/> License&nbsp;&&nbsp;Certified</p>
+                <span className="text-[#0c3b34] font-bold md:text-[15.5px] lg:text-[15px] xl:text-[1rem] hidden xl:flex 2xl:text-2xl">Trusted&nbsp;Since&nbsp;2011 | Licensed&nbsp;&&nbsp;Certified</span>
+                <p className="text-[#0c3b34] font-bold md:text-lg xl:hidden text-center text-[11px] lg:text-[0.8rem]"><span className=" border-b-2 ">Trusted&nbsp;Since&nbsp;2011</span> <br /> License&nbsp;&&nbsp;Certified</p>
               </div>
             </div>
             <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 cursor-pointer">
@@ -513,28 +518,28 @@ const Navbar = () => {
                         setIsCountriesOpen(!isCountriesOpen);
                         setSelectedCountry(null);
                       }}
-                      className={`flex items-center space-x-1 px-4 lg:px-2 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base relative overflow-hidden group ${isCountriesOpen
-                          ? "bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white shadow-lg scale-105"
-                          : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54]"
+                      className={`flex items-center space-x-1 px-4 2xl:text-2xl lg:px-2 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base relative overflow-hidden group ${isCountriesOpen
+                        ? "bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white shadow-lg scale-105"
+                        : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54]"
                         }`}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D8C287] to-[#e6d098] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                      <item.icon className="h-4 xl:h-4 relative z-10" />
-                      <span className="relative z-10">{item.name}</span>
+                      <item.icon className="h-4 xl:h-4 relative z-10 2xl:h-6 2xl:w-6" />
+                      <span className="relative z-10 2xl:text-2xl">{item.name}</span>
                       <FiChevronDown
-                        className={`h-3 xl:w-3 xl:h-4 transition-all duration-300 relative z-10 ${isCountriesOpen
-                            ? "rotate-180"
-                            : "group-hover:rotate-12"
+                        className={`h-3 xl:w-3 xl:h-4 transition-all duration-300 2xl:h-6 2xl:w-6 relative z-10 ${isCountriesOpen
+                          ? "rotate-180"
+                          : "group-hover:rotate-12"
                           }`}
                       />
                     </button>
                   ) : (
                     <button
                       onClick={() => handleNavigation(item.path)}
-                      className="flex items-center space-x-2  px-4 lg:px-2 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54] hover:shadow-lg hover:scale-105 relative overflow-hidden group"
+                      className="flex items-center space-x-2 2xl:text-2xl  px-4 lg:px-2 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54] hover:shadow-lg hover:scale-105 relative overflow-hidden group"
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D8C287] to-[#e6d098] opacity-0 group-hover:opacity-10 transition-opacity duration-300 cursor-pointer"></div>
-                      <item.icon className="w-4 h-4 xl:w-4 xl:h-5 relative z-10 transition-transform duration-300 group-hover:scale-110" />
+                      <item.icon className="w-4 h-4 xl:w-4 xl:h-5 2xl:h-6 2xl:w-6 relative z-10 transition-transform duration-300 group-hover:scale-110" />
                       <span className="relative z-10">{item.name}</span>
                     </button>
                   )}
@@ -560,19 +565,19 @@ const Navbar = () => {
 
         {/* Desktop Countries Dropdown */}
         {isCountriesOpen && (
-          <div className="absolute top-23 left-0 right-0 bg-gradient-to-br from-gray-50 to-white shadow-2xl border-t border-gray-100 hidden lg:block animate-slideDown z-[101]">
+          <div className="absolute top-23 2xl:top-34 left-0 right-0 bg-gradient-to-br from-gray-50 to-white shadow-2xl border-t border-gray-100 hidden lg:block animate-slideDown z-[101]">
             {console.log("Countries dropdown open, selectedCountry:", selectedCountry)}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0C3B34] via-[#D8C287] to-[#0C3B34]"></div>
-            <div className="container mx-auto px-6 py-6 xl:py-8">
+            <div className="2xl:px-20 mx-auto px-6 py-6 xl:py-8">
               {!selectedCountry ? (
                 <>
                   <div className="flex items-center mb-6">
-                    <FiGlobe className="w-6 h-6 text-[#0C3B34] mr-3" />
-                    <h3 className="text-xl xl:text-2xl font-bold text-[#0C3B34]">
+                    <FiGlobe className="w-6 h-6 2xl:w-8 2xl:h-8 text-[#0C3B34] mr-3" />
+                    <h3 className="text-xl xl:text-2xl 2xl:text-3xl font-bold text-[#0C3B34]">
                       Choose Your Country
                     </h3>
                   </div>
-                  <div className="grid grid-cols-2  md:grid-cols-4 xl:grid-cols-7 gap-3 xl:gap-4">
+                  <div className="grid grid-cols-2  md:grid-cols-4 xl:grid-cols-7 gap-3 xl:gap-4 2xl:gap-6">
                     {Object.keys(countries).map((country, index) => (
                       <button
                         key={country}
@@ -582,12 +587,12 @@ const Navbar = () => {
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
                         <div className="flex items-center justify-between relative z-10">
-                          <span className="font-semibold text-base xl:text-lg">
+                          <span className="font-semibold text-base xl:text-lg 2xl:text-2xl">
                             {country}
                           </span>
                           <FiChevronRight className="w-4 h-4 xl:w-5 xl:h-5 transition-transform duration-300 group-hover:translate-x-1" />
                         </div>
-                        <div className="mt-2 text-xs text-[#0C3B34] relative z-10">
+                        <div className="mt-2 text-xs text-[#0C3B34] relative z-10 2xl:text-xl">
                           {countries[country].length} programs
                         </div>
                         <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-br from-[#D8C287] to-[#e6d098] rounded-full opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
@@ -603,12 +608,12 @@ const Navbar = () => {
                         onClick={() => setSelectedCountry(null)}
                         className="flex items-center space-x-2 text-[#0C3B34] hover:text-[#1a5f54] transition-colors duration-300 mr-4 p-2 rounded-lg hover:bg-gray-100"
                       >
-                        <FiArrowLeft className="w-5 h-5" />
-                        <span className="font-medium">Back</span>
+                        <FiArrowLeft className="w-5 h-5 2xl:w-7 2xl:h-7" />
+                        <span className="font-medium 2xl:text-xl">Back</span>
                       </button>
                       <div className="flex items-center">
-                        <FiMapPin className="w-6 h-6 text-[#0C3B34] mr-3" />
-                        <h3 className="text-xl xl:text-2xl font-bold text-[#0C3B34]">
+                        <FiMapPin className="w-6 h-6 2xl:w-8 2xl:h-8 text-[#0C3B34] mr-3" />
+                        <h3 className="text-xl xl:text-2xl 2xl:text-3xl font-bold text-[#0C3B34]">
                           {selectedCountry} - Available Visa
                         </h3>
                       </div>
@@ -621,8 +626,8 @@ const Navbar = () => {
                         onClick={() => handleVisaClick(visa)}
                         className="block p-3 rounded-lg text-sm bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-lg transition-all duration-300 hover:scale-105"
                       >
-                        <div className="font-medium">{visa.title}</div>
-                        <div className="text-xs text-white/75 mt-1">View Details →</div>
+                        <div className="font-medium 2xl:text-2xl">{visa.title}</div>
+                        <div className="text-xs text-white/75 mt-1 2xl:text-xl">View Details </div>
                       </button>
                     ))}
                   </div>
