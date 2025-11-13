@@ -10,10 +10,10 @@ export default function ReceptiveAbout() {
   }, []);
 
   return (
-    <div className="max-w-6xl mx-auto px-6 md:py-16 bg-[#F8F8F8]">
+    <div className="max-w-7xl mx-auto px-6 md:py-16 ">
       <div className="flex flex-col items-center">
         {/* Animated Logo */}
-        <div className={`md:mb-10 w-72 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+        <div className={`md:mb-10 w-72 2xl:w-142 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
           <img
             src={logo}
             alt="Receptive Group"
@@ -23,11 +23,11 @@ export default function ReceptiveAbout() {
 
         {/* Main Content */}
         <div className="md:text-center md:px-[3rem] lg:px-[10rem]">
-          <h1 className={`:text-center  md:[word-spacing:10px] text-2xl md:text-3xl font-bold bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text mb-8 transform transition-all duration-700 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
+          <h1 className={`:text-center  md:[word-spacing:10px] text-2xl md:text-3xl 2xl:text-6xl font-bold bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text mb-8 transform transition-all duration-700 delay-300 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
             Welcome to Receptive Group of Companies
           </h1>
           
-          <div className="text-[#333333] text-md md:text-lg text-sm  text-justify leading-relaxed space-y-6 md:text-justify">
+          <div className="text-[#333333] text-md md:text-lg 2xl:text-2xl text-sm  text-justify leading-relaxed space-y-6 md:text-justify">
             <p className={`transform transition-all duration-700 delay-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'}`}>
               A trusted name in the Immigration and HR consultancy industry for over 12 years in India with now global presence in UK and Dubai. We take pride in our commitment to excellence and personalized service, helping individuals and businesses navigate the complexities of immigration and HR processes with ease across the globe.
             </p>

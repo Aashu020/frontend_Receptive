@@ -4,8 +4,8 @@ import { motion } from 'framer-motion';
 
 const Properties = () => {
   return (
-    <div className="w-full overflow-hidden md:px-[3rem] bg-white md:py-14" id="Properties">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="  w-full overflow-hidden md:px-[3rem] bg-white md:py-14" id="Properties">
+      <div className=" container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:gap-10 gap-8 items-center">
           
           {/* Text Content Section */}
@@ -20,7 +20,7 @@ const Properties = () => {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.h1
-              className="text-2xl md:text-4xl font-bold text-gray-800 text-left lg:text-left"
+              className="text-2xl md:text-4xl 2xl:text-5xl font-bold text-gray-800 text-left lg:text-left"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -44,17 +44,17 @@ const Properties = () => {
               }}
               viewport={{ once: true }}
             >
-              <p className="text-sm md:text-lg">
+              <p className="text-sm md:text-lg 2xl:text-3xl">
                 Receptive Properties is a new vertical of the Receptive Group of Companies, specializing in real estate services.
                 Our dedicated team of professionals offers expert guidance and personalized services to assist individuals and 
                 businesses in buying, selling, and managing properties across India and UAE.
               </p>
-              <p className="text-sm md:text-lg">
+              <p className="text-sm md:text-lg 2xl:text-3xl">
                 With a focus on customer satisfaction and excellence, Receptive Properties aims to help clients navigate the real 
                 estate market with ease and confidence. Trust in Receptive Properties to be your partner in finding the perfect 
                 property solution for your needs.
               </p>
-              <p className="text-sm md:text-lg">
+              <p className="text-sm md:text-lg 2xl:text-3xl">
                 From visa applications and employee recruitment to investment opportunities and property transactions, 
                 we are here to support you every step of the way. Trust in our expertise, reliability, 
                 and unwavering dedication to your success as we work together to achieve your goals and aspirations. 
@@ -93,7 +93,7 @@ const Properties = () => {
               transition: { duration: 0.3 }
             }}
           >
-            <div className="w-full max-w-xs">
+            <div className="w-full max-w-xs 2xl:max-w-2xl ">
               <img
                 src={img}
                 alt="Receptive Properties"

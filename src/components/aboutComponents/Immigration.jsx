@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 const Immigration = () => {
   return (
     <div className="w-full overflow-hidden md:px-[3rem] bg-white py-5 md:py-14" id='immigration'>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row lg:gap-10 gap-8 items-center">
           <motion.div
             className="w-full lg:w-2/5 flex justify-center"
@@ -21,11 +21,11 @@ const Immigration = () => {
               transition: { duration: 0.3 }
             }}
           >
-            <div className="w-full max-w-xs">
+            <div className="w-full max-w-xs 2xl:max-w-2xl ">
               <img
                 src={img}
                 alt="Receptive Immigration Services"
-                className="w-full h-auto object-cover rounded-lg"
+                className="w-full h-auto object-cover rounded-lg  "
               />
             </div>
           </motion.div>
@@ -42,7 +42,7 @@ const Immigration = () => {
             viewport={{ once: true, amount: 0.3 }}
           >
             <motion.h1
-              className="text-2xl sm:text-4xl font-bold text-gray-800 text-left lg:text-left"
+              className="text-2xl sm:text-5xl font-bold text-gray-800 text-left lg:text-left 2xl:text-5xl"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{
@@ -66,17 +66,17 @@ const Immigration = () => {
               }}
               viewport={{ once: true }}
             >
-              <p className="text-sm md:text-lg">
+              <p className="text-sm md:text-lg 2xl:text-3xl">
                 Receptive Immigration a division of the Receptive Group of Companies, is a trusted name in the investment industry.
                 With a focus on creating wealth and financial security for our clients, Receptive Investments offers expert guidance
                 and personalized services to help individuals and businesses navigate the investment landscape.
               </p>
-              <p className="text-sm md:text-lg">
+              <p className="text-sm md:text-lg 2xl:text-3xl">
                 Our experienced team of professionals provides tailored solutions to identify and capitalize on lucrative investment 
                 opportunities, ensuring that our clients achieve their financial goals. Trust in Receptive Investments to be your 
                 partner in building a successful and prosperous financial future.
               </p>
-              <p className="text-sm md:text-lg font-medium text-gray-900">
+              <p className="text-sm md:text-lg font-medium text-gray-900 2xl:text-3xl">
                 Contact us today to learn more about how we can help you maximize your investment potential.
               </p>
             </motion.div>
