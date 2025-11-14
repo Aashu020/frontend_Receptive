@@ -37,10 +37,7 @@ const UaeVisaRequirements = () => {
       "If your application is approved, they will affix the residency to your passport."
     ],
     processInfo: "This process can be done online or offline as the ICP offers both; here are the available options:",
-    options: [
-      "ICP official website",
-      "ICP mobile app"
-    ],
+    options: ["ICP official website", "ICP mobile app"],
     dependentTitle: "Dependent Visa Required Documents:",
     dependentDocs: [
       "Sponsor's passport, Visa, Emirates ID",
@@ -54,13 +51,17 @@ const UaeVisaRequirements = () => {
   const RequirementCard = ({ data, isReversed = false }) => (
     <div className="mb-12 lg:mb-16">
       <div className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-6 lg:gap-12 items-start`}>
-        {/* Content Section */}
+
+        {/* TEXT CONTENT */}
         <div className="flex-1 space-y-4">
-          <h2 className="text-xl lg:text-2xl font-bold text-gray-800 leading-tight">
+
+          {/* Title */}
+          <h2 className="text-xl lg:text-2xl 2xl:text-4xl 2xl:leading-normal font-bold text-gray-800 leading-tight">
             {data.title}
           </h2>
-          
-          <p className="text-gray-600 text-sm lg:text-base leading-relaxed">
+
+          {/* Description */}
+          <p className="text-gray-600 text-sm lg:text-base 2xl:text-3xl leading-relaxed">
             {data.description}
           </p>
 
@@ -68,8 +69,8 @@ const UaeVisaRequirements = () => {
           {data.requirements && (
             <ul className="space-y-2 mt-4">
               {data.requirements.map((item, index) => (
-                <li key={index} className="flex items-start text-sm lg:text-base text-gray-700">
-                  <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                <li key={index} className="flex items-start text-sm lg:text-base 2xl:text-2xl text-gray-700">
+                  <span className="w-2 h-2 2xl:w-3 2xl:h-3 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -80,20 +81,20 @@ const UaeVisaRequirements = () => {
           {data.subRequirements && (
             <ul className="space-y-2 mt-4 ml-6">
               {data.subRequirements.map((item, index) => (
-                <li key={index} className="flex items-start text-sm lg:text-base text-gray-600">
-                  <span className="w-1.5 h-1.5 bg-gray-300 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
+                <li key={index} className="flex items-start text-sm lg:text-base 2xl:text-2xl text-gray-600">
+                  <span className="w-1.5 h-1.5 2xl:w-3 2xl:h-3 bg-gray-300 rounded-full mt-2.5 mr-3 flex-shrink-0"></span>
                   <span>{item}</span>
                 </li>
               ))}
             </ul>
           )}
 
-          {/* Steps */}
+          {/* Steps (TEXT FIXED HERE) */}
           {data.steps && (
             <ul className="space-y-3 mt-4">
               {data.steps.map((step, index) => (
-                <li key={index} className="flex items-start text-sm lg:text-base text-gray-700">
-                  <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                <li key={index} className="flex items-start text-sm lg:text-base 2xl:text-2xl text-gray-700">
+                  <span className="w-2 h-2 2xl:w-3 2xl:h-3 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                   <span>{step}</span>
                 </li>
               ))}
@@ -103,13 +104,14 @@ const UaeVisaRequirements = () => {
           {/* Process Info */}
           {data.processInfo && (
             <>
-              <p className="text-gray-600 text-sm lg:text-base leading-relaxed mt-6">
+              <p className="text-gray-600 text-sm lg:text-base 2xl:text-2xl leading-relaxed mt-6">
                 {data.processInfo}
               </p>
+
               <ul className="space-y-2 mt-3 ml-6">
-                {data.options.map((option, index) => (
-                  <li key={index} className="flex items-start text-sm lg:text-base text-gray-700">
-                    <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                {data.options?.map((option, index) => (
+                  <li key={index} className="flex items-start text-sm lg:text-base 2xl:text-2xl text-gray-700">
+                    <span className="w-2 h-2 2xl:w-3 2xl:h-3 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                     <span>{option}</span>
                   </li>
                 ))}
@@ -117,16 +119,17 @@ const UaeVisaRequirements = () => {
             </>
           )}
 
-          {/* Dependent Documents */}
+          {/* Dependent Docs */}
           {data.dependentTitle && (
             <div className="mt-8">
-              <h3 className="text-lg font-semibold text-gray-800 mb-3">
+              <h3 className="text-lg lg:text-xl 2xl:text-3xl font-semibold text-gray-800 mb-3">
                 {data.dependentTitle}
               </h3>
+
               <ul className="space-y-2">
                 {data.dependentDocs.map((doc, index) => (
-                  <li key={index} className="flex items-start text-sm lg:text-base text-gray-700">
-                    <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <li key={index} className="flex items-start text-sm lg:text-base 2xl:text-2xl text-gray-700">
+                    <span className="w-2 h-2 2xl:w-3 2xl:h-3 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                     <span>{doc}</span>
                   </li>
                 ))}
@@ -135,13 +138,13 @@ const UaeVisaRequirements = () => {
           )}
         </div>
 
-        {/* Image Section */}
-        <div className="w-full lg:w-80 xl:w-96 flex-shrink-0">
+        {/* IMAGE */}
+        <div className="w-full lg:w-80 xl:w-96 2xl:w-[32rem] flex-shrink-0">
           <div className="relative overflow-hidden rounded-lg shadow-lg">
-            <img 
-              src={data.image} 
-              alt="Visa requirements illustration"
-              className="w-full h-48 lg:h-64 object-cover"
+            <img
+              src={data.image}
+              alt="Visa requirements"
+              className="w-full h-48 lg:h-64 2xl:h-[22rem] object-cover"
             />
           </div>
         </div>
@@ -150,9 +153,9 @@ const UaeVisaRequirements = () => {
   );
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+    <div className="max-w-6xl 2xl:max-w-[100rem] mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
       <RequirementCard data={documentsData} />
-      <RequirementCard data={processData} isReversed={true} />
+      <RequirementCard data={processData} isReversed />
     </div>
   );
 };

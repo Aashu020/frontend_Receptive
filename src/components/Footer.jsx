@@ -55,12 +55,12 @@ function Footer() {
       <div className="fixed bottom-8 right-3 md:bottom-14 md:right-6 z-50">
         <button
           onClick={handleWhatsAppClick}
-          className="bg-[#25D366] hover:bg-[#128C3F] text-white p-3 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 flex items-center justify-center group"
+          className="bg-[#25D366] hover:bg-[#128C3F] text-white p-3 2xl:p-5 rounded-full shadow-lg transform hover:scale-110 transition-all duration-300 flex items-center justify-center group"
           aria-label="Contact us on WhatsApp"
         >
           {/* WhatsApp SVG Icon */}
           <svg
-            className="md:w-8 md:h-8 h-6 w-6"
+            className="md:w-8 md:h-8 h-6 w-6 2xl:w-12 2xl:h-12 group-hover:scale-110 transition-transform duration-300"
             fill="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"

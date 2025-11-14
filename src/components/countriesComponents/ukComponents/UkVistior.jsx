@@ -3,16 +3,16 @@ import img2 from "../../../assets/images/ukvistorimg.jpg"
 const UkVistior = () => {
     return (
         <div className="p-2 bg-white px-[15px] md:px-[3rem] lg:px-[10rem]" id='uk-visitor'>
-            <div className="flex flex-col md:flex-row items-top mb-4 mt-5">
-                <div className="md:w-1/2">
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-700">2. UK Visitor Visa</h3>
-                    <p className="text-gray-600 mt-2 text-[15px] text-justify">
+            <div className="flex flex-col md:flex-row items-top mb-4 mt-5 2xl:space-x-15">
+                <div className="md:w-1/2 2xl:w-[60%]">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-700 2xl:text-4xl">2. UK Visitor Visa</h3>
+                    <p className="text-gray-600 mt-2 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal text-justify">
                         Are you dreaming of exploring the enchanting landscapes of the United Kingdom, immersing yourself in its rich history, or reuniting with loved ones in this vibrant country? Look no further than the UK Visitor Visa, your gateway to unforgettable experiences and cherished memories.
                     </p>
-                    <p className="text-gray-600 mt-2 text-[15px] text-justify">
+                    <p className="text-gray-600 mt-2 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal text-justify">
                         At our immigration website, we understand the allure of the UK and the desire to visit this captivating destination. Our expert team is dedicated to assisting you in navigating the visa application process with ease and efficiency, ensuring that your journey to the UK is seamless and stress-free.
                     </p>
-                    <p className="text-gray-600 mt-2 text-[15px] text-justify">
+                    <p className="text-gray-600 mt-2 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal text-justify">
                         Whether you are planning a leisurely holiday, a business trip, or a visit to family and friends, the UK Visitor Visa opens doors to a world of possibilities. Let us be your trusted partner in turning your travel aspirations into reality and creating lasting moments in the breath-taking land of the United Kingdom.
                     </p>
                 </div>
@@ -25,9 +25,9 @@ const UkVistior = () => {
                 </div>
             </div>
             <div className='pb-4'>
-                <h4 className="text-lg font-medium text-gray-700 mt-2">Essential Documents for UK travel visa:</h4>
+                <h4 className="text-lg font-medium text-gray-700 mt-2 2xl:text-4xl">Essential Documents for UK travel visa:</h4>
                 {/* <p className="text-gray-600 mt-2 text-[15px] text-justify">The eligibility requirements for a UK study/student visa typically include:</p> */}
-                <ul className="list-disc list-inside text-gray-600 mt-1 text-[15px] text-justify">
+                <ul className="list-disc list-inside text-gray-600 mt-1 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal text-justify">
                     <li><span className='font-semibold'>Valid Passport:</span> Your journey to the UK begins with a valid passport. Ensure your passport is current and will remain valid for the entire duration of your planned stay in the UK. Having at least one blank page for visa stamps is also mandatory.</li>
                     <li><span className='font-semibold'>Visa Application Form:</span>  Accurate and thorough completion of the UK visit visa application form is vital. Our team at Receptive Immigration will assist you in filling out the application form, avoiding any errors that may delay the processing of your visa.</li>
                     <li><span className='font-semibold'>Passport-Sized Photographs:</span> Provide recent passport-sized photographs meeting the UK Home Office specifications. These photographs should be taken against a light background and must reflect your true likeness.</li>

@@ -482,24 +482,24 @@ const ContactForm = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title={`${selectedLocation} Location`}
-                  className="w-full 2xl:h-[700px]"
+                  className="w-full 2xl:h-[650px]"
                 ></iframe>
 
                 <div className="p-6">
-                  <h3 className="text-lg font-bold mb-3" style={{ color: '#0C3B34' }}>
+                  <h3 className="text-lg font-bold mb-3 2xl:text-3xl" style={{ color: '#0C3B34' }}>
                     {selectedLocation} Office
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4 2xl:text-2xl">
                     {locations[selectedLocation].address}
                   </p>
                   <a
                     href={locations[selectedLocation].link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-sm font-semibold hover:underline transition-colors"
+                    className="inline-flex items-center text-sm font-semibold hover:underline transition-colors 2xl:text-2xl"
                     style={{ color: '#D8C287' }}
                   >
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 2xl:w-6 2xl:h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                     View on Google Maps

@@ -3,13 +3,13 @@ import img2 from "../../../assets/images/work_visa.jpg"
 const WorkerVisa = () => {
     return (
         <div className="p-2 bg-white px-[15px] md:px-[3rem] lg:px-[10rem]" id='uk-skilled-worker'>
-            <div className="flex flex-col md:flex-row items-top mb-4 mt-5">
-                <div className="md:w-1/2">
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-700">3. UK Skilled Worker Visas:</h3>
-                    <p className="text-gray-600 mt-2 text-[15px] text-justify">
+            <div className="flex flex-col md:flex-row items-top mb-4 mt-5 2xl:space-x-15">
+                <div className="md:w-1/2 2xl:w-[60%]">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-700 2xl:text-4xl">3. UK Skilled Worker Visas:</h3>
+                    <p className="text-gray-600 mt-2 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal text-justify">
                         Are you a skilled professional seeking exciting career opportunities in the United Kingdom? Look no further than the UK Skilled Worker Visa, your key to unlocking a world of possibilities in one of the world's leading economies.
                     </p>
-                    <p className="text-gray-600 mt-2 text-[15px] text-justify">
+                    <p className="text-gray-600 mt-2 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal  text-justify">
                         At our immigration website, we specialize in assisting skilled workers in navigating the intricacies of the UK visa application process. Our expert team is dedicated to providing comprehensive support and guidance to help you secure your dream job in the UK and embark on a fulfilling career path.
                     </p>
                 </div>
@@ -22,9 +22,9 @@ const WorkerVisa = () => {
                 </div>
             </div>
             <div className='pb-4'>
-                <h4 className="text-lg font-medium text-gray-700 mt-2">Tier 2 Skilled Category visa:</h4>
-                <p className="text-gray-600 mt-2 text-[15px] text-justify">The Tier 2 visa is a type of work visa that allows skilled workers to come to the UK to work for a licensed sponsor in a specific job role. There are several categories under the Tier 2 visa system, including:</p>
-                <ul className="list-disc list-inside text-gray-600 mt-1 text-[15px]">
+                <h4 className="text-lg font-medium text-gray-700 mt-2 2xl:text-4xl">Tier 2 Skilled Category visa:</h4>
+                <p className="text-gray-600 mt-2 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal  text-justify">The Tier 2 visa is a type of work visa that allows skilled workers to come to the UK to work for a licensed sponsor in a specific job role. There are several categories under the Tier 2 visa system, including:</p>
+                <ul className="list-disc list-inside text-gray-600 mt-1 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal ">
                     <li><span className='font-semibold'>Tier 2 (General) Visa:</span> This category is for skilled workers with a job offer in the UK from a licensed sponsor. Applicants must meet specific eligibility criteria, including English language proficiency and salary requirements.</li>
                     <li><span className='font-semibold'>Tier 2 (Intra-Company Transfer) Visa:</span>This category is for employees of multinational companies who are being transferred to a UK branch of the same company. There are different subcategories within this visa route, depending on the nature of the transfer.</li>
                     <li><span className='font-semibold'>Tier 2 (Sportsperson) Visa:</span> This category is for elite athletes and coaches who have been endorsed by their sport's governing body to work in the UK.</li>
@@ -33,9 +33,9 @@ const WorkerVisa = () => {
                 </ul>
             </div>
             <div className='pb-4'>
-                <h4 className="text-lg font-medium text-gray-700 mt-2">Tire 5 Temporary Category visa:</h4>
-                <p className="text-gray-600 mt-2 text-[15px] text-justify">The Tier 5 Visa is a temporary work visa category that allows individuals to come to the UK for a specific purpose or to undertake specific types of work. There are several subcategories under the Tier 5 Visa, each designed for different types of temporary work or activities:</p>
-                <ul className="list-disc list-inside text-gray-600 mt-1 text-[15px]">
+                <h4 className="text-lg font-medium text-gray-700 mt-2 2xl:text-4xl">Tire 5 Temporary Category visa:</h4>
+                <p className="text-gray-600 mt-2 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal  text-justify">The Tier 5 Visa is a temporary work visa category that allows individuals to come to the UK for a specific purpose or to undertake specific types of work. There are several subcategories under the Tier 5 Visa, each designed for different types of temporary work or activities:</p>
+                <ul className="list-disc list-inside text-gray-600 mt-1 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal ">
                     <li><span className='font-semibold'>Tier 5 (Temporary Worker - Creative and sporting): </span> This category is for individuals coming to the UK to work as sportspeople, entertainers, or creative artists for a short period.</li>
                     <li><span className='font-semibold'>Tier 5 (Temporary Worker - Charity Worker): </span> This category is for individuals coming to the UK to do voluntary work for a charity.</li>
                     <li><span className='font-semibold'>Tier 5 (Temporary Worker - Religious Worker):</span> This category is for individuals coming to the UK to work as religious workers for a religious organization.</li>
@@ -46,20 +46,20 @@ const WorkerVisa = () => {
 
             <div className="flex flex-col md:flex-row items-top mb-4 mt-5" id='uk-self-sponsorship'>
                 <div className="md:w-full">
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-700">4. Self-Sponsorship Visa:</h3>
-                    <p className="text-gray-600 mt-2 text-[15px] text-justify">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-700 2xl:text-4xl">4. Self-Sponsorship Visa:</h3>
+                    <p className="text-gray-600 mt-2 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal  text-justify">
                         Self-sponsorship visas in the UK are available for individuals who wish to invest or start their own business in the country. This visa allows entrepreneurs to establish or take over a business in the UK. These visas require applicants to meet specific eligibility criteria, including having a viable business idea, access to sufficient funds, and meeting English language proficiency requirements.
                     </p>
-                    <p className="text-gray-600 mt-2 text-[15px] text-justify">
+                    <p className="text-gray-600 mt-2 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal  text-justify">
                         Self-sponsorship visas provide a pathway for ambitious individuals to pursue their entrepreneurial dreams in the UK and create opportunities for themselves and others. They offer a chance to make a positive impact on the business landscape and enrich the diverse entrepreneurial ecosystem in the UK.
                     </p>
                 </div>
             </div>
 
-            <div className="flex flex-col md:flex-row items-top mb-4 mt-5" id='uk-the-innovator'>
+            <div className="flex flex-col md:flex-row items-top mb-4 2xl:mb-10 mt-5" id='uk-the-innovator'>
                 <div className="md:w-1full">
-                    <h3 className="text-lg md:text-xl font-semibold text-gray-700">5. The Innovator Visa:</h3>
-                    <p className="text-gray-600 mt-2 text-[15px] text-justify">
+                    <h3 className="text-lg md:text-xl font-semibold text-gray-700 2xl:text-4xl">5. The Innovator Visa:</h3>
+                    <p className="text-gray-600 mt-2 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal  text-justify">
                         The Innovator visa is for experienced businesspeople looking to establish an innovative business in the UK, while the Start-up Visa is for individuals starting a new business for the first time. Both visas offer the opportunity for entrepreneurs to build successful ventures in the UK and contribute to the country's economy
                     </p>
                 </div>
