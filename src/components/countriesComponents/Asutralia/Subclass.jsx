@@ -6,7 +6,7 @@ const Subclass = () => {
     <div id='australia-subclass-482' className="w-full rounded-xl overflow-hidden mt-10 px-6 md:px-12 lg:px-24 text-left">
       {/* Heading Section */}
       <div className="flex flex-col items-start mb-6">
-        <h2 className="text-3xl font-bold mb-4 text-left" style={{ color: '#0C3B34' }}>
+        <h2 className="text-3xl font-bold mb-4 text-left 2xl:text-5xl" style={{ color: '#0C3B34' }}>
           Subclass 482 Visa Program
         </h2>
         
@@ -25,28 +25,28 @@ const Subclass = () => {
       {/* Content Section */}
       <div className="flex flex-col">
         <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-3 text-left" style={{ color: '#0C3B34' }}>
+          <h3 className="text-xl font-semibold mb-3 text-left 2xl:text-3xl" style={{ color: '#0C3B34' }}>
             Pathway to PR through Subclass 482 visa
           </h3>
-          <p className="text-left text-gray-700">
+          <p className="text-left text-gray-700 2xl:text-2xl 2xl:tracking-wide leading-normal">
             The Subclass 482 Temporary Skill Shortage visa can provide a pathway to permanent residency in Australia through the Temporary Residence Transition stream of the Employer Nomination Scheme (subclass 186) visa. To be eligible for this pathway, individuals must have held a Subclass 482 visa under the same employer for at least three years, and their employer must nominate them for permanent residency.
           </p>
-          <p className="mt-3 text-left text-gray-700">
+          <p className="mt-3 text-left text-gray-700 2xl:text-2xl 2xl:tracking-wide leading-normal">
             The process involves meeting certain requirements, including having the necessary skills, qualifications, and experience for the nominated occupation, as well as meeting English language proficiency and health and character requirements. Applicants must also demonstrate a genuine intention to work for the nominating employer in the nominated position on a permanent basis.
           </p>
-          <p className="mt-3 text-left text-gray-700">
+          <p className="mt-3 text-left text-gray-700 2xl:text-2xl 2xl:tracking-wide leading-normal">
             Securing a Subclass 482 visa can provide skilled workers with the opportunity to gain valuable work experience in Australia and potentially transition to permanent residency, allowing them to build a future in the country.
           </p>
         </div>
 
         <div className="mb-6">
-          <h3 className="text-xl font-semibold mb-3 text-left" style={{ color: '#0C3B34' }}>
+          <h3 className="text-xl font-semibold mb-3 text-left 2xl:text-3xl" style={{ color: '#0C3B34' }}>
             Requirements to apply for a Subclass 482 visa program?
           </h3>
-          <p className="text-left text-gray-700">
+          <p className="text-left text-gray-700 2xl:text-2xl 2xl:tracking-wide leading-normal">
             The eligibility criteria for the Subclass 482 Temporary Skill Shortage visa include:
           </p>
-          <ul className="list-disc list-inside mt-3 space-y-2 text-left text-gray-700">
+          <ul className="list-disc list-inside mt-3 space-y-2 text-left text-gray-700 2xl:text-2xl 2xl:tracking-wide leading-normal">
             <li>Nomination by an approved sponsor: The applicant must have a job offer from an Australian employer who is approved as a sponsor by the Department of Home Affairs.</li>
             <li>Occupation on the relevant skilled occupation list: The nominated occupation must be on the relevant skilled occupation list for the visa subclass.</li>
             <li>Skills assessment: The applicant must have their skills assessed by the relevant assessing authority for their nominated occupation.</li>
@@ -60,10 +60,10 @@ const Subclass = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Eligibility Criteria */}
           <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="text-xl font-semibold mb-3 text-left" style={{ color: '#0C3B34' }}>
+            <h3 className="text-xl font-semibold mb-3 text-left 2xl:text-2xl" style={{ color: '#0C3B34' }}>
               Eligibility Criteria
             </h3>
-            <ul className="space-y-2 text-left text-gray-700">
+            <ul className="space-y-2 text-left text-gray-700 2xl:text-2xl 2xl:tracking-wide leading-normal">
               <li><span className="font-semibold">Age:</span> No requirement</li>
               <li><span className="font-semibold">Education:</span> No requirement</li>
               <li><span className="font-semibold">Work Experience:</span> 2 Years</li>
@@ -73,10 +73,10 @@ const Subclass = () => {
           
           {/* Benefits */}
           <div className="bg-gray-50 p-4 rounded-lg">
-            <h3 className="text-xl font-semibold mb-3 text-left" style={{ color: '#0C3B34' }}>
+            <h3 className="text-xl font-semibold mb-3 text-left 2xl:text-3xl" style={{ color: '#0C3B34' }}>
               Benefits
             </h3>
-            <ul className="space-y-2 text-left text-gray-700">
+            <ul className="space-y-2 text-left text-gray-700 2xl:text-2xl 2xl:tracking-wide leading-normal">
               <li><span className="font-semibold">Annual Income:</span> AUD 65,000 – 70,000</li>
               <li><span className="font-semibold">Superannuation Contribution from Employer:</span> 11%</li>
               <li><span className="font-semibold">Family Sponsored Visa</span></li>

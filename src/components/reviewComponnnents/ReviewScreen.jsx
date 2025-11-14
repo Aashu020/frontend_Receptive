@@ -98,15 +98,15 @@ function ReviewScreen({ onClose }) {
   };
 
   return (
-    <div className="p-5 sm:p-6 md:p-8 bg-white rounded-xl shadow-lg relative w-full max-h-[85vh] overflow-y-auto">
-      <h2 className="text-2xl sm:text-3xl font-bold text-[#0C3B34] mb-6">
+    <div className="p-5 sm:p-6 md:p-8  rounded-xl shadow-lg relative w-full max-h-[85vh] overflow-y-auto">
+      <h2 className="text-2xl sm:text-3xl 2xl:text-4xl font-bold text-[#0C3B34] mb-6">
         Write a Review
       </h2>
       
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Rating */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-3">
+          <label className="block text-sm font-medium text-gray-700 mb-3 2xl:text-2xl">
             Rating <span className="text-red-500">*</span>
           </label>
           <div className="flex space-x-2 sm:space-x-3">
@@ -114,7 +114,7 @@ function ReviewScreen({ onClose }) {
               <button
                 key={star}
                 type="button"
-                className={`text-3xl sm:text-4xl transition-all duration-200 transform hover:scale-110 ${
+                className={`text-3xl sm:text-4xl 2xl:text-6xl transition-all duration-200 transform hover:scale-110 ${
                   star <= rating ? "text-yellow-400" : "text-gray-300"
                 }`}
                 onClick={() => setRating(star)}
@@ -124,7 +124,7 @@ function ReviewScreen({ onClose }) {
             ))}
           </div>
           {rating > 0 && (
-            <p className="mt-2 text-sm text-gray-600">
+            <p className="mt-2 text-sm text-gray-600 2xl:text-xl">
               You rated: {rating} star{rating > 1 ? "s" : ""}
             </p>
           )}
@@ -132,25 +132,25 @@ function ReviewScreen({ onClose }) {
 
         {/* Comment */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-3">
+          <label className="block text-sm font-medium text-gray-700 mb-3 2xl:text-2xl">
             Comment <span className="text-red-500">*</span>
           </label>
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C3B34] focus:border-transparent transition-all resize-none"
+            className="w-full px-4 py-3 border border-gray-300 2xl:text-2xl rounded-lg focus:outline-none focus:ring-2 focus:ring-[#0C3B34] focus:border-transparent transition-all resize-none"
             rows="5"
             placeholder="Share your experience..."
             required
           />
-          <p className="mt-2 text-xs text-gray-500">
+          <p className="mt-2 text-xs 2xl:text-2xl text-gray-500">
             {comment.length} characters
           </p>
         </div>
 
         {/* Images */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-3">
+          <label className="block text-sm font-medium 2xl:text-2xl text-gray-700 mb-3">
             Images (Optional, up to 4)
           </label>
           <div className="space-y-4">
@@ -164,19 +164,19 @@ function ReviewScreen({ onClose }) {
                   name="images"
                   accept="image/*"
                   onChange={(e) => handleImageChange(e, index)}
-                  className="w-full sm:flex-1 text-sm file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-[#0C3B34] file:text-white hover:file:bg-[#1a5a4f] file:cursor-pointer cursor-pointer"
+                  className="w-full sm:flex-1 text-sm 2xl:text-2xl file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-medium file:bg-[#0C3B34] file:text-white hover:file:bg-[#1a5a4f] file:cursor-pointer cursor-pointer"
                 />
                 {img && (
                   <div className="flex items-center gap-3">
                     <img
                       src={URL.createObjectURL(img)}
                       alt={`Preview ${index + 1}`}
-                      className="h-20 w-20 sm:h-24 sm:w-24 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
+                      className="h-20 w-20 sm:h-24 sm:w-24 2xl:w-30 2xl:h-30 object-cover rounded-lg border-2 border-gray-200 shadow-sm"
                     />
                     <button
                       type="button"
                       onClick={() => handleRemoveImage(index)}
-                      className="px-3 py-2 bg-red-50 text-red-600 rounded-lg text-sm font-medium hover:bg-red-100 transition-colors"
+                      className="px-3 py-2 bg-red-50 2xl:text-2xl text-red-600 rounded-lg text-sm font-medium hover:bg-red-100 transition-colors"
                     >
                       Remove
                     </button>
@@ -190,7 +190,7 @@ function ReviewScreen({ onClose }) {
             <button
               type="button"
               onClick={handleAddImageInput}
-              className="flex items-center gap-2 mt-4 px-4 py-2 text-[#0C3B34] border-2 border-dashed border-[#0C3B34] rounded-lg hover:bg-[#0C3B34] hover:text-white transition-all duration-200 font-medium"
+              className="flex items-center  2xl:text-2xl gap-2 mt-4 px-4 py-2 text-[#0C3B34] border-2 border-dashed border-[#0C3B34] rounded-lg hover:bg-[#0C3B34] hover:text-white transition-all duration-200 font-medium"
             >
               <FiPlus className="text-lg" /> Add Image
             </button>
@@ -202,14 +202,14 @@ function ReviewScreen({ onClose }) {
           <button
             type="button"
             onClick={onClose}
-            className="w-full sm:w-auto px-6 py-2.5 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 font-medium transition-colors"
+            className="w-full sm:w-auto 2xl:text-2xl px-6 py-2.5 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 font-medium transition-colors"
             disabled={loading}
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="w-full sm:w-auto px-6 py-2.5 bg-[#0C3B34] text-white rounded-lg hover:bg-[#1a5a4f] font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full 2xl:text-2xl sm:w-auto px-6 py-2.5 bg-[#0C3B34] text-white rounded-lg hover:bg-[#1a5a4f] font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={loading || rating === 0}
           >
             {loading ? (

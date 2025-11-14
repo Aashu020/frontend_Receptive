@@ -196,7 +196,7 @@ const ContactForm = () => {
       link: "https://www.google.com/maps/place/Gemstar+Commercial+Complex,+Ramchandra+Ln,+Malad,+Kanchpada,+Malad+West,+Mumbai,+Maharashtra+400064/@19.189447,72.8385299,19.25z/data=!4m6!3m5!1s0x3be7b6ef445974db:0x3e0169978b8d757a!8m2!3d19.1895652!4d72.838947!16s%2Fg%2F1ptw1k1q9?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D",
     },
     UAE: {
-      mapUrl:"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.3684083319495!2d55.31748648190162!3d25.258189520099894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5cd10170bd0f%3A0x33c038729b931804!2sAl%20Salemiyah%20Tower%20(SBK)!5e0!3m2!1sen!2sin!4v1757394932710!5m2!1sen!2sin",
+      mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3608.3684083319495!2d55.31748648190162!3d25.258189520099894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f5cd10170bd0f%3A0x33c038729b931804!2sAl%20Salemiyah%20Tower%20(SBK)!5e0!3m2!1sen!2sin!4v1757394932710!5m2!1sen!2sin",
       address: "Suite No -201, Al Salemiyah Tower, Deira Riggat Al Buteen, Dubai, UAE",
       link: "https://www.google.com/maps/place/Al+Salemiyah+Tower+(SBK)/@25.2581895,55.3174865,17z/data=!4m14!1m7!3m6!1s0x3e5f5cd10170bd0f:0x33c038729b931804!2sAl+Salemiyah+Tower+(SBK)!8m2!3d25.2581896!4d55.3223574!16s%2Fg%2F11g8stkpnm!3m5!1s0x3e5f5cd10170bd0f:0x33c038729b931804!8m2!3d25.2581896!4d55.3223574!16s%2Fg%2F11g8stkpnm?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D",
     },
@@ -226,18 +226,18 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <div className="bg-gradient-to-b from-gray-50 to-white">
 
-      <div className="container mx-auto px-2 md:px-4 py-16 -mt-8">
-        <div className="grid lg:grid-cols-5 gap-12 max-w-7xl mx-auto">
+      <div className="container mx-auto px-2 md:px-4 py-16 -mt-8 2xl:px-0">
+        <div className="grid lg:grid-cols-5 gap-12  mx-auto">
           {/* Contact Form */}
           <div className="lg:col-span-3">
             <div className="bg-white rounded-3xl shadow-2xl p-4 md:p-8 lg:p-12 border border-gray-100">
               <div className="mb-8">
-                <h2 className="md:text-3xl text-xl font-bold mb-3" style={{ color: '#0C3B34' }}>
+                <h2 className="md:text-3xl text-xl 2xl:text-5xl font-bold mb-3" style={{ color: '#0C3B34' }}>
                   Send us a Message
                 </h2>
-                <p className="text-gray-600 text-sm md:text-md">
+                <p className="text-gray-600 text-sm md:text-md 2xl:text-2xl">
                   Fill out the form below and we'll get back to you within 24 hours.
                 </p>
               </div>
@@ -246,7 +246,7 @@ const ContactForm = () => {
                 {/* Name & Email Row */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold mb-2" style={{ color: '#0C3B34' }}>
+                    <label className="block text-sm font-semibold mb-2 2xl:text-3xl" style={{ color: '#0C3B34' }}>
                       Full Name *
                     </label>
                     <input
@@ -256,7 +256,7 @@ const ContactForm = () => {
                       value={formData.name}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`${getInputClassName("name")} text-sm md:text-md`}
+                      className={`${getInputClassName("name")} text-sm md:text-md 2xl:text-2xl 2xl:py-4`}
                       disabled={isLoading}
                     />
                     {errors.name && touched.name && (
@@ -270,7 +270,7 @@ const ContactForm = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold mb-2" style={{ color: '#0C3B34' }}>
+                    <label className="block text-sm font-semibold mb-2 2xl:text-3xl" style={{ color: '#0C3B34' }}>
                       Email Address *
                     </label>
                     <input
@@ -280,7 +280,7 @@ const ContactForm = () => {
                       value={formData.email}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`${getInputClassName("email")} text-sm md:text-md`}
+                      className={`${getInputClassName("email")} text-sm md:text-md 2xl:text-2xl 2xl:py-4`}
                       disabled={isLoading}
                     />
                     {errors.email && touched.email && (
@@ -297,7 +297,7 @@ const ContactForm = () => {
                 {/* Country & Mobile Row */}
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold mb-2" style={{ color: '#0C3B34' }}>
+                    <label className="block text-sm font-semibold mb-2 2xl:text-3xl" style={{ color: '#0C3B34' }}>
                       Country *
                     </label>
                     <select
@@ -305,7 +305,7 @@ const ContactForm = () => {
                       value={formData.country}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`${getInputClassName("country")} text-sm md:text-md`}
+                      className={`${getInputClassName("country")} text-sm md:text-md 2xl:text-2xl 2xl:py-4`}
                       disabled={isLoading}
                     >
                       <option value="">Select your country</option>
@@ -330,7 +330,7 @@ const ContactForm = () => {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-semibold mb-2" style={{ color: '#0C3B34' }}>
+                    <label className="block text-sm font-semibold mb-2 2xl:text-3xl" style={{ color: '#0C3B34' }}>
                       Mobile Number *
                     </label>
                     <input
@@ -340,7 +340,7 @@ const ContactForm = () => {
                       value={formData.mobile}
                       onChange={handleChange}
                       onBlur={handleBlur}
-                      className={`${getInputClassName("mobile")} text-sm md:text-md`}
+                      className={`${getInputClassName("mobile")} text-sm md:text-md 2xl:text-2xl 2xl:py-4`}
                       disabled={isLoading}
                     />
                     {errors.mobile && touched.mobile && (
@@ -356,7 +356,7 @@ const ContactForm = () => {
 
                 {/* Visa Type */}
                 <div>
-                  <label className="block text-sm font-semibold mb-2" style={{ color: '#0C3B34' }}>
+                  <label className="block text-sm font-semibold mb-2 2xl:text-3xl" style={{ color: '#0C3B34' }}>
                     Visa Type *
                   </label>
                   <select
@@ -364,7 +364,10 @@ const ContactForm = () => {
                     value={formData.visa}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`${getInputClassName("visa")} text-sm md:text-md`}
+                    className={`${getInputClassName("visa")} text-sm md:text-md 2xl:py-4`}
+                    style={{
+                      fontSize: window.innerWidth >= 2000 ? "1.25rem" : undefined   // 2xl ≈ text-xl
+                    }}
                     disabled={isLoading}
                   >
                     <option value="">What type of visa!</option>
@@ -386,7 +389,7 @@ const ContactForm = () => {
 
                 {/* Message */}
                 <div>
-                  <label className="block text-sm font-semibold mb-2" style={{ color: '#0C3B34' }}>
+                  <label className="block text-sm font-semibold mb-2 2xl:text-3xl" style={{ color: '#0C3B34' }}>
                     Your Message *
                   </label>
                   <textarea
@@ -396,7 +399,7 @@ const ContactForm = () => {
                     value={formData.message}
                     onChange={handleChange}
                     onBlur={handleBlur}
-                    className={`${getInputClassName("message")} resize-none text-sm md:text-md`}
+                    className={`${getInputClassName("message")} resize-none text-sm md:text-md 2xl:text-2xl`}
                     disabled={isLoading}
                   />
                   <div className="flex justify-between items-start mt-2">
@@ -420,20 +423,20 @@ const ContactForm = () => {
                 <button
                   type="submit"
                   disabled={isLoading || Object.keys(errors).some((key) => errors[key])}
-                  className="w-full py-4 px-6 rounded-xl font-semibold text-lg transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed shadow-lg hover:shadow-xl bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white"
-                 
+                  className="w-full py-4 px-6 rounded-xl font-semibold text-lg 2xl:text-2xl transition-all duration-300 transform hover:scale-105 disabled:scale-100 disabled:cursor-not-allowed shadow-lg hover:shadow-xl bg-[#D8C287] text-[#0a2d27] hover:bg-[#0a2d27] hover:text-white"
+
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-6 w-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin -ml-1 mr-3 h-6 w-6 2xl:w-8 2xl:h-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
                       Sending Message...
                     </div>
                   ) : (
-                    <span className="flex items-center justify-center text-sm md:text-md">
-                      <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span className="flex items-center justify-center text-sm md:text-md 2xl:text-2xl">
+                      <svg className="w-5 h-5 2xl:w-7 2xl:h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                       </svg>
                       Send Message
@@ -449,15 +452,14 @@ const ContactForm = () => {
             <div className="sticky top-8">
               {/* Location Tabs */}
               <div className="bg-white rounded-2xl shadow-lg p-2 mb-6 border border-gray-100">
-                <div className="grid grid-cols-4 gap-2">
+                <div className="grid grid-cols-4 gap-2 2xl:gap-1">
                   {Object.keys(locations).map((location) => (
                     <button
                       key={location}
-                      className={`px-4 py-3 rounded-xl font-semibold transition-all duration-300 text-sm ${
-                        selectedLocation === location
+                      className={`px-4 py-3 rounded-xl font-semibold transition-all duration-300 text-sm 2xl:text-3xl ${selectedLocation === location
                           ? 'text-green shadow-lg transform scale-105'
                           : 'text-gray-600 hover:text-gray-800 hover:bg-gray-50'
-                      }`}
+                        }`}
                       style={{
                         backgroundColor: selectedLocation === location ? '#D8C287' : 'transparent'
                       }}
@@ -480,24 +482,24 @@ const ContactForm = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   title={`${selectedLocation} Location`}
-                  className="w-full"
+                  className="w-full 2xl:h-[650px]"
                 ></iframe>
-                
+
                 <div className="p-6">
-                  <h3 className="text-lg font-bold mb-3" style={{ color: '#0C3B34' }}>
+                  <h3 className="text-lg font-bold mb-3 2xl:text-3xl" style={{ color: '#0C3B34' }}>
                     {selectedLocation} Office
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">
+                  <p className="text-gray-600 text-sm leading-relaxed mb-4 2xl:text-2xl">
                     {locations[selectedLocation].address}
                   </p>
                   <a
                     href={locations[selectedLocation].link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center text-sm font-semibold hover:underline transition-colors"
+                    className="inline-flex items-center text-sm font-semibold hover:underline transition-colors 2xl:text-2xl"
                     style={{ color: '#D8C287' }}
                   >
-                    <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4 2xl:w-6 2xl:h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                     View on Google Maps
@@ -506,13 +508,13 @@ const ContactForm = () => {
               </div>
 
               {/* Contact Info Cards */}
-              
+
             </div>
           </div>
         </div>
       </div>
-      
-      <ToastContainer 
+
+      <ToastContainer
         position="top-right"
         autoClose={4000}
         hideProgressBar={false}

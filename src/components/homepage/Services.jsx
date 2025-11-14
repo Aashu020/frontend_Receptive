@@ -257,14 +257,14 @@ function Services() {
         </script>
       </Helmet>
 
-      <div className="bg-gray-50 py-16 mt:5 md:mt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-4 xl:px-8">
+      <div className="bg-gray-50 pt-4 pb-16 mt:5 md:mt-20">
+        <div className="container 2xl:px-[12rem] mx-auto px-4 sm:px-6 lg:px-4 xl:px-8">
           {/* Section Header */}
           <div className="text-center mb-12">
-            <h2 className=" text-xl md:text-4xl font-bold mb-4 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text">
+            <h2 className=" text-xl md:text-4xl 2xl:text-6xl font-bold mb-4 text-transparent bg-gradient-to-r from-[#D8C287] to-[#0C3B34] bg-clip-text">
               Our Services
             </h2>
-            <p className=" text-md md:text-lg text-gray-600">
+            <p className=" text-md md:text-lg 2xl:text-2xl text-gray-600">
               Comprehensive visa and immigration services tailored to your needs
             </p>
           </div>
@@ -276,59 +276,60 @@ function Services() {
                 <button
                   key={service.id}
                   onClick={() => setActiveService(index)}
-                  className={`lg:px-6 lg:py-3 rounded-lg font-medium transition-all duration-300 text-[13px] p-2 ${activeService === index
-                      ? 'bg-[#D8C287] text-[#0a2d27] shadow-md'
-                      : 'hover:bg-[#0a2d27] hover:text-white'
+                  className={`lg:px-6 lg:py-3 2xl:px-14 2xl:py-5 rounded-lg font-medium transition-all duration-300 text-[13px] p-2 ${activeService === index
+                    ? 'bg-[#D8C287] text-[#0a2d27] shadow-md'
+                    : 'hover:bg-[#0a2d27] hover:text-white'
                     }`}
                   style={{
                     color: activeService === index ? '#0C3B34' : 'white'
                   }}
                 >
-                  <span className="hidden sm:inline">{String(index + 1).padStart(2, '0')}. {service.shortTitle}</span>
-                  <span className="sm:hidden">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="hidden sm:inline 2xl:text-2xl">{String(index + 1).padStart(2, '0')}. {service.shortTitle}</span>
+                  <span className="sm:hidden ">{String(index + 1).padStart(2, '0')}</span>
                 </button>
               ))}
             </div>
           </div>
 
           {/* Active Service Display - Desktop Only */}
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden hidden md:block">
+          <div className="bg-white rounded-2xl shadow-xl 2xl:h-[820px] overflow-hidden hidden md:block">
             <div className="lg:flex">
               {/* Image Section */}
-              <div className="lg:w-1/2">
+              <div className="lg:w-1/2 2xl:h-[820px]">
                 <img
                   src={services[activeService].image}
                   alt={services[activeService].title}
-                  className="w-full h-64 lg:h-full object-cover"
+                  className="w-full h-64 lg:h-full 2xl:h-[820px] object-cover"
                 />
               </div>
 
+
               {/* Content Section */}
-              <div className="lg:w-1/2 p-8 lg:p-12">
+              <div className="lg:w-1/2 2xl:w-[70%] p-8 lg:p-12">
                 <div className="flex items-center gap-4 mb-6">
                   <span
-                    className="text-6xl font-bold opacity-20"
-                    style={{ color: '#D8C287' }}
+                    className="text-6xl font-bold opacity-30"
+                    style={{ color: 'black' }}
                   >
                     {String(activeService + 1).padStart(2, '0')}
                   </span>
                   <div>
-                    <h3 className="text-3xl font-bold mb-2" style={{ color: '#0C3B34' }}>
+                    <h3 className="text-3xl font-bold mb-2 2xl:text-5xl" style={{ color: '#0C3B34' }}>
                       {services[activeService].title}
                     </h3>
-                    <p className="text-sm font-medium" style={{ color: '#D8C287' }}>
+                    <p className="text-sm font-medium 2xl:text-4xl" style={{ color: '#D8C287' }}>
                       12 Years Of Experience In This Industry
                     </p>
                   </div>
                 </div>
 
-                <p className="text-gray-600 leading-relaxed mb-8">
+                <p className="text-gray-600 leading-relaxed mb-8 2xl:text-3xl">
                   {services[activeService].description}
                 </p>
 
                 {/* Sub-services */}
                 <div className="space-y-3">
-                  <h4 className="text-lg font-semibold mb-4" style={{ color: '#0C3B34' }}>
+                  <h4 className="text-lg font-semibold mb-4 2xl:text-xl" style={{ color: '#0C3B34' }}>
                     Available Services:
                   </h4>
                   {services[activeService].subServices.map((subService, index) => (
@@ -337,7 +338,7 @@ function Services() {
                         className="w-2 h-2 rounded-full flex-shrink-0"
                         style={{ backgroundColor: '#D8C287' }}
                       ></div>
-                      <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
+                      <span className="text-gray-700 group-hover:text-gray-900 transition-colors 2xl:text-2xl">
                         {subService}
                       </span>
                     </div>
