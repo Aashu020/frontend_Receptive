@@ -6,8 +6,8 @@ const AlbertaProgram = () => {
             <div className="px-[15px] md:px-[3rem] lg:px-[10rem] bg-white py-4">
                 <div className="flex flex-col md:flex-row items-top mb-6">
                     <div className="md:w-1/2">
-                        <h2 className="text-xl md:text-2xl font-bold text-[#0C3B34] mb-2">Alberta Tech Pathway Program:</h2>
-                        <p className="text-gray-600 text-[15px] text-justify">
+                        <h2 className="text-xl md:text-2xl font-bold text-[#0C3B34] mb-2 2xl:text-3xl">Alberta Tech Pathway Program:</h2>
+                        <p className="text-gray-600 text-[15px] text-justify  2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">
                             The Alberta Accelerated Tech Pathway is contained within the Alberta Advantage Immigration Program (AAIP), a Provincial Nominee Program (PNP) operated by the province of Alberta. The Accelerated Tech Pathway allows certain Express Entry candidates with an Albertan job offer at a company in a tech industry or in an eligible tech role to apply for nomination with expedited processing. <br />
                             Candidates who meet the requirements of the Alberta Express Entry stream and meet the requirements of the Alberta Accelerated Tech Program may be eligible to receive accelerated application processing. <br />
                             Individuals who are successfully nominated through the Alberta Accelerated Tech Pathway will be issued a work permit support letter, allowing them to apply for a temporary work permit. Successful nominees will also be invited to submit an official application for Canadian permanent residence.
@@ -22,8 +22,8 @@ const AlbertaProgram = () => {
                     </div>
                 </div>
                 <div className="mb-4">
-                    <h3 className="text-lg md:text-xl font-semibold text-[#0C3B34] text-[15px] ">Choosing the Alberta Technology (Tech) Accelerator program could be beneficial for several reasons:</h3>
-                    <ol className="list-decimal list-inside text-gray-600 mt-2 text-[15px]">
+                    <h3 className="text-lg md:text-xl font-semibold text-[#0C3B34] text-[15px] 2xl:text-3xl ">Choosing the Alberta Technology (Tech) Accelerator program could be beneficial for several reasons:</h3>
+                    <ol className="list-decimal list-inside text-gray-600 mt-2 text-[15px] 2xl:text-2xl ">
                         <li>Access to Expertise: The accelerator program provides access to industry professionals and successful entrepreneurs who can provide guidance and mentorship.</li>
                         <li>Networking Opportunities: The program can provide a platform for connecting with other tech entrepreneurs, potential investors, and industry leaders.</li>
                         <li>Skills Development: The program often includes workshops and training sessions aimed at enhancing business skills, such as business planning, marketing, and finance.</li>
@@ -35,16 +35,16 @@ const AlbertaProgram = () => {
                     </ol>
                 </div>
                 <div className="mb-4">
-                    <h3 className="text-lg md:text-xl font-semibold text-[#0C3B34] text-[15px]">Job Offer Requirements::</h3>
-                    <p className="list-decimal list-inside text-gray-600 mt-2 text-[15px] text-justify">
+                    <h3 className="text-lg md:text-xl font-semibold text-[#0C3B34] text-[15px] 2xl:text-3xl">Job Offer Requirements::</h3>
+                    <p className="list-decimal list-inside text-gray-600 mt-2 text-[15px] text-justify 2xl:text-2xl">
                         The Alberta Accelerated Tech Pathway has unique job offer requirements. An eligible job offer must be for one of 38 selected in-demand occupations or with an Albertan employer in an eligible tech industry. <br />
                         The job offer or contract must be signed by you and your Alberta employer and should include details of your employment. The offer must be full-time, continuous, and for at least 12 months. The wage or salary must meet or exceed provincial minimum wage and any requirements set out in an LMIA if applicable. If an applicant does not have an LMIA, their job offer wage must meet or exceed the starting wage for their occupation across all industries in Alberta. <br />
                         When submitting an Express Entry profile, a candidate’s should also indicate the same primary NOC as the Alberta job offer.
                     </p>
                 </div>
                 <div>
-                    <h3 className="text-xl font-semibold text-[#0C3B34] text-[15px]">The eligibility for Alberta's New Immigration Tech Program includes:</h3>
-                    <ol className="text-gray-600 mt-2 text-[15px] text-justify">
+                    <h3 className="text-xl font-semibold text-[#0C3B34] text-[15px] 2xl:text-3xl">The eligibility for Alberta's New Immigration Tech Program includes:</h3>
+                    <ol className="text-gray-600 mt-2 text-[15px] text-justify 2xl:text-2xl">
                         <li>Should be a Tech Professional in Canada or overseas</li>
                         <li>Have a valid Tech job offer in Alberta or should be currently working for an Alberta-based company</li>
                         <li>Register your profile in the federal government’s Express Entry system</li>

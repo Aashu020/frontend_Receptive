@@ -9,10 +9,10 @@ export default function CanadaAtlanticImmigrationProgram() {
       <div className="mb-8">
         <div className="flex items-start flex-col md:flex-row gap-6">
           <div className="md:w-[60%]">
-            <h1 className="text-xl md:text:2xl font-bold text-[#0C3B34] mb-4">
+            <h1 className="text-xl md:text:2xl 2xl:text-3xl font-bold text-[#0C3B34] mb-4">
               Canada Atlantic Immigration Program:
             </h1>
-            <p className="text-gray-700 mb-4 leading-relaxed text-[15px] text-justify">
+            <p className="text-gray-700 mb-4 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal leading-relaxed text-[15px] text-justify">
               The Atlantic Immigration Pilot (AIP) is a partnership between the Government of Canada and the Atlantic 
               Provinces aimed at attracting skilled foreign workers and international graduates to the Atlantic region. The program 
               focuses on addressing labour market needs and supporting economic growth in Nova Scotia, New Brunswick, 
@@ -33,10 +33,10 @@ export default function CanadaAtlanticImmigrationProgram() {
 
       {/* How does AIP work section */}
       <div className=" mb-8">
-        <h2 className="text-xl md:text-2xl font-bold text-[#0C3B34] mb-4">
+        <h2 className="text-xl md:text-2xl 2xl:text-3xl font-bold text-[#0C3B34] mb-4">
           How does the Atlantic Immigration Program
         </h2>
-        <p className="text-gray-700 leading-relaxed text-[15px] text-justify">
+        <p className="text-gray-700 leading-relaxed text-[15px] 2xl:text-2xl text-justify 2xl:tracking-wider 2xl:leading-normal">
           The Canada Atlantic Immigration Pilot (AIP) is a program designed to address labour market needs in the Atlantic provinces of Canada - Newfoundland and Labrador, 
           Prince Edward Island, Nova Scotia, and New Brunswick. The AIP aims to attract skilled immigrants and international graduates to the region, supporting economic growth 
           and addressing demographic challenges.
@@ -45,56 +45,56 @@ export default function CanadaAtlanticImmigrationProgram() {
 
       {/* Key features section */}
       <div className=" mb-8">
-        <h3 className="text-lg md:text:xl font-semibold text-[#0C3B34] mb-4">
+        <h3 className="text-lg md:text:xl  2xl:text-3xl font-semibold text-[#0C3B34] mb-4">
           Key features of the AIP include:
         </h3>
 
         <div className="space-y-4">
           <div className="flex items-start">
-            <span className="text-[#0C3B34] font-bold mr-3">1.</span>
+            <span className="text-[#0C3B34] font-bold 2xl:text-xl mr-3">1.</span>
             <div>
-              <p className="text-gray-700 font-semibold mb-1 text-[15px]">Employer-driven:</p>
-              <p className="text-gray-600 text-[15px] text-justify">The AIP is employer-driven, meaning that employers in the Atlantic Provinces can recruit and hire foreign workers for positions that they have been unable to fill locally.</p>
+              <p className="text-gray-700 font-semibold  2xl:text-2xl mb-1 text-[15px] 2xl:tracking-wider 2xl:leading-normal">Employer-driven:</p>
+              <p className="text-gray-600 text-[15px]  2xl:text-2xl text-justify 2xl:tracking-wider 2xl:leading-normal">The AIP is employer-driven, meaning that employers in the Atlantic Provinces can recruit and hire foreign workers for positions that they have been unable to fill locally.</p>
             </div>
           </div>
           
           <div className="flex items-start">
-            <span className="text-[#0C3B34] font-bold mr-3">2.</span>
+            <span className="text-[#0C3B34] 2xl:text-xl font-bold mr-3">2.</span>
             <div>
-              <p className="text-gray-700 font-semibold mb-1 text-[15px]">Three immigration streams:</p>
-              <p className="text-gray-600 text-[15px] text-justify">The program includes the Atlantic High-skilled Program, the Atlantic Intermediate-Skilled Program, and Atlantic International Graduate Program – each targeting different categories of immigrants based on their skill level and work experience.</p>
+              <p className="text-gray-700 font-semibold mb-1 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">Three immigration streams:</p>
+              <p className="text-gray-600 text-[15px] text-justify 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">The program includes the Atlantic High-skilled Program, the Atlantic Intermediate-Skilled Program, and Atlantic International Graduate Program – each targeting different categories of immigrants based on their skill level and work experience.</p>
             </div>
           </div>
           
           <div className="flex items-start">
-            <span className="text-[#0C3B34] font-bold mr-3">3.</span>
+            <span className="text-[#0C3B34] font-bold mr-3 2xl:text-xl">3.</span>
             <div>
-              <p className="text-gray-700 font-semibold mb-1 text-[15px]">Streamlined process:</p>
-              <p className="text-gray-600 text-[15px] text-justify">The AIP aims to streamline the immigration process by reducing processing times and cutting through bureaucratic red tape to meet most current criteria, including being full-time, non-seasonal, and meeting local wage standards.</p>
+              <p className="text-gray-700 font-semibold mb-1 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">Streamlined process:</p>
+              <p className="text-gray-600 text-[15px] text-justify 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">The AIP aims to streamline the immigration process by reducing processing times and cutting through bureaucratic red tape to meet most current criteria, including being full-time, non-seasonal, and meeting local wage standards.</p>
             </div>
           </div>
           
           <div className="flex items-start">
-            <span className="text-[#0C3B34] font-bold mr-3">4.</span>
+            <span className="text-[#0C3B34] font-bold mr-3 2xl:text-xl">4.</span>
             <div>
-              <p className="text-gray-700 font-semibold mb-1 text-[15px]">Settlement plan:</p>
-              <p className="text-gray-600 text-[15px] text-justify">Applicants are required to develop a settlement plan outlining how they plan to establish roots and live and work in the Atlantic region, as well as their plans for integration into the local community.</p>
+              <p className="text-gray-700 font-semibold mb-1 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">Settlement plan:</p>
+              <p className="text-gray-600 text-[15px] text-justify 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">Applicants are required to develop a settlement plan outlining how they plan to establish roots and live and work in the Atlantic region, as well as their plans for integration into the local community.</p>
             </div>
           </div>
           
           <div className="flex items-start">
-            <span className="text-[#0C3B34] font-bold mr-3">5.</span>
+            <span className="text-[#0C3B34] font-bold mr-3 2xl:text-xl">5.</span>
             <div>
-              <p className="text-gray-700 font-semibold mb-1 text-[15px]">Permanent residency:</p>
-              <p className="text-gray-600 text-[15px] text-justify">Successful applicants to the AIP and their families can obtain permanent residency in Canada, allowing them to live and work in the Atlantic Provinces.</p>
+              <p className="text-gray-700 font-semibold mb-1 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">Permanent residency:</p>
+              <p className="text-gray-600 text-[15px] text-justify 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">Successful applicants to the AIP and their families can obtain permanent residency in Canada, allowing them to live and work in the Atlantic Provinces.</p>
             </div>
           </div>
           
           <div className="flex items-start">
-            <span className="text-[#0C3B34] font-bold mr-3">6.</span>
+            <span className="text-[#0C3B34] font-bold mr-3 2xl:text-xl">6.</span>
             <div>
-              <p className="text-gray-700 font-semibold mb-1 text-[15px]">Provincial support:</p>
-              <p className="text-gray-600 text-[15px] text-justify">The Canada Atlantic Immigration Pilot program offers a pathway for skilled workers and international graduates to contribute to the economic development of the Atlantic region while fulfilling their goal of obtaining permanent residency in Canada.</p>
+              <p className="text-gray-700 font-semibold mb-1 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">Provincial support:</p>
+              <p className="text-gray-600 text-[15px] text-justify 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">The Canada Atlantic Immigration Pilot program offers a pathway for skilled workers and international graduates to contribute to the economic development of the Atlantic region while fulfilling their goal of obtaining permanent residency in Canada.</p>
             </div>
           </div>
         </div>
@@ -104,10 +104,10 @@ export default function CanadaAtlanticImmigrationProgram() {
       <div className=" mb-8" id='canada-sinp'>
         <div className="flex items-start flex-col md:flex-row gap-6" >
           <div className="md:w-[60%]">
-            <h2 className="text-xl md:text-2xl font-bold text-[#0C3B34] mb-4">
+            <h2 className="text-xl md:text-2xl font-bold text-[#0C3B34] mb-4 2xl:text-3xl">
               SINP Program:
             </h2>
-            <p className="text-gray-700 mb-4 leading-relaxed text-[15px] text-justify">
+            <p className="text-gray-700 mb-4 leading-relaxed text-[15px]  text-justify 2xl:text-2xl">
               The Saskatchewan Immigrant Nominee Program (SINP) is a popular choice for individuals seeking Canadian 
               permanent residency. With its various streams catering to skilled workers, entrepreneurs, and international 
               graduates, the SINP offers a pathway to residency that is tailored to the specific needs and qualifications of 
@@ -127,32 +127,32 @@ export default function CanadaAtlanticImmigrationProgram() {
 
       {/* SINP Options Section */}
       <div className=" mb-8">
-        <h3 className="text-lg md:text-xl font-semibold text-[#0C3B34] mb-4">
+        <h3 className="text-lg md:text-xl font-semibold text-[#0C3B34] mb-4 2xl:text-3xl">
           If you wish to immigrate to the Saskatchewan Immigrant Nominee Program (SINP), then you have three options to choose from:
         </h3>
 
         <div className="space-y-4">
           <div className="flex items-start">
-            <span className="text-[#0C3B34] font-bold mr-3">1.</span>
+            <span className="text-[#0C3B34] font-bold mr-3 2xl:text-xl">1.</span>
             <div>
-              <p className="text-gray-700 font-semibold mb-1 text-[15px]">International Skilled Worker:</p>
-              <p className="text-gray-600 text-[15px] text-justify">Saskatchewan International Skilled is a collection of immigration streams of the Saskatchewan Immigrant program (SINP), a Provincial Nominee Program (PNP) operated by the province of Saskatchewan. Saskatchewan International Skilled subcategory includes Express Entry and Occupations In-Demand which correspond to requirements of the federal immigration program. Saskatchewan On Demand targets migrant professionals with skills in high-demand occupations in Saskatchewan.</p>
+              <p className="text-gray-700 font-semibold mb-1 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">International Skilled Worker:</p>
+              <p className="text-gray-600 text-[15px] text-justify 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">Saskatchewan International Skilled is a collection of immigration streams of the Saskatchewan Immigrant program (SINP), a Provincial Nominee Program (PNP) operated by the province of Saskatchewan. Saskatchewan International Skilled subcategory includes Express Entry and Occupations In-Demand which correspond to requirements of the federal immigration program. Saskatchewan On Demand targets migrant professionals with skills in high-demand occupations in Saskatchewan.</p>
             </div>
           </div>
           
           <div className="flex items-start">
-            <span className="text-[#0C3B34] font-bold mr-3">2.</span>
+            <span className="text-[#0C3B34] font-bold mr-3 2xl:text-xl">2.</span>
             <div>
-              <p className="text-gray-700 font-semibold mb-1 text-[15px]">Saskatchewan Experience:</p>
-              <p className="text-gray-600 text-[15px] text-justify">Saskatchewan Experience is a collection of immigration streams the Saskatchewan Immigrant Program (SINP), a Provincial Program (PNP), operated by the province of Saskatchewan. Saskatchewan Experience subcategory includes Existing Work Permit, Health Professionals, Hospitality Sector Project, Long-Haul Truck Driver and Students, which corresponds to requirements of the federal immigration program.</p>
+              <p className="text-gray-700 font-semibold mb-1 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">Saskatchewan Experience:</p>
+              <p className="text-gray-600 text-[15px] text-justify 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">Saskatchewan Experience is a collection of immigration streams the Saskatchewan Immigrant Program (SINP), a Provincial Program (PNP), operated by the province of Saskatchewan. Saskatchewan Experience subcategory includes Existing Work Permit, Health Professionals, Hospitality Sector Project, Long-Haul Truck Driver and Students, which corresponds to requirements of the federal immigration program.</p>
             </div>
           </div>
           
           <div className="flex items-start">
-            <span className="text-[#0C3B34] font-bold mr-3">3.</span>
+            <span className="text-[#0C3B34] font-bold mr-3 2xl:text-xl">3.</span>
             <div>
-              <p className="text-gray-700 font-semibold mb-1 text-[15px]">Saskatchewan Entrepreneur and Farm:</p>
-              <p className="text-gray-600 text-[15px] text-justify">Saskatchewan Entrepreneur is a stream of Saskatchewan Entrepreneur and Farm Immigration which targets experienced business owners and business managers who have significant personal net worth and are able and are willing to establish, purchase or partner in a business in Saskatchewan. Saskatchewan Entrepreneur and Farms is a stream of Saskatchewan Entrepreneur and Farm Immigration.</p>
+              <p className="text-gray-700 font-semibold mb-1 text-[15px] 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">Saskatchewan Entrepreneur and Farm:</p>
+              <p className="text-gray-600 text-[15px] text-justify 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">Saskatchewan Entrepreneur is a stream of Saskatchewan Entrepreneur and Farm Immigration which targets experienced business owners and business managers who have significant personal net worth and are able and are willing to establish, purchase or partner in a business in Saskatchewan. Saskatchewan Entrepreneur and Farms is a stream of Saskatchewan Entrepreneur and Farm Immigration.</p>
             </div>
           </div>
         </div>
@@ -160,10 +160,10 @@ export default function CanadaAtlanticImmigrationProgram() {
 
       {/* Eligibility Section */}
       <div className="pb-4">
-        <h3 className="text-xl font-semibold text-[#0C3B34] mb-4">
+        <h3 className="text-xl font-semibold text-[#0C3B34] mb-4 2xl:text-3xl">
           Eligibility:
         </h3>
-        <p className="text-gray-700 text-[15px] text-justify">
+        <p className="text-gray-700 text-[15px] text-justify 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">
           12th Pass or secondary School, Age: 21 to 55, Experience: Any, IELTS: 5 Band
         </p>
       </div>

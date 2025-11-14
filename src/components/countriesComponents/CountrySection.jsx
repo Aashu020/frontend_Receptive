@@ -7,7 +7,7 @@ const CountrySection = ({ countryName, mainTitle, title, desc, img }) => {
       <div className="max-w-6xl mx-auto">
         {/* Country Name Header */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl md:text-4xl font-extrabold uppercase text-teal-900 tracking-wide">
+          <h1 className="text-3xl md:text-4xl 2xl:text-9xl font-extrabold uppercase text-teal-900 tracking-wide">
             {countryName}
           </h1>
         </div>
@@ -18,10 +18,10 @@ const CountrySection = ({ countryName, mainTitle, title, desc, img }) => {
           {/* Left Column - Main Title & Title */}
           <div className="space-y-6">
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-green-900 mb-3 leading-tight">
+              <h2 className="text-2xl md:text-3xl 2xl:text-6xl font-bold text-green-900 mb-3 leading-tight">
                 {mainTitle}
               </h2>
-              <h3 className="text-lg md:text-xl text-green-800 font-medium">
+              <h3 className="text-lg md:text-xl 2xl:text-3xl text-green-800 font-medium">
                 {title}
               </h3>
             </div>
@@ -33,7 +33,7 @@ const CountrySection = ({ countryName, mainTitle, title, desc, img }) => {
               <img
                 src={img}
                 alt={countryName}
-                className="w-full h-64 md:h-80 object-cover rounded-2xl shadow-xl"
+                className="w-full h-64 md:h-80 2xl:h:150 object-cover rounded-2xl shadow-xl"
               />
             </div>
           </div>
@@ -43,7 +43,7 @@ const CountrySection = ({ countryName, mainTitle, title, desc, img }) => {
         {/* Bottom Section - Full Width Description */}
         <div className="w-full">
           <div className="prose prose-base max-w-none">
-            <p className="text-gray-700 text-base leading-relaxed text-justify">
+            <p className="text-gray-700  2xl:text-2xl text-base leading-relaxed text-justify">
               {desc}
             </p>
           </div>

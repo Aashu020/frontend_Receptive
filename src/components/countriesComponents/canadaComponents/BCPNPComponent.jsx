@@ -6,8 +6,8 @@ const BCPNPComponent = () => {
     <div className="px-[15px] md:px-[3rem] lg:px-[10rem] bg-white pt-2" id='canada-bc-pnp'>
       <div className="flex flex-col md:flex-row items-center mb-6">
         <div className="md:w-1/2">
-          <h2 className="text-2xl font-bold text-[#0C3B34] mb-2">BC PNP Program:</h2>
-          <p className="text-gray-600 text-[15px] text-justify">
+          <h2 className="text-2xl font-bold text-[#0C3B34] 2xl:text-3xl mb-2">BC PNP Program:</h2>
+          <p className="text-gray-600 text-[15px] text-justify 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">
             British Columbia Provincial Nominee Program (BC PNP) offers various pathways for skilled workers,
             international graduates, and entrepreneurs to obtain Canadian permanent residency. The program aims to address
             the specific economic and labor market needs of the province by selecting candidates who have the skills, experience,
@@ -25,16 +25,16 @@ const BCPNPComponent = () => {
         </div>
       </div>
       <div className="mb-4">
-        <h3 className="text-xl font-semibold text-[#0C3B34] text-[15px] ">If you wish to immigrate to British Columbia, then you have three options to choose from:</h3>
-        <ol className="list-decimal list-inside text-gray-600 mt-2">
+        <h3 className="text-xl font-semibold text-[#0C3B34] 2xl:text-3xl text-[15px] ">If you wish to immigrate to British Columbia, then you have three options to choose from:</h3>
+        <ol className="list-decimal list-inside text-gray-600 mt-2 2xl:text-2xl">
           <li>Skills Immigration Stream</li>
           <li>Express Entry British Columbia Stream</li>
           <li>Entrepreneur Immigration</li>
         </ol>
       </div>
       <div className="mb-4">
-        <h3 className="text-xl font-semibold text-[#0C3B34] text-[15px] ">Skills Immigration: BC PNP Skills Immigration is divided into the following categories:</h3>
-        <ol className="list-decimal list-inside text-gray-600 mt-2 text-[15px] text-justify">
+        <h3 className="text-xl font-semibold text-[#0C3B34] text-[15px] 2xl:text-3xl ">Skills Immigration: BC PNP Skills Immigration is divided into the following categories:</h3>
+        <ol className="list-decimal list-inside text-gray-600 mt-2 text-[15px]  2xl:text-2xl text-justify">
           <li>
             Skilled Worker Category: this category is for individuals who have received an eligible job offer in a skilled occupation. Workers are expected to have several years of
             experience in their skilled occupation.
@@ -59,8 +59,8 @@ const BCPNPComponent = () => {
         </ol>
       </div>
       <div>
-        <h3 className="text-xl font-semibold text-[#0C3B34] text-[15px]">Eligibility:</h3>
-        <p className="text-gray-600 mt-2 text-[15px] text-justify">
+        <h3 className="text-xl font-semibold text-[#0C3B34] text-[15px] 2xl:text-3xl">Eligibility:</h3>
+        <p className="text-gray-600 mt-2 text-[15px] text-justify 2xl:text-2xl 2xl:tracking-wider 2xl:leading-normal">
           Min 12th Pass, or secondary School Diploma or Bachelors, Age: 21 to 55, Experience: min 2 years and above in the last 5 years
         </p>
       </div>

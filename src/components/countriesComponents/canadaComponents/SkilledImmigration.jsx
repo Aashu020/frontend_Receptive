@@ -5,16 +5,16 @@ import SkilledImmigrationImg from "../../../assets/images/SkilledImmigration.jpg
 export default function SkilledImmigration() {
   return (
     <section id="canada-skilled-immigration" className="w-full bg-white py-10 px-[15px] md:px-[3rem] lg:px-[10rem]">
-      <div className="container flex flex-col md:flex-row items-start gap-8">
+      <div className="container flex flex-col md:flex-row items-start gap-8 2xl:gap-20">
         {/* Left Content */}
         <div className="md:w-[70%]">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">
+          <h2 className="text-2xl 2xl:text-6xl font-bold text-gray-800 mb-4">
             Skilled Immigration:
           </h2>
-          <h3 className="text-lg md:text-xl font-semibold text-gray-700 mb-3">
+          <h3 className="text-lg md:text-xl  2xl:text-3xl font-semibold text-gray-700 mb-3">
             Express Entry
           </h3>
-          <p className="text-gray-600 mb-6 leading-relaxed text-[15px] text-justify">
+          <p className="text-gray-600 mb-6 leading-relaxed text-[15px] 2xl:text-3xl text-justify">
             The Canadian Express Entry program is an online system used by the
             Canadian government to manage applications for immigration to
             Canada. It is designed to select skilled workers for immigration to
@@ -34,10 +34,10 @@ export default function SkilledImmigration() {
           <div className="space-y-6">
             {/* FSWP */}
             <div>
-              <h4 className="font-semibold text-gray-800 mb-2">
+              <h4 className="font-semibold 2xl:text-2xl text-gray-800 mb-2">
                 1. Federal Skilled Worker Program (FSWP):
               </h4>
-              <ul className="list-disc pl-6 text-gray-600 space-y-1 text-justify text-[15px]">
+              <ul className="list-disc  2xl:text-2xl  pl-6 text-gray-600 space-y-1 text-justify text-[15px]">
                 <li>
                   Have at least one year of continuous full-time or equivalent
                   part-time work experience in a skilled occupation within the
@@ -60,10 +60,10 @@ export default function SkilledImmigration() {
 
             {/* FSTP */}
             <div>
-              <h4 className="font-semibold text-gray-800 mb-2">
+              <h4 className="font-semibold 2xl:text-3xl text-gray-800 mb-2">
                 2. Federal Skilled Trades Program (FSTP):
               </h4>
-              <ul className="list-disc pl-6 text-gray-600 space-y-1 text-justify text-[15px]">
+              <ul className="list-disc 2xl:text-2xl  pl-6 text-gray-600 space-y-1 text-justify text-[15px]">
                 <li>
                   Have at least two years of full-time work experience in a
                   skilled trade within the last five years.
@@ -81,10 +81,10 @@ export default function SkilledImmigration() {
 
             {/* CEC */}
             <div>
-              <h4 className="font-semibold text-gray-800 mb-2">
+              <h4 className="font-semibold 2xl:text-3xl text-gray-800 mb-2">
                 3. Canadian Experience Class (CEC):
               </h4>
-              <ul className="list-disc pl-6 text-gray-600 space-y-1 text-justify text-[15px]">
+              <ul className="list-disc 2xl:text-2xl  pl-6 text-gray-600 space-y-1 text-justify text-[15px]">
                 <li>
                   Have at least one year of skilled work experience in Canada
                   within the last three years.
@@ -97,7 +97,7 @@ export default function SkilledImmigration() {
             </div>
           </div>
 
-          <p className="text-gray-600 mt-6 leading-relaxed text-justify text-[15px]">
+          <p className="text-gray-600 mt-6  2xl:text-2xl  leading-relaxed text-justify text-[15px]">
             In addition to meeting the specific requirements of one of these
             programs, candidates must also create an Express Entry profile,
             obtain a minimum Comprehensive Ranking System (CRS) score, and
@@ -111,7 +111,7 @@ export default function SkilledImmigration() {
           <img
             src={SkilledImmigrationImg}// replace with your image path
             alt="The Canadian Express Entry Program"
-            className="w-full max-w-sm rounded-lg shadow-md"
+            className="w-full max-w-sm 2xl:max-w-5xl rounded-lg shadow-md"
           />
         </div>
       </div>
