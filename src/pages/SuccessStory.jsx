@@ -211,7 +211,7 @@ function SuccessStory() {
               <img
                 src={selectedImage.src}
                 alt="Enlarged view"
-                className="w-full h-auto rounded-md shadow-2xl"
+                className="w-full h-100 rounded-md shadow-2xl"
               />
               <button
                 className="absolute top-2 right-2 h-10 w-10 bg-white text-[#0C3B34] rounded-full p-1 hover:bg-[#D8C287] transition-colors"

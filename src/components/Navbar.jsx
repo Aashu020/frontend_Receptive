@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { logout, loadUser } from "../features/authSlice"; // Adjust path as needed
+import { logout, loadUser } from "../features/authSlice";
 import termsPDF from "../assets/ReceptiveTerms&Conditions.pdf";
 import logo from "../assets/images/logo.jpg";
 import {
@@ -19,10 +19,13 @@ import {
   FiLogOut,
   FiUser,
   FiHome,
+  FiChevronUp,
 } from "react-icons/fi";
 import {
+  FaBars,
   FaPhone,
   FaEnvelope,
+  FaTimes,
   FaInstagram,
   FaFacebookF,
   FaLinkedinIn,
@@ -31,27 +34,14 @@ import {
 } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
-function UpperHeader() {
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        setIsVisible(false);
-      } else {
-        setIsVisible(true);
-      }
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollY]);
-
+// UPDATED: Accept props for mobile expanded state
+export function UpperHeader({
+  isMobileExpanded,
+  setIsMobileExpanded,
+  isVisible, // NEW: receive visibility from parent
+}) {
   const handlePhoneClick = (phoneNumber) => {
-    window.open(`tel:${phoneNumber}`, "_self");
+    window.location.href = `tel:${phoneNumber.replace(/\s/g, "")}`;
   };
 
   const handleEmailClick = (email) => {
@@ -61,118 +51,374 @@ function UpperHeader() {
     );
   };
 
+  const toggleMobileExpanded = () => {
+    setIsMobileExpanded((prev) => !prev);
+  };
+
   return (
-    <div
-      style={{
-        background: "var(--primary)",
-        color: "var(--accent)",
-        transform: isVisible ? "translateY(0)" : "translateY(-100%)",
-        transition: "transform 0.3s ease-in-out",
-      }}
-      className="hidden sm:hidden md:flex lg:flex xl:flex fixed w-full z-100 justify-between items-center py-3 md:py-3 lg:py-4 2xl:py-6 px-4 md:px-4 lg:px-5 top-0"
-    >
-      <div className="flex flex-col md:flex-row gap-1 md:gap-2 lg:gap-3 xl:gap-8 text-xs lg:text-sm">
-        <div className="flex items-center gap-1 md:gap-1 lg:gap-2 ">
-          <button
-            onClick={() => handlePhoneClick("+919876543210")}
-            className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
-            aria-label="Call +91 98765 43210"
-          >
-            {/* <FaPhone className="text-xs lg:text-sm" /> */}
-            <span className="ml-1 text-xs lg:text-sm 2xl:text-2xl hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
-              IN +91 98677 29568
+    <>
+      {/* Desktop Upper Header */}
+      <div
+        style={{
+          background: "var(--primary)",
+          color: "var(--accent)",
+          transform: isVisible ? "translateY(0)" : "translateY(-100%)",
+          transition: "transform 0.3s ease-in-out",
+        }}
+        className="hidden xl:flex fixed w-full z-[110] justify-between items-center py-3 md:py-3 lg:py-4 2xl:py-6 px-4 md:px-4 lg:px-5 top-0"
+      >
+        <div className="flex flex-col md:flex-row gap-1 md:gap-2 lg:gap-3 xl:gap-8 text-xs lg:text-sm">
+          <div className="flex items-center gap-1 md:gap-1 lg:gap-2">
+            <button
+              onClick={() => handlePhoneClick("+919876543210")}
+              className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
+              aria-label="Call +91 98765 43210"
+            >
+              <span className="ml-1 text-xs lg:text-sm 2xl:text-2xl hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
+                Enquiry <span className="ml-2"></span> IN +91 98677 29568  <span className="ml-2"></span>  UAE +971 562744455
+              </span>
+              
+
+            </button>
+
+            <span className="mx-1 text-xs lg:text-sm opacity-60 2xl:text-2xl">
+              |
             </span>
-          </button>
-          <span className="mx-1 text-xs lg:text-sm opacity-60 2xl:text-2xl">|</span>
-          <button
-            onClick={() => handleEmailClick("info@receptivegroup.com")}
-            className="flex items-center gap-1 hover:opacity-80 hover:text-white cursor-pointer transition-opacity"
-            aria-label="Email info@receptivegroup.com"
-          >
-            <FaEnvelope className="text-xs lg:text-sm" />
-            <span className="ml-1 2xl:text-2xl hover:underline hover:text-white cursor-pointer text-xs lg:text-sm max-w-[100px] md:max-w-[150px] lg:max-w-[180px] xl:max-w-none">
-              info@receptivesolutions.co.in
+
+            <button
+              onClick={() => handleEmailClick("info@receptivesolutions.co.in")}
+              className="flex items-center gap-1 hover:opacity-80 hover:text-white cursor-pointer transition-opacity"
+              aria-label="Email info@receptivesolutions.co.in"
+            >
+              <FaEnvelope className="text-xs lg:text-sm" />
+              <span className="ml-1 2xl:text-2xl hover:underline hover:text-white cursor-pointer text-xs lg:text-sm max-w-[100px] md:max-w-[150px] lg:max-w-[180px] xl:max-w-none">
+                info@receptivesolutions.co.in
+              </span>
+            </button>
+          </div>
+
+          <div className="flex items-center gap-1 md:gap-1 lg:gap-2">
+            <span className="text-xs lg:text-sm font-semibold">
+              Contact Support:
             </span>
-          </button>
+            <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
+            <button
+              onClick={() => handlePhoneClick("+911234567890")}
+              className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
+              aria-label="Call +91 12345 67890"
+            >
+              <span className="ml-1 text-xs lg:text-sm 2xl:text-2xl hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
+                IN +91 86556 93909
+              </span>
+            </button>
+            <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
+            <button
+              onClick={() => handlePhoneClick("+911234567891")}
+              className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
+              aria-label="Call +91 12345 67891"
+            >
+              <span className="ml-1 text-xs lg:text-sm 2xl:text-2xl hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
+                UAE +971 562744455
+              </span>
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-1 md:gap-1 lg:gap-2">
-          <button
-            onClick={() => handlePhoneClick("+919885602560")}
-            className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
-            aria-label="Call +91 98856 02560"
+
+        {/* Right Side - Social Links & Terms */}
+        <div className="flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-6">
+          {/* Branches Dropdown */}
+          <div className="relative group">
+            <button className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer">
+              <span className="text-xs lg:text-sm 2xl:text-2xl font-medium">
+                Our Branches
+              </span>
+              <svg
+                className="w-3 h-3 lg:w-4 lg:h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            {/* Dropdown Menu */}
+            <div className="absolute right-0 top-full mt-3 w-64 bg-white rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[9999] border border-gray-100 min-w-max">
+              <div className="py-3 px-4 space-y-3">
+
+
+                <div className="border-b border-gray-200 pb-3">
+                  <h4 className="font-semibold text-sm text-indigo-600">
+                    Mumbai, India
+                  </h4>
+                  <button
+                    onClick={() => handlePhoneClick("+919876543210")}
+                    className="text-xs lg:text-sm text-gray-700 hover:text-indigo-600 mt-1 flex items-center gap-2"
+                  >
+                    <span className="text-xs">Enquiry:</span> +91 98677 29568
+                  </button>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-sm text-indigo-600">
+                    Ahmedabad, India
+                  </h4>
+                  <button
+                    onClick={() => handlePhoneClick("+919876543211")}
+                    className="text-xs lg:text-sm text-gray-700 hover:text-indigo-600 mt-1 flex items-center gap-2"
+                  >
+                    <span className="text-xs">Enquiry:</span> +91 98677 29568
+                  </button>
+                </div>
+
+                
+                <div className="border-b border-gray-200 pb-3">
+                  <h4 className="font-semibold text-sm text-indigo-600">
+                    UAE - Dubai
+                  </h4>
+                  <button
+                    onClick={() => handlePhoneClick("+971501234567")}
+                    className="text-xs lg:text-sm text-gray-700 hover:text-indigo-600 mt-1 flex items-center gap-2"
+                  >
+                    <span className="text-xs">Enquiry:</span> +971 562744455
+                  </button>
+                </div>
+
+                <div className="border-b border-gray-200 pb-3">
+                  <h4 className="font-semibold text-sm text-indigo-600">
+                    UK - London
+                  </h4>
+                  <button
+                    onClick={() => handlePhoneClick("+447123456789")}
+                    className="text-xs lg:text-sm text-gray-700 hover:text-indigo-600 mt-1 flex items-center gap-2"
+                  >
+                    <span className="text-xs">Enquiry:</span> +971 562744455
+                  </button>
+                </div>
+
+                
+              </div>
+            </div>
+          </div>
+
+          <a
+            href={termsPDF}
+            download="Terms-and-Conditions.pdf"
+            className="hidden lg:flex items-center hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
           >
-            {/* <FaPhone className="text-xs lg:text-sm" /> */}
-            <span className="ml-1 2xl:text-2xl text-xs lg:text-sm hidden md:block md:text-[10px] md:mt-1 hover:text-white cursor-pointer lg:inline">
-              UAE +971 562744455
+            <FaRegFileAlt className="mr-1 text-xs lg:text-sm 2xl:text-2xl" />
+            <span className="text-xs lg:text-sm hover:text-white cursor-pointer 2xl:text-2xl">
+              Terms
             </span>
-          </button>
-          <span className="mx-1 text-xs lg:text-sm opacity-60 2xl:text-2xl">|</span>
-          <button
-            onClick={() => handleEmailClick("info@receptivesolutions.com")}
-            className="flex items-center gap-1 hover:opacity-80 hover:text-white cursor-pointer transition-opacity"
-            aria-label="Email info@receptivesolutions.com"
-          >
-            <FaEnvelope className="text-xs lg:text-sm" />
-            <span className="ml-1 2xl:text-2xl hover:underline hover:text-white cursor-pointer text-xs lg:text-sm truncate max-w-[100px] md:max-w-[140px] lg:max-w-[180px] xl:max-w-none">
-              info@receptivegroup.com
-            </span>
-          </button>
+          </a>
+          <div className="flex items-center gap-1 md:gap-2 lg:gap-3">
+            <a
+              href="https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
+              aria-label="Instagram"
+            >
+              <FaInstagram className="text-sm lg:text-base 2xl:text-2xl" />
+            </a>
+            <a
+              href="https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
+              aria-label="Facebook"
+            >
+              <FaFacebookF className="text-sm lg:text-base 2xl:text-2xl" />
+            </a>
+            <a
+              href="https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
+              aria-label="LinkedIn"
+            >
+              <FaLinkedinIn className="text-sm lg:text-base 2xl:text-2xl" />
+            </a>
+            <a
+              href="https://www.youtube.com/@receptivegroup"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
+              aria-label="YouTube"
+            >
+              <FaYoutube className="text-sm lg:text-base 2xl:text-2xl" />
+            </a>
+          </div>
         </div>
       </div>
-      <div className="flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-6 ">
-        <a
-          href={termsPDF}
-          download="Terms-and-Conditions.pdf"
-          className="hidden lg:flex items-center hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
+
+      {/* Mobile Upper Header - Collapsible */}
+      <div className="xl:hidden fixed w-full z-[110] top-0">
+        {/* Toggle Button */}
+        <button
+          onClick={toggleMobileExpanded}
+          className="w-full bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white py-2 px-4 flex items-center justify-center gap-2 shadow-md"
+          aria-label="Toggle contact information"
         >
-          <FaRegFileAlt className="mr-1 text-xs lg:text-sm 2xl:text-2xl" />
-          <span className="text-xs lg:text-sm hover:text-white cursor-pointer 2xl:text-2xl">
-            Terms
-          </span>
-        </a>
-        <div className="flex items-center gap-1 md:gap-2 lg:gap-3">
-          <a
-            href="https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
-            aria-label="Instagram"
-          >
-            <FaInstagram className="text-sm lg:text-base 2xl:text-2xl" />
-          </a>
-          <a
-            href="https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
-            aria-label="Facebook"
-          >
-            <FaFacebookF className="text-sm lg:text-base 2xl:text-2xl" />
-          </a>
-          <a
-            href="https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
-            aria-label="LinkedIn"
-          >
-            <FaLinkedinIn className="text-sm lg:text-base 2xl:text-2xl" />
-          </a>
-          <a
-            href="https://www.youtube.com/@receptivegroup"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
-            aria-label="YouTube"
-          >
-            <FaYoutube className="text-sm lg:text-base 2xl:text-2xl" />
-          </a>
+          <span className="text-xs font-medium">Contact Info</span>
+          {isMobileExpanded ? (
+            <FiChevronUp className="w-4 h-4 transition-transform duration-300" />
+          ) : (
+            <FiChevronDown className="w-4 h-4 transition-transform duration-300" />
+          )}
+        </button>
+
+        {/* Expandable Content */}
+        <div
+          className={`bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white overflow-hidden transition-all duration-300 ${
+            isMobileExpanded ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          }`}
+        >
+          <div className="px-4 py-4 space-y-4">
+            {/* Enquiry Section */}
+            <div className="space-y-2">
+              <h4 className="text-xs font-semibold text-[#D8C287]">Enquiry</h4>
+              <button
+                onClick={() => handlePhoneClick("+919867729568")}
+                className="flex items-center gap-2 text-xs hover:text-[#D8C287] transition-colors"
+              >
+                <FaPhone className="w-3 h-3" />
+                <span>IN +91 98677 29568</span>
+              </button>
+              <button
+                onClick={() =>
+                  handleEmailClick("info@receptivesolutions.co.in")
+                }
+                className="flex items-center gap-2 text-xs hover:text-[#D8C287] transition-colors break-all"
+              >
+                <FaEnvelope className="w-3 h-3 flex-shrink-0" />
+                <span>info@receptivesolutions.co.in</span>
+              </button>
+            </div>
+
+            {/* Support Section */}
+            <div className="space-y-2 border-t border-white/20 pt-3">
+              <h4 className="text-xs font-semibold text-[#D8C287]">
+                Contact Support
+              </h4>
+              <button
+                onClick={() => handlePhoneClick("+911234567890")}
+                className="flex items-center gap-2 text-xs hover:text-[#D8C287] transition-colors"
+              >
+                <FaPhone className="w-3 h-3" />
+                <span>=91 86556 93909</span>
+              </button>
+              <button
+                onClick={() => handlePhoneClick("+911234567891")}
+                className="flex items-center gap-2 text-xs hover:text-[#D8C287] transition-colors"
+              >
+                <FaPhone className="w-3 h-3" />
+                <span>+971 562744455</span>
+              </button>
+            </div>
+
+            {/* Branches Section */}
+            <div className="space-y-2 border-t border-white/20 pt-3">
+              <h4 className="text-xs font-semibold text-[#D8C287]">
+                Our Branches
+              </h4>
+              <div className="grid grid-cols-2 gap-2">
+                 <div className="bg-white/10 rounded-lg p-2">
+                  <p className="text-xs font-medium">Mumbai, India</p>
+                  <button
+                    onClick={() => handlePhoneClick("+919876543210")}
+                    className="text-xs hover:text-[#D8C287] mt-1"
+                  >
+                  +91 98677 29568
+                  </button>
+                </div>
+                <div className="bg-white/10 rounded-lg p-2">
+                  <p className="text-xs font-medium">Ahmedabad, India</p>
+                  <button
+                    onClick={() => handlePhoneClick("+919876543211")}
+                    className="text-xs hover:text-[#D8C287] mt-1"
+                  >
+                   +91 98677 29568
+                  </button>
+                </div>
+                <div className="bg-white/10 rounded-lg p-2">
+                  <p className="text-xs font-medium">UAE - Dubai</p>
+                  <button
+                    onClick={() => handlePhoneClick("+971501234567")}
+                    className="text-xs hover:text-[#D8C287] mt-1"
+                  >
+                  +971 562744455
+                  </button>
+                </div>
+                <div className="bg-white/10 rounded-lg p-2">
+                  <p className="text-xs font-medium">UK - London</p>
+                  <button
+                    onClick={() => handlePhoneClick("+447123456789")}
+                    className="text-xs hover:text-[#D8C287] mt-1"
+                  >
+                    +971 562744455
+                  </button>
+                </div>
+               
+              </div>
+            </div>
+
+            {/* Social Links & Terms */}
+            <div className="flex items-center justify-between border-t border-white/20 pt-3">
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#D8C287] transition-colors"
+                >
+                  <FaInstagram className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#D8C287] transition-colors"
+                >
+                  <FaFacebookF className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#D8C287] transition-colors"
+                >
+                  <FaLinkedinIn className="w-4 h-4" />
+                </a>
+                <a
+                  href="https://www.youtube.com/@receptivegroup"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#D8C287] transition-colors"
+                >
+                  <FaYoutube className="w-4 h-4" />
+                </a>
+              </div>
+              <a
+                href={termsPDF}
+                download="Terms-and-Conditions.pdf"
+                className="flex items-center gap-1 text-xs hover:text-[#D8C287] transition-colors"
+              >
+                <FaRegFileAlt className="w-3 h-3" />
+                <span>Terms</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
-
 const Navbar = () => {
   const [isCountriesOpen, setIsCountriesOpen] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(null);
@@ -182,6 +428,7 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [shouldLoadUser, setShouldLoadUser] = useState(false); // New: Track initial load
+  const [isMobileHeaderExpanded, setIsMobileHeaderExpanded] = useState(false);
   const navRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -240,7 +487,7 @@ const Navbar = () => {
 
     return {
       name: name || "User",
-      email: email || "No email"
+      email: email || "No email",
     };
   };
 
@@ -256,11 +503,13 @@ const Navbar = () => {
     navigate(path);
   };
 
+  // UPDATED: Scroll handler that updates isUpperHeaderVisible state
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setIsScrolled(currentScrollY > 10);
 
+      // Update visibility for desktop
       if (window.innerWidth >= 768) {
         if (currentScrollY > lastScrollY && currentScrollY > 100) {
           setIsUpperHeaderVisible(false);
@@ -272,7 +521,6 @@ const Navbar = () => {
       }
       setLastScrollY(currentScrollY);
     };
-
     const handleResize = () => {
       if (window.innerWidth < 768) {
         setIsUpperHeaderVisible(false);
@@ -286,6 +534,7 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", handleResize);
     handleResize();
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
@@ -333,16 +582,18 @@ const Navbar = () => {
       setTimeout(() => {
         const section = document.getElementById(hash);
         if (section) {
-          const navbarHeight = window.innerWidth >= 768 && isUpperHeaderVisible ?
-            44 + 80 + 20 :
-            64 + 20;
+          const navbarHeight =
+            window.innerWidth >= 768 && isUpperHeaderVisible
+              ? 44 + 80 + 20
+              : 64 + 20;
 
-          const elementPosition = section.getBoundingClientRect().top + window.pageYOffset;
+          const elementPosition =
+            section.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - navbarHeight;
 
           window.scrollTo({
             top: offsetPosition,
-            behavior: "smooth"
+            behavior: "smooth",
           });
         } else {
           console.log(`Section with ID "${hash}" not found`);
@@ -371,18 +622,27 @@ const Navbar = () => {
       { title: "UAE", link: "/country/uae" },
       { title: "Golden Visa", link: "/country/uae#golden-visa" },
       { title: "Company Investor", link: "/country/uae#company-investor-visa" },
-      { title: "Property Investor", link: "/country/uae#property-investor-visa" },
+      {
+        title: "Property Investor",
+        link: "/country/uae#property-investor-visa",
+      },
       { title: "UAE Employment", link: "/country/uae#employment-visa" },
       { title: "UAE Student", link: "/country/uae#student-visa" },
     ],
     Canada: [
       { title: "Canada", link: "/country/canada" },
       { title: "Tourist", link: "/country/canada#canada-tourist" },
-      { title: "Skilled Immigration", link: "/country/canada#canada-skilled-immigration" },
+      {
+        title: "Skilled Immigration",
+        link: "/country/canada#canada-skilled-immigration",
+      },
       { title: "Start-Up", link: "/country/canada#canada-start-up" },
       { title: "AIP", link: "/country/canada#canada-aip" },
       { title: "SINP", link: "/country/canada#canada-sinp" },
-      { title: "Alberta Tech Pathway", link: "/country/canada#canada-alberta-tech-pathway" },
+      {
+        title: "Alberta Tech Pathway",
+        link: "/country/canada#canada-alberta-tech-pathway",
+      },
       { title: "BC PNP", link: "/country/canada#canada-bc-pnp" },
     ],
     UK: [
@@ -406,9 +666,18 @@ const Navbar = () => {
     Australia: [
       { title: "Australia", link: "/country/australia" },
       { title: "Visitor", link: "/country/australia#australia-visitor" },
-      { title: "Subclass 400", link: "/country/australia#australia-subclass-400" },
-      { title: "Subclass 482", link: "/country/australia#australia-subclass-482" },
-      { title: "Subclass 186", link: "/country/australia#australia-subclass-186" },
+      {
+        title: "Subclass 400",
+        link: "/country/australia#australia-subclass-400",
+      },
+      {
+        title: "Subclass 482",
+        link: "/country/australia#australia-subclass-482",
+      },
+      {
+        title: "Subclass 186",
+        link: "/country/australia#australia-subclass-186",
+      },
     ],
     Singapore: [
       { title: "Singapore", link: "/country/singapore" },
@@ -469,26 +738,37 @@ const Navbar = () => {
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
         <FiUserPlus className="w-4 h-4 xl:w-5 xl:h-5 2xl:w-6 2xl:h-6 relative z-10 transition-transform duration-300 group-hover:scale-110" />
-        <span className="relative z-10 group-hover:text-[#0C3B34] transition-colors duration-300 2xl:text-2xl">Sign&nbsp;In</span>
+        <span className="relative z-10 group-hover:text-[#0C3B34] transition-colors duration-300 2xl:text-2xl">
+          Sign&nbsp;In
+        </span>
       </button>
     );
   };
 
   return (
     <header ref={navRef} className="relative">
-      <UpperHeader />
+      <UpperHeader
+        isMobileExpanded={isMobileHeaderExpanded}
+        setIsMobileExpanded={setIsMobileHeaderExpanded}
+        isVisible={isUpperHeaderVisible} // PASS visibility to UpperHeader
+      />
       <nav
-        className={`flex justify-center bg-white/95 backdrop-blur-md border-b border-gray-200 fixed w-full z-[100] transition-all duration-300 ${isScrolled ? "shadow-xl bg-white/98" : "shadow-lg"
-          }`}
+        className={`flex justify-center pt-4 bg-white/95 backdrop-blur-md border-b border-gray-200 fixed w-full z-[100] transition-all duration-300 ${
+          isScrolled ? "shadow-xl bg-white/98" : "shadow-lg"
+        }`}
         style={{
           top:
             window.innerWidth >= 2500 && isUpperHeaderVisible
               ? "80px"
+              : window.innerWidth >= 1024 && isUpperHeaderVisible
+              ? "2rem"
               : window.innerWidth >= 768 && isUpperHeaderVisible
-                ? "2.75rem"
-                : "0",
+              ? "2rem"
+              : window.innerWidth < 768
+              ? "28px"
+              : "0",
+          transition: "top 0.3s ease-in-out",
         }}
-
       >
         <div className=" mx-0 w-full px-4 lg:px-6 py-2 2xl:px-[5rem] 2xl:py-8">
           <div className="flex justify-between items-center h-16 lg:h-20">
@@ -505,8 +785,15 @@ const Navbar = () => {
                   />
                   <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div>
                 </div>
-                <span className="text-[#0c3b34] font-bold md:text-[15.5px] lg:text-[15px] xl:text-[1rem] hidden xl:flex 2xl:text-2xl">Trusted&nbsp;Since&nbsp;2011 | Licensed&nbsp;&&nbsp;Certified</span>
-                <p className="text-[#0c3b34] font-bold md:text-lg xl:hidden text-center text-[11px] lg:text-[0.8rem]"><span className=" border-b-2 ">Trusted&nbsp;Since&nbsp;2011</span> <br /> License&nbsp;&&nbsp;Certified</p>
+                <span className="text-[#0c3b34] font-bold md:text-[15.5px] lg:text-[15px] xl:text-[1rem] hidden xl:flex 2xl:text-2xl">
+                  Trusted&nbsp;Since&nbsp;2011 | Licensed&nbsp;&&nbsp;Certified
+                </span>
+                <p className="text-[#0c3b34] font-bold md:text-lg xl:hidden text-center text-[11px] lg:text-[0.8rem]">
+                  <span className=" border-b-2 ">
+                    Trusted&nbsp;Since&nbsp;2011
+                  </span>{" "}
+                  <br /> License&nbsp;&&nbsp;Certified
+                </p>
               </div>
             </div>
             <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 cursor-pointer">
@@ -518,19 +805,23 @@ const Navbar = () => {
                         setIsCountriesOpen(!isCountriesOpen);
                         setSelectedCountry(null);
                       }}
-                      className={`flex items-center space-x-1 px-4 2xl:text-2xl lg:px-2 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base relative overflow-hidden group ${isCountriesOpen
-                        ? "bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white shadow-lg scale-105"
-                        : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54]"
-                        }`}
+                      className={`flex items-center space-x-1 px-4 2xl:text-2xl lg:px-2 xl:px-3.5 py-2.5 xl:py-2.5 rounded-full transition-all duration-300 font-medium text-sm xl:text-base relative overflow-hidden group ${
+                        isCountriesOpen
+                          ? "bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white shadow-lg scale-105"
+                          : "text-gray-700 hover:text-white hover:bg-gradient-to-r hover:from-[#0C3B34] hover:to-[#1a5f54]"
+                      }`}
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D8C287] to-[#e6d098] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                       <item.icon className="h-4 xl:h-4 relative z-10 2xl:h-6 2xl:w-6" />
-                      <span className="relative z-10 2xl:text-2xl">{item.name}</span>
+                      <span className="relative z-10 2xl:text-2xl">
+                        {item.name}
+                      </span>
                       <FiChevronDown
-                        className={`h-3 xl:w-3 xl:h-4 transition-all duration-300 2xl:h-6 2xl:w-6 relative z-10 ${isCountriesOpen
-                          ? "rotate-180"
-                          : "group-hover:rotate-12"
-                          }`}
+                        className={`h-3 xl:w-3 xl:h-4 transition-all duration-300 2xl:h-6 2xl:w-6 relative z-10 ${
+                          isCountriesOpen
+                            ? "rotate-180"
+                            : "group-hover:rotate-12"
+                        }`}
                       />
                     </button>
                   ) : (
@@ -566,7 +857,10 @@ const Navbar = () => {
         {/* Desktop Countries Dropdown */}
         {isCountriesOpen && (
           <div className="absolute top-23 2xl:top-34 left-0 right-0 bg-gradient-to-br from-gray-50 to-white shadow-2xl border-t border-gray-100 hidden lg:block animate-slideDown z-[101]">
-            {console.log("Countries dropdown open, selectedCountry:", selectedCountry)}
+            {console.log(
+              "Countries dropdown open, selectedCountry:",
+              selectedCountry
+            )}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0C3B34] via-[#D8C287] to-[#0C3B34]"></div>
             <div className="2xl:px-20 mx-auto px-6 py-6 xl:py-8">
               {!selectedCountry ? (
@@ -626,8 +920,12 @@ const Navbar = () => {
                         onClick={() => handleVisaClick(visa)}
                         className="block p-3 rounded-lg text-sm bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-lg transition-all duration-300 hover:scale-105"
                       >
-                        <div className="font-medium 2xl:text-2xl">{visa.title}</div>
-                        <div className="text-xs text-white/75 mt-1 2xl:text-xl">View Details </div>
+                        <div className="font-medium 2xl:text-2xl">
+                          {visa.title}
+                        </div>
+                        <div className="text-xs text-white/75 mt-1 2xl:text-xl">
+                          View Details{" "}
+                        </div>
                       </button>
                     ))}
                   </div>
@@ -661,8 +959,9 @@ const Navbar = () => {
                           <span className="font-medium">{item.name}</span>
                         </div>
                         <FiChevronDown
-                          className={`w-5 h-5 transition-transform duration-300 ${isCountriesOpen ? "rotate-180" : ""
-                            }`}
+                          className={`w-5 h-5 transition-transform duration-300 ${
+                            isCountriesOpen ? "rotate-180" : ""
+                          }`}
                         />
                       </button>
                       {isCountriesOpen && (
@@ -709,22 +1008,26 @@ const Navbar = () => {
                                 </h4>
                               </div>
                               <div className="grid grid-cols-2 gap-3">
-                                {countries[selectedCountry].map((visa, index) => (
-                                  <button
-                                    key={index}
-                                    onClick={() => handleVisaClick(visa)}
-                                    className="group block p-4 xl:p-6 rounded-2xl transition-all duration-300 hover:scale-105 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-2xl border border-[#D8C287]/30 hover:border-[#D8C287]"
-                                    style={{ animationDelay: `${index * 50}ms` }}
-                                  >
-                                    <div className="font-bold text-xs xl:text-sm mb-2 group-hover:text-[#D8C287] transition-colors duration-300">
-                                      {visa.title}
-                                      <span className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">
-                                        →
-                                      </span>
-                                    </div>
-                                    <div className="absolute top-3 right-3 w-2 h-2 bg-[#D8C287] rounded-full opacity-50 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300"></div>
-                                  </button>
-                                ))}
+                                {countries[selectedCountry].map(
+                                  (visa, index) => (
+                                    <button
+                                      key={index}
+                                      onClick={() => handleVisaClick(visa)}
+                                      className="group block p-4 xl:p-6 rounded-2xl transition-all duration-300 hover:scale-105 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-2xl border border-[#D8C287]/30 hover:border-[#D8C287]"
+                                      style={{
+                                        animationDelay: `${index * 50}ms`,
+                                      }}
+                                    >
+                                      <div className="font-bold text-xs xl:text-sm mb-2 group-hover:text-[#D8C287] transition-colors duration-300">
+                                        {visa.title}
+                                        <span className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">
+                                          →
+                                        </span>
+                                      </div>
+                                      <div className="absolute top-3 right-3 w-2 h-2 bg-[#D8C287] rounded-full opacity-50 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300"></div>
+                                    </button>
+                                  )
+                                )}
                               </div>
                             </div>
                           )}
@@ -760,8 +1063,12 @@ const Navbar = () => {
                         {getUserInitials(user)}
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">{getUserDetails(user).name}</p>
-                        <p className="text-xs text-gray-500 truncate">{getUserDetails(user).email}</p>
+                        <p className="font-medium text-gray-900">
+                          {getUserDetails(user).name}
+                        </p>
+                        <p className="text-xs text-gray-500 truncate">
+                          {getUserDetails(user).email}
+                        </p>
                       </div>
                     </div>
                     <button
