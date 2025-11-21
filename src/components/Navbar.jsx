@@ -20,10 +20,11 @@ import {
   FiUser,
   FiHome,
   FiChevronUp,
+  
 } from "react-icons/fi";
 import {
   FaBars,
-  FaPhone,
+  FaPhoneAlt,
   FaEnvelope,
   FaTimes,
   FaInstagram,
@@ -74,9 +75,9 @@ export function UpperHeader({
               className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
               aria-label="Call +91 98765 43210"
             >
-              <span className="ml-1 text-xs lg:text-sm 2xl:text-2xl hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
-                Enquiry <span className="ml-2"></span> IN +91 98677 29568  <span className="ml-2"></span>  UAE +971 562744455
-              </span>
+              <div className="ml-1 xl:ml-0 text-xs lg:text-sm 2xl:text-2xl hidden md:text-[10px] md:flex md:mt-1 hover:text-white cursor-pointer">
+                Enquiry <span className="ml-2"></span> IN&nbsp;+91&nbsp;98677&nbsp;29568  <span className="mx-2">|</span>  UAE&nbsp;+971&nbsp;562744455
+              </div>
               
 
             </button>
@@ -99,26 +100,26 @@ export function UpperHeader({
 
           <div className="flex items-center gap-1 md:gap-1 lg:gap-2">
             <span className="text-xs lg:text-sm font-semibold">
-              Contact Support:
+              Contact&nbsp;Support:
             </span>
-            <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
+            <span className="mx-1 xl:mx-0 text-xs lg:text-sm opacity-60">|</span>
             <button
               onClick={() => handlePhoneClick("+911234567890")}
               className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
               aria-label="Call +91 12345 67890"
             >
-              <span className="ml-1 text-xs lg:text-sm 2xl:text-2xl hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
-                IN +91 86556 93909
+              <span className="ml-1 xl:ml-0  text-xs lg:text-sm 2xl:text-2xl hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
+                IN&nbsp;+91&nbsp;86556&nbsp;93909
               </span>
             </button>
-            <span className="mx-1 text-xs lg:text-sm opacity-60">|</span>
+            <span className="mx-1 xl:mx-0  text-xs lg:text-sm opacity-60">|</span>
             <button
               onClick={() => handlePhoneClick("+911234567891")}
               className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
               aria-label="Call +91 12345 67891"
             >
-              <span className="ml-1 text-xs lg:text-sm 2xl:text-2xl hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
-                UAE +971 562744455
+              <span className="ml-1 xl:ml-0 text-xs lg:text-sm 2xl:text-2xl hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
+                UAE&nbsp;+971&nbsp;562744455
               </span>
             </button>
           </div>
@@ -130,7 +131,7 @@ export function UpperHeader({
           <div className="relative group">
             <button className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer">
               <span className="text-xs lg:text-sm 2xl:text-2xl font-medium">
-                Our Branches
+                Branches
               </span>
               <svg
                 className="w-3 h-3 lg:w-4 lg:h-4"
@@ -262,10 +263,10 @@ export function UpperHeader({
         {/* Toggle Button */}
         <button
           onClick={toggleMobileExpanded}
-          className="w-full bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white py-2 px-4 flex items-center justify-center gap-2 shadow-md"
+          className="w-full bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white py-2 h-12 px-4 flex items-center justify-center gap-2 shadow-md"
           aria-label="Toggle contact information"
         >
-          <span className="text-xs font-medium">Contact Info</span>
+          <span className="text-xs font-medium">Contact&nbsp;Info</span>
           {isMobileExpanded ? (
             <FiChevronUp className="w-4 h-4 transition-transform duration-300" />
           ) : (
@@ -287,8 +288,8 @@ export function UpperHeader({
                 onClick={() => handlePhoneClick("+919867729568")}
                 className="flex items-center gap-2 text-xs hover:text-[#D8C287] transition-colors"
               >
-                <FaPhone className="w-3 h-3" />
-                <span>IN +91 98677 29568</span>
+                <FaPhoneAlt className="w-3 h-3" />
+                <span>IN&nbsp;+91&nbsp;98677&nbsp;29568</span>
               </button>
               <button
                 onClick={() =>
@@ -304,20 +305,20 @@ export function UpperHeader({
             {/* Support Section */}
             <div className="space-y-2 border-t border-white/20 pt-3">
               <h4 className="text-xs font-semibold text-[#D8C287]">
-                Contact Support
+                Contact&nbsp;Support
               </h4>
               <button
                 onClick={() => handlePhoneClick("+911234567890")}
                 className="flex items-center gap-2 text-xs hover:text-[#D8C287] transition-colors"
               >
-                <FaPhone className="w-3 h-3" />
-                <span>=91 86556 93909</span>
+                <FaPhoneAlt className="w-3 h-3" />
+                <span>+91&nbsp;86556&nbsp;93909</span>
               </button>
               <button
                 onClick={() => handlePhoneClick("+911234567891")}
                 className="flex items-center gap-2 text-xs hover:text-[#D8C287] transition-colors"
               >
-                <FaPhone className="w-3 h-3" />
+                <FaPhoneAlt className="w-3 h-3" />
                 <span>+971 562744455</span>
               </button>
             </div>
@@ -325,7 +326,7 @@ export function UpperHeader({
             {/* Branches Section */}
             <div className="space-y-2 border-t border-white/20 pt-3">
               <h4 className="text-xs font-semibold text-[#D8C287]">
-                Our Branches
+                Our&nbsp;Branches
               </h4>
               <div className="grid grid-cols-2 gap-2">
                  <div className="bg-white/10 rounded-lg p-2">
@@ -334,7 +335,7 @@ export function UpperHeader({
                     onClick={() => handlePhoneClick("+919876543210")}
                     className="text-xs hover:text-[#D8C287] mt-1"
                   >
-                  +91 98677 29568
+                  +91&nbsp;98677&nbsp;29568
                   </button>
                 </div>
                 <div className="bg-white/10 rounded-lg p-2">
@@ -752,25 +753,31 @@ const Navbar = () => {
         setIsMobileExpanded={setIsMobileHeaderExpanded}
         isVisible={isUpperHeaderVisible} // PASS visibility to UpperHeader
       />
-      <nav
-        className={`flex justify-center pt-4 bg-white/95 backdrop-blur-md border-b border-gray-200 fixed w-full z-[100] transition-all duration-300 ${
-          isScrolled ? "shadow-xl bg-white/98" : "shadow-lg"
-        }`}
+     <nav
+  className={`flex justify-center 
+    ${isUpperHeaderVisible ? "mt-4" : "mt-0"} 
+    bg-white/95 backdrop-blur-md border-b border-gray-200 fixed w-full z-[100] transition-all duration-300
+    ${isScrolled ? "shadow-xl bg-white/98" : "shadow-lg"}
+  `}
+
         style={{
           top:
             window.innerWidth >= 2500 && isUpperHeaderVisible
-              ? "80px"
+              ? "70px"
+              
               : window.innerWidth >= 1024 && isUpperHeaderVisible
-              ? "2rem"
+              ? "2.3rem"
+
               : window.innerWidth >= 768 && isUpperHeaderVisible
               ? "2rem"
+              
               : window.innerWidth < 768
               ? "28px"
               : "0",
           transition: "top 0.3s ease-in-out",
         }}
       >
-        <div className=" mx-0 w-full px-4 lg:px-6 py-2 2xl:px-[5rem] 2xl:py-8">
+        <div className=" w-full px-4 lg:px-6 py-2 mt-2 2xl:px-[5rem] 2xl:py-8">
           <div className="flex justify-between items-center h-16 lg:h-20">
             <div
               className="flex items-center group cursor-pointer"

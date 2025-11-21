@@ -194,7 +194,7 @@ function Footer() {
 
               <div className="flex items-center gap-1 md:gap-2 lg:gap-3">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
@@ -203,7 +203,7 @@ function Footer() {
                   <FaInstagram className="text-sm  2xl:text-2xl lg:text-base" />
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
@@ -212,7 +212,7 @@ function Footer() {
                   <FaFacebookF className="text-sm  2xl:text-2xl lg:text-base" />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
@@ -221,7 +221,7 @@ function Footer() {
                   <FaLinkedinIn className="text-sm  2xl:text-2xl lg:text-base" />
                 </a>
                 <a
-                  href="https://youtube.com"
+                  href="https://www.youtube.com/@receptivegroup"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-1 hover:text-white hover:scale-110 transition-all duration-200"
