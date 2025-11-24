@@ -20,7 +20,6 @@ import {
   FiUser,
   FiHome,
   FiChevronUp,
-  
 } from "react-icons/fi";
 import {
   FaBars,
@@ -76,10 +75,10 @@ export function UpperHeader({
               aria-label="Call +91 98765 43210"
             >
               <div className="ml-1 xl:ml-0 text-xs lg:text-sm 2xl:text-2xl hidden md:text-[10px] md:flex md:mt-1 hover:text-white cursor-pointer">
-                Enquiry <span className="ml-2"></span> IN&nbsp;+91&nbsp;98677&nbsp;29568  <span className="mx-2">|</span>  UAE&nbsp;+971&nbsp;562744455
+                Enquiry <span className="ml-2"></span>{" "}
+                IN&nbsp;+91&nbsp;98677&nbsp;29568{" "}
+                <span className="mx-2">|</span> UAE&nbsp;+971&nbsp;562744455
               </div>
-              
-
             </button>
 
             <span className="mx-1 text-xs lg:text-sm opacity-60 2xl:text-2xl">
@@ -102,7 +101,9 @@ export function UpperHeader({
             <span className="text-xs lg:text-sm font-semibold">
               Contact&nbsp;Support:
             </span>
-            <span className="mx-1 xl:mx-0 text-xs lg:text-sm opacity-60">|</span>
+            <span className="mx-1 xl:mx-0 text-xs lg:text-sm opacity-60">
+              |
+            </span>
             <button
               onClick={() => handlePhoneClick("+911234567890")}
               className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
@@ -112,7 +113,9 @@ export function UpperHeader({
                 IN&nbsp;+91&nbsp;86556&nbsp;93909
               </span>
             </button>
-            <span className="mx-1 xl:mx-0  text-xs lg:text-sm opacity-60">|</span>
+            <span className="mx-1 xl:mx-0  text-xs lg:text-sm opacity-60">
+              |
+            </span>
             <button
               onClick={() => handlePhoneClick("+911234567891")}
               className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
@@ -151,8 +154,6 @@ export function UpperHeader({
             {/* Dropdown Menu */}
             <div className="absolute right-0 top-full mt-3 w-64 bg-white rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[9999] border border-gray-100 min-w-max">
               <div className="py-3 px-4 space-y-3">
-
-
                 <div className="border-b border-gray-200 pb-3">
                   <h4 className="font-semibold text-sm text-indigo-600">
                     Mumbai, India
@@ -177,7 +178,6 @@ export function UpperHeader({
                   </button>
                 </div>
 
-                
                 <div className="border-b border-gray-200 pb-3">
                   <h4 className="font-semibold text-sm text-indigo-600">
                     UAE - Dubai
@@ -201,8 +201,6 @@ export function UpperHeader({
                     <span className="text-xs">Enquiry:</span> +971 562744455
                   </button>
                 </div>
-
-                
               </div>
             </div>
           </div>
@@ -329,13 +327,13 @@ export function UpperHeader({
                 Our&nbsp;Branches
               </h4>
               <div className="grid grid-cols-2 gap-2">
-                 <div className="bg-white/10 rounded-lg p-2">
+                <div className="bg-white/10 rounded-lg p-2">
                   <p className="text-xs font-medium">Mumbai, India</p>
                   <button
                     onClick={() => handlePhoneClick("+919876543210")}
                     className="text-xs hover:text-[#D8C287] mt-1"
                   >
-                  +91&nbsp;98677&nbsp;29568
+                    +91&nbsp;98677&nbsp;29568
                   </button>
                 </div>
                 <div className="bg-white/10 rounded-lg p-2">
@@ -344,7 +342,7 @@ export function UpperHeader({
                     onClick={() => handlePhoneClick("+919876543211")}
                     className="text-xs hover:text-[#D8C287] mt-1"
                   >
-                   +91 98677 29568
+                    +91 98677 29568
                   </button>
                 </div>
                 <div className="bg-white/10 rounded-lg p-2">
@@ -353,7 +351,7 @@ export function UpperHeader({
                     onClick={() => handlePhoneClick("+971501234567")}
                     className="text-xs hover:text-[#D8C287] mt-1"
                   >
-                  +971 562744455
+                    +971 562744455
                   </button>
                 </div>
                 <div className="bg-white/10 rounded-lg p-2">
@@ -365,7 +363,6 @@ export function UpperHeader({
                     +971 562744455
                   </button>
                 </div>
-               
               </div>
             </div>
 
@@ -753,24 +750,20 @@ const Navbar = () => {
         setIsMobileExpanded={setIsMobileHeaderExpanded}
         isVisible={isUpperHeaderVisible} // PASS visibility to UpperHeader
       />
-     <nav
-  className={`flex justify-center 
+      <nav
+        className={`flex justify-center 
     ${isUpperHeaderVisible ? "mt-4" : "mt-0"} 
     bg-white/95 backdrop-blur-md border-b border-gray-200 fixed w-full z-[100] transition-all duration-300
     ${isScrolled ? "shadow-xl bg-white/98" : "shadow-lg"}
   `}
-
         style={{
           top:
-            window.innerWidth >= 2500 && isUpperHeaderVisible
-              ? "70px"
-              
-              : window.innerWidth >= 1024 && isUpperHeaderVisible
-              ? "2.3rem"
-
+            window.innerWidth >= 3000 && isUpperHeaderVisible
+              ? "3.2rem"
+              : window.innerWidth >= 1100 && isUpperHeaderVisible
+              ? "2.5rem"
               : window.innerWidth >= 768 && isUpperHeaderVisible
               ? "2rem"
-              
               : window.innerWidth < 768
               ? "28px"
               : "0",
@@ -778,31 +771,52 @@ const Navbar = () => {
         }}
       >
         <div className=" w-full px-4 lg:px-6 py-2 mt-2 2xl:px-[5rem] 2xl:py-8">
-          <div className="flex justify-between items-center h-16 lg:h-20">
+          <div className="flex justify-between items-center h-16 lg:h-20 2xl:h-25">
+            {/* LEFT - Logo only */}
             <div
-              className="flex items-center group cursor-pointer"
+              className="flex items-center group cursor-pointer flex-shrink-0"
               onClick={() => handleNavigation("/")}
             >
-              <div className="flex items-center justify-between gap-4 md:gap-4 w-full">
-                <div className="relative">
-                  <img
-                    src={logo}
-                    alt="Receptive Logo"
-                    className="h-12 lg:h-15 2xl:h-28 2xl:w-28 transition-all duration-300 group-hover:scale-105"
-                  />
-                  <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div>
-                </div>
-                <span className="text-[#0c3b34] font-bold md:text-[15.5px] lg:text-[15px] xl:text-[1rem] hidden xl:flex 2xl:text-2xl">
-                  Trusted&nbsp;Since&nbsp;2011 | Licensed&nbsp;&&nbsp;Certified
-                </span>
-                <p className="text-[#0c3b34] font-bold md:text-lg xl:hidden text-center text-[11px] lg:text-[0.8rem]">
-                  <span className=" border-b-2 ">
+              <div className="relative flex items-center">
+                <img
+                  src={logo}
+                  alt="Receptive Logo"
+                  className="h-12 lg:h-15 2xl:h-28 2xl:w-28 xl:h-18 xl:w-18  transition-all duration-300 group-hover:scale-105"
+                />
+                {/* <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div> */}
+                <div className="hidden lg:flex lg:flex-col lg:items-center lg:ml-4 text-[#0c3b34] ml-4 xl:text-[1rem]">
+                  <p className=" text-[12px] sm:text-[18px] xs:text-[8px] md:text-[15px] lg:text-[1rem] 2xl:text-[1.5rem]  font-bold  lg:border-b lg:border-b-2 lg:py-[2px] ">
                     Trusted&nbsp;Since&nbsp;2011
-                  </span>{" "}
-                  <br /> License&nbsp;&&nbsp;Certified
-                </p>
+                  </p>
+                  {/* <span className="ml-1 mr-1">|</span> */}
+                  <p className="text-[12px] sm:text-[18px]  xs:text-[8px] md:text-[15px] lg:text-[1rem] lg:pt-[2px]  2xl:text-[1.5rem] text-[#0c3b34] font-bold ml-2 xl:text-[1rem]">
+                    Licensed&nbsp;&&nbsp;Certified
+                  </p>
+                </div>
               </div>
+
+              {/* Desktop only - inline text next to logo */}
             </div>
+
+            {/* CENTER - Text for tablet/mobile (below xl) - centered between logo and hamburger */}
+            <div className="xl:hidden  justify-center px-2 gap-5 md:hidden">
+              <p
+                className="text-[#0c3b34] font-bold text-center leading-tight"
+                onClick={() => handleNavigation("/")}
+              >
+                <p className=" text-[12px] sm:text-[14px] xs:text-[8px] md:text-[14px] lg:text-[14px] py-[2px] border-b ">
+                  Trusted&nbsp;Since&nbsp;2011
+                </p>
+                {/* <span className="ml-1 mr-1">|</span> */}
+                <p className="text-[12px] sm:text-[14px]  xs:text-[8px] md:text-[14px] lg:text-[14px] pt-[2px]">
+                  Licensed&nbsp;&&nbsp;Certified
+                </p>
+              </p>
+            </div>
+                <p className="text-[#0c3b34] font-bold ml-4 xl:text-[1rem]  hidden xl:flex 2xl:text-2xl whitespace-nowrap md:flex lg:hidden xl:hidden">
+                  Trusted&nbsp;Since&nbsp;2011 | Licensed&nbsp;&&nbsp;Certified
+                </p>
+
             <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 cursor-pointer">
               {navItems.map((item, index) => (
                 <div key={index} className="relative group">
@@ -846,7 +860,7 @@ const Navbar = () => {
               {/* Render the auth section using the function for desktop */}
               {renderAuthSection()}
             </div>
-            <div className="lg:hidden">
+            <div className="lg:hidden flex-shrink-0">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="p-2.5 rounded-xl bg-gradient-to-r from-[#0C3B34] to-[#1a5f54] text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
