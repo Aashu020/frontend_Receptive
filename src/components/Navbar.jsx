@@ -501,43 +501,43 @@ const Navbar = () => {
     navigate(path);
   };
 
-  // UPDATED: Scroll handler that updates isUpperHeaderVisible state
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      setIsScrolled(currentScrollY > 10);
+  // // UPDATED: Scroll handler that updates isUpperHeaderVisible state
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const currentScrollY = window.scrollY;
+  //     setIsScrolled(currentScrollY > 10);
 
-      // Update visibility for desktop
-      if (window.innerWidth >= 768) {
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          setIsUpperHeaderVisible(false);
-        } else {
-          setIsUpperHeaderVisible(true);
-        }
-      } else {
-        setIsUpperHeaderVisible(false);
-      }
-      setLastScrollY(currentScrollY);
-    };
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setIsUpperHeaderVisible(false);
-      } else {
-        setIsUpperHeaderVisible(
-          window.scrollY <= 100 || window.scrollY < lastScrollY
-        );
-      }
-    };
+  //     // Update visibility for desktop
+  //     if (window.innerWidth >= 768) {
+  //       if (currentScrollY > lastScrollY && currentScrollY > 100) {
+  //         setIsUpperHeaderVisible(false);
+  //       } else {
+  //         setIsUpperHeaderVisible(true);
+  //       }
+  //     } else {
+  //       setIsUpperHeaderVisible(false);
+  //     }
+  //     setLastScrollY(currentScrollY);
+  //   };
+  //   const handleResize = () => {
+  //     if (window.innerWidth < 768) {
+  //       setIsUpperHeaderVisible(false);
+  //     } else {
+  //       setIsUpperHeaderVisible(
+  //         window.scrollY <= 100 || window.scrollY < lastScrollY
+  //       );
+  //     }
+  //   };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleResize);
-    handleResize();
+  //   window.addEventListener("scroll", handleScroll, { passive: true });
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize();
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [lastScrollY]);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, [lastScrollY]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -758,14 +758,14 @@ const Navbar = () => {
   `}
         style={{
           top:
-            window.innerWidth >= 3000 && isUpperHeaderVisible
+            window.innerWidth >= 2000 && isUpperHeaderVisible
               ? "3.2rem"
-              : window.innerWidth >= 1100 && isUpperHeaderVisible
-              ? "2.5rem"
+              : window.innerWidth >= 1200 && isUpperHeaderVisible
+              ? "2.3rem"
               : window.innerWidth >= 768 && isUpperHeaderVisible
               ? "2rem"
-              : window.innerWidth < 768
-              ? "28px"
+              : window.innerWidth < 750
+              ? "40px"
               : "0",
           transition: "top 0.3s ease-in-out",
         }}
