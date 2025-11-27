@@ -72,7 +72,7 @@ function Footer() {
 
       {/* Footer */}
       <footer className="bg-[#0C3B34] text-white">
-        <div className=" mx-auto px-4 sm:px-6 lg:px-[10rem] py-12">
+        <div className=" mx-auto px-4 sm:px-6 lg:px-[2rem] py-12">
 
           {/* Top Section: Logos on left, text on right */}
           <div className="flex flex-col md:flex-row justify-between items-center mb-10">
@@ -108,8 +108,8 @@ function Footer() {
           <div className="grid grid-cols-1 lg:grid-cols-3  mb-10">
 
             {/* Services - Updated with clickable links */}
-            <div>
-              <h3 className="text-lg font-semibold text-[#D8C287] 2xl:text-2xl  mb-4">Our Services</h3>
+            <div className='mb-3'>
+              <h3 className="text-lg font-semibold text-[#D8C287] 2xl:text-2xl  mb-4 ">Our Services</h3>
               <ul className="space-y-2">
                 {['Visitor Visa', 'Student Visa', 'Work Visa', 'Permanent Residence',].map((service, index) => (
                   <li key={index} className="text-gray-200 text-sm flex items-center">
@@ -126,9 +126,9 @@ function Footer() {
             </div>
 
             {/* Global Offices */}
-            <div className="lg:col-span-2">
+            <div className="lg:col-span-2">  
               <h3 className="text-lg font-semibold text-[#D8C287]  2xl:text-2xl mb-4">Global Offices</h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 lg:grid-cols-3">
 
                 
 

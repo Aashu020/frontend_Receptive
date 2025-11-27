@@ -758,7 +758,9 @@ const Navbar = () => {
   `}
         style={{
           top:
-            window.innerWidth >= 2000 && isUpperHeaderVisible
+            window.innerWidth >= 2500 && isUpperHeaderVisible
+              ? "3.6rem"
+             :window.innerWidth >= 2000 && isUpperHeaderVisible
               ? "3.2rem"
               : window.innerWidth >= 1200 && isUpperHeaderVisible
               ? "2.3rem"
@@ -770,7 +772,7 @@ const Navbar = () => {
           transition: "top 0.3s ease-in-out",
         }}
       >
-        <div className=" w-full px-4 lg:px-6 py-2 mt-2 2xl:px-[5rem] 2xl:py-8">
+        <div className=" w-full px-4 lg:px-6 py-2 xl:mt-1 2xl:px-[5rem] 2xl:py-8">
           <div className="flex justify-between items-center h-16 lg:h-20 2xl:h-25">
             {/* LEFT - Logo only */}
             <div
@@ -785,11 +787,11 @@ const Navbar = () => {
                 />
                 {/* <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div> */}
                 <div className="hidden lg:flex lg:flex-col lg:items-center lg:ml-4 text-[#0c3b34] ml-4 xl:text-[1rem]">
-                  <p className=" text-[12px] sm:text-[18px] xs:text-[8px] md:text-[15px] lg:text-[1rem] 2xl:text-[1.5rem]  font-bold  lg:border-b lg:border-b-2 lg:py-[2px] ">
+                  <p className=" text-[12px] sm:text-[18px] xs:text-[8px] md:text-[15px] lg:text-[0.8rem] 2xl:text-[1.5rem]  font-bold  lg:border-b lg:border-b-2 lg:py-[2px] xl:text-[1rem]">
                     Trusted&nbsp;Since&nbsp;2011
                   </p>
                   {/* <span className="ml-1 mr-1">|</span> */}
-                  <p className="text-[12px] sm:text-[18px]  xs:text-[8px] md:text-[15px] lg:text-[1rem] lg:pt-[2px]  2xl:text-[1.5rem] text-[#0c3b34] font-bold ml-2 xl:text-[1rem]">
+                  <p className="text-[12px] sm:text-[18px]  xs:text-[8px] md:text-[15px] lg:text-[0.8rem] lg:pt-[2px]  2xl:text-[1.5rem] text-[#0c3b34] font-bold    xl:text-[1rem]">
                     Licensed&nbsp;&&nbsp;Certified
                   </p>
                 </div>
