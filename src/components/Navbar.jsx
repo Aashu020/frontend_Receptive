@@ -765,7 +765,7 @@ const Navbar = () => {
               : window.innerWidth >= 768 && isUpperHeaderVisible
               ? "2rem"
               : window.innerWidth < 750
-              ? "40px"
+              ? "33px"
               : "0",
           transition: "top 0.3s ease-in-out",
         }}
