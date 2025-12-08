@@ -206,8 +206,8 @@ export function UpperHeader({
           </div>
 
           <a
-            href={termsPDF}
-            download="Terms-and-Conditions.pdf"
+            href="/contact"
+            // download="Terms-and-Conditions.pdf"
             className="hidden lg:flex items-center hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
           >
             <FaRegFileAlt className="mr-1 text-xs lg:text-sm 2xl:text-2xl" />
@@ -403,8 +403,8 @@ export function UpperHeader({
                 </a>
               </div>
               <a
-                href={termsPDF}
-                download="Terms-and-Conditions.pdf"
+                href="/contact"
+                // download="Terms-and-Conditions.pdf"
                 className="flex items-center gap-1 text-xs hover:text-[#D8C287] transition-colors"
               >
                 <FaRegFileAlt className="w-3 h-3" />

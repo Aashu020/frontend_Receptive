@@ -82,7 +82,7 @@ function Footer() {
               <div className="flex space-x-6">
                 {['Receptive Group', 'Receptive Investment', 'Receptive Properties'].map((company, index) => (
                   <div key={index} className="text-center">
-                    <div className="w-16 h-16 2xl:w-30 2xl:h-30  mx-auto mb-2 bg-[#D8C287] rounded-lg p-2 flex items-center justify-center">
+                    <div className="w-20 h-20 2xl:w-30 2xl:h-30  mx-auto mb-2  rounded-lg p-2 flex items-center justify-center">
                       <img
                         src={portfolioLogos[company]}
                         alt={`${company}logo`}
