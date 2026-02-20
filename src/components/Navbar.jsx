@@ -225,8 +225,8 @@ export function UpperHeader({
           </div>
 
           <a
-            href={termsPDF}
-            download="Terms-and-Conditions.pdf"
+            href="/contact"
+            // download="Terms-and-Conditions.pdf"
             className="hidden lg:flex items-center hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
           >
             <FaRegFileAlt className="mr-1 text-xs lg:text-sm 2xl:text-2xl" />
@@ -434,8 +434,8 @@ export function UpperHeader({
                 </a>
               </div>
               <a
-                href={termsPDF}
-                download="Terms-and-Conditions.pdf"
+                href="/contact"
+                // download="Terms-and-Conditions.pdf"
                 className="flex items-center gap-1 text-xs hover:text-[#D8C287] transition-colors"
               >
                 <FaRegFileAlt className="w-3 h-3" />
@@ -692,7 +692,9 @@ const Navbar = () => {
   `}
         style={{
           top:
-            window.innerWidth >= 2000 && isUpperHeaderVisible
+            window.innerWidth >= 2500 && isUpperHeaderVisible
+              ? "3.6rem"
+             :window.innerWidth >= 2000 && isUpperHeaderVisible
               ? "3.2rem"
               : window.innerWidth >= 1200 && isUpperHeaderVisible
               ? "2rem"
@@ -704,7 +706,7 @@ const Navbar = () => {
           transition: "top 0.3s ease-in-out",
         }}
       >
-        <div className=" w-full px-4 lg:px-6 py-2 mt-2 2xl:px-[5rem] 2xl:py-8">
+        <div className=" w-full px-4 lg:px-6 py-2 xl:mt-1 2xl:px-[5rem] 2xl:py-8">
           <div className="flex justify-between items-center h-16 lg:h-20 2xl:h-25">
             {/* LEFT - Logo only */}
             <div
@@ -718,7 +720,7 @@ const Navbar = () => {
                   className="h-12 lg:h-15 2xl:h-28 2xl:w-28 xl:h-18 xl:w-18  transition-all duration-300 group-hover:scale-105"
                 />
                 <div className="hidden lg:flex lg:flex-col lg:items-center lg:ml-4 text-[#0c3b34] ml-4 xl:text-[1rem]">
-                  <p className=" text-[12px] sm:text-[18px] xs:text-[8px] md:text-[15px] lg:text-[1rem] 2xl:text-[1.5rem]  font-bold  lg:border-b lg:border-b-2 lg:py-[2px] ">
+                  <p className=" text-[12px] sm:text-[18px] xs:text-[8px] md:text-[15px] lg:text-[0.8rem] 2xl:text-[1.5rem]  font-bold  lg:border-b lg:border-b-2 lg:py-[2px] xl:text-[1rem]">
                     Trusted&nbsp;Since&nbsp;2011
                   </p>
                   <p className="text-[12px] sm:text-[18px]  xs:text-[8px] md:text-[15px] lg:text-[1rem] lg:pt-[2px]  2xl:text-[1.5rem] text-[#0c3b34] font-bold ml-2 xl:text-[1rem]">
