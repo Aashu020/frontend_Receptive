@@ -128,7 +128,7 @@ function Footer() {
             {/* Global Offices */}
             <div className="lg:col-span-2">
               <h3 className="text-lg font-semibold text-[#D8C287]  2xl:text-2xl mb-4">Global Offices</h3>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
                 
 
@@ -140,16 +140,6 @@ function Footer() {
                   </p>
                   <p className="text-[#0c3b34] text-xs  2xl:text-lg font-medium">+91 98677 29568</p>
                   <p className="text-[#0c3b34] text-xs 2xl:text-lg ">info@receptivesolutions.co.in</p>
-                </div>
-
-                {/* Ahmedabad Branch */}
-                <div className="bg-[#D8C287] p-4 rounded-lg 2xl:text-2xl" >
-                  <h4 className="font-medium text-[#0c3b34] mb-2"> Ahmedabad Branch (India)</h4>
-                  <p className="text-xs text-[#0c3b34] font-medium mb-2 2xl:text-lg ">
-                    106, Dev Prime, Nr. Vodafone House, Corporate Road, Makarba, Ahmedabad - 380051
-                  </p>
-                  <p className="text-[#0c3b34] text-xs font-medium 2xl:text-lg">+91 98677 29568</p>
-                  <p className="text-[#0c3b34] text-xs 2xl:text-lg">info@receptivesolutions.co.in</p>
                 </div>
 
                 {/* UAE Branch */}

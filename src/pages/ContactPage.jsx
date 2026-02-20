@@ -13,13 +13,6 @@ const ContactPage = () => {
       email: "info@receptivesolutions.co.in",
     },
     {
-      title: "Ahmedabad Branch",
-      address:
-        "106, Dev Prime, Nr. Vodafone House, Makarba, Ahmedabad - 380051",
-      phone: "+91 98677 29568",
-      email: "info@receptivesolutions.co.in",
-    },
-    {
       title: "UAE (Dubai) Branch",
       address:
         "Suite No -201, Al Salemiyah Tower, Deria Riggat Al Buteen, Dubai, UAE",
@@ -38,77 +31,78 @@ const ContactPage = () => {
     <>
       {/* ✅ SEO */}
       <Helmet>
-        {/* ✅ Title and Meta */}
-        <title>Contact Receptive Solutions | Immigration & Visa Consultancy Mumbai</title>
+        <title>
+          Contact Receptive Solutions | Immigration & Visa Consultancy Mumbai
+        </title>
         <meta
           name="description"
           content="Reach out to Receptive Solutions for immigration and overseas career assistance. Call or visit our Mumbai office today."
         />
-        <link rel="canonical" href="https://www.receptivesolutions.co.in/contact" />
+        <link
+          rel="canonical"
+          href="https://www.receptivesolutions.co.in/contact"
+        />
 
-        {/* ✅ Breadcrumb Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
-            "itemListElement": [
+            itemListElement: [
               {
                 "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://www.receptivesolutions.co.in/"
+                position: 1,
+                name: "Home",
+                item: "https://www.receptivesolutions.co.in/",
               },
               {
                 "@type": "ListItem",
-                "position": 2,
-                "name": "Contact Us",
-                "item": "https://www.receptivesolutions.co.in/contact"
-              }
-            ]
+                position: 2,
+                name: "Contact Us",
+                item: "https://www.receptivesolutions.co.in/contact",
+              },
+            ],
           })}
         </script>
 
-        {/* ✅ ContactPage Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ContactPage",
-            "url": "https://www.receptivesolutions.co.in/contact",
-            "name": "Contact Receptive Solutions",
-            "description":
+            url: "https://www.receptivesolutions.co.in/contact",
+            name: "Contact Receptive Solutions",
+            description:
               "Get in touch with Receptive Solutions for immigration, visa, and overseas job assistance. Visit or call our Mumbai office.",
-            "mainEntity": {
+            mainEntity: {
               "@type": "Organization",
-              "name": "Receptive Solutions",
-              "url": "https://www.receptivesolutions.co.in/",
-              "logo": "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg",
-              "contactPoint": {
+              name: "Receptive Solutions",
+              url: "https://www.receptivesolutions.co.in/",
+              logo: "https://www.receptivesolutions.co.in/assets/logo-DDRnVjcS.jpg",
+              contactPoint: {
                 "@type": "ContactPoint",
-                "telephone": "+91-77380-56424",
-                "contactType": "customer support",
-                "areaServed": "IN",
-                "availableLanguage": ["English", "Hindi"]
+                telephone: "+91-77380-56424",
+                contactType: "customer support",
+                areaServed: "IN",
+                availableLanguage: ["English", "Hindi"],
               },
-              "address": {
+              address: {
                 "@type": "PostalAddress",
-                "streetAddress":
+                streetAddress:
                   "425, Gemstar Commercial Complex, Ramchandra Lane Extn, Kanchpada, Malad West",
-                "addressLocality": "Mumbai",
-                "postalCode": "400064",
-                "addressRegion": "Maharashtra",
-                "addressCountry": "IN"
+                addressLocality: "Mumbai",
+                postalCode: "400064",
+                addressRegion: "Maharashtra",
+                addressCountry: "IN",
               },
-              "sameAs": [
+              sameAs: [
                 "https://www.instagram.com/receptivesolutions/profilecard/?igsh=bDIxNTY2eW14Yzd1",
                 "https://www.linkedin.com/company/receptivesolutions/posts/?feedView=all",
                 "https://www.youtube.com/@receptivegroup",
-                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL"
-              ]
-            }
+                "https://www.facebook.com/receptivesoutions?mibextid=ZbWKwL",
+              ],
+            },
           })}
         </script>
       </Helmet>
-
 
       {/* ✅ PAGE CONTENT */}
       <div className="pt-16 md:pt-24 lg:pt-28 xl:pt-32 2xl:pt-42 ">
@@ -129,47 +123,46 @@ const ContactPage = () => {
               </p>
             </div>
 
-            <div className="max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6 ">
+            <div className="max-w-8xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 px-6">
               {branches.map((branch, index) => (
                 <div
                   key={index}
                   className="group bg-[#D8C287] shadow-2xl rounded-2xl text-center transform hover:scale-100 transition-all duration-500 hover:shadow-emerald-500/20 border border-emerald-100/20"
                 >
-                  <div className="bg-white/20 backdrop-blur-5xl rounded-2xl w-full h-full p-4 md:p-8">
+                  <div className="bg-white/20 backdrop-blur-5xl rounded-2xl w-full h-full p-4 md:p-2 lg:p-4">
                     <div className="flex justify-center mb-6">
-                      <div className="bg-[#0C3B34] text-white p-4 rounded-2xl shadow-lg transition-all duration-300 group-hover:shadow-emerald-500/30">
-                        <Building2
-                          size={32}
-                          className="group-hover:scale-110 transition-transform duration-300"
-                        />
+                      <div className="bg-[#0C3B34] text-white p-4 md:p-3 lg:p-4 rounded-2xl shadow-lg transition-all duration-300 group-hover:shadow-emerald-500/30">
+                        <Building2 className="w-5 h-5 md:w-5 md:h-5 lg:w-8 lg:h-8 group-hover:scale-110 transition-transform duration-300" />
                       </div>
                     </div>
 
-                    <h3 className="text-2xl 2xl:text-3xl  font-bold text-[#0c3b34] mb-6 transition-colors group-hover:text-emerald-900">
+                    <h3 className="text-2xl md:text-xl lg:text-2xl 2xl:text-3xl font-bold text-[#0c3b34] mb-6 transition-colors group-hover:text-emerald-900">
                       {branch.title}
                     </h3>
 
                     <div className="space-y-4 text-left">
                       <div className="flex items-start space-x-3 transition-transform group-hover:translate-x-1">
                         <MapPin size={20} className="text-[#0c3b34] mt-1" />
-                        <p className="text-[#0c3b34] 2xl:text-2xl">{branch.address}</p>
+                        <p className="text-[#0c3b34] md:text-sm lg:text-lg 2xl:text-2xl">
+                          {branch.address}
+                        </p>
                       </div>
 
                       <div className="flex items-center space-x-3 transition-transform group-hover:translate-x-1 delay-75">
                         <Phone size={18} className="text-[#0c3b34]" />
                         <a
                           href={`tel:${branch.phone}`}
-                          className="text-[#0c3b34] hover:text-emerald-900 font-medium 2xl:text-2xl"
+                          className="text-[#0c3b34] md:text-sm lg:text-lg hover:text-emerald-900 font-medium 2xl:text-2xl"
                         >
                           {branch.phone}
                         </a>
                       </div>
 
-                      <div className="flex items-center space-x-3 transition-transform group-hover:translate-x-1 delay-150">
+                      <div className="flex items-center  space-x-3 transition-transform group-hover:translate-x-1 delay-150">
                         <Mail size={18} className="text-[#0c3b34]" />
                         <a
                           href={`mailto:${branch.email}`}
-                          className="text-[#0c3b34] hover:text-emerald-900 break-all 2xl:text-2xl"
+                          className="text-[#0c3b34] md:text-xs lg:text-lg hover:text-emerald-900 break-all 2xl:text-2xl"
                         >
                           {branch.email}
                         </a>
@@ -178,6 +171,55 @@ const ContactPage = () => {
                   </div>
                 </div>
               ))}
+
+              {/* 4th Card — Contact Support Numbers */}
+              <div className="group bg-[#D8C287] shadow-2xl rounded-2xl text-center transform hover:scale-100 transition-all duration-500 hover:shadow-emerald-500/20 border border-emerald-100/20">
+                <div className="bg-white/20 backdrop-blur-5xl rounded-2xl w-full h-full p-4 md:p-2 lg:p-4">
+                  <div className="flex justify-center mb-6">
+                    <div className="bg-[#0C3B34] text-white p-4 md:p-3 lg:p-4 rounded-2xl shadow-lg transition-all duration-300 group-hover:shadow-emerald-500/30">
+                      <Phone className="w-5 h-5 md:w-5 md:h-5 lg:w-8 lg:h-8 group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                  </div>
+
+                  <h3 className="text-2xl md:text-xl lg:text-2xl 2xl:text-3xl font-bold text-[#0c3b34] mb-6 transition-colors group-hover:text-emerald-900">
+                    Contact Support
+                  </h3>
+
+                  <div className="space-y-3 text-left">
+                    <p className="text-xs font-semibold text-[#0c3b34] uppercase tracking-wider border-b border-[#0c3b34]/20 pb-1">
+                      India
+                    </p>
+
+                    <div className="flex items-center space-x-3 transition-transform group-hover:translate-x-1">
+                      <Phone size={15} className="text-[#0c3b34] flex-shrink-0" />
+                      <a href="tel:+918291475096" className="text-[#0c3b34] md:text-sm lg:text-base hover:text-emerald-900 font-medium 2xl:text-2xl">
+                        +91 82914 75096
+                      </a>
+                    </div>
+
+                    <div className="flex items-center space-x-3 transition-transform group-hover:translate-x-1 delay-75">
+                      <Phone size={15} className="text-[#0c3b34] flex-shrink-0" />
+                      <a href="tel:+919867729415" className="text-[#0c3b34] md:text-sm lg:text-base hover:text-emerald-900 font-medium 2xl:text-2xl">
+                        +91 98677 29415
+                      </a>
+                    </div>
+
+                    <div className="flex items-center space-x-3 transition-transform group-hover:translate-x-1 delay-100">
+                      <Phone size={15} className="text-[#0c3b34] flex-shrink-0" />
+                      <a href="tel:+919321658958" className="text-[#0c3b34] md:text-sm lg:text-base hover:text-emerald-900 font-medium 2xl:text-2xl">
+                        +91 93216 58958
+                      </a>
+                    </div>
+
+                    <div className="flex items-center space-x-3 transition-transform group-hover:translate-x-1 delay-150">
+                      <Phone size={15} className="text-[#0c3b34] flex-shrink-0" />
+                      <a href="tel:+918655693909" className="text-[#0c3b34] md:text-sm lg:text-base hover:text-emerald-900 font-medium 2xl:text-2xl">
+                        +91 86556 93909
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

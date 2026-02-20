@@ -514,7 +514,7 @@ function Reviews() {
 ``
 
 
-      <div className="mt-20 md:mt-45 px-4 lg:px-8 2xl:mt-60 max-w-7xl 2xl:max-w-[100rem] mx-auto md:mb-4">
+      <div className="mt-30 md:mt-35 px-4 lg:px-8 2xl:mt-60 max-w-7xl 2xl:max-w-[100rem] mx-auto md:mb-4">
         {/* Add Review Button */}
         <div className="flex justify-end mb-6">
           <button

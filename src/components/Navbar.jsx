@@ -67,6 +67,7 @@ export function UpperHeader({
         }}
         className="hidden xl:flex fixed w-full z-[110] justify-between items-center py-3 md:py-3 lg:py-4 2xl:py-6 px-4 md:px-4 lg:px-5 top-0"
       >
+        {/* Left Side - Phone & Email only */}
         <div className="flex flex-col md:flex-row gap-1 md:gap-2 lg:gap-3 xl:gap-8 text-xs lg:text-sm">
           <div className="flex items-center gap-1 md:gap-1 lg:gap-2">
             <button
@@ -96,40 +97,69 @@ export function UpperHeader({
               </span>
             </button>
           </div>
-
-          <div className="flex items-center gap-1 md:gap-1 lg:gap-2">
-            <span className="text-xs lg:text-sm font-semibold">
-              Contact&nbsp;Support:
-            </span>
-            <span className="mx-1 xl:mx-0 text-xs lg:text-sm opacity-60">
-              |
-            </span>
-            <button
-              onClick={() => handlePhoneClick("+911234567890")}
-              className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
-              aria-label="Call +91 12345 67890"
-            >
-              <span className="ml-1 xl:ml-0  text-xs lg:text-sm 2xl:text-2xl hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
-                IN&nbsp;+91&nbsp;86556&nbsp;93909
-              </span>
-            </button>
-            <span className="mx-1 xl:mx-0  text-xs lg:text-sm opacity-60">
-              |
-            </span>
-            <button
-              onClick={() => handlePhoneClick("+911234567891")}
-              className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer"
-              aria-label="Call +91 12345 67891"
-            >
-              <span className="ml-1 xl:ml-0 text-xs lg:text-sm 2xl:text-2xl hidden md:block md:text-[10px] md:mt-1 lg:inline hover:text-white cursor-pointer">
-                UAE&nbsp;+971&nbsp;562744455
-              </span>
-            </button>
-          </div>
         </div>
 
-        {/* Right Side - Social Links & Terms */}
+        {/* Right Side - Contact Support + Branches + Terms + Social */}
         <div className="flex items-center gap-2 md:gap-3 lg:gap-4 xl:gap-6">
+
+          {/* Contact Support Dropdown — moved here, left of Branches */}
+          <div className="relative group">
+            <button className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer">
+              <span className="text-xs lg:text-sm 2xl:text-2xl font-semibold">
+                Contact&nbsp;Support
+              </span>
+              <svg
+                className="w-3 h-3 lg:w-4 lg:h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            {/* Dropdown Menu */}
+            <div className="absolute bg-[#D8C287] right-0 top-full mt-3 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[9999] border border-[#D8C287] min-w-max">
+              <div className="py-3 px-4 space-y-2">
+                <h4 className="font-semibold text-sm text-[#0C3B34] uppercase tracking-wide pb-1 border-b border-gray-100">
+                  India
+                </h4>
+                {[
+                  { label: "+91 82914 75096", number: "+918291475096" },
+                  { label: "+91 98677 29415", number: "+919867729415" },
+                  { label: "+91 93216 58958", number: "+919321658958" },
+                  { label: "+91 86556 93909", number: "+918655693909" },
+                ].map((item) => (
+                  <button
+                    key={item.number}
+                    onClick={() => handlePhoneClick(item.number)}
+                    className="flex items-center gap-2 text-xs lg:text-sm text-gray-700 hover:text-indigo-600 w-full text-left py-0.5 transition-colors"
+                  >
+                    <FaPhoneAlt className="w-3 h-3 text-[#0C3B34] flex-shrink-0" />
+                    {item.label}
+                  </button>
+                ))}
+                <div className="border-t border-gray-100 pt-2">
+                  <h4 className="font-semibold text-sm text-[#0C3B34] uppercase tracking-wide pb-1">
+                    UAE
+                  </h4>
+                  <button
+                    onClick={() => handlePhoneClick("+971562744455")}
+                    className="flex items-center gap-2 text-xs lg:text-sm text-gray-700 hover:text-indigo-600 w-full text-left py-0.5 transition-colors"
+                  >
+                    <FaPhoneAlt className="w-3 h-3 text-[#0C3B34] flex-shrink-0" />
+                    +971 562744455
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Branches Dropdown */}
           <div className="relative group">
             <button className="flex items-center gap-1 hover:opacity-80 transition-opacity hover:text-white cursor-pointer">
@@ -152,51 +182,40 @@ export function UpperHeader({
             </button>
 
             {/* Dropdown Menu */}
-            <div className="absolute right-0 top-full mt-3 w-64 bg-white rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[9999] border border-gray-100 min-w-max">
+            <div className="absolute right-0 top-full mt-3 w-64 bg-[#D8C287] rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[9999] border border-[#D8C287] min-w-max">
               <div className="py-3 px-4 space-y-3">
                 <div className="border-b border-gray-200 pb-3">
-                  <h4 className="font-semibold text-sm text-indigo-600">
+                  <h4 className="font-semibold text-sm text-[#0C3B34]">
                     Mumbai, India
                   </h4>
                   <button
                     onClick={() => handlePhoneClick("+919876543210")}
-                    className="text-xs lg:text-sm text-gray-700 hover:text-indigo-600 mt-1 flex items-center gap-2"
+                    className="text-xs lg:text-sm text-gray-700 hover:text-[#0C3B34] mt-1 flex items-center gap-2"
                   >
                     <span className="text-xs">Enquiry:</span> +91 98677 29568
                   </button>
                 </div>
 
-                <div>
-                  <h4 className="font-semibold text-sm text-indigo-600">
-                    Ahmedabad, India
-                  </h4>
-                  <button
-                    onClick={() => handlePhoneClick("+919876543211")}
-                    className="text-xs lg:text-sm text-gray-700 hover:text-indigo-600 mt-1 flex items-center gap-2"
-                  >
-                    <span className="text-xs">Enquiry:</span> +91 98677 29568
-                  </button>
-                </div>
 
                 <div className="border-b border-gray-200 pb-3">
-                  <h4 className="font-semibold text-sm text-indigo-600">
+                  <h4 className="font-semibold text-sm text-[#0C3B34]">
                     UAE - Dubai
                   </h4>
                   <button
                     onClick={() => handlePhoneClick("+971501234567")}
-                    className="text-xs lg:text-sm text-gray-700 hover:text-indigo-600 mt-1 flex items-center gap-2"
+                    className="text-xs lg:text-sm text-gray-700 hover:text-[#0C3B34] mt-1 flex items-center gap-2"
                   >
                     <span className="text-xs">Enquiry:</span> +971 562744455
                   </button>
                 </div>
 
                 <div className="border-b border-gray-200 pb-3">
-                  <h4 className="font-semibold text-sm text-indigo-600">
+                  <h4 className="font-semibold text-sm text-[#0C3B34]">
                     UK - London
                   </h4>
                   <button
                     onClick={() => handlePhoneClick("+447123456789")}
-                    className="text-xs lg:text-sm text-gray-700 hover:text-indigo-600 mt-1 flex items-center gap-2"
+                    className="text-xs lg:text-sm text-gray-700 hover:text-[#0C3B34] mt-1 flex items-center gap-2"
                   >
                     <span className="text-xs">Enquiry:</span> +971 562744455
                   </button>
@@ -306,14 +325,35 @@ export function UpperHeader({
                 Contact&nbsp;Support
               </h4>
               <button
-                onClick={() => handlePhoneClick("+911234567890")}
+                onClick={() => handlePhoneClick("+918291475096")}
+                className="flex items-center gap-2 text-xs hover:text-[#D8C287] transition-colors"
+              >
+                <FaPhoneAlt className="w-3 h-3" />
+                <span>+91&nbsp;82914&nbsp;75096</span>
+              </button>
+              <button
+                onClick={() => handlePhoneClick("+919867729415")}
+                className="flex items-center gap-2 text-xs hover:text-[#D8C287] transition-colors"
+              >
+                <FaPhoneAlt className="w-3 h-3" />
+                <span>+91&nbsp;98677&nbsp;29415</span>
+              </button>
+              <button
+                onClick={() => handlePhoneClick("+919321658958")}
+                className="flex items-center gap-2 text-xs hover:text-[#D8C287] transition-colors"
+              >
+                <FaPhoneAlt className="w-3 h-3" />
+                <span>+91&nbsp;93216&nbsp;58958</span>
+              </button>
+              <button
+                onClick={() => handlePhoneClick("+918655693909")}
                 className="flex items-center gap-2 text-xs hover:text-[#D8C287] transition-colors"
               >
                 <FaPhoneAlt className="w-3 h-3" />
                 <span>+91&nbsp;86556&nbsp;93909</span>
               </button>
               <button
-                onClick={() => handlePhoneClick("+911234567891")}
+                onClick={() => handlePhoneClick("+971562744455")}
                 className="flex items-center gap-2 text-xs hover:text-[#D8C287] transition-colors"
               >
                 <FaPhoneAlt className="w-3 h-3" />
@@ -334,15 +374,6 @@ export function UpperHeader({
                     className="text-xs hover:text-[#D8C287] mt-1"
                   >
                     +91&nbsp;98677&nbsp;29568
-                  </button>
-                </div>
-                <div className="bg-white/10 rounded-lg p-2">
-                  <p className="text-xs font-medium">Ahmedabad, India</p>
-                  <button
-                    onClick={() => handlePhoneClick("+919876543211")}
-                    className="text-xs hover:text-[#D8C287] mt-1"
-                  >
-                    +91 98677 29568
                   </button>
                 </div>
                 <div className="bg-white/10 rounded-lg p-2">
@@ -423,43 +454,33 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isUpperHeaderVisible, setIsUpperHeaderVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const [lastScrollY, setLastScrollY] = useState(0)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [shouldLoadUser, setShouldLoadUser] = useState(false); // New: Track initial load
+  const [shouldLoadUser, setShouldLoadUser] = useState(false);
   const [isMobileHeaderExpanded, setIsMobileHeaderExpanded] = useState(false);
   const navRef = useRef(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // Redux state
   const { user, loading: authLoading } = useSelector((state) => state.auth);
 
-  // Load user data on mount
   useEffect(() => {
     if (localStorage.getItem("token") && localStorage.getItem("user")) {
-      setShouldLoadUser(true); // Set to true before dispatch
+      setShouldLoadUser(true);
       dispatch(loadUser()).finally(() => {
-        setShouldLoadUser(false); // Reset after fetch completes (success or error)
+        setShouldLoadUser(false);
       });
     }
   }, [dispatch]);
 
-  // Function to get user initials - updated to handle both flat and nested structures
   const getUserInitials = (userdata) => {
-    // console.log("first", userdata); // Keep for debugging; remove later if not needed
     let name = null;
-
-    // Handle nested structure (from loadUser)
     if (userdata?.user?.name) {
       name = userdata.user.name;
-    }
-    // Handle flat structure (from login)
-    else if (userdata?.name) {
+    } else if (userdata?.name) {
       name = userdata.name;
     }
-
     if (!name) return "U";
-
     const names = name.trim().split(" ").filter(Boolean);
     if (names.length >= 2) {
       return (names[0][0] + names[1][0]).toUpperCase();
@@ -467,22 +488,16 @@ const Navbar = () => {
     return names[0][0]?.toUpperCase() || "U";
   };
 
-  // Helper to get user details - handles both flat and nested structures
   const getUserDetails = (userdata) => {
     let name = null;
     let email = null;
-
-    // Handle nested structure (from loadUser)
     if (userdata?.user?.name) {
       name = userdata.user.name;
       email = userdata.user.email;
-    }
-    // Handle flat structure (from login)
-    else {
+    } else {
       name = userdata?.name;
       email = userdata?.email;
     }
-
     return {
       name: name || "User",
       email: email || "No email",
@@ -495,69 +510,25 @@ const Navbar = () => {
     navigate("/");
   };
 
-  // Placeholder for handleNavigation - assuming it's defined
   const handleNavigation = (path) => {
     closeAllDropdowns();
     navigate(path);
   };
 
-  // // UPDATED: Scroll handler that updates isUpperHeaderVisible state
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const currentScrollY = window.scrollY;
-  //     setIsScrolled(currentScrollY > 10);
-
-  //     // Update visibility for desktop
-  //     if (window.innerWidth >= 768) {
-  //       if (currentScrollY > lastScrollY && currentScrollY > 100) {
-  //         setIsUpperHeaderVisible(false);
-  //       } else {
-  //         setIsUpperHeaderVisible(true);
-  //       }
-  //     } else {
-  //       setIsUpperHeaderVisible(false);
-  //     }
-  //     setLastScrollY(currentScrollY);
-  //   };
-  //   const handleResize = () => {
-  //     if (window.innerWidth < 768) {
-  //       setIsUpperHeaderVisible(false);
-  //     } else {
-  //       setIsUpperHeaderVisible(
-  //         window.scrollY <= 100 || window.scrollY < lastScrollY
-  //       );
-  //     }
-  //   };
-
-  //   window.addEventListener("scroll", handleScroll, { passive: true });
-  //   window.addEventListener("resize", handleResize);
-  //   handleResize();
-
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //     window.removeEventListener("resize", handleResize);
-  //   };
-  // }, [lastScrollY]);
-
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (navRef.current && !navRef.current.contains(event.target)) {
-        console.log("Clicked outside, closing dropdowns");
         setIsCountriesOpen(false);
         setSelectedCountry(null);
         setIsMobileMenuOpen(false);
         setIsUserMenuOpen(false);
-      } else {
-        console.log("Clicked inside dropdown, ignoring");
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   const handleCountryClick = (country) => {
-    console.log("Selected country:", country);
     setSelectedCountry(country);
   };
 
@@ -568,15 +539,11 @@ const Navbar = () => {
     setIsUserMenuOpen(false);
   };
 
-  // Placeholder for handleVisaClick - assuming defined
   const handleVisaClick = (visa) => {
     closeAllDropdowns();
-
     if (visa.link.includes("#")) {
       const [route, hash] = visa.link.split("#");
-
       navigate(route);
-
       setTimeout(() => {
         const section = document.getElementById(hash);
         if (section) {
@@ -584,17 +551,10 @@ const Navbar = () => {
             window.innerWidth >= 768 && isUpperHeaderVisible
               ? 44 + 80 + 20
               : 64 + 20;
-
           const elementPosition =
             section.getBoundingClientRect().top + window.pageYOffset;
           const offsetPosition = elementPosition - navbarHeight;
-
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: "smooth",
-          });
-        } else {
-          console.log(`Section with ID "${hash}" not found`);
+          window.scrollTo({ top: offsetPosition, behavior: "smooth" });
         }
       }, 300);
     } else {
@@ -604,11 +564,7 @@ const Navbar = () => {
 
   const navItems = [
     { name: "Home", icon: FiHome, path: "/" },
-    {
-      name: "Countries",
-      icon: FiGlobe,
-      hasDropdown: true,
-    },
+    { name: "Countries", icon: FiGlobe, hasDropdown: true },
     { name: `Success\u00A0Stories`, icon: FiTrendingUp, path: "/succes_story" },
     { name: "Reviews", icon: FiStar, path: "/reviews" },
     { name: "Contact", icon: FiMail, path: "/contact" },
@@ -620,27 +576,18 @@ const Navbar = () => {
       { title: "UAE", link: "/country/uae" },
       { title: "Golden Visa", link: "/country/uae#golden-visa" },
       { title: "Company Investor", link: "/country/uae#company-investor-visa" },
-      {
-        title: "Property Investor",
-        link: "/country/uae#property-investor-visa",
-      },
+      { title: "Property Investor", link: "/country/uae#property-investor-visa" },
       { title: "UAE Employment", link: "/country/uae#employment-visa" },
       { title: "UAE Student", link: "/country/uae#student-visa" },
     ],
     Canada: [
       { title: "Canada", link: "/country/canada" },
       { title: "Tourist", link: "/country/canada#canada-tourist" },
-      {
-        title: "Skilled Immigration",
-        link: "/country/canada#canada-skilled-immigration",
-      },
+      { title: "Skilled Immigration", link: "/country/canada#canada-skilled-immigration" },
       { title: "Start-Up", link: "/country/canada#canada-start-up" },
       { title: "AIP", link: "/country/canada#canada-aip" },
       { title: "SINP", link: "/country/canada#canada-sinp" },
-      {
-        title: "Alberta Tech Pathway",
-        link: "/country/canada#canada-alberta-tech-pathway",
-      },
+      { title: "Alberta Tech Pathway", link: "/country/canada#canada-alberta-tech-pathway" },
       { title: "BC PNP", link: "/country/canada#canada-bc-pnp" },
     ],
     UK: [
@@ -664,18 +611,9 @@ const Navbar = () => {
     Australia: [
       { title: "Australia", link: "/country/australia" },
       { title: "Visitor", link: "/country/australia#australia-visitor" },
-      {
-        title: "Subclass 400",
-        link: "/country/australia#australia-subclass-400",
-      },
-      {
-        title: "Subclass 482",
-        link: "/country/australia#australia-subclass-482",
-      },
-      {
-        title: "Subclass 186",
-        link: "/country/australia#australia-subclass-186",
-      },
+      { title: "Subclass 400", link: "/country/australia#australia-subclass-400" },
+      { title: "Subclass 482", link: "/country/australia#australia-subclass-482" },
+      { title: "Subclass 186", link: "/country/australia#australia-subclass-186" },
     ],
     Singapore: [
       { title: "Singapore", link: "/country/singapore" },
@@ -684,18 +622,14 @@ const Navbar = () => {
     ],
   };
 
-  // Update the auth section rendering - fixed to prioritize loading until data is fetched
   const renderAuthSection = () => {
-    // Show loading if we expect data to load (initial token check) OR auth is loading
     if (shouldLoadUser || authLoading) {
       return (
         <div className="flex items-center space-x-2 px-4 xl:p-3 py-2.5 rounded-full bg-gray-200 text-gray-500 font-bold text-sm xl:text-base animate-pulse">
           <div className="w-8 h-8 2xl:*:w-10 2xl:h-10 rounded-full bg-gray-300"></div>
-          {/* <span>...</span> */}
         </div>
       );
     }
-
     if (user) {
       return (
         <div className="relative">
@@ -748,7 +682,7 @@ const Navbar = () => {
       <UpperHeader
         isMobileExpanded={isMobileHeaderExpanded}
         setIsMobileExpanded={setIsMobileHeaderExpanded}
-        isVisible={isUpperHeaderVisible} // PASS visibility to UpperHeader
+        isVisible={isUpperHeaderVisible}
       />
       <nav
         className={`flex justify-center 
@@ -761,11 +695,11 @@ const Navbar = () => {
             window.innerWidth >= 2000 && isUpperHeaderVisible
               ? "3.2rem"
               : window.innerWidth >= 1200 && isUpperHeaderVisible
-              ? "2.3rem"
+              ? "2rem"
               : window.innerWidth >= 768 && isUpperHeaderVisible
               ? "2rem"
               : window.innerWidth < 750
-              ? "40px"
+              ? "2rem"
               : "0",
           transition: "top 0.3s ease-in-out",
         }}
@@ -783,22 +717,18 @@ const Navbar = () => {
                   alt="Receptive Logo"
                   className="h-12 lg:h-15 2xl:h-28 2xl:w-28 xl:h-18 xl:w-18  transition-all duration-300 group-hover:scale-105"
                 />
-                {/* <div className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-[#0C3B34] to-[#D8C287] transition-all duration-300 group-hover:w-full"></div> */}
                 <div className="hidden lg:flex lg:flex-col lg:items-center lg:ml-4 text-[#0c3b34] ml-4 xl:text-[1rem]">
                   <p className=" text-[12px] sm:text-[18px] xs:text-[8px] md:text-[15px] lg:text-[1rem] 2xl:text-[1.5rem]  font-bold  lg:border-b lg:border-b-2 lg:py-[2px] ">
                     Trusted&nbsp;Since&nbsp;2011
                   </p>
-                  {/* <span className="ml-1 mr-1">|</span> */}
                   <p className="text-[12px] sm:text-[18px]  xs:text-[8px] md:text-[15px] lg:text-[1rem] lg:pt-[2px]  2xl:text-[1.5rem] text-[#0c3b34] font-bold ml-2 xl:text-[1rem]">
                     Licensed&nbsp;&&nbsp;Certified
                   </p>
                 </div>
               </div>
-
-              {/* Desktop only - inline text next to logo */}
             </div>
 
-            {/* CENTER - Text for tablet/mobile (below xl) - centered between logo and hamburger */}
+            {/* CENTER - Text for tablet/mobile (below xl) */}
             <div className="xl:hidden  justify-center px-2 gap-5 md:hidden">
               <p
                 className="text-[#0c3b34] font-bold text-center leading-tight"
@@ -807,7 +737,6 @@ const Navbar = () => {
                 <p className=" text-[12px] sm:text-[14px] xs:text-[8px] md:text-[14px] lg:text-[14px] py-[2px] border-b ">
                   Trusted&nbsp;Since&nbsp;2011
                 </p>
-                {/* <span className="ml-1 mr-1">|</span> */}
                 <p className="text-[12px] sm:text-[14px]  xs:text-[8px] md:text-[14px] lg:text-[14px] pt-[2px]">
                   Licensed&nbsp;&&nbsp;Certified
                 </p>
@@ -834,14 +763,10 @@ const Navbar = () => {
                     >
                       <div className="absolute inset-0 bg-gradient-to-r from-[#D8C287] to-[#e6d098] opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
                       <item.icon className="h-4 xl:h-4 relative z-10 2xl:h-6 2xl:w-6" />
-                      <span className="relative z-10 2xl:text-2xl">
-                        {item.name}
-                      </span>
+                      <span className="relative z-10 2xl:text-2xl">{item.name}</span>
                       <FiChevronDown
                         className={`h-3 xl:w-3 xl:h-4 transition-all duration-300 2xl:h-6 2xl:w-6 relative z-10 ${
-                          isCountriesOpen
-                            ? "rotate-180"
-                            : "group-hover:rotate-12"
+                          isCountriesOpen ? "rotate-180" : "group-hover:rotate-12"
                         }`}
                       />
                     </button>
@@ -857,7 +782,6 @@ const Navbar = () => {
                   )}
                 </div>
               ))}
-              {/* Render the auth section using the function for desktop */}
               {renderAuthSection()}
             </div>
             <div className="lg:hidden flex-shrink-0">
@@ -878,10 +802,6 @@ const Navbar = () => {
         {/* Desktop Countries Dropdown */}
         {isCountriesOpen && (
           <div className="absolute top-23 2xl:top-34 left-0 right-0 bg-gradient-to-br from-gray-50 to-white shadow-2xl border-t border-gray-100 hidden lg:block animate-slideDown z-[101]">
-            {console.log(
-              "Countries dropdown open, selectedCountry:",
-              selectedCountry
-            )}
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0C3B34] via-[#D8C287] to-[#0C3B34]"></div>
             <div className="2xl:px-20 mx-auto px-6 py-6 xl:py-8">
               {!selectedCountry ? (
@@ -902,9 +822,7 @@ const Navbar = () => {
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] opacity-0 group-hover:opacity-5 transition-opacity duration-300"></div>
                         <div className="flex items-center justify-between relative z-10">
-                          <span className="font-semibold text-base xl:text-lg 2xl:text-2xl">
-                            {country}
-                          </span>
+                          <span className="font-semibold text-base xl:text-lg 2xl:text-2xl">{country}</span>
                           <FiChevronRight className="w-4 h-4 xl:w-5 xl:h-5 transition-transform duration-300 group-hover:translate-x-1" />
                         </div>
                         <div className="mt-2 text-xs text-[#0C3B34] relative z-10 2xl:text-xl">
@@ -941,12 +859,8 @@ const Navbar = () => {
                         onClick={() => handleVisaClick(visa)}
                         className="block p-3 rounded-lg text-sm bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-lg transition-all duration-300 hover:scale-105"
                       >
-                        <div className="font-medium 2xl:text-2xl">
-                          {visa.title}
-                        </div>
-                        <div className="text-xs text-white/75 mt-1 2xl:text-xl">
-                          View Details{" "}
-                        </div>
+                        <div className="font-medium 2xl:text-2xl">{visa.title}</div>
+                        <div className="text-xs text-white/75 mt-1 2xl:text-xl">View Details</div>
                       </button>
                     ))}
                   </div>
@@ -962,10 +876,7 @@ const Navbar = () => {
             <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#0C3B34] via-[#D8C287] to-[#0C3B34]"></div>
             <div className="px-4 py-4 max-h-[80vh] overflow-y-auto">
               {navItems.map((item, index) => (
-                <div
-                  key={index}
-                  className="border-b border-gray-100 last:border-b-0"
-                >
+                <div key={index} className="border-b border-gray-100 last:border-b-0">
                   {item.hasDropdown ? (
                     <div>
                       <button
@@ -1000,9 +911,7 @@ const Navbar = () => {
                                   className="w-full text-left p-3 rounded-xl flex items-center justify-between transition-all duration-300 bg-[#c4a567] text-[#0C3B34] hover:bg-gray-50 shadow-sm border border-gray-200 hover:border-[#D8C287]"
                                 >
                                   <div>
-                                    <span className="font-semibold">
-                                      {country}
-                                    </span>
+                                    <span className="font-semibold">{country}</span>
                                     <div className="text-xs text-[#0C3B34]">
                                       {countries[country].length} Programs
                                     </div>
@@ -1019,9 +928,7 @@ const Navbar = () => {
                                   className="flex items-center space-x-2 text-[#0C3B34] hover:text-[#1a5f54] transition-colors duration-300 mr-3 p-2 rounded-lg hover:bg-gray-100"
                                 >
                                   <FiArrowLeft className="w-4 h-4" />
-                                  <span className="text-sm font-medium">
-                                    Back
-                                  </span>
+                                  <span className="text-sm font-medium">Back</span>
                                 </button>
                                 <h4 className="font-semibold text-[#0C3B34] flex items-center">
                                   <FiMapPin className="w-4 h-4 mr-2" />
@@ -1029,26 +936,20 @@ const Navbar = () => {
                                 </h4>
                               </div>
                               <div className="grid grid-cols-2 gap-3">
-                                {countries[selectedCountry].map(
-                                  (visa, index) => (
-                                    <button
-                                      key={index}
-                                      onClick={() => handleVisaClick(visa)}
-                                      className="group block p-4 xl:p-6 rounded-2xl transition-all duration-300 hover:scale-105 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-2xl border border-[#D8C287]/30 hover:border-[#D8C287]"
-                                      style={{
-                                        animationDelay: `${index * 50}ms`,
-                                      }}
-                                    >
-                                      <div className="font-bold text-xs xl:text-sm mb-2 group-hover:text-[#D8C287] transition-colors duration-300">
-                                        {visa.title}
-                                        <span className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">
-                                          →
-                                        </span>
-                                      </div>
-                                      <div className="absolute top-3 right-3 w-2 h-2 bg-[#D8C287] rounded-full opacity-50 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300"></div>
-                                    </button>
-                                  )
-                                )}
+                                {countries[selectedCountry].map((visa, index) => (
+                                  <button
+                                    key={index}
+                                    onClick={() => handleVisaClick(visa)}
+                                    className="group block p-4 xl:p-6 rounded-2xl transition-all duration-300 hover:scale-105 bg-gradient-to-br from-[#0C3B34] to-[#1a5f54] text-white hover:shadow-2xl border border-[#D8C287]/30 hover:border-[#D8C287]"
+                                    style={{ animationDelay: `${index * 50}ms` }}
+                                  >
+                                    <div className="font-bold text-xs xl:text-sm mb-2 group-hover:text-[#D8C287] transition-colors duration-300">
+                                      {visa.title}
+                                      <span className="ml-2 transform group-hover:translate-x-2 transition-transform duration-300">→</span>
+                                    </div>
+                                    <div className="absolute top-3 right-3 w-2 h-2 bg-[#D8C287] rounded-full opacity-50 group-hover:opacity-100 group-hover:scale-125 transition-all duration-300"></div>
+                                  </button>
+                                ))}
                               </div>
                             </div>
                           )}
@@ -1067,7 +968,7 @@ const Navbar = () => {
                 </div>
               ))}
 
-              {/* Mobile Auth Section - synced with renderAuthSection logic for consistency */}
+              {/* Mobile Auth Section */}
               <div className="border-t border-gray-100 pt-4 mt-4">
                 {shouldLoadUser || authLoading ? (
                   <div className="flex items-center space-x-3 px-3 py-2 bg-gray-200 rounded-lg animate-pulse">
@@ -1084,12 +985,8 @@ const Navbar = () => {
                         {getUserInitials(user)}
                       </div>
                       <div>
-                        <p className="font-medium text-gray-900">
-                          {getUserDetails(user).name}
-                        </p>
-                        <p className="text-xs text-gray-500 truncate">
-                          {getUserDetails(user).email}
-                        </p>
+                        <p className="font-medium text-gray-900">{getUserDetails(user).name}</p>
+                        <p className="text-xs text-gray-500 truncate">{getUserDetails(user).email}</p>
                       </div>
                     </div>
                     <button
